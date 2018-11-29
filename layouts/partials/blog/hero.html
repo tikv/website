@@ -11,9 +11,11 @@
         {{ . }}
       </p>
       {{- end }}
+      {{- if ne .URL "/blog/" }}
       <p class="is-size-5">
         {{ $date }}
       </p>
+      {{- end }}
     </div>
   </div>
 </section>
