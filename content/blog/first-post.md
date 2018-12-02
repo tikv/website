@@ -1,7 +1,7 @@
 ---
 title: First post
 date: 2018-12-01
-author: Lilian Lee
+author: John Doe
 draft: true
 ---
 
