@@ -29,13 +29,26 @@
 
     <br />
 
-    <div class="buttons">
-      <a class="button is-twitter-blue twitter-share-button" href="{{ $twitterUrl }}">
-        <span class="icon">
-          <i class="fab fa-twitter"></i>
-        </span>
-      </a>
-    </div>
+    <nav class="level">
+      <div class="level-left">
+        <a class="button is-twitter-blue twitter-share-button" href="{{ $twitterUrl }}">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
+        </a>
+      </div>
+
+      <div class="level-right">
+        <a class="button is-primary" href="{{ .URL }}">
+          <span class="icon">
+            <i class="fas fa-book-open"></i>
+          </span>
+          <span>
+            Read
+          </span>
+        </a>
+      </div>
+    </nav>
   </div>
 </div>
 
