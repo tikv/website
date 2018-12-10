@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
   <head>
+    {{ partial "google-analytics.html" . }}
     {{ partial "meta.html" . }}
     <title>{{ block "title" . }}{{ .Site.Title }} &ndash; {{ .Site.Params.description.brief }}{{ end }}</title>
     {{ partial "css.html" . }}
