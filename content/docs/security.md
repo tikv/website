@@ -60,7 +60,7 @@ You'll also need to **change the connection URL to `https://`**.
 
 ### Configure the Client
 
-When connecting your TiKV Client, you'll need to specify the TLS options. In this example we build a configuration for the [Rust Client](https://github.com/tikv/client-rust):
+When connecting your TiKV Client, you'll need to specify the TLS options. In this example, we build a configuration for the [Rust Client](https://github.com/tikv/client-rust):
 
 ```rust
 let config = Config::new(/* ... */).with_security(
@@ -103,7 +103,7 @@ tikv-ctl                                  \
 
 TiKV currently does not offer built-in on disk encryption.
 
-This means an actor with access to the directory could extract TiKV data from it. If TiKV offered build in on disk encryption then an actor would not be able to access the data.
+This means an actor with access to the directory could extract TiKV data from it. If TiKV offered build in on disk encryption, then an actor would not be able to access the data.
 
 This feature is part of the planned [roadmap](https://github.com/tikv/tikv/blob/master/docs/ROADMAP.md#engine) under 'Pluggable Engine Interface'. *(See [Issue #3680](https://github.com/tikv/tikv/issues/3680) if you want to help.)*
 
