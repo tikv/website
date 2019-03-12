@@ -36,3 +36,274 @@
     url: https://www.pingcap.com/blog/use-case-tidb-in-eleme/
   - language: Chinese
     url: https://www.pingcap.com/cases-cn/user-case-eleme-1/
+- name: Xiaomi
+  url: https://www.mi.com/
+  industry: Consumer Electronics
+  stories:
+  - language: Chinese
+    url: https://pingcap.com/cases-cn/user-case-xiaomi/
+- name: LY.com
+  url: https://www.crunchbase.com/organization/ly-com
+  industry: Travel
+  stories:
+  - language: Chinese
+    url: https://www.pingcap.com/cases-cn/user-case-tongcheng/
+- name: Qunar.com
+  url: https://www.crunchbase.com/organization/qunar-com
+  industry: Travel
+  stories:
+  - language: Chinese
+    url: https://www.pingcap.com/cases-cn/user-case-qunar/
+- name: Hulu
+  url: https://www.hulu.com/
+  industry: Entertainment
+- name: VIPKID
+  url: https://www.crunchbase.com/organization/vipkid
+  industry: EdTech
+- name: Lenovo
+  url: https://en.wikipedia.org/wiki/Lenovo
+  industry: Enterprise Technology
+- name: Bank of Beijing
+  url: https://en.wikipedia.org/wiki/Bank_of_Beijing
+  industry: Banking
+  stories:
+  - language: Chinese
+    url: https://pingcap.com/cases-cn/user-case-beijing-bank/
+- name: Industrial and Commercial Bank of China
+  url: https://en.wikipedia.org/wiki/Industrial_and_Commercial_Bank_of_China
+  industry: Banking
+- name: iQiyi
+  url: https://en.wikipedia.org/wiki/IQiyi
+  industry: Media and Entertainment
+  stories:
+  - language: English
+    url: https://www.pingcap.com/success-stories/tidb-in-iqiyi/
+  - language: Chinese
+    url: https://pingcap.com/cases-cn/user-case-iqiyi/
+- name: Yimian Data
+  url: https://www.crunchbase.com/organization/yimian-data
+  industry: Big Data
+  stories:
+  - language: Chinese
+    url: https://www.pingcap.com/cases-cn/user-case-yimian
+- name: CAASDATA
+  url: https://www.caasdata.com/
+  industry: Big Data
+  stories:
+  - language: Chinese
+    url: https://pingcap.com/cases-cn/user-case-kasi/
+- name: Phoenix New Media
+  url: https://www.crunchbase.com/organization/phoenix-new-media
+  industry: Media
+  stories:
+  - language: Chinese
+    url: https://www.pingcap.com/cases-cn/user-case-ifeng/
+- name: Mobikok
+  url: http://www.mobikok.com/en/
+  industry: AdTech
+  stories:
+  - language: Chinese
+    url: https://pingcap.com/cases-cn/user-case-mobikok/
+- name: LinkDoc Technology
+  url: https://www.crunchbase.com/organization/linkdoc-technology
+  industry: HealthTech
+  stories:
+  - language: Chinese
+    url: https://www.pingcap.com/cases-cn/user-case-linkdoc/
+- name: G7 Networks
+  url: https://www.english.g7.com.cn/
+  industry: Logistics
+  stories:
+  - language: Chinese
+    url: https://www.pingcap.com/cases-cn/user-case-g7/
+- name: Hive-Box
+  url: http://www.fcbox.com/en/pc/index.html#/
+  industry: Logistics
+  stories:
+  - language: Chinese
+    url: https://pingcap.com/cases-cn/user-case-fengchao/
+- name: 360 Finance
+  url: https://www.crunchbase.com/organization/360-finance
+  industry: FinTech
+  stories:
+  - language: Chinese
+    url: https://www.pingcap.com/cases-cn/user-case-360/
+- name: GAEA
+  url: http://www.gaea.com/en/
+  industry: Gaming
+  stories:
+  - language: English
+    url: https://www.pingcap.com/blog/2017-05-22-Comparison-between-MySQL-and-TiDB-with-tens-of-millions-of-data-per-day/
+  - language: Chinese
+    url: https://www.pingcap.com/cases-cn/user-case-gaea-ad/
+- name: YOOZOO Games
+  url: https://www.crunchbase.com/organization/yoozoo-games
+  stories:
+  - language: Chinese
+    url: https://pingcap.com/cases-cn/user-case-youzu/
+- name: Seasun Games
+  url: https://www.crunchbase.com/organization/seasun
+  industry: Gaming
+  stories:
+  - language: Chinese
+    url: https://pingcap.com/cases-cn/user-case-xishanju/
+- name: Netease Games
+  url: https://game.163.com/en/
+  industry: Gaming
+- name: FUNYOURS Japan
+  url: http://company.funyours.co.jp/
+  industry: Gaming
+  stories:
+  - language: Chinese
+    url: https://pingcap.com/cases-cn/user-case-funyours-japan/
+- name: Zhaopin.com
+  url: https://www.crunchbase.com/organization/zhaopin
+  industry: Recruiting
+- name: Panda.tv
+  url: https://www.crunchbase.com/organization/panda-tv
+  industry: Live Streaming
+- name: Hoodinn
+  url: https://www.crunchbase.com/organization/hoodinn
+  industry: Gaming
+- name: Ping++
+  url: https://www.crunchbase.com/organization/ping-5
+  industry: Mobile Payment
+  stories:
+  - language: Chinese
+    url: https://pingcap.com/cases-cn/user-case-ping++/
+- name: Haian eKing Technology
+  url: https://www.crunchbase.com/organization/hainan-eking-technology
+  industry: Enterprise Technology
+  stories:
+  - language: Chinese
+    url: https://pingcap.com/cases-cn/user-case-ekingtech/
+- name: LianLian Tech
+  url: http://www.10030.com.cn/web/
+  industry: Mobile Payment
+- name: TongDun Technology
+  url: https://www.crunchbase.com/organization/tongdun-technology
+  industry: FinTech
+- name: Wacai
+  url: https://www.crunchbase.com/organization/wacai
+  industry: FinTech
+- name: Tree Finance
+  url: https://www.crunchbase.com/organization/wacai
+  industry: Fintech
+- name: 2DFire.com
+  url: http://www.2dfire.com/
+  industry: FoodTech
+  stories:
+  - language: Chinese
+    url: https://www.pingcap.com/cases-cn/user-case-erweihuo/
+- name: Happigo.com
+  url: https://www.crunchbase.com/organization/happigo-com
+  industry: E-commerce
+- name: Mashang Consumer Finance
+  url: https://www.crunchbase.com/organization/ms-finance
+  industry: FinTech
+- name: Tencent OMG
+  url: https://en.wikipedia.org/wiki/Tencent
+  industry: Media
+- name: Terren
+  url: http://webterren.com.zigstat.com/
+  industry: Media
+- name: Lecloud
+  url: https://www.crunchbase.com/organization/letv-2
+  industry: Media
+- name: Miaopai
+  url: https://en.wikipedia.org/wiki/Miaopai
+  industry: Media
+- name: Snowball Finance
+  url: https://www.crunchbase.com/organization/snowball-finance
+  industry: FinTech
+- name: Yimutian
+  url: http://www.ymt.com/
+  industry: E-commerce
+- name: Gengmei
+  url: https://www.crunchbase.com/organization/gengmei
+  industry: Plastic Surgery
+- name: Acewill
+  url: https://www.crunchbase.com/organization/acewill
+  industry: FoodTech
+- name: Keruyun
+  url: https://www.crunchbase.com/organization/keruyun-technology-beijing-co-ltd
+  industry: SaaS
+  stories:
+  - language: Chinese
+    url: https://pingcap.com/cases-cn/user-case-keruyun/
+- name: Youju Tech
+  url: https://www.ujuz.cn/
+  industry: E-commerce
+- name: Maizuo
+  url: https://www.crunchbase.com/organization/maizhuo
+  industry: E-commerce
+- name: Mogujie
+  url: https://www.crunchbase.com/organization/mogujie
+  industry: E-commerce
+- name: Zhuan Zhuan
+  url: https://www.crunchbase.com/organization/zhuan-zhuan
+  industry: Online Marketplacce
+  stories:
+  - language: English
+    url: https://www.pingcap.com/success-stories/tidb-in-zhuanzhuan/
+  - language: Chinese
+    url: https://pingcap.com/cases-cn/user-case-zhuanzhuan/
+- name: Shuangchuang Huipu
+  url: http://scphjt.com/
+  industry: FinTech
+- name: Meizu
+  url: https://en.wikipedia.org/wiki/Meizu
+  industry: Media
+- name: SEA group
+  url: https://sea-group.org/?lang=en
+  industry: Gaming
+- name: Sogou
+  url: https://en.wikipedia.org/wiki/Sogou
+  industry: MediaTech
+- name: Chunyu Yisheng
+  url: https://www.crunchbase.com/organization/chunyu
+  industry: HealthTech
+- name: Meituan-Dianping
+  url: https://en.wikipedia.org/wiki/Meituan-Dianping
+  industry: Food Delivery
+  stories:
+  - language: English
+    url: https://www.pingcap.com/success-stories/tidb-in-meituan-dianping/
+  - language: Chinese
+    url: https://pingcap.com/cases-cn/user-case-meituan/
+- name: Qutoutiao
+  url: https://www.crunchbase.com/organization/qutoutiao
+  industry: Social Network
+- name: QuantGroup
+  url: https://www.crunchbase.com/organization/quantgroup
+  industry: FinTech
+- name: FINUP
+  url: https://www.crunchbase.com/organization/finup
+  industry: FinTech
+- name: Meili Finance
+  url: https://www.crunchbase.com/organization/meili-jinrong
+  industry: FinTech
+- name: Guolian Securities
+  url: https://www.crunchbase.com/organization/guolian-securities
+  industry: Finanial Services
+- name: Founder Securities
+  url: https://www.linkedin.com/company/founder-securities-co-ltd-/
+  industry: Financial Services
+- name: China Telecom Shanghai
+  url: http://sh.189.cn/en/index.html
+  industry: Telecom
+- name: State Administration of Taxation
+  url: https://en.wikipedia.org/wiki/State_Administration_of_Taxation
+  industry: Finance
+- name: Wuhan Antian Information Technology
+  url: https://www.avlsec.com/
+  industry: Enterprise Technology
+- name: Ausnutria Dairy
+  url: https://www.crunchbase.com/organization/ausnutria-dairy
+  industry: FoodTech
+- name: Qingdao Telaidian
+  url: https://www.teld.cn/
+  industry: Electric Car Chargers
+  stories:
+  - language: Chinese
+    url: https://pingcap.com/cases-cn/user-case-telaidian/
