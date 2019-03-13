@@ -15,6 +15,7 @@ API | Description | Atomicity | Use when...
 {{< info >}}
 It is **not recommended or supported** to use both the raw and transactional APIs on the same keyspace.
 {{< /info >}}
+
 There are several clients that connect to TiKV:
 
 * [Rust](https://github.com/tikv/client-rust)
@@ -25,7 +26,7 @@ Below we use the Rust client for some examples, but you should find all clients 
 
 ## Connecting a Client
 
-This guide assumes you are using Rust and have Rust installed through `rustup` or other means.
+This guide assumes you are using Rust and have Rust (>=1.31) installed through `rustup` or other means. You will also need an already deployed TiKV and PD cluster, since TiKV is not an embedded database.
 
 To start, open the `Cargo.toml` of your project and add the `tikv-client` as a dependency. You'll also need to depend on `futures`.
 
@@ -46,14 +47,14 @@ use tikv_client::{Config, raw::Client}
 use futures::Future;
 ```
 
-After building a `Config`, you can then create a `Client`.
+Start by building a `Config`, you can create a `Client`.
 
 ```rust
 let config = Config::new(vec![ // Use more than one PD endpoint!
     "192.168.0.100:2379",
     "192.168.0.101:2379",
     "192.168.0.102:2379",
-]).with_security(              // If using TLS.
+]).with_security( // If using TLS.
     "root.ca",
     "internal.cert",
     "internal.key",
@@ -62,7 +63,9 @@ let config = Config::new(vec![ // Use more than one PD endpoint!
 let unconnected_client = Client::new(config);
 ```
 
-The value returned at this point is a `Future`. It needs to be resolved before we can directly make calls. If your application is syncronous you can call`.wait()` to block the current task until the future is resolved. If your application is asyncronous you might have better ways of dealing with this.
+The value returned at this point is a `Future`. It needs to be resolved before we can directly make calls. This is because the client must create a connection with the cluster.
+
+If your application is syncronous you can call`.wait()` to block the current task until the future is resolved. If your application is asyncronous you might have better ways of dealing with this.
 
 ```rust
 let client = unconnected_client.wait()?; // Block and resolve the future.
@@ -78,25 +81,40 @@ You can find the full documentation for the client (and all your dependencies) b
 cargo doc --package tikv-client --open
 ```
 
+## Basic Types
+
+Both client use a few basic types for most of their API:
+
+* `Key`, a wrapper around a `Vec<u8>` symbolizing the 'key' in a key-value pair.
+* `Value`, a wrapper around a `Vec<u8>` symbolizing the 'value' in a key-value pair.
+* `KvPair`, a tuple of `(Key, Value)` representing a key-value pair.
+* `KeyRange`, a trait representing a range of `Key`s from one value to either another value, or the end of the entire dataset.
+
+The `Key` and `Value` types implement `Deref<Target=Vec<u8>>` so they can generally be used just like their contained values. Where possible API calls accept `impl Into<T>` instead of the type `T` when it comes to `Key`, `Value`, and `KvPair`.
+
+If you're using your own key or value types, we reccomend implementing `Into<Key>` and/or `Into<Value>` for them where appropriate. You can also `impl KeyRange` if you have any range types.
+
 ## Raw key-value API {#raw}
 
 Using a connected `raw::Client` you can perform actions such as basic `put`, `get`, and `delete`:
 
 ```rust
-// `Key` and `Value` wrap around `Vec<u8>` values.
-// This means data does not need to be UTF-8.
+let client = Client::new(config).wait();
+// Data stored in TiKV does not need to be UTF-8.
 let key = "TiKV".to_bytes();
 let value = "Astronaut".to_bytes();
 
 // This creates a future that must be resolved.
-let req = client.put(key, value);
+let req = client.put(
+    key,  // Vec<u8> impl Into<Key>
+    value // Vec<u8> impl Into<Value>
+);
 req.wait()?;
 
 let req = client.get(key);
 let result = req.wait()?;
 
-// `Value` and `Key` deref to `Vec<u8>`.
-// They should feel natural to work with.
+// `Value` derefs to `Vec<u8>`.
 assert_eq!(result, Some(value));
 
 let req = client.delete(key);
@@ -106,7 +124,7 @@ let req = client.get(key).wait()?;
 assert_eq!(result, None);
 ```
 
-You can also perform `scan`s:
+You can also perform `scan`s, giving you all the values for keys in a given range:
 
 ```rust
 // For stability and reliability, it's good to chose a reasonable limit.
@@ -120,7 +138,7 @@ let req = client.scan(START..END, REASONABLE_LIMIT);
 let result: Vec<Value> = req.wait()?;
 ```
 
-These functions also have batch variants which accept sets and return `Vec<_>`s of data. These this offer considerably reduced network overhead and can result in dramatic performance increases under certain workloads.
+These functions also have batch variants which accept sets and return `Vec<_>`s of data. These offer considerably reduced network overhead and can result in dramatic performance increases under certain workloads.
 
 For documented, tested examples of all functionalities, check the documentation of `raw::Client` in the generated Rust documentation.
 
@@ -131,6 +149,7 @@ For documented, tested examples of all functionalities, check the documentation 
 Using a connected `transaction::Client` you can then begin a transaction:
 
 ```rust
+let client = Client::new(config).wait();
 let txn = client.begin();
 ```
 
