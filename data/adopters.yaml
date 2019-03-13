@@ -37,7 +37,7 @@
   - language: Chinese
     url: https://www.pingcap.com/cases-cn/user-case-eleme-1/
 - name: Xiaomi
-  url: https://www.mi.com/
+  url: https://en.wikipedia.org/wiki/Xiaomi
   industry: Consumer Electronics
   stories:
   - language: Chinese
@@ -147,10 +147,10 @@
   stories:
   - language: Chinese
     url: https://pingcap.com/cases-cn/user-case-xishanju/
-- name: Netease Games
+- name: NetEase Games
   url: https://game.163.com/en/
   industry: Gaming
-- name: FUNYOURS Japan
+- name: FUNYOURS JAPAN
   url: http://company.funyours.co.jp/
   industry: Gaming
   stories:
@@ -180,7 +180,7 @@
 - name: LianLian Tech
   url: http://www.10030.com.cn/web/
   industry: Mobile Payment
-- name: TongDun Technology
+- name: Tongdun Technology
   url: https://www.crunchbase.com/organization/tongdun-technology
   industry: FinTech
 - name: Wacai
@@ -207,7 +207,7 @@
 - name: Terren
   url: http://webterren.com.zigstat.com/
   industry: Media
-- name: Lecloud
+- name: LeCloud
   url: https://www.crunchbase.com/organization/letv-2
   industry: Media
 - name: Miaopai
@@ -303,7 +303,7 @@
   industry: FoodTech
 - name: Qingdao Telaidian
   url: https://www.teld.cn/
-  industry: Electric Car Chargers
+  industry: Electric Car Charger
   stories:
   - language: Chinese
     url: https://pingcap.com/cases-cn/user-case-telaidian/
