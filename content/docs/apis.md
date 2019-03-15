@@ -5,7 +5,7 @@ weight: 4
 draft: false
 ---
 
-TiKV offers two APIs that you can use to interact with it:
+TiKV offers two APIs that you can interact with:
 
 API | Description | Atomicity | Use when...
 :---|:------------|:----------|:-----------
