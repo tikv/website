@@ -24,11 +24,24 @@ There are several clients that connect to TiKV:
 
 Below we use the Rust client for some examples, but you should find all clients work similarly.
 
-## Connecting a Client
+## Basic Types
 
-This guide assumes you are using Rust and have Rust (>=1.31) installed through `rustup` or other means. You will also need an already deployed TiKV and PD cluster, since TiKV is not an embedded database.
+Both client use a few basic types for most of their API:
 
-To start, open the `Cargo.toml` of your project and add the `tikv-client` as a dependency. You'll also need to depend on `futures`.
+* `Key`, a wrapper around a `Vec<u8>` symbolizing the 'key' in a key-value pair.
+* `Value`, a wrapper around a `Vec<u8>` symbolizing the 'value' in a key-value pair.
+* `KvPair`, a tuple of `(Key, Value)` representing a key-value pair.
+* `KeyRange`, a trait representing a range of `Key`s from one value to either another value, or the end of the entire dataset.
+
+The `Key` and `Value` types implement `Deref<Target=Vec<u8>>` so they can generally be used just like their contained values. Where possible API calls accept `impl Into<T>` instead of the type `T` when it comes to `Key`, `Value`, and `KvPair`.
+
+If you're using your own key or value types, we reccomend implementing `Into<Key>` and/or `Into<Value>` for them where appropriate. You can also `impl KeyRange` if you have any range types.\
+
+## Connect a client
+
+This guide assumes you are using Rust 1.31 or above. You will also need an already deployed TiKV and PD cluster, since TiKV is not an embedded database.
+
+To start, open the `Cargo.toml` of your project, and add the `tikv-client` and `futures` as dependencies.
 
 <!-- TODO: Use crates.to once published -->
 
@@ -47,14 +60,14 @@ use tikv_client::{Config, raw::Client}
 use futures::Future;
 ```
 
-Start by building a `Config`, you can create a `Client`.
+Start by building an instance of `Config` then using it to build an instance of a `Client`.
 
 ```rust
-let config = Config::new(vec![ // Use more than one PD endpoint!
+let config = Config::new(vec![ // Always use more than one PD endpoint!
     "192.168.0.100:2379",
     "192.168.0.101:2379",
     "192.168.0.102:2379",
-]).with_security( // If using TLS.
+]).with_security( // Configure TLS if used.
     "root.ca",
     "internal.cert",
     "internal.key",
@@ -65,13 +78,13 @@ let unconnected_client = Client::new(config);
 
 The value returned at this point is a `Future`. It needs to be resolved before we can directly make calls. This is because the client must create a connection with the cluster.
 
-If your application is syncronous you can call`.wait()` to block the current task until the future is resolved. If your application is asyncronous you might have better ways of dealing with this.
+If your application is syncronous you can call `.wait()` to block the current task until the future is resolved. If your application is asyncronous you might have better ways (eg a Tokio reactor) of dealing with this.
 
 ```rust
 let client = unconnected_client.wait()?; // Block and resolve the future.
 ```
 
-With a connected client, you'll be able to make requests from TiKV. This client supports both singlular or batch operations.
+With a connected client, you'll be able to send requests to TiKV. This client supports both singlular or batch operations.
 
 You can find the full documentation for the client (and all your dependencies) by running:
 
@@ -80,19 +93,6 @@ You can find the full documentation for the client (and all your dependencies) b
 ```bash
 cargo doc --package tikv-client --open
 ```
-
-## Basic Types
-
-Both client use a few basic types for most of their API:
-
-* `Key`, a wrapper around a `Vec<u8>` symbolizing the 'key' in a key-value pair.
-* `Value`, a wrapper around a `Vec<u8>` symbolizing the 'value' in a key-value pair.
-* `KvPair`, a tuple of `(Key, Value)` representing a key-value pair.
-* `KeyRange`, a trait representing a range of `Key`s from one value to either another value, or the end of the entire dataset.
-
-The `Key` and `Value` types implement `Deref<Target=Vec<u8>>` so they can generally be used just like their contained values. Where possible API calls accept `impl Into<T>` instead of the type `T` when it comes to `Key`, `Value`, and `KvPair`.
-
-If you're using your own key or value types, we reccomend implementing `Into<Key>` and/or `Into<Value>` for them where appropriate. You can also `impl KeyRange` if you have any range types.
 
 ## Raw key-value API {#raw}
 
