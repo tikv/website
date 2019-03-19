@@ -20,6 +20,14 @@
     url: https://www.datanami.com/2018/02/22/hybrid-database-capturing-perishable-insights-yiguo/
   - language: Chinese
     url: https://www.pingcap.com/cases-cn/user-case-yiguo
+- name: Shopee
+  url: https://en.wikipedia.org/wiki/Shopee
+  industry: E-commerce
+  stories: 
+  - language: English
+    url: https://www.pingcap.com/success-stories/tidb-in-shopee/
+  - language: Chinese
+    url: https://www.pingcap.com/cases-cn/user-case-shopee
 - name: Yuanfudao.com
   url: https://www.crunchbase.com/organization/yuanfudao
   industry: EdTech
@@ -80,6 +88,12 @@
     url: https://www.pingcap.com/success-stories/tidb-in-iqiyi/
   - language: Chinese
     url: https://pingcap.com/cases-cn/user-case-iqiyi/
+- name: BookMyShow
+  url: https://www.crunchbase.com/organization/bookmyshow
+  industry: Media and Entertainment
+  stories:
+  - language: English
+    url: https://www.pingcap.com/success-stories/tidb-in-bookmyshow
 - name: Yimian Data
   url: https://www.crunchbase.com/organization/yimian-data
   industry: Big Data
