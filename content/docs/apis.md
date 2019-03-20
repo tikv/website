@@ -53,7 +53,7 @@ futures = "0.1"
 
 In your `src/main.rs` you can then import the raw API as well as the functionality of the `Future` trait so you can utilize it.
 
-In this example we used `raw`, but you can also use `transaction`. The process is the same.
+*Note:* In this example we used `raw`, but you can also use `transaction`. The process is the same.
 
 ```rust
 use tikv_client::{Config, raw::Client}
@@ -76,7 +76,7 @@ let config = Config::new(vec![ // Always use more than one PD endpoint!
 let unconnected_client = Client::new(config);
 ```
 
-The value returned at this point is a `Future`. It needs to be resolved before we can directly make calls. This is because the client must create a connection with the cluster.
+The value returned at this point is a `Future`. It needs to be resolved before you can directly make calls. This is because the client must create a connection with the cluster.
 
 If your application is syncronous you can call `.wait()` to block the current task until the future is resolved. If your application is asyncronous you might have better ways (eg a Tokio reactor) of dealing with this.
 
