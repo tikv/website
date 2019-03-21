@@ -8,6 +8,8 @@
     {{ partial "google-analytics.html" . }}
     {{- end }}
     {{ partial "meta.html" . }}
+    {{ partial "twitter-card.html" . }}
+    {{ partial "open-graph-tags.html" . }}
     <title>{{ block "title" . }}{{ .Site.Title }} &ndash; {{ .Site.Params.description.brief }}{{ end }}</title>
     {{ partial "css.html" . }}
   </head>
