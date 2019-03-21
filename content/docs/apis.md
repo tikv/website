@@ -24,20 +24,7 @@ There are several clients that connect to TiKV:
 
 Below we use the Rust client for some examples, but you should find all clients work similarly.
 
-## Basic Types
-
-Both client use a few basic types for most of their API:
-
-* `Key`, a wrapper around a `Vec<u8>` symbolizing the 'key' in a key-value pair.
-* `Value`, a wrapper around a `Vec<u8>` symbolizing the 'value' in a key-value pair.
-* `KvPair`, a tuple of `(Key, Value)` representing a key-value pair.
-* `KeyRange`, a trait representing a range of `Key`s from one value to either another value, or the end of the entire dataset.
-
-The `Key` and `Value` types implement `Deref<Target=Vec<u8>>` so they can generally be used just like their contained values. Where possible API calls accept `impl Into<T>` instead of the type `T` when it comes to `Key`, `Value`, and `KvPair`.
-
-If you're using your own key or value types, we reccomend implementing `Into<Key>` and/or `Into<Value>` for them where appropriate. You can also `impl KeyRange` if you have any range types.\
-
-## Connect a client
+## Adding the dependency {#dependency}
 
 This guide assumes you are using Rust 1.31 or above. You will also need an already deployed TiKV and PD cluster, since TiKV is not an embedded database.
 
@@ -50,6 +37,21 @@ To start, open the `Cargo.toml` of your project, and add the `tikv-client` and `
 tikv-client = { git = "https://github.com/tikv/client-rust" }
 futures = "0.1"
 ```
+
+## Basic Types {#types}
+
+Both client use a few basic types for most of their API:
+
+* `Key`, a wrapper around a `Vec<u8>` symbolizing the 'key' in a key-value pair.
+* `Value`, a wrapper around a `Vec<u8>` symbolizing the 'value' in a key-value pair.
+* `KvPair`, a tuple of `(Key, Value)` representing a key-value pair.
+* `KeyRange`, a trait representing a range of `Key`s from one value to either another value, or the end of the entire dataset.
+
+The `Key` and `Value` types implement `Deref<Target=Vec<u8>>` so they can generally be used just like their contained values. Where possible API calls accept `impl Into<T>` instead of the type `T` when it comes to `Key`, `Value`, and `KvPair`.
+
+If you're using your own key or value types, we reccomend implementing `Into<Key>` and/or `Into<Value>` for them where appropriate. You can also `impl KeyRange` if you have any range types.
+
+## Connect a client {#connnect}
 
 In your `src/main.rs` you can then import the raw API as well as the functionality of the `Future` trait so you can utilize it.
 
@@ -74,25 +76,16 @@ let config = Config::new(vec![ // Always use more than one PD endpoint!
 );
 
 let unconnected_client = Client::new(config);
-```
-
-The value returned at this point is a `Future`. It needs to be resolved before you can directly make calls. This is because the client must create a connection with the cluster.
-
-If your application is syncronous you can call `.wait()` to block the current task until the future is resolved. If your application is asyncronous you might have better ways (eg a Tokio reactor) of dealing with this.
-
-```rust
 let client = unconnected_client.wait()?; // Block and resolve the future.
 ```
 
+The value returned by `Client::new` is a `Future`. Futures need to be resolved in order to obtain the output. During the resolution of the future the client must create a connection with the cluster.
+
+{{< info >}}
+If your application is syncronous you can call `.wait()` to block the current task until the future is resolved. If your application is asyncronous you might have better ways (eg. a Tokio reactor) of dealing with this.
+{{< /info >}}
+
 With a connected client, you'll be able to send requests to TiKV. This client supports both singlular or batch operations.
-
-You can find the full documentation for the client (and all your dependencies) by running:
-
-<!-- TODO: Link to docs.rs page once published -->
-
-```bash
-cargo doc --package tikv-client --open
-```
 
 ## Raw key-value API {#raw}
 
@@ -135,7 +128,7 @@ const (START, END) = ("C", "F");
 
 // Scanning can also work on an open end (Eg `START..`)
 let req = client.scan(START..END, REASONABLE_LIMIT);
-let result: Vec<Value> = req.wait()?;
+let result: Vec<KvPair> = req.wait()?;
 ```
 
 These functions also have batch variants which accept sets and return `Vec<_>`s of data. These offer considerably reduced network overhead and can result in dramatic performance increases under certain workloads.
@@ -144,7 +137,7 @@ For documented, tested examples of all functionalities, check the documentation 
 
 ## Transactional key-value API {#transactional}
 
-> The transactional API of the Rust client is incomplete. You can track the progress with [issue #15](https://github.com/tikv/client-rust/issues/15).
+> The transactional API of the Rust client is incomplete. You can track the progress with [issue #15](https://github.com/tikv/client-rust/issues/15). For a complete implementation, you can try the [Go client](https://github.com/pingcap/tidb/store/tikv).
 
 Using a connected `transaction::Client` you can then begin a transaction:
 
@@ -177,20 +170,28 @@ req.wait()?;
 
 let req = txn.get(key).wait()?;
 assert_eq!(result, None);
+
+// For more detail on scanning, see the raw section above or the documentation.
+let req = client.scan("A".."B", 1000);
+let result: Vec<KvPair> = req.wait()?;
 ```
 
-When you're ready to commit these changes, you can commit the change:
+When you're ready to commit these changes, you can commit the change, if you'd preferable to abort the operation you can rollback:
 
 ```rust
-txn.commit()?;
-```
-
-If it's preferable to abort the operation it's possible to rollback the transaction:
-
-```rust
-txn.rollback()?
+if all_is_good {
+    txn.commit()?;
+} else {
+    txn.rollback()?
+}
 ```
 
 ## Beyond the Basics
 
 At this point you're familiar with the basic functionality of TiKV. To begin integrating with TiKV you should explore the documentation of your favorite client from those we listed above.
+
+For the Rust client, you can find the full documentation for the client (and all your dependencies) by running:
+
+```bash
+cargo doc --package tikv-client --open
+```
