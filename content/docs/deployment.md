@@ -1,75 +1,98 @@
 ---
 title: Deployment
-description: Run TiKV using Ansible or Docker
+description: Ways to Run TiKV
 weight: 5
 draft: true
 ---
 
-This document tells you how to install TiKV using:
+There are a number of ways to use TiKV in either production or development:
 
-* [Ansible](#ansible)
-* [Docker Compose](#docker-compose)
+Type                | Description | Use when...
+:-------------------|:------------|:-----------
+[Ansible](#ansible) | Production-ready batteries-included [Ansible](https://www.ansible.com/) playbooks. | You want a deployment that is fully tuned, configured, and instrumented.
+[Docker](#docker) | Officially built and packaged containers ready for use. | You want to use your own configuration management and deployment tools.
+[Binary](#binary) | Build-it-yourself binary deployment. | You don't use Docker, and want to use your own configuration management and deployment tools.
 
-{{< warning >}}
-For production environments, use [TiDB-Ansible](#ansible) to deploy your TiKV cluster.
+{{< info >}}
+As with most distributed systems, it's highly recommended you use the official automated deployment tool (Ansible) for production.
+{{< /info >}}
 
-If you only want to try TiKV out and explore the features, you can use [Docker Compose](#docker-compose) on your machine.
-{{< /warning >}}
+In order to run TiKV you will also need to deploy a Placement Driver (PD) cluster.
 
-## Ansible
+The minimum recommended topology of a production TiKV cluster includes:
 
-Ansible is an IT automation tool that can configure systems, deploy software, and orchestrate more advanced IT tasks such as continuous deployments or zero downtime rolling updates.
+* 3 PD Nodes
+* 3 TiKV Nodes
 
-[TiDB-Ansible](https://github.com/pingcap/tidb-ansible) is a TiDB cluster deployment tool developed by PingCAP, based on Ansible playbook. TiDB-Ansible enables you to quickly deploy a new TiKV cluster which includes PD, TiKV, and the cluster monitoring modules.
+## Ansible {#ansible}
 
-### Prepare
+The officially supported Ansible playbooks maintained by PingCAP is the most reliable and performant way to deploy TiKV.
 
-Before you start, make sure you have:
+This Ansible playbook can help you:
 
-1. Several target machines that meet the following requirements:
+* Validate your target machines are appropriate hosts for TiKV
+* Deploy arbitrary numbers of PD and TiKV nodes
+* Properly configure secure node communication
+* Perform safe rolling updates
+* Safely expand and shrink the cluster
+* configure monitoring
+* (optionally) install TiDB, an SQL layer for TiKV made by PingCAP
 
-  * 4 or more machines. A standard TiKV cluster contains 6 machines. You can use 4 machines for testing.
-  * CentOS 7.3 (64 bit) or later with Python 2.7 installed, x86_64 architecture (AMD64)
-  * Network between machines
+To dive into deploying your first production TiKV cluster, consult the [Ansible deployment guide](https://github.com/tikv/tikv/blob/master/docs/op-guide/deploy-tikv-using-ansible.md).
 
-    **Note**: When you deploy TiKV using Ansible, use SSD disks for the data directory of TiKV and PD nodes. Otherwise, the system will not perform well.
+## Docker containers {#docker}
 
-2. A Control Machine that meets the following requirements:
+Officially supported TiKV images are maintained and produced by PingCAP. The [`pingcap/tikv`](https://hub.docker.com/r/pingcap/tikv) image runs the `tikv-server` binary you can build yourself in the [Binary Guide](#binary)
 
-  * CentOS 7.3 (64 bit) or later with Python 2.7 installed
-  * Access to the Internet
-  * Git installed
-
-    **Note**: The Control Machine can be one of the target machines.
-
-TODO...
-
-## Docker Compose
-
-There is a [Docker Compose](https://github.com/pingcap/tidb-docker-compose/) file which [TiDB](https://github.com/pingcap/tidb/) provides that can help you quickly get started with TiKV.
-
-To start, you'll need:
-
-* Git
-* A recent version of Docker with Docker Compose
-* Access to the internet
-
-Once you have those, you can clone down the [`tidb-docker-compose`](https://github.com/pingcap/tidb-docker-compose) repository:
+We recommend chosing a the latest stable version from [the list on docker hub](https://hub.docker.com/r/pingcap/tikv/tags):
 
 ```bash
-git clone https://github.com/pingcap/tidb-docker-compose
-cd tidb-docker-compose
+docker pull pingcap/tikv:v2.1.6
+docker pull pingcap/pd:v2.1.6
 ```
 
-Next you can (optionally) pull the images before hand. 
+You can use this image just like you would `tikv-server` or `pd-server`:
 
 ```bash
-docker-compose pull
+docker run pingcap/tikv:v2.1.6 # ...tikv-server arguments
+docker run pingcap/pd:v2.1.6   # ...pd-server arguments
 ```
 
-To start the cluster:
+With the images in hand, it's time to proceed through the rest of [Docker Deployment Guide](deployment/docker#configure).
+
+## Building a binary {#binary}
+
+> TiKV is not currently publicly distributed as portable binary. This work is in progress as [issue #4426](https://github.com/tikv/tikv/issues/4426).
+
+If you're integrating TiKV into part of a larger infrastructure that doesn't use Ansible or Docker you may wish to deploy TiKV yourself. This 
+
+In order to deploy binaries of TiKV, we first need to build them. Ensure you have installed the [prerequisites](https://github.com/tikv/tikv/#checking-your-prerequisites) you move on. If you're using CentOS (our recommended host for TiKV) you can install these with:
 
 ```bash
-docker-compose up
+yum install -y epel-release
+yum install git go make unzip ugcc gcc-c++ cmake3 zlib-devel -y
+ln -s /bin/cmake3 /bin/cmake
+
+curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain none -y
+source $HOME/.cargo/env
+
+PROTOC_ZIP=protoc-3.3.0-linux-x86_64.zip
+curl -OL https://github.com/google/protobuf/releases/download/v3.3.0/$PROTOC_ZIP
+unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
+rm -f $PROTOC_ZIP
 ```
 
+To build a portable release of TiKV you will need to clone the repository and run `make portable_release`:
+
+```bash
+git clone https://github.com/tikv/tikv.git
+cd tikv
+git checkout v2.1.6 # Choose a version from `git tag`
+make release
+```
+
+When complete you can find the resulting binary at `target/release/tikv-server`. Take a moment and send this binary to one of your target machines and try running `tikv-server --help`.
+
+> In the future, we hope to install TiKV via `cargo install tikv-server`. You can track this in TODO
+
+With portable binaries in hand, it's time to proceed through the rest of [Binary Deployment Guide](deployment/docker#configure).
