@@ -8,17 +8,19 @@ draft: true
 This document tells you how to install TiKV using:
 
 * [Ansible](#ansible)
-* [Docker](#docker)
+* [Docker Compose](#docker-compose)
+
+{{< warning >}}
+For production environments, use [TiDB-Ansible](#ansible) to deploy your TiKV cluster.
+
+If you only want to try TiKV out and explore the features, you can use [Docker Compose](#docker-compose) on your machine.
+{{< /warning >}}
 
 ## Ansible
 
 Ansible is an IT automation tool that can configure systems, deploy software, and orchestrate more advanced IT tasks such as continuous deployments or zero downtime rolling updates.
 
 [TiDB-Ansible](https://github.com/pingcap/tidb-ansible) is a TiDB cluster deployment tool developed by PingCAP, based on Ansible playbook. TiDB-Ansible enables you to quickly deploy a new TiKV cluster which includes PD, TiKV, and the cluster monitoring modules.
-
-{{< warning >}}
-For production environments, use TiDB-Ansible to deploy your TiKV cluster. If you only want to try TiKV out and explore the features, see Install and Deploy TiKV using Docker Compose on a single machine.
-{{< /warning >}}
 
 ### Prepare
 
@@ -42,6 +44,32 @@ Before you start, make sure you have:
 
 TODO...
 
-## Docker
+## Docker Compose
 
-TODO
+There is a [Docker Compose](https://github.com/pingcap/tidb-docker-compose/) file which [TiDB](https://github.com/pingcap/tidb/) provides that can help you quickly get started with TiKV.
+
+To start, you'll need:
+
+* Git
+* A recent version of Docker with Docker Compose
+* Access to the internet
+
+Once you have those, you can clone down the [`tidb-docker-compose`](https://github.com/pingcap/tidb-docker-compose) repository:
+
+```bash
+git clone https://github.com/pingcap/tidb-docker-compose
+cd tidb-docker-compose
+```
+
+Next you can (optionally) pull the images before hand. 
+
+```bash
+docker-compose pull
+```
+
+To start the cluster:
+
+```bash
+docker-compose up
+```
+
