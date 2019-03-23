@@ -26,6 +26,13 @@ TiKV was originally inspired by [Google Spanner](https://ai.google/research/pubs
 
 The basic architecture of TiKV is described in the diagram below:
 
+{{< figure
+    src="/img/basic-architecture.png"
+    caption="The architecture of TiKV"
+    alt="TiKV architecture diagram"
+    width="70"
+    number="1" >}}
+
 {{< figure src="https://www.lucidchart.com/publicSegments/view/d6ff8e03-ed36-46b3-83b3-a1ce79db03a4/image.png" caption="The architecture of TiKV" alt="TiKV architecture diagram" width="70" number="1" >}}
 
 You can read more in the [Concepts and architecture](architecture) documentation.

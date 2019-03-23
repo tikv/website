@@ -28,7 +28,7 @@ Transactional | A higher-level key-value API that provides ACID semantics | Mult
 The overall architecture of TiKV is illustrated in **Figure 1** below:
 
 {{< figure
-    id="d6ff8e03-ed36-46b3-83b3-a1ce79db03a4"
+    src="/img/basic-architecture.png"
     caption="The architecture of TiKV"
     alt="TiKV architecture diagram"
     width="70"
@@ -39,7 +39,7 @@ The overall architecture of TiKV is illustrated in **Figure 1** below:
 The architecture of each TiKV instance is illustrated in **Figure 2** below:
 
 {{< figure
-    id="f371145f-126d-42e0-99fe-2c06080419a9"
+    src="/img/tikv-instance.png"
     caption="TiKV instance architecture"
     alt="TiKV instance architecture diagram"
     width="60"
