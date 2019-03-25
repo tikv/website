@@ -24,7 +24,20 @@ There are several clients that connect to TiKV:
 
 Below we use the Rust client for some examples, but you should find all clients work similarly.
 
-## Adding the dependency {#dependency}
+## Basic Types {#types}
+
+Both clients use a few basic types for most of their API:
+
+* `Key`, a wrapper around a `Vec<u8>` symbolizing the 'key' in a key-value pair.
+* `Value`, a wrapper around a `Vec<u8>` symbolizing the 'value' in a key-value pair.
+* `KvPair`, a tuple of `(Key, Value)` representing a key-value pair.
+* `KeyRange`, a trait representing a range of `Key`s from one value to either another value, or the end of the entire dataset.
+
+The `Key` and `Value` types implement `Deref<Target=Vec<u8>>` so they can generally be used just like their contained values. Where possible API calls accept `impl Into<T>` instead of the type `T` when it comes to `Key`, `Value`, and `KvPair`.
+
+If you're using your own key or value types, we reccomend implementing `Into<Key>` and/or `Into<Value>` for them where appropriate. You can also `impl KeyRange` if you have any range types.
+
+## Add the dependency {#dependency}
 
 This guide assumes you are using Rust 1.31 or above. You will also need an already deployed TiKV and PD cluster, since TiKV is not an embedded database.
 
@@ -38,31 +51,18 @@ tikv-client = { git = "https://github.com/tikv/client-rust" }
 futures = "0.1"
 ```
 
-## Basic Types {#types}
-
-Both client use a few basic types for most of their API:
-
-* `Key`, a wrapper around a `Vec<u8>` symbolizing the 'key' in a key-value pair.
-* `Value`, a wrapper around a `Vec<u8>` symbolizing the 'value' in a key-value pair.
-* `KvPair`, a tuple of `(Key, Value)` representing a key-value pair.
-* `KeyRange`, a trait representing a range of `Key`s from one value to either another value, or the end of the entire dataset.
-
-The `Key` and `Value` types implement `Deref<Target=Vec<u8>>` so they can generally be used just like their contained values. Where possible API calls accept `impl Into<T>` instead of the type `T` when it comes to `Key`, `Value`, and `KvPair`.
-
-If you're using your own key or value types, we reccomend implementing `Into<Key>` and/or `Into<Value>` for them where appropriate. You can also `impl KeyRange` if you have any range types.
-
 ## Connect a client {#connnect}
 
-In your `src/main.rs` you can then import the raw API as well as the functionality of the `Future` trait so you can utilize it.
+In your `src/main.rs`, import the raw API as well as the functionality of the `Future` trait.
 
-*Note:* In this example we used `raw`, but you can also use `transaction`. The process is the same.
+**Note:** In this example we used `raw`, but you can also use `transaction`. The process is the same.
 
 ```rust
 use tikv_client::{Config, raw::Client}
 use futures::Future;
 ```
 
-Start by building an instance of `Config` then using it to build an instance of a `Client`.
+Build an instance of `Config` then using it to build an instance of a `Client`.
 
 ```rust
 let config = Config::new(vec![ // Always use more than one PD endpoint!
@@ -89,7 +89,7 @@ With a connected client, you'll be able to send requests to TiKV. This client su
 
 ## Raw key-value API {#raw}
 
-Using a connected `raw::Client` you can perform actions such as basic `put`, `get`, and `delete`:
+Using a connected `raw::Client`, you can perform actions such as `put`, `get`, and `delete`:
 
 ```rust
 let client = Client::new(config).wait();
@@ -146,7 +146,7 @@ let client = Client::new(config).wait();
 let txn = client.begin();
 ```
 
-Then it's possible to send commands like `get`, `set`, `delete`, or `scan`.
+Then it's possible to send commands like `get`, `set`, `delete`, or `scan`. Batch variants also exist.
 
 ```rust
 // `Key` and `Value` wrap around `Vec<u8>` values.
