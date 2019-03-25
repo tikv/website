@@ -176,7 +176,7 @@ let req = client.scan("A".."B", 1000);
 let result: Vec<KvPair> = req.wait()?;
 ```
 
-When you're ready to commit these changes, you can commit the change, if you'd preferable to abort the operation you can rollback:
+Commit these changes when you're ready, or roll back if you prefer to abort the operation:
 
 ```rust
 if all_is_good {
