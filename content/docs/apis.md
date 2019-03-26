@@ -62,7 +62,7 @@ use tikv_client::{Config, raw::Client}
 use futures::Future;
 ```
 
-Build an instance of `Config` then using it to build an instance of a `Client`.
+Build an instance of `Config`, then use it to build an instance of a `Client`.
 
 ```rust
 let config = Config::new(vec![ // Always use more than one PD endpoint!
