@@ -1,5 +1,5 @@
-{{- $fontAwesomeVersion := site.Params.assets.fontAwesomeVersion }}
-{{- $fontAwesomeUrl     := printf "https://use.fontawesome.com/releases/v%s/css/all.css" $fontAwesomeVersion }}
+{{ $fontAwesomeVersion := site.Params.assets.fontAwesomeVersion }}
+{{ $fontAwesomeUrl     := printf "https://use.fontawesome.com/releases/v%s/css/all.css" $fontAwesomeVersion }}
 @charset "utf-8"
 @import url(https://fonts.googleapis.com/icon?family=Titillium+Web:300,400,600,700|Inconsolata:300,400,600,700)
 @import url({{ $fontAwesomeUrl }})
@@ -65,7 +65,24 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
   &:hover
     background-color: darken($bgColor, 5%)
 
+.section-toc
+  padding: 1rem 0
+  border-right: 1px solid $grey-light
 
+  li
+    line-height: 125%
+    font-size: 1.5rem
+    padding-right: 1.5rem
+
+    & + li
+      margin-top: 1rem
+
+    &.is-active
+      border-right: 2px solid $grey-light
+
+      a
+        color: $tikv-blue
+        font-weight: 700
 
 .content
   &.is-blog-content

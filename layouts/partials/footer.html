@@ -1,8 +1,8 @@
-{{- $year      := now.Year }}
-{{- $logo      := site.Params.logos.white | relURL }}
-{{- $docs      := where site.Pages "Section" "docs" }}
-{{- $latest    := site.Params.versions.latest }}
-{{- $blogPosts := where site.RegularPages "Section" "blog" }}
+{{ $year      := now.Year }}
+{{ $logo      := site.Params.logos.white | relURL }}
+{{ $docs      := where site.Pages "Section" "docs" }}
+{{ $latest    := site.Params.versions.latest }}
+{{ $blogPosts := where site.RegularPages "Section" "blog" }}
 <footer class="footer is-dark">
   <div class="container">
     <div class="columns">
@@ -18,13 +18,13 @@
         <hr class="hr has-background-primary">
 
         <ul>
-          {{- range $docs }}
+          {{ range $docs }}
           <li>
             <a href="{{ .URL }}">
               {{ .Title }}
             </a>
           </li>
-          {{- end }}
+          {{ end }}
         </ul>
       </div>
 
@@ -44,7 +44,7 @@
         </ul>
       </div>
 
-      {{- if gt (len $blogPosts) 0 }}
+      {{ if gt (len $blogPosts) 0 }}
       <div class="column">
         <h5 class="is-size-5 has-text-weight-bold has-text-white">
           Blog
@@ -53,23 +53,23 @@
         <hr class="hr has-background-primary">
 
         <ul>
-          {{- range first 5 $blogPosts }}
+          {{ range first 5 $blogPosts }}
           <li>
             <a href="{{ .URL }}">
               {{ .Title }}
             </a>
           </li>
-          {{- end }}
-          {{- if gt (len $blogPosts) 5 }}
+          {{ end }}
+          {{ if gt (len $blogPosts) 5 }}
           <li>
             <a href="/blog">
               More...
             </a>
           </li>
-          {{- end }}
+          {{ end }}
         </ul>
       </div>
-      {{- end }}
+      {{ end }}
     </div> <!-- columns -->
 
     <br /><br />

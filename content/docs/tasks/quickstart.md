@@ -1,5 +1,5 @@
 ---
-title: Getting started
+title: Quickstart
 description: Run TiKV in your local environment using Docker Compose
 weight: 1
 draft: true

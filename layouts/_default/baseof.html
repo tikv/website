@@ -1,12 +1,12 @@
-{{- $isHome   := .IsHome }}
-{{- $isServer := site.IsServer }}
-{{- $pageType := cond $isHome "home" .Section }}
+{{ $isHome   := .IsHome }}
+{{ $isServer := site.IsServer }}
+{{ $pageType := cond $isHome "home" .Section }}
 <!DOCTYPE html>
 <html lang="{{ site.LanguageCode }}">
   <head>
-    {{- if not $isServer }}
+    {{ if not $isServer }}
     {{ partial "google-analytics.html" . }}
-    {{- end }}
+    {{ end }}
     {{ partial "meta.html" . }}
     {{ partial "twitter-card.html" . }}
     {{ partial "open-graph-tags.html" . }}

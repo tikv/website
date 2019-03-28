@@ -1,4 +1,4 @@
-{{- $features := site.Data.features }}
+{{ $features := site.Data.features }}
 <table>
   <thead>
     <tr>
@@ -11,9 +11,9 @@
     </tr>
   </thead>
   <tbody>
-    {{- range $features }}
-    {{- $link := .link | default "docs/architecture" }}
-    {{- $url  := $link | relURL }}
+    {{ range $features }}
+    {{ $link := .link | default "docs/architecture" }}
+    {{ $url  := $link | relURL }}
     <tr>
       <td>
         <a href="{{ $url }}">
@@ -24,6 +24,6 @@
         {{ .description | markdownify }}
       </td>
     </tr>
-    {{- end }}
+    {{ end }}
   </tbody>
 </table>

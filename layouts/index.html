@@ -1,10 +1,10 @@
 {{ define "main" }}
-{{- $shortDesc := site.Params.description.brief | markdownify }}
-{{- $longDesc  := site.Params.description.long | markdownify }}
-{{- $buttons   := site.Params.home.buttons }}
-{{- $logo      := site.Params.logos.color | relURL }}
-{{- $cncfLogo  := site.Params.logos.cncf | relURL }}
-{{- $features  := site.Data.features }}
+{{ $shortDesc := site.Params.description.brief | markdownify }}
+{{ $longDesc  := site.Params.description.long | markdownify }}
+{{ $buttons   := site.Params.home.buttons }}
+{{ $logo      := site.Params.logos.color | relURL }}
+{{ $cncfLogo  := site.Params.logos.cncf | relURL }}
+{{ $features  := site.Data.features }}
 <section class="hero is-medium is-light">
   <div class="hero-body">
     <div class="container has-text-centered">
@@ -29,11 +29,11 @@
       </p>
 
       <div class="buttons is-centered">
-        {{- range $buttons }}
+        {{ range $buttons }}
         <a class="button is-medium is-rounded is-large is-primary" href="{{ .link | relURL }}">
           {{ .text }}
         </a>
-        {{- end }}
+        {{ end }}
       </div>
     </div>
   </div>
@@ -42,31 +42,31 @@
 <section class="section has-background-primary">
   <div class="container">
     <div class="columns">
-      {{- range $features }}
+      {{ range $features }}
       <div class="column">
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
               {{ .name }}
             </p>
-            {{- with .icon }}
+            {{ with .icon }}
             <div class="card-header-icon">
               <span class="icon has-text-primary">
                 <i class="fas {{ . }}" aria-hidden="true"></i>
               </span>
             </div>
-            {{- end }}
+            {{ end }}
           </header>
-          {{- with .description }}
+          {{ with .description }}
           <div class="card-content">
             <div class="content">
               {{ . | markdownify }}
             </div>
           </div>
-          {{- end }}
+          {{ end }}
         </div>
       </div>
-      {{- end }}
+      {{ end }}
     </div>
   </div>
 </section>

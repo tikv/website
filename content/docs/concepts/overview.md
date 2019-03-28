@@ -1,7 +1,9 @@
 ---
 title: TiKV overview
 description: Some basic facts about TiKV
-weight: 2
+weight: 1
+aliases:
+- /docs
 ---
 
 **TiKV** is a distributed transactional key-value database originally created by [PingCAP](https://pingcap.com/en) to complement [TiDB](https://github.com/pingcap/tidb).

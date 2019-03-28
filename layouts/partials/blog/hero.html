@@ -1,19 +1,19 @@
-{{- $author := .Params.author }}
-{{- $date   := dateFormat "January 2, 2006" .Date }}
-{{- $twitterUrl := printf "https://twitter.com/intent/tweet?text=%s %s" (printf "Check out this post from the TiKV blog: \"%s\"" .Title) .Permalink }}
+{{ $author := .Params.author }}
+{{ $date   := dateFormat "January 2, 2006" .Date }}
+{{ $twitterUrl := printf "https://twitter.com/intent/tweet?text=%s %s" (printf "Check out this post from the TiKV blog: \"%s\"" .Title) .Permalink }}
 <section class="hero is-black">
   <div class="hero-body">
     <div class="container">
       <h1 class="title is-size-1 is-size-2-mobile has-text-white has-text-weight-light{{ if $author }} is-spaced{{ end }}">
         {{ .Title }}
       </h1>
-      {{- with $author }}
+      {{ with $author }}
       <p class="subtitle is-size-3 is-size-4-mobile has-text-white-bis has-text-weight-light">
         {{ . | markdownify }}
       </p>
-      {{- end }}
+      {{ end }}
       
-      {{- if ne .URL "/blog/" }}
+      {{ if ne .URL "/blog/" }}
       <p class="is-size-5 has-text-grey-lighter has-text-weight-light">
         {{ $date }}
       </p>
@@ -27,7 +27,7 @@
           </span>
         </a>
       </div>
-      {{- end }}
+      {{ end }}
     </div>
   </div>
 </section>
