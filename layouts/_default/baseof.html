@@ -1,8 +1,8 @@
 {{- $isHome   := .IsHome }}
-{{- $isServer := .Site.IsServer }}
+{{- $isServer := site.IsServer }}
 {{- $pageType := cond $isHome "home" .Section }}
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
+<html lang="{{ site.LanguageCode }}">
   <head>
     {{- if not $isServer }}
     {{ partial "google-analytics.html" . }}
@@ -10,7 +10,7 @@
     {{ partial "meta.html" . }}
     {{ partial "twitter-card.html" . }}
     {{ partial "open-graph-tags.html" . }}
-    <title>{{ block "title" . }}{{ .Site.Title }} &ndash; {{ .Site.Params.description.brief }}{{ end }}</title>
+    <title>{{ block "title" . }}{{ site.Title }} &ndash; {{ site.Params.description.brief }}{{ end }}</title>
     {{ partial "css.html" . }}
   </head>
   <body class="has-navbar-fixed-top page is-{{ $pageType }}-page">

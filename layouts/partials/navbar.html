@@ -1,18 +1,18 @@
 {{- $isHome     := .IsHome }}
-{{- $whiteLogo  := .Site.Params.logos.white | relURL }}
-{{- $colorLogo  := .Site.Params.logos.color | relURL }}
-{{- $blackLogo  := .Site.Params.logos.black | relURL }}
+{{- $whiteLogo  := site.Params.logos.white | relURL }}
+{{- $colorLogo  := site.Params.logos.color | relURL }}
+{{- $blackLogo  := site.Params.logos.black | relURL }}
 {{- $navbarLogo := cond $isHome $blackLogo $whiteLogo }}
-{{- $twitter    := .Site.Params.socialmedia.twitter }}
-{{- $github     := .Site.Params.socialmedia.github }}
-{{- $docs       := where .Site.Pages "Section" "docs" }}
-{{- $latest     := .Site.Params.versions.latest }}
+{{- $twitter    := site.Params.socialmedia.twitter }}
+{{- $github     := site.Params.socialmedia.github }}
+{{- $docs       := where site.Pages "Section" "docs" }}
+{{- $latest     := site.Params.versions.latest }}
 {{- $color      := cond $isHome "light" "black" }}
-{{- $blogPosts  := where .Site.RegularPages "Section" "blog" }}
+{{- $blogPosts  := where site.RegularPages "Section" "blog" }}
 <nav class="navbar is-fixed-top is-{{ $color }}">
   <div class="container">
     <div class="navbar-brand">
-      <a class="navbar-item" href="{{ .Site.BaseURL | relURL }}">
+      <a class="navbar-item" href="{{ site.BaseURL | relURL }}">
         <img src="{{ $navbarLogo }}" alt="TiKV main logo">
       </a>
 

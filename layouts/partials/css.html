@@ -1,5 +1,5 @@
-{{- $otherCss     := .Site.Params.assets.css }}
-{{- $inServerMode := .Site.IsServer }}
+{{- $otherCss     := site.Params.assets.css }}
+{{- $inServerMode := site.IsServer }}
 {{- $sass         := "sass/style.sass" }}
 {{- $target       := "css/style.css" }}
 {{- $includes     := (slice "node_modules") }}

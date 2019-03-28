@@ -1,10 +1,10 @@
 {{ define "main" }}
-{{- $shortDesc := .Site.Params.description.brief | markdownify }}
-{{- $longDesc  := .Site.Params.description.long | markdownify }}
-{{- $buttons   := .Site.Params.home.buttons }}
-{{- $logo      := .Site.Params.logos.color | relURL }}
-{{- $cncfLogo  := .Site.Params.logos.cncf | relURL }}
-{{- $features  := .Site.Data.features }}
+{{- $shortDesc := site.Params.description.brief | markdownify }}
+{{- $longDesc  := site.Params.description.long | markdownify }}
+{{- $buttons   := site.Params.home.buttons }}
+{{- $logo      := site.Params.logos.color | relURL }}
+{{- $cncfLogo  := site.Params.logos.cncf | relURL }}
+{{- $features  := site.Data.features }}
 <section class="hero is-medium is-light">
   <div class="hero-body">
     <div class="container has-text-centered">
@@ -14,7 +14,7 @@
 
       <p class="title is-size-1-desktop is-size-3-touch is-spaced">
         <span class="has-text-weight-bold">
-          {{ .Site.Title }}
+          {{ site.Title }}
         </span>
         
         <span class="has-text-primary has-text-weight-bold">:</span>

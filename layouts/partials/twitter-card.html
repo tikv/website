@@ -3,10 +3,10 @@
 <meta name="twitter:creator" content="@tikvproject" />
 <meta name="twitter:title" content="{{ .Title }}" />
 {{ if .Description }}
-    <meta name="twitter:description" content="{{ .Description | markdownify  }}" />
+<meta name="twitter:description" content="{{ .Description | markdownify  }}" />
 {{ else if .Summary }}
-    <meta name="twitter:description" content="{{ .Summary | markdownify  }}" />
+<meta name="twitter:description" content="{{ .Summary | markdownify  }}" />
 {{ else }}
-    <meta name="twitter:description" content="{{ .Site.Params.description.brief | markdownify  }}" />
+<meta name="twitter:description" content="{{ site.Params.description.brief | markdownify  }}" />
 {{ end }}
-<meta name="twitter:image" content="{{ .Site.BaseURL }}/{{ .Site.Params.logos.card }}" />
+<meta name="twitter:image" content="{{ site.Params.logos.card | absURL }}" />
