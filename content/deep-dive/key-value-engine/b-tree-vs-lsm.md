@@ -1,10 +1,10 @@
 ---
-title: B-Tree vs Log-Structured Merge-Tree
+title: B-Tree vs LSM-Tree
 mathjax: true
 weight: 1
 ---
 
-The [B-tree](https://en.wikipedia.org/wiki/B-tree) and the [Log-Structured Merge-tree](https://en.wikipedia.org/wiki/Log-structured_merge-tree) (LSM-tree) are the two most widely used data structures for data-intensive applications to organize and store data. However, each of them has its own advantages and disadvantages. This article aims to use quantitative approaches to compare these two data structures. 
+The [B-tree](https://en.wikipedia.org/wiki/B-tree) and the [Log-Structured Merge-tree](https://en.wikipedia.org/wiki/Log-structured_merge-tree) (LSM-tree) are the two most widely used data structures for data-intensive applications to organize and store data. However, each of them has its own advantages and disadvantages. This article aims to use quantitative approaches to compare these two data structures.
 
 ## Metrics
 

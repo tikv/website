@@ -1,5 +1,5 @@
 ---
-title: Scheduler of Kubernetes
+title: Kubernetes
 weight: 1
 ---
 

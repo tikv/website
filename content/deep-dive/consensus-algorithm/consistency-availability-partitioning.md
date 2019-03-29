@@ -1,5 +1,5 @@
 ---
-title: Consistency, Availability, & Partitioning
+title: CAP Theorem
 weight: 1
 ---
 
