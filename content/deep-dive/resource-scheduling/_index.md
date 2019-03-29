@@ -4,6 +4,7 @@ weight: 6
 ---
 
 In a distributed database environment, resource scheduling needs to meet the following requirements:
+
 - Keeping data highly available: The scheduler needs to be able to manage data redundancy to keep the cluster available when some nodes fail.
 - Balance server load: The scheduler needs to balance the load to prevent a single node from becoming a performance bottleneck for the entire system.
 - Scalability: The scheduler needs to be able to scale to thousands of nodes.

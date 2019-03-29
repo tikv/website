@@ -20,11 +20,13 @@ The scheduler provides some predicates algorithms by default. For instance, the 
 ### Priority stage
 
 In the priority step, the scheduler uses the `PrioritizeNodes` function to rank all nodes by calling each priority functions sequentially:
+
 - Each priority function is expected to set a score of 0-10 where 0 is the lowest priority score (least preferred node) and 10 is the highest.
 - Add all (weighted) scores for each node to get a total score.
 - Select the node with the highest score.
 
 ## References
+
 1. [`kube-scheduler` documentation](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/)
 2. [Kubernetes introduction (in Chinese)](https://yeasy.gitbooks.io/docker_practice/kubernetes/)
 3. [How does Kubernetes' scheduler work](http://carmark.github.io/2015/12/21/How-does-Kubernetes-scheduler-work/)
