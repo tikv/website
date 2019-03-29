@@ -65,6 +65,21 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
   &:hover
     background-color: darken($bgColor, 5%)
 
+.deep-dive-toc
+  margin-right: 1rem
+
+  li
+    font-size: 1.2rem
+
+    &.is-active
+      a
+        color: $tikv-blue
+        font-weight: 700
+
+  ul    
+    ul
+      margin-left: 1rem
+
 .section-toc
   padding: 1rem 0
   border-right: 1px solid $grey-light

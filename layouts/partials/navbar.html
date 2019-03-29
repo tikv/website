@@ -9,6 +9,7 @@
 {{ $latest     := site.Params.versions.latest }}
 {{ $color      := cond $isHome "light" "black" }}
 {{ $blogPosts  := where site.RegularPages "Section" "blog" }}
+{{ $deepDive   := where site.Sections "Section" "deep-dive" }}
 <nav class="navbar is-fixed-top is-{{ $color }}">
   <div class="container">
     <div class="navbar-brand">
@@ -50,6 +51,26 @@
               {{ .Title }}
             </a>
             {{ end }} <!-- range $docs -->
+          </div>
+        </div>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="/docs">
+            Deep dive
+          </a>
+
+          <div class="navbar-dropdown is-hidden-touch">
+            {{ range $deepDive }}
+            <a class="navbar-item" href="{{ .URL }}">
+              <strong>{{ .Weight }}</strong>. {{ .Title }}
+            </a>
+
+            {{ range .Sections }}
+            <a class="navbar-item" href="{{ .URL }}">
+              <strong>{{ .Weight }}</strong>. {{ .Title }}
+            </a>
+            {{ end }}
+            {{ end }}
           </div>
         </div>
 

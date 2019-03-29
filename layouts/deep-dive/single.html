@@ -1,0 +1,21 @@
+{{ define "main" }}
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-3">
+        {{ partial "deep-dive/toc.html" . }}
+      </div>
+      
+      <div class="column">
+        <p class="title is-size-1 is-size-2-mobile has-text-weight-light">
+          {{ .Title }}
+        </p>
+
+        <div class="content is-medium docs-content">
+          {{ .Content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
