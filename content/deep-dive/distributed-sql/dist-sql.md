@@ -21,7 +21,6 @@ select count(*) from t where a + b  > 5;
     caption="SQL query diagram"
     number="1" >}}
 
-
 As described in the above figure, when [TiDB] receives a SQL query from the client, it will process with the following steps:
 
 1. [TiDB] receives a new SQL from the client.
@@ -32,7 +31,7 @@ As described in the above figure, when [TiDB] receives a SQL query from the clie
 6. [TiDB] dispatches the tasks to the related TiKV concurrently.
 7. [TiDB] reassembles the data and returns the data to the client.
 
-##  How does [TiDB] execute SQL queries in a distributed way?
+## How does [TiDB] execute SQL queries in a distributed way?
 
 In short, [TiDB] splits the task by Regions and sends them to TiKV concurrently.
 
@@ -76,14 +75,13 @@ Supported executors:
 
 For the above example, we have the following executors on Region 1:
 
-*  Aggregation: `count(*)`.
-*  Selection: `a + b > 5`
-*  TableScan: `range:[0,100)`.
-
+* Aggregation: `count(*)`.
+* Selection: `a + b > 5`
+* TableScan: `range:[0,100)`.
 
 ### Expression
 
-We have executors as nodes in the DAG, but how do we describe columns, constants, and functions in an `Aggregation` or a `Selection`? 
+We have executors as nodes in the DAG, but how do we describe columns, constants, and functions in an `Aggregation` or a `Selection`?
 There are three types of expressions:
 
 * Column: a column in the table.
@@ -100,7 +98,6 @@ For the above example `select count(*) from t where a + b > 5`, we have:
 * Column: a, b.
 * Scalar functions: `+`,`>`.
 * Constant: `5`.
-
 
 [TiDB]: https://github.com/pingcap/tidb
 [PD]: https://github.com/pingcap/pd

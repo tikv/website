@@ -1,5 +1,5 @@
 ---
-title: Pessimistic & Optimistic Locking
+title: Locking
 weight: 3
 ---
 

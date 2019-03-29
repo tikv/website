@@ -1,20 +1,20 @@
 ---
-title: B-Tree vs Log-Structured Merge-Tree
+title: B-Tree vs LSM-Tree
 mathjax: true
 weight: 1
 ---
 
-The [B-tree](https://en.wikipedia.org/wiki/B-tree) and the [Log-Structured Merge-tree](https://en.wikipedia.org/wiki/Log-structured_merge-tree) (LSM-tree) are the two most widely used data structures for data-intensive applications to organize and store data. However, each of them has its own advantages and disadvantages. This article aims to use quantitative approaches to compare these two data structures. 
+The [B-tree](https://en.wikipedia.org/wiki/B-tree) and the [Log-Structured Merge-tree](https://en.wikipedia.org/wiki/Log-structured_merge-tree) (LSM-tree) are the two most widely used data structures for data-intensive applications to organize and store data. However, each of them has its own advantages and disadvantages. This article aims to use quantitative approaches to compare these two data structures.
 
 ## Metrics
 
-In general, there are three critical metrics to measure the performance of a data structure: write amplification, read amplification, and space amplification. This section aims to describe these metrics. 
+In general, there are three critical metrics to measure the performance of a data structure: write amplification, read amplification, and space amplification. This section aims to describe these metrics.
 
 For hard disk drives (HDDs), the cost of disk seek is enormous, such that the performance of random read/write is worse than that of sequential read/write. This article assumes that flash-based storage is used so we can ignore the cost of disk seeks.
 
 ### Write Amplification
 
-_Write amplification_ is the ratio of the amount of data written to the storage device versus the amount of data written to the database. 
+_Write amplification_ is the ratio of the amount of data written to the storage device versus the amount of data written to the database.
 
 For example, if you are writing 10 MB to the database and you observe 30 MB disk write rate, your write amplification is 3.
 
@@ -24,23 +24,23 @@ There is another write amplification associated with flash memory and SSDs becau
 
 ### Read Amplification
 
-_Read amplification_ is the number of disk reads per query. 
+_Read amplification_ is the number of disk reads per query.
 
-For example, if you need to read 5 pages to answer a query, read amplification is 5. 
+For example, if you need to read 5 pages to answer a query, read amplification is 5.
 
 Note that the units of write amplification and read amplification are different. Write amplification measures how much more data is written than the application thought it was writing, whereas read amplification counts the number of disk reads to perform a query.
 
-Read amplification is defined separately for point query and range queries. For range queries the range length matters (the number of rows to be fetched). 
+Read amplification is defined separately for point query and range queries. For range queries the range length matters (the number of rows to be fetched).
 
 Caching is a critical factor for read amplification. For example, with a B-tree in the cold-cache case, a point query requires \\(O(log_BN)\\) disk reads, whereas in the warm-cache case the internal nodes of the B-tree are cached, and so a B-tree requires at most one disk read per query.
 
 ### Space Amplification
 
-_Space amplification_ is the ratio of the amount of data on the storage device versus the amount of data in the database. 
+_Space amplification_ is the ratio of the amount of data on the storage device versus the amount of data in the database.
 
 For example, if you put 10MB in the database and this database uses 100MB on the disk, then the space amplification is 10.
 
-Generally speaking, a data structure can optimize for at most two from read, write, and space amplification. This means one data structure is unlikely to be better than another at all three. For example a B-tree has less read amplification than an LSM-tree while an LSM-tree has less write amplification than a B-tree. 
+Generally speaking, a data structure can optimize for at most two from read, write, and space amplification. This means one data structure is unlikely to be better than another at all three. For example a B-tree has less read amplification than an LSM-tree while an LSM-tree has less write amplification than a B-tree.
 
 ## Analysis
 
@@ -60,7 +60,7 @@ Like other search trees, an LSM-tree contains key-value pairs. It maintains data
 
 An LSM-tree periodically performs _compaction_ to merge several `SSTable`s into one new `SSTable` which contains only the live data from the input `SSTable`s. Compaction helps the LSM-tree to recycle space and reduce read amplification. There are two kinds of _compaction strategy_: Size-tiered compaction strategy (STCS) and Level-based compaction strategy (LBCS). The idea behind STCS is to compact small `SSTable`s into medium `SSTable`s when the LSM-tree has enough small `SSTable`s and compact medium `SSTable`s into large `SSTable`s when LSM-tree has enough medium `SSTable`s. The idea of LBCS is to organize data into levels and each level contains one sorted run. Once a level accumulates enough data, some of the data at this level will be compacted to the higher level.
 
-This section discusses the write amplification and read amplification of B+tree and Level-Based LSM-tree. 
+This section discusses the write amplification and read amplification of B+tree and Level-Based LSM-tree.
 
 ### B+ Tree
 
@@ -80,7 +80,7 @@ For the worst-case insertion workloads, every insertion requires writing the lea
 
 #### Read Amplification
 
-The number of disk reads per query is at most \\(O(log_BN/B)\\), which is the depth of the tree. 
+The number of disk reads per query is at most \\(O(log_BN/B)\\), which is the depth of the tree.
 
 ### Level-Based LSM-tree
 
@@ -90,7 +90,7 @@ $$
 level_i = level_{i-1} * k
 $$
 
-We can analyze the Level-based LSM-tree as follows. If the growth factor is \\(k\\) and the smallest level is a single file of size \\(B\\), then the number of levels is 
+We can analyze the Level-based LSM-tree as follows. If the growth factor is \\(k\\) and the smallest level is a single file of size \\(B\\), then the number of levels is
 
 $$
 Θ(log_kN/B)
@@ -100,7 +100,7 @@ where \\(N\\) is the size of the database. In order to simplify the analysis, we
 
 #### Write Amplification
 
-Data must be moved out of each level once, but data from a given level is merged repeatedly with data from the previous level. On average, after being first written into a level, each data item is remerged back into the same level about \\(k/2\\) times. So the total write amplification is 
+Data must be moved out of each level once, but data from a given level is merged repeatedly with data from the previous level. On average, after being first written into a level, each data item is remerged back into the same level about \\(k/2\\) times. So the total write amplification is
 $$
 Θ(k*log_kN/B)
 $$
@@ -110,9 +110,9 @@ $$
 To perform a short range query in the cold cache case, we must perform a binary search
 on each of the levels.
 
-For the highest \\(level_i\\), the data size is \\(O(N)\\), so that it performs \\(O(logN/B)\\) disk reads. 
+For the highest \\(level_i\\), the data size is \\(O(N)\\), so that it performs \\(O(logN/B)\\) disk reads.
 
-For the previous \\(level_{i-1}\\), the data size is \\(O(N/k)\\), so that it performs \\(O(log(N/(kB))\\) disk reads. 
+For the previous \\(level_{i-1}\\), the data size is \\(O(N/k)\\), so that it performs \\(O(log(N/(kB))\\) disk reads.
 
 For \\(level_{i-2}\\), the data size is \\(O(N/k^2)\\), so that it performs \\(O(log(N/k^2B)\\) disk reads.
 
@@ -120,7 +120,7 @@ For \\(level_{i-2}\\), the data size is \\(O(N/k^2)\\), so that it performs \\(O
 
 For \\(level_{i-n}\\), the data size is \\(O(N/k^n)\\), so that it performs \\(O(log(N/k^nB)\\) disk reads.
 
-So that the total number of disk reads is 
+So that the total number of disk reads is
 
 $$
 R = O(logN/B) + O(log(N/(kB)) + O(log(N/k^2B) + ... + O(log(N/k^nB) + 1 = O((log^2N/B)/logk)
