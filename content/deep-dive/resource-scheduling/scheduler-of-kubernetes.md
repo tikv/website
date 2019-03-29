@@ -3,8 +3,6 @@ title: Scheduler of Kubernetes
 weight: 1
 ---
 
-## Overview
-
 Kubernetes is a Docker-based open source container cluster management system initiated and maintained by the Google team. It supports not only common cloud platforms but also internal data centers.
 
 Kubernetes built a container scheduling service which is designed to allow users to manage cloud container clusters through Kubernetes clusters without the need for complex setup tasks. The system will automatically select the appropriate working node to perform specific container cluster scheduling processing.

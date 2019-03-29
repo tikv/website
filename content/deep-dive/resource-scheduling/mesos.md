@@ -3,9 +3,7 @@ title: Mesos
 weight: 2
 ---
 
-## Overview
-
-Mesos was originally launched by UC Berkeley's AMPLab in 2009. It is lisenced under Apache and now operated by Mesosphere, Inc.
+Mesos was originally launched by UC Berkeley's AMPLab in 2009. It is licensed under Apache and now operated by Mesosphere, Inc.
 
 Mesos can abstract and schedule the resources of the entire data center (including CPU, memory, storage, network, etc.). This allows multiple applications to run in a cluster at the same time without needing to care about the physical distribution of resources.
 
@@ -22,7 +20,10 @@ Mesos has many compelling features, including:
 
 It is important to notice that Mesos itself is only a resource scheduling framework. It is not a complete application management platform, so Mesos can't work only on its own. However, based on Mesos, it is relatively easy to provide distributed operation capabilities for various application management frameworks or middleware platforms. Multiple frameworks can also run in a single Mesos cluster at the same time, improving overall resource utilization efficiency.
 
-![Figure 1](mesos-architecture.png)
+{{< figure
+    src="/img/deep-dive/mesos-architecture.png"
+    caption="The architecture of Mesos"
+    number="1" >}}
 
 ## Components
 
@@ -45,7 +46,10 @@ To support the sophisticated schedulers of today's frameworks, Mesos introduces 
 
 Each resource offer is a list of free resources (for example, <1Core CPU, 2GB RAM>) on multiple slaves. While the _master_ decides how many resources to offer to each framework according to an organizational policy, the frameworks’ schedulers select which of the offered resources to use. When a framework accepts offered resources, it passes Mesos a description of the tasks it wants to launch on them.
 
-![Figure 2](mesos-scheduling.png)
+{{< figure
+    src="/img/deep-dive/mesos-scheduling.png"
+    caption="Mesos scheduling"
+    number="2" >}}
 
 The figure shows an example of how resource scheduling works:
 
@@ -57,5 +61,6 @@ The figure shows an example of how resource scheduling works:
 To maintain a thin interface and enable frameworks to evolve independently, Mesos does not require frameworks to specify their resource requirements or constraints. Instead, Mesos gives frameworks the ability to reject offers. A framework can reject resources that do not satisfy its constraints in order to wait for ones that do. Thus, the rejection mechanism enables frameworks to support arbitrarily complex resource constraints while keeping Mesos simple and scalable.
 
 ## References
+
 1. [Mesos: A Platform for Fine-Grained Resource Sharing in the Data Center](https://people.eecs.berkeley.edu/~alig/papers/mesos.pdf)
 2. [Mesos introduction (in Chinese)](https://yeasy.gitbooks.io/docker_practice/mesos/intro.html)

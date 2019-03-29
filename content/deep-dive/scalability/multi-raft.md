@@ -1,5 +1,6 @@
 ---
-title: Multi-raft 
+title: Multi-raft
+mathjax: true
 weight: 3
 ---
 
@@ -7,7 +8,10 @@ If you've researched Consensus before, please note that comparing Multi-Raft to 
 
 TiKV also can perform split or merge on Regions to make the partitions more flexible. When the size of a Region exceeds the limit, it will be divided into two or more Regions, and the range may change like \\( [a, c) \\) -> \\( [a, b) \\) + \\( [b, c) \\); when the sizes of two sibling Regions are small enough, they will be merged into a bigger Region, and the range may change like \\( [a, b) \\) + \\( [b, c) \\) -> \\( [a, c) \\).
 
-[multi-raft](multi-raft.png)
+{{< figure
+    src="/img/deep-dive/multi-raft.png"
+    caption="Multi-raft"
+    number="1" >}}
 
 For each Raft group, the process of the algorithm is still as before, and we only introduce a layer on top of Raft to manage these Raft consensus groups as a whole.
 
