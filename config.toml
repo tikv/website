@@ -38,16 +38,19 @@ github  = "https://github.com/tikv/tikv"
 
 [[params.home.buttons]]
 text = "Overview"
-link = "/docs"
+link = "/docs/concepts/overview"
 
 [[params.home.buttons]]
-text = "Concepts and architecture"
-link = "/docs/architecture"
+text = "Architecture"
+link = "/docs/concepts/architecture"
+
+[[params.home.buttons]]
+text = "Quickstart"
+link = "/docs/tasks/quickstart"
 
 [[params.home.buttons]]
 text = "Blog"
 link = "/blog"
-
 
 [outputs]
 home = ["HTML", "REDIRECTS"]

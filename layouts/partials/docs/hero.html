@@ -33,9 +33,10 @@
         <ul>
           {{ range $docsSections }}
           {{ range .Sections }}
+          {{ $mainPage         := index (where .Pages "Weight" 1) 0 }}
           {{ $isCurrentSection := eq .Name $currentSection }}
           <li{{ if $isCurrentSection }} class="is-active"{{ end }}>
-            <a href="{{ .URL }}">
+            <a href="{{ $mainPage.URL }}">
               {{ .Name }}
             </a>
           </li>
