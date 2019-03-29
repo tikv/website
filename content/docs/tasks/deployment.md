@@ -1,7 +1,7 @@
 ---
 title: Install and deploy
 description: Run TiKV using Ansible or Docker
-weight: 5
+weight: 2
 draft: true
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Secure TiKV
-weight: 7
-draft: false
+weight: 4
 aliases:
 - /docs/security
 ---

@@ -1,8 +1,7 @@
 ---
 title: Configure TiKV
 description: Configure a wide range of TiKV facets, including RocksDB, gRPC, the Placement Driver, and more
-weight: 7
-draft: true
+weight: 3
 ---
 
 ## RocksDB configuration {#rocksdb}
