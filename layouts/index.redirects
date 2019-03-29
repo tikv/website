@@ -1,4 +1,5 @@
-{{- $latest   := .Site.Params.versions.latest }}
-/docs/latest     /docs
+{{- $latest   := site.Params.versions.latest }}
+/docs     /docs/concepts/overview
+/docs/latest     /docs/concepts/overview
 /docs/latest/*   /docs/:splat
 /security   /docs/security

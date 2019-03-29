@@ -2,10 +2,10 @@
 <meta property="og:type" content="article" />
 <meta property="og:title" content="{{ .Title }}" />
 {{ if .Description }}
-    <meta property="og:description" content="{{ .Description | markdownify  }}" />
+<meta property="og:description" content="{{ .Description | markdownify  }}" />
 {{ else if .Summary }}
-    <meta property="og:description" content="{{ .Summary | markdownify  }}" />
+<meta property="og:description" content="{{ .Summary | markdownify  }}" />
 {{ else }}
-    <meta property="og:description" content="{{ .Site.Params.description.brief | markdownify  }}" />
+<meta property="og:description" content="{{ site.Params.description.brief | markdownify }}" />
 {{ end }}
-<meta property="og:image" content="{{ .Site.BaseURL }}/{{ .Site.Params.logos.card }}" />
+<meta property="og:image" content="{{ site.Params.logos.card | absURL }}" />

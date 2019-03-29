@@ -1,4 +1,4 @@
-{{- $adopters := .Site.Data.adopters }}
+{{ $adopters := site.Data.adopters }}
 <table>
   <thead>
     <tr>
@@ -14,7 +14,7 @@
     </tr>
   </thead>
   <tbody>
-    {{- range $adopters }}
+    {{ range $adopters }}
     <tr>
       <td>
         <a href="{{ .url }}">
@@ -25,19 +25,19 @@
         {{ .industry }}
       </td>
       <td>
-        {{- if .stories }}
-        {{- $numStories := len .stories }}
-        {{- range $idx, $story := .stories }}
+        {{ if .stories }}
+        {{ $numStories := len .stories }}
+        {{ range $idx, $story := .stories }}
         <a href="{{ $story.url }}">
           {{ $story.language }}
         </a>
-        {{- if ne (sub $numStories 1) $idx }}
+        {{ if ne (sub $numStories 1) $idx }}
         <br />
-        {{- end }}
-        {{- end }}
-        {{- end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
       </td>
     </tr>
-    {{- end }}
+    {{ end }}
   </tbody>
 </table>

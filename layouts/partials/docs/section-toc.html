@@ -1,0 +1,15 @@
+{{ $allDocs     := where site.RegularPages "Section" "docs" }}
+{{ $thisSection := .CurrentSection.Name }}
+{{ $currentUrl  := .URL }}
+<div class="section-toc">
+  <ul>
+    {{ range where $allDocs "CurrentSection.Name" $thisSection }}
+    {{ $isCurrentPage := eq .URL $currentUrl }}
+    <li{{ if $isCurrentPage }} class="is-active"{{ end }}>
+      <a href="{{ .URL }}">
+        {{ .Title }}
+      </a>
+    </li>
+    {{ end }}
+  </ul>
+</div>

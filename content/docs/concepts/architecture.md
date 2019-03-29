@@ -1,7 +1,9 @@
 ---
-title: Concepts and architecture
+title: Architecture
 description: How TiKV works and how it was built
-weight: 3
+weight: 2
+aliases:
+- /docs/architecture
 ---
 
 This page discusses the core concepts and architecture behind TiKV, including:

@@ -1,7 +1,9 @@
-{{- $docs           := where .Site.Pages "Section" "docs" }}
-{{- $description    := .Params.description }}
-{{- $currentUrl     := .URL }}
-{{- $isNew          := .Params.new }}
+{{ $docs           := where site.Pages "Section" "docs" }}
+{{ $description    := .Params.description }}
+{{ $currentUrl     := .URL }}
+{{ $isNew          := .Params.new }}
+{{ $docsSections   := where site.Sections "Section" "docs" }}
+{{ $currentSection := .CurrentSection.Name }}
 {{ partial "navbar.html" . }}
 
 <section class="hero is-primary">
@@ -10,18 +12,18 @@
       <h1 class="title is-size-1 is-size-2-mobile{{ if $description }} is-spaced{{ end }}">
         {{ .Title }}
         
-        {{- if $isNew }}
-        <a class="button is-warning is-uppercase">New</a>
-        {{- end }}
+        {{ if $isNew }}
+        <a class="button is-warning is-uppercase">
+          New
+        </a>
+        {{ end }}
       </h1>
   
-      {{- with $description }}
+      {{ with $description }}
       <h2 class="subtitle is-size-3 is-size-4-mobile">
         {{ . }}
       </h2>
-      {{- end }}
-
-      
+      {{ end }}
     </div>
   </div>
 
@@ -29,14 +31,17 @@
     <nav class="tabs is-medium is-boxed">
       <div class="container">
         <ul>
-          {{- range $docs }}
-          {{- $isCurrentPage := eq .URL $currentUrl }}
-          <li{{ if $isCurrentPage }} class="is-active"{{ end }}>
-            <a href="{{ .URL }}">
-              {{ .Title }}
+          {{ range $docsSections }}
+          {{ range .Sections }}
+          {{ $mainPage         := index (where .Pages "Weight" 1) 0 }}
+          {{ $isCurrentSection := eq .Name $currentSection }}
+          <li{{ if $isCurrentSection }} class="is-active"{{ end }}>
+            <a href="{{ $mainPage.URL }}">
+              {{ .Name }}
             </a>
           </li>
-          {{- end }} <!-- range $docs -->
+          {{ end }}
+          {{ end }}
         </ul>
       </div>
     </nav>

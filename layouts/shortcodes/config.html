@@ -1,5 +1,5 @@
-{{- $group   := .Get 0 }}
-{{- $configs := index .Site.Data.configs $group }}
+{{ $group   := .Get 0 }}
+{{ $configs := index site.Data.configs $group }}
 <table>
   <thead>
     <tr>
@@ -15,7 +15,7 @@
     </tr>
   </thead>
   <tbody>
-    {{- range $configs }}
+    {{ range $configs }}
     <tr>
       <td>
         <code>{{ .name }}</code>
@@ -27,6 +27,6 @@
         {{ .default }}
       </td>
     </tr>
-    {{- end }}
+    {{ end }}
   </tbody>
 </table>

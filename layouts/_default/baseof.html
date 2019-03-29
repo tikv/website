@@ -1,16 +1,16 @@
-{{- $isHome   := .IsHome }}
-{{- $isServer := .Site.IsServer }}
-{{- $pageType := cond $isHome "home" .Section }}
+{{ $isHome   := .IsHome }}
+{{ $isServer := site.IsServer }}
+{{ $pageType := cond $isHome "home" .Section }}
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
+<html lang="{{ site.LanguageCode }}">
   <head>
-    {{- if not $isServer }}
+    {{ if not $isServer }}
     {{ partial "google-analytics.html" . }}
-    {{- end }}
+    {{ end }}
     {{ partial "meta.html" . }}
     {{ partial "twitter-card.html" . }}
     {{ partial "open-graph-tags.html" . }}
-    <title>{{ block "title" . }}{{ .Site.Title }} &ndash; {{ .Site.Params.description.brief }}{{ end }}</title>
+    <title>{{ block "title" . }}{{ site.Title }} | {{ site.Params.description.brief }}{{ end }}</title>
     {{ partial "css.html" . }}
   </head>
   <body class="has-navbar-fixed-top page is-{{ $pageType }}-page">
