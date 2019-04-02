@@ -36,14 +36,6 @@
     url: https://www.pingcap.com/blog/2017-08-08-tidbforyuanfudao
   - language: Chinese
     url: https://www.pingcap.com/cases-cn/user-case-yuanfudao
-- name: Ele.me
-  url: https://www.ele.me/home/
-  industry: Food delivery
-  stories:
-  - language: English
-    url: https://www.pingcap.com/blog/use-case-tidb-in-eleme/
-  - language: Chinese
-    url: https://www.pingcap.com/cases-cn/user-case-eleme-1/
 - name: Xiaomi
   url: https://en.wikipedia.org/wiki/Xiaomi
   industry: Consumer Electronics
