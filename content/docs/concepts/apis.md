@@ -21,7 +21,7 @@ There are several clients that connect to TiKV:
 
 * [Rust](https://github.com/tikv/client-rust)
 * [Java](https://github.com/tikv/client-java)
-* [Go](https://github.com/pingcap/tidb/store/tikv)
+* [Go](https://github.com/tikv/client-go)
 
 Below we use the Rust client for some examples, but you should find all clients work similarly.
 
