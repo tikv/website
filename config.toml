@@ -41,16 +41,16 @@ text = "Overview"
 link = "/docs/concepts/overview"
 
 [[params.home.buttons]]
-text = "Architecture"
-link = "/docs/concepts/architecture"
-
-[[params.home.buttons]]
 text = "Quickstart"
 link = "/docs/tasks/quickstart"
 
 [[params.home.buttons]]
 text = "Blog"
 link = "/blog"
+
+[[params.home.buttons]]
+text = "Forum"
+link = "https://forum.tikv.org"
 
 [outputs]
 home = ["HTML", "REDIRECTS"]
