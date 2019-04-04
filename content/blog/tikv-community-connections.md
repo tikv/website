@@ -14,4 +14,4 @@ This space isn't just for TiKV! You'll also find topics for some of TiKVs depend
 
 As with all TiKV project spaces, please follow the [code of conduct](https://github.com/tikv/tikv/blob/master/CODE_OF_CONDUCT.md) with us so we can foster a vibrant, accepting, worldwide community.
 
-The site is still quite young and empty, but we'd love to have you join us and share.
+The spaces is still quite young and in continuous evolution, but we'd love to have you join us and share.
