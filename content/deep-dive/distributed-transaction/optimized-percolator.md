@@ -28,7 +28,7 @@ But if a transaction T does nothing but reads a single key, is it really necessa
 ## Calculated Commit Ts
 
 {{< warning >}}
-This optimization haven't been finished yet, but will be available in the future.
+This optimization haven't been finished yet, but will be available in the future. [RFC](https://github.com/tikv/rfcs/pull/25).
 {{</ warning >}}
 
 To provide Snapshot Isolation, we should ensure all transactional reads are
