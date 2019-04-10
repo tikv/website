@@ -11,7 +11,7 @@ In practice, for a single transaction, we don't want to do prewrites one by one.
 
 In TiKV's implementation, when committing a transaction, the keys in the transaction will be divided into several batches and each batch will be prewritten in parallel. It doesn't matter whether the primary key is written first.
 
-If conflict happens during a transaction's prewrite phase, the prewrite process will be canceled and rollback will be performed on all keys affected by the transaction. Doing rollback on a key will leave a `Rollback` record in `CF_WRITE`(Percolator's `write` column), which didn't shows in Google's paper of Percolator. The `Rollback` record is a mark to tell that the transaction whose start_ts is in the record has been rolled back, and if a prewrite request arrives later than the rollback request, the prewrite will not succeed. This situation may be caused by network issues. The correctness won't be broken if we allow the prewrite to success, however the key will be locked and unavailable until when the lock's TTL expires.
+If conflict happens during a transaction's prewrite phase, the prewrite process will be canceled and rollback will be performed on all keys affected by the transaction. Doing rollback on a key will leave a `Rollback` record in `CF_WRITE`(Percolator's `write` column), which didn't show in Google's Percolator paper. The `Rollback` record is a mark to tell that the transaction whose start_ts is in the record has been rolled back, and if a prewrite request arrives later than the rollback request, the prewrite will not succeed. This situation may be caused by network issues. The correctness won't be broken if we allow the prewrite to success, however the key will be locked and unavailable until when the lock's TTL expires.
 
 ## Short Value in Write Column
 
@@ -27,7 +27,9 @@ But if a transaction T does nothing but reads a single key, is it really necessa
 
 ## Calculated Commit Ts
 
+{{< warning >}}
 This optimization haven't been finished yet, but will be available in the future.
+{{</ warning >}}
 
 To provide Snapshot Isolation, we should ensure all transactional reads are
 repeatable. The `commit_ts` should be large enough so that the transaction will
@@ -70,7 +72,9 @@ region, for all regions involved in the transaction.
 
 ## Single Region 1PC
 
-This is another optimization that will be available in the future.
+{{< warning >}}
+This optimization haven't been finished yet, but will be available in the future.
+{{</ warning >}}
 
 For non-distributed databases, it's easy to provide ACID transactions; but for distributed databases, usually 2PC(two-phase commit) is required to make transactions ACID. Percolator provides such a 2PC algorithm, which is adopted by TiKV.
 
