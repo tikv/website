@@ -3,7 +3,7 @@
   <div class="container">
     <div class="columns is-multiline">
       {{ range $posts }}
-      <div class="column is-3">
+      <div class="column is-half-desktop is-one-third-widescreen is-full-tablet">
         {{ .Render "blog/card" }}
       </div>
       {{ end }}
