@@ -46,7 +46,10 @@ Generally speaking, a data structure can optimize for at most two from read, wri
 
 The B-tree is a generalization of [binary search tree](https://en.wikipedia.org/wiki/Binary_search_tree) in which a node can have more than two children. There are two kinds of node in a B-tree, internal nodes, and leaf nodes. A leaf node contains data records and has no children, whereas an internal node can have a variable number of child nodes within some pre-defined range. Internal nodes may be joined or split. An example of a B-tree appears in *Figure 1*.
 
-![Figure 1](B_tree.png)
+{{< figure
+    src="/img/deep-dive/b-tree.png"
+    caption="B-tree"
+    number="1" >}}
 
 > Figure 1. The root node is shown at the top of the tree, and in this case happens to contain a single pivot (20), indicating that records with key k where k ≤ 20 are stored in the first child, and records with key k where k > 20 are stored in the second child. The first child contains two pivot keys (11 and 15), indicating that records with key k where k ≤ 11 is stored in the first child, those with 11 < k ≤ 15 are stored in the second child, and those with k > 15 are stored in the third child. The leftmost leaf node contains three values (3, 5, and 7).
 
@@ -54,7 +57,10 @@ The term B-tree may refer to a specific design or a general class of designs. In
 
 Like other search trees, an LSM-tree contains key-value pairs. It maintains data in two or more separate components (sometimes called `SSTable`s), each of which is optimized for its respective underlying storage medium; the data in the low level component is efficiently merged with the data in the high level component in batches. An example of LSM-tree appears in *Figure 2*.
 
-![Figure 2](LSM_Tree.png)
+{{< figure
+    src="/img/deep-dive/lsm-tree.png"
+    caption="LSM-tree"
+    number="2" >}}
 
 > Figure 2. The LSM-tree contains \\(k\\) components. Data starts in \\(C_0\\), then gets merged into the \\(C_1\\). Eventually the \\(C_1\\) is merged into the \\(C_2\\), and so forth.
 
