@@ -1,5 +1,5 @@
 {{ $deepDive   := where site.Sections "Section" "deep-dive" }}
-{{ $currentUrl := .URL }}
+{{ $currentUrl := .RelPermalink }}
 <div class="deep-dive-toc">
   <p class="title is-narrow has-text-weight-bold">
     TiKV deep dive
@@ -9,20 +9,20 @@
 
   <ul>
     {{ range $deepDive }}
-    {{ $isCurrentPage := eq $currentUrl .URL }}
+    {{ $isCurrentPage := eq $currentUrl .RelPermalink }}
     <li{{ if $isCurrentPage }} class="is-active"{{ end }}>
       <strong>{{ .Weight }}</strong>.
-      <a href="{{ .URL }}">
+      <a href="{{ .RelPermalink }}">
         {{ .Title }}
       </a>
     </li>
 
     {{ range .Sections }}
-    {{ $isCurrentPage := eq $currentUrl .URL }}
+    {{ $isCurrentPage := eq $currentUrl .RelPermalink }}
     {{ $sectionWeight := .Weight }}
     <li{{ if $isCurrentPage }} class="is-active"{{ end }}>
       <strong>{{ $sectionWeight }}</strong>.
-      <a href="{{ .URL }}">
+      <a href="{{ .RelPermalink }}">
         {{ .Title }}
       </a>
     </li>
@@ -30,10 +30,10 @@
     <li>
       <ul>
         {{ range .Pages }}
-        {{ $isCurrentPage := eq $currentUrl .URL }}
+        {{ $isCurrentPage := eq $currentUrl .RelPermalink }}
         <li{{ if $isCurrentPage }} class="is-active"{{ end }}>
           <strong>{{ $sectionWeight }}.{{ .Weight }}</strong>.
-          <a href="{{ .URL }}">
+          <a href="{{ .RelPermalink }}">
             {{ .Title }}
           </a>
         </li>

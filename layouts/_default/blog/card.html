@@ -4,7 +4,7 @@
 <div class="card has-background-black">
   <div class="card-content">
     <p class="title is-blog-card-title is-size-2 is-size-3-mobile has-text-weight-light{{ if .Params.author }} is-spaced{{ end }}">
-      <a class="has-text-white" href="{{ .URL }}">
+      <a class="has-text-white" href="{{ .RelPermalink }}">
         {{ .Title }}
       </a>
     </p>
@@ -39,7 +39,7 @@
       </div>
 
       <div class="level-right">
-        <a class="button is-primary" href="{{ .URL }}">
+        <a class="button is-primary" href="{{ .RelPermalink }}">
           <span class="icon">
             <i class="fas fa-book-open"></i>
           </span>
