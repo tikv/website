@@ -1,4 +1,4 @@
 {{ $date := dateFormat "January 2, 2006" .Date }}
-<a class="navbar-item" href="{{ .URL }}">
+<a class="navbar-item" href="{{ .RelPermalink }}">
   {{ .Title }}  
 </a>

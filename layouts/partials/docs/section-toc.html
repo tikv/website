@@ -1,12 +1,12 @@
 {{ $allDocs     := where site.RegularPages "Section" "docs" }}
 {{ $thisSection := .CurrentSection.Name }}
-{{ $currentUrl  := .URL }}
+{{ $currentUrl  := .RelPermalink }}
 <div class="section-toc">
   <ul>
     {{ range where $allDocs "CurrentSection.Name" $thisSection }}
-    {{ $isCurrentPage := eq .URL $currentUrl }}
+    {{ $isCurrentPage := eq .RelPermalink $currentUrl }}
     <li{{ if $isCurrentPage }} class="is-active"{{ end }}>
-      <a href="{{ .URL }}">
+      <a href="{{ .RelPermalink }}">
         {{ .Title }}
       </a>
     </li>

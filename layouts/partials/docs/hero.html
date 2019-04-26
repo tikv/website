@@ -1,6 +1,6 @@
 {{ $docs           := where site.Pages "Section" "docs" }}
 {{ $description    := .Params.description }}
-{{ $currentUrl     := .URL }}
+{{ $currentUrl     := .RelPermalink }}
 {{ $isNew          := .Params.new }}
 {{ $docsSections   := where site.Sections "Section" "docs" }}
 {{ $currentSection := .CurrentSection.Name }}
@@ -36,7 +36,7 @@
           {{ $mainPage         := index (where .Pages "Weight" 1) 0 }}
           {{ $isCurrentSection := eq .Name $currentSection }}
           <li{{ if $isCurrentSection }} class="is-active"{{ end }}>
-            <a href="{{ $mainPage.URL }}">
+            <a href="{{ $mainPage.RelPermalink }}">
               {{ .Name }}
             </a>
           </li>

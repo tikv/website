@@ -20,7 +20,7 @@
         <ul>
           {{ range $docs }}
           <li>
-            <a href="{{ .URL }}">
+            <a href="{{ .RelPermalink }}">
               {{ .Title }}
             </a>
           </li>
@@ -55,7 +55,7 @@
         <ul>
           {{ range first 5 $blogPosts }}
           <li>
-            <a href="{{ .URL }}">
+            <a href="{{ .RelPermalink }}">
               {{ .Title }}
             </a>
           </li>
