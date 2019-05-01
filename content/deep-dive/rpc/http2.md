@@ -2,7 +2,8 @@
 title: HTTP/2
 weight: 1
 ---
-HTTP/2 is the 'Hyper Text Transfer Protocol Version 2'. HTTP/2 and its predecessor, HTTP/1, are the de-facto network protocols in use today.
+HTTP/2 is short for 'Hyper Text Transfer Protocol Version 2'. HTTP/2 and its predecessor,
+HTTP/1, are the de-facto network protocols in use today.
 
 They define things such as:
 
@@ -33,12 +34,12 @@ Both of these specifications eventually were obseleted in 2007 in the following 
 * [RFC 7235, HTTP/1.1: Authentication](https://tools.ietf.org/html/rfc7235)
 
 Thankfully it's not necessary to become familiar with every detail of these
-RFCs. HTTP/1.0 is a request-reponse protocol, for now, we'll just focus on this.
+RFCs. HTTP/1.0 is a request-response protocol. For now, we'll just focus on this.
 
 ### The Request
 
 When a node is connected to another node via TCP/IP, it can make a request by
-sending ASCII text like as below (the empty newline is required!):
+sending ASCII text as below (the empty newline is required!):
 
 ```HTTP
 POST / HTTP/1.1
@@ -64,14 +65,14 @@ Connection: close
 
 ## HTTP/2
 
-The major differences in HTTP/2 lie not in topics like methods, status codes, or
+The major differences in HTTP/2 do not lie in aspects like methods, status codes, or
 URIs, but in data frames and transportation.
 
 It builds on HTTP/1.1 by adding features like:
 
-* Server Push, allowing the server to respond with more data than requested.
+* Server Push, to allow the server to respond with more data than requested.
 * Multiplexing, to avoid 'head-of-line' blocking problem in HTTP/1.1
-* Pipelining, reducing network wait times.
+* Pipelining, to reduce network wait time.
 * Compression of headers, to reduce overall network costs.
 
 Compared to HTTP/1.1, HTTP/2.0 offers applications like TiKV many opportunities

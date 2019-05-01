@@ -4,11 +4,11 @@ weight: 6
 ---
 
 Communication between services occurs over remote procedure calls. RPCs happen
-all the time in distributed systesm. You browser had to make at least one RPC to
-this website to obtain this webpage.
+all the time in distributed systems. To obtain a webpage, your browser has to make at
+least one RPC to this website.
 
 TiKV, as a distributed system involving a number of nodes, uses RPCs to
-communicate between each node, as well as the placement driver and clients.
+communicate between nodes, as well as the Placement Driver and clients.
 
 As it turns out, exposing functionality as a remote interface isn't a trivial.
 Networks are unreliable, systems are diverse and evolving, a huge variety of
@@ -31,7 +31,7 @@ This solves problems such as:
 * [Headers] (eg. Authorization, User-Agent)
 * [Pipelining]
 
-TiKV uses **HTTP/2**. HTTP/2 is more performant and capable than HTT/1 for TiKVs uses.
+TiKV uses **HTTP/2**. HTTP/2 is more performant and capable than HTTP/1 for TiKV uses.
 
 ### Interfacing
 
@@ -49,9 +49,9 @@ following problems:
 
 ### Wrapping it all together
 
-Simply having the pieces is not enough, making it usable for all parties
+Simply having the pieces is not enough. Making it usable for all parties
 involved is another story. [gRPC] does a great job wrapping
-the above technologies up and providing usable interfaces.
+up the above technologies and providing usable interfaces.
 
 Over the next chapter, we'll look at each of these technologies and how they work.
 

@@ -20,8 +20,7 @@ KvPair {
 When a message is actually *sent* between two applications, a binary format is
 used. You can learn more about the binary format in the [protobuf documentation](https://developers.google.com/protocol-buffers/docs/encoding).
 
-The message above would be an instance of a structure predefined in a `.proto`
-file:
+The message above is an instance of a structure predefined in a `.proto`
 
 ```protobuf
 message KvPair {
@@ -48,7 +47,7 @@ span many languages.
 You need to do this with protocol buffers as well, but you only do it once, and
 the protobuf compiler will generate bindings for any language it knows how to.
 
-Protobuf generates this code in a backwards compatible manner. If an application
+Protobuf generates code in a backwards compatible manner. If an application
 finds unfamiliar data is isn't familiar with, it just ignores them. This allows
 for a safe evolution of an API.
 
@@ -57,7 +56,7 @@ for a safe evolution of an API.
 Protobufs also enable the definition of *services*. This allows the
 definition of RPC calls in the `*.proto` files.
 
-This example demonstrates a service called `ScanService` which provides a remote
+This example demonstrates a service called `ScanService`. It provides a remote
 procedure call `Scan` that accepts two strings and returns a stream of `KvPair`s:
 
 ```protobuf
