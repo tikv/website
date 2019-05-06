@@ -26,16 +26,16 @@ This solves problems such as:
 
 * [URIs]
 * [Sessions]
-* [Status Codes] (eg. 404 Not Found)
-* [Methods] (eg. GET, POST, PUT)
-* [Headers] (eg. Authorization, User-Agent)
+* [Status Codes] (e.g. 404 Not Found)
+* [Methods] (e.g. GET, POST, PUT)
+* [Headers] (e.g. Authorization, User-Agent)
 * [Pipelining]
 
 TiKV uses **HTTP/2**. HTTP/2 is more performant and capable than HTTP/1 for TiKV uses.
 
 ### Interfacing
 
-With those abilities supported there remains a need to work with structures of
+With those abilities supported, there remains a need to work with structures of
 data. Commonly this ends up being an *interface description language* format
 like [Protocol Buffers] (protobufs), which TiKV uses. Unlike an *interchange*
 *format*, an *interface description language* allows for the definition of
@@ -44,7 +44,7 @@ following problems:
 
 * [Encoding] (ASCII? UTF-8? UTF-16? WTF-8?)
 * Serialization/Deserialization format (Text-to-`struct` and vice versa)
-* Backward/Forward compatibility (Eg Field data type changed)
+* Backward/Forward compatibility (e.g. Field data type changed)
 * Service & RPC definition
 
 ### Wrapping it all together
