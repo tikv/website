@@ -35,4 +35,4 @@ The basic architecture of TiKV is described in the diagram below:
     width="70"
     number="1" >}}
 
-You can read more in the [Concepts and architecture](architecture) documentation.
+You can read more in the [Concepts and architecture](../architecture/) documentation.
