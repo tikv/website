@@ -44,4 +44,4 @@ service StreamScan {
 
 One of the TiKV maintaining organizations, PingCAP, maintains the
 [`grpc-rs`](https://github.com/pingcap/grpc-rs) library, providing Rust bindings
-to the C library of gRPC. TiKV uses this crate.
+to a C library for gRPC. TiKV uses this crate.

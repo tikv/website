@@ -44,7 +44,7 @@ following problems:
 
 * [Encoding] (ASCII? UTF-8? UTF-16? WTF-8?)
 * Serialization/Deserialization format (Text-to-`struct` and vice versa)
-* Backward/Forward compatibility (e.g. Field data type changed)
+* Backward/Forward compatibility (e.g. Structure fields changing, being added, removed)
 * Service & RPC definition
 
 ### Wrapping it all together

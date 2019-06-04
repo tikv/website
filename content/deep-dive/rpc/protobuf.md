@@ -5,7 +5,7 @@ weight: 2
 Interface definition languages, such as protobufs, are most commonly used to
 store and transmit data between applications.
 
-They define a way to *serialize* structures as text, as well as *de-serialize*
+They define a way to *serialize* structures as text, as well as *deserialize*
 it again.
 
 Here's an example of a protobuf message in *text format*:
