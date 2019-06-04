@@ -15,31 +15,32 @@ problems.
 In general, when there is a lack of resources or the problem is hard to
 reproduce, we might consider using the simulator.
 
-A simulation for the scheduling problem in the distributed system
+The simulation of scheduling problems in a distributed system
 usually consists of the following steps:
 
 1. Define the system model of the simulator.
 2. Set up the simulation environment.
 3. Run the simulation.
-4. Inspect the result to check whether it is in line with the expectation.
+4. Inspect the result to check whether it is in line with expectations.
 
 The first step is mainly to figure out which part of your system you want to
 simulate. And the model should be as simple as possible. In the second step,
 you should set up the environment including the scale of your system and the
 characteristics of the workload. In the third step, the simulation will run
 and provide the scheduling output. In the final step, you can check the
-result and dig into the scheduling problem if the result is not as expected.
+result and dig into the scheduling problems if the result is not as expected.
 
 ## PD Simulator
 
 In PD, we also need a simulator to locate a scheduling problem.
-The simulator can be used to simulate a large-scale cluster and scenarios
+The PD simulator can be used to simulate a large-scale cluster and scenarios
 with different users.
-And for some special scenarios, we can keep them so that we can quickly
-verify the correctness of the scheduling in PD under different scenarios
-when we reconstruct the code or add some new features in the future. Without
-the simulator, if we want to reproduce some scenarios, we need to apply for
-machines, load data, and then wait for the scheduling. It is tedious and
+
+For some special scenarios, we can keep their cases in the simulator so that
+we can quickly verify the correctness of the scheduling in PD under different
+scenarios when we reconstruct the code or add some new features in the future.
+Without the simulator, if we want to reproduce some scenarios, we need to apply
+for machines, load data, and then wait for the scheduling. It is tedious and
 might waste a lot of time.
 
 ### Architecture
