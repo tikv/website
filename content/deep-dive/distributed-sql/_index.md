@@ -1,6 +1,6 @@
 ---
 title: Distributed SQL over TiKV
-weight: 7
+weight: 8
 ---
 
 TiKV is the storage layer for [TiDB], a distributed HTAP SQL database. So far,

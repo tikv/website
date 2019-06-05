@@ -1,6 +1,6 @@
 ---
 title: Resource scheduling
-weight: 6
+weight: 7
 ---
 
 In a distributed database environment, resource scheduling needs to meet the following requirements:
