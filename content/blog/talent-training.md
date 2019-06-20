@@ -43,8 +43,7 @@ distributed systems in Rust and Go. These courses consist of:
   algorithms necessary in distributed databases, including map reduce, and
   parallel query optimization.
 
-Today they are in an early state, but we would appreciate if you give them a
-look and help us improve them over at our [PingCAP Talent Plan][c].
+Today they are in an early state, but we would appreciate if you give them a look and help us improve them over at our [PingCAP Talent Plan][c].
 
 [Go]: https://golang.org/
 [Rust]: https://www.rust-lang.org/
