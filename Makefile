@@ -2,7 +2,13 @@ serve:
 	hugo server \
 		--buildDrafts \
 		--buildFuture \
-		--disableFastRender
+		--disableFastRender \
+		--bind 0.0.0.0
+
+serve-production:
+	hugo server \
+		--disableFastRender \
+		--bind 0.0.0.0
 
 production-build:
 	hugo --minify

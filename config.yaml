@@ -1,0 +1,61 @@
+title: "TiKV"
+baseURL: "https://tikv.org"
+languageCode: "en-us"
+pygmentsCodeFences: true
+pygmentsUseClasses: true
+disableKinds: ["taxonomy", "taxonomyTerm"]
+
+menu:
+    nav:
+    - name: Forum
+      url: https://forum.tikv.org
+      parent: Community
+      weight: 1
+    - name: Chat
+      url: /chat
+      parent: Community
+      weight: 2
+    - name: Branding
+      url: https://branding.cncf.io/projects/tikv
+      parent: Community
+      weight: 4
+    - name: Docs
+      url: /docs/3.0/concepts
+      weight: 1
+
+
+params:
+    favicon: "favicon.png"
+    googleAnalyticsId: "UA-130734531-1"
+    versions:
+        latest: "3.0"
+    description:
+        brief: "A distributed transactional key-value database"
+        long: "Based on the design of [Google Spanner](https://ai.google/research/pubs/pub39966) and [HBase](https://hbase.apache.org), but simpler to manage and without dependencies on any distributed filesystem"
+    fonts: 
+        sansserif: "Titillium Web"
+        monospace: "Inconsolata"
+    logos:
+        white: "img/logos/horizontal/white/tikv-horizontal-white.png"
+        color: "img/logos/horizontal/color/tikv-horizontal-color.png"
+        black: "img/logos/horizontal/black/tikv-horizontal-black.png"
+        cncf: "img/logos/cncf-color.png"
+        card: "img/logos/card.png"
+    assets:
+        fontAwesomeVersion: "5.3.1"
+        js: ["jquery-3.3.1", "anchor", "app"]
+        css: ["syntax"]
+    socialmedia:
+        twitter: "tikvproject"
+        github: "https://github.com/tikv/tikv"
+    output:
+        home: ["HTML", "REDIRECTS"]
+
+outputFormats:
+    REDIRECTS:
+        mediaType: "text/netlify"
+        baseName: "_redirects"
+
+mediaTypes:
+    "text/netlify":
+        delimiter: ""

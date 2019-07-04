@@ -18,13 +18,26 @@
         <hr class="hr has-background-primary">
 
         <ul>
-          {{ range $docs }}
           <li>
-            <a href="{{ .RelPermalink }}">
-              {{ .Title }}
+            <a href="/docs/{{ $latest }}/">
+              Overview
             </a>
           </li>
-          {{ end }}
+          <li>
+            <a href="/docs/{{ $latest }}/concepts">
+              Concepts
+            </a>
+          </li>
+          <li>
+            <a href="/docs/{{ $latest }}/tasks">
+              Tasks
+            </a>
+          </li>
+          <li>
+            <a href="/docs/{{ $latest }}/reference">
+              Reference
+            </a>
+          </li>
         </ul>
       </div>
 
