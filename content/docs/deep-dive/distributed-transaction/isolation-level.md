@@ -1,6 +1,5 @@
 ---
 title: Isolation Level
-weight: 1
 menu:
     docs:
         parent: Distributed transaction

@@ -1,6 +1,5 @@
 ---
 title: Resource scheduling
-weight: 7
 menu:
     docs:
         parent: Deep Dive

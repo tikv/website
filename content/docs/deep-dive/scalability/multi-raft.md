@@ -1,7 +1,5 @@
 ---
 title: Multi-raft
-mathjax: true
-weight: 3
 menu:
     docs:
         parent: Scalability

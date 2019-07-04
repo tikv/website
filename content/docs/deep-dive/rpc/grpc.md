@@ -1,6 +1,5 @@
 ---
 title: gRPC
-weight: 3
 menu:
     docs:
         parent: Remote Procedure Calls (RPC)

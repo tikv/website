@@ -1,7 +1,6 @@
 ---
 title: APIs
 description: Interact with TiKV using the raw key-value API or the transactional key-value API
-weight: 4
 menu:
     docs:
         parent: Concepts

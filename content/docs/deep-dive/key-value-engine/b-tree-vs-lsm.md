@@ -1,7 +1,5 @@
 ---
 title: B-Tree vs LSM-Tree
-mathjax: true
-weight: 1
 menu:
     docs:
         parent: Key-value engine

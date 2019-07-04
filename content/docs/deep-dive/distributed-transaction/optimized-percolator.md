@@ -1,6 +1,5 @@
 ---
 title: Optimized Percolator
-weight: 6
 menu:
     docs:
         parent: Distributed transaction

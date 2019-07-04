@@ -1,7 +1,6 @@
 ---
 title: Configure TiKV
 description: Configure a wide range of TiKV facets, including RocksDB, gRPC, the Placement Driver, and more
-weight: 3
 menu:
     docs:
         parent: Tasks

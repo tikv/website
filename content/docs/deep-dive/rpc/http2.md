@@ -1,6 +1,5 @@
 ---
 title: HTTP/2
-weight: 1
 menu:
     docs:
         parent: Remote Procedure Calls (RPC)

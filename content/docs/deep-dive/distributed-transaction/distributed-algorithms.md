@@ -1,6 +1,5 @@
 ---
 title: Distributed Algorithms
-weight: 2
 menu:
     docs:
         parent: Distributed transaction

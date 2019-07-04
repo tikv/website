@@ -1,6 +1,5 @@
 ---
 title: Scalability
-weight: 5
 menu:
     docs:
         parent: Deep Dive

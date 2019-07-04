@@ -1,7 +1,6 @@
 ---
 title: TiKV overview
 description: Some basic facts about TiKV
-weight: 1
 menu:
     nav:
         name: Concepts

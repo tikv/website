@@ -1,6 +1,5 @@
 ---
 title: Paxos
-weight: 3
 menu:
     docs:
         parent: Consensus algorithm

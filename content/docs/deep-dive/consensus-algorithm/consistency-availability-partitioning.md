@@ -1,6 +1,5 @@
 ---
 title: CAP Theorem
-weight: 1
 menu:
     docs:
         parent: Consensus algorithm

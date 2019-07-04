@@ -1,6 +1,5 @@
 ---
 title: Distributed SQL over TiKV
-weight: 8
 menu:
     docs:
         parent: Deep Dive

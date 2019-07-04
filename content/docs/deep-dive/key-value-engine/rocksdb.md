@@ -1,6 +1,5 @@
 ---
 title: RocksDB
-weight: 2
 menu:
     docs:
         parent: Key-value engine

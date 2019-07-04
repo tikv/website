@@ -1,7 +1,6 @@
 ---
 title: Architecture
 description: How TiKV works and how it was built
-weight: 2
 menu:
     docs:
         parent: Concepts

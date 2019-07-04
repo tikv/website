@@ -1,6 +1,5 @@
 ---
 title: Protocol Buffers
-weight: 2
 menu:
     docs:
         parent: Remote Procedure Calls (RPC)

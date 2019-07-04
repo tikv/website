@@ -1,6 +1,5 @@
 ---
 title: Timestamp Oracle
-weight: 4
 menu:
     docs:
         parent: Distributed transaction

@@ -1,6 +1,5 @@
 ---
 title: Locking
-weight: 3
 menu:
     docs:
         parent: Distributed transaction

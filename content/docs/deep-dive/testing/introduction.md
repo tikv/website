@@ -1,6 +1,5 @@
 ---
 title: Testing
-weight: 9
 menu:
     docs:
         parent: Deep Dive

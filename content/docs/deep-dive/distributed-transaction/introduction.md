@@ -1,6 +1,5 @@
 ---
 title: Distributed transaction
-weight: 4
 menu:
     docs:
         parent: Deep Dive

@@ -1,7 +1,6 @@
 ---
 title: Quickstart
 description: Run TiKV in your local environment using Docker Compose
-weight: 1
 menu:
     nav:
         name: Tasks

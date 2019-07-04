@@ -1,6 +1,5 @@
 ---
 title: Raft
-weight: 4
 menu:
     docs:
         parent: Consensus algorithm

@@ -1,6 +1,5 @@
 ---
 title: Horizontal or Vertical
-weight: 1
 menu:
     docs:
         parent: Scalability

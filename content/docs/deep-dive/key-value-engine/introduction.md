@@ -1,6 +1,5 @@
 ---
 title: Key-value engine
-weight: 3
 menu:
     docs:
         parent: Deep Dive

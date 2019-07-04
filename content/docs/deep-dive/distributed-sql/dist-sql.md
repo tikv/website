@@ -1,6 +1,5 @@
 ---
 title: Distributed SQL
-weight: 1
 menu:
     docs:
         parent: Distributed SQL over TiKV

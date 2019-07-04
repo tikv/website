@@ -1,6 +1,5 @@
 ---
 title: Kubernetes
-weight: 1
 menu:
     docs:
         parent: Resource scheduling

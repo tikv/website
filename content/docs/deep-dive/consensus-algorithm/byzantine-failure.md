@@ -1,6 +1,5 @@
 ---
 title: Byzantine Failure
-weight: 2
 menu:
     docs:
         parent: Consensus algorithm

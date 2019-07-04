@@ -1,6 +1,5 @@
 ---
 title: Percolator
-weight: 5
 menu:
     docs:
         parent: Distributed transaction

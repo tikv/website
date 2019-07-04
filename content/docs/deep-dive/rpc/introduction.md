@@ -1,6 +1,5 @@
 ---
 title: Remote Procedure Calls (RPC)
-weight: 6
 menu:
     docs:
         parent: Deep Dive

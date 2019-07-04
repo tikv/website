@@ -1,6 +1,5 @@
 ---
 title: Consensus algorithm
-weight: 2
 menu:
     docs:
         parent: Deep Dive

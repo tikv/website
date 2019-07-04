@@ -1,7 +1,5 @@
 ---
 title: Deep Dive
-headless: true
-weight: 1
 menu:
     docs:
         weight: 3

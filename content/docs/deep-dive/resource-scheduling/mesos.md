@@ -1,6 +1,5 @@
 ---
 title: Mesos
-weight: 2
 menu:
     docs:
         parent: Resource scheduling

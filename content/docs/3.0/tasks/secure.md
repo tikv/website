@@ -1,6 +1,5 @@
 ---
 title: Secure TiKV
-weight: 4
 menu:
     docs:
         parent: Tasks

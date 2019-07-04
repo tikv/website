@@ -1,6 +1,5 @@
 ---
 title: Data Sharding
-weight: 2
 menu:
     docs:
         parent: Scalability
