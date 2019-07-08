@@ -10,7 +10,7 @@ TiKV | {{ .Title }}
 <section class="section">
   <div class="container">
     <div class="columns">
-      <div class="column is-3">
+      <div class="column is-narrow">
         <div class="toc">
           {{ range .Site.Menus.docs }}
             {{ $submenu := (index (where $docs "Name" .Name) 0) }}
