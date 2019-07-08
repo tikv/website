@@ -10,7 +10,7 @@ favicon = "favicon.png"
 googleAnalyticsId = "UA-130734531-1"
 
 [params.versions]
-latest = "2.1"
+latest = "3.0"
 
 [params.description]
 brief = "A distributed transactional key-value database"
