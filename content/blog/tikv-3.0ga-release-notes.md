@@ -16,11 +16,11 @@ In TiKV 3.0 we've improved our system by:
 
 * **Pessimistic Locking.** It's now possible to ask TiKV to treat your transactions pessimistically. This means you can take exclusive ownership over a value for a duration. As Rust developers, we really like the idea of ownership!
 
-* **Expanding our coprocessor.** With lots of new functionality, improved APIs, vector operations, and better ways to work with data, our coprocessor continues to evolve, allowing for better, more efficient ways to work with your data.
+* **Expanding our coprocessor.** With lots of new or improved functionalities such as vector operations, batch executor, RPN functions, `work-stealing` thread pool model,  our coprocessor continues to evolve, allowing for more efficient ways to work with your data.
 
 * **Enhancing operator friendliness.** Human or machine, we've empowered our operators to get more out of TiKV by unifying our log format, adding new features to `tikv-ctl`, adding even more in depth metrics, and serving HTTP based metrics. This makes TiKV easier to operate, inspect, and enjoy.
 
-* **Refining request types.** While TiKV previously had commands like `BatchGet`, 3.0 brings a new `BatchCommands` request type. We've made taught TiKV how to handle batches of requests of differing kinds, leading to less data on the wire and better performance. We also added support for raw reversed scanning, and `Insert` semantics on prewrite.
+* **Refining request types.** While TiKV previously supported commands like `BatchGet`, 3.0 brings a new `BatchCommands` request type. This allows TiKV to handle batches of requests of differing kinds, leading to less data on the wire and better performance. We also added support for raw reversed scanning, and `Insert` semantics on prewrite.
 
 * **Reducing write amplication.** We were inspired by the great ideas from [WiscKey](https://www.usenix.org/system/files/conference/fast16/fast16-papers-lu.pdf) and implemented a feature we dubbed 'Titan'. It works best with larger (>1 KB) values.
 
@@ -46,10 +46,10 @@ In order to achieve high concurrency and properly stress the system, we ran YCSB
 | C 100% read           | read      | 31.056             | 14.583                 | 282752.8   | 606659.5       | +114.55% |
 | Load (10 MB)          | insert    | 198.764            | 217.901                | 44743.5    | 40819.9        | -8.77%   |
 
-Since TiKV usually is deployed with a stateless query layer, PingCAP has also published benchmarks showcases performance of TiKV paired with TiDB, the MySQL speaking query layer TiKV was originally created to compliment. You can find those benchmarks, and how to reproduce them, [**here**](https://github.com/pingcap/docs/tree/master/v3.0/benchmark).
+In the meantime, PingCAP has also published benchmarks that showcases the performance of TiKV paired with TiDB, the MySQL speaking query layer TiKV was originally created to compliment. You can find those benchmarks, and how to reproduce them, [**here**](https://github.com/pingcap/docs/tree/master/v3.0/benchmark).
 
 ## A big thanks
 
-We'd especially like to thank our contributors this release. Whether you're a returning contributor or one of the many new folks we welcomed, **thank you**.
+We'd especially like to thank our contributors who helped with this release. Whether you were a returning contributor or one of the many new folks we welcomed, **thank you**.
 
 Not a contributor yet? [Let us know](https://github.com/tikv/tikv/issues) if you'd like to get involved with development and help drive forward the future of TiKV.
