@@ -3,3 +3,4 @@
 /docs/latest     /docs/concepts/overview
 /docs/latest/*   /docs/:splat
 /security   /docs/security
+/chat   https://join.slack.com/t/tikv-wg/shared_invite/enQtNTUyODE4ODU2MzI0LTgzZDQ3NzZlNDkzMGIyYjU1MTA0NzIwMjFjODFiZjA0YjFmYmQyOTZiNzNkNzg1N2U1MDdlZTIxNTU5NWNhNjk
