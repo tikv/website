@@ -64,7 +64,7 @@ For the results, `Takes(s)`, `Count`, and `OPS` are better if they are higher. T
 
 $$ \frac{17966.8 + 11885.8 + 16603.8}{12045 + 1189.6 + 11030.8} = \frac{46454}{24264} = 1.9 $$
 
-TiKV 3.0.0 has approximately **1.9x better under high pure blind write performance**.
+TiKV 3.0.0 has approximately **1.9x better while under a pure blind write performance**.
 
 ### Workload A - 50% Read / 50% Update
 
