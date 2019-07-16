@@ -42,7 +42,7 @@ According to these results below, and the real-world experience of our customers
 
 Since we used 3 YCSB benchers running simultaneously, you can see the results of benchers 1 through 3 below.
 
-For the results, `Takes(s)`, `Count`, and `OPS` are better if they are higher. The final fields detailing `us` units, lowest is best.
+For the results, `Takes(s)`, `Count`, and `OPS` are better if they are higher. The final fields detailing `us` units, lower is better.
 
 ### Load
 
