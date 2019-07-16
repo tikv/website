@@ -6,6 +6,7 @@ date: 2019-07-08
 Today we're very proud to announce the general availability of TiKV 3.0! Before release, TiKV 3.0 underwent a rigorous testing regime, including the [official Jepsen test](https://www.pingcap.com/blog/tidb-passes-jepsen-test-for-snapshot-isolation-and-single-key-linearizability/) with TiDB.
 
 In this version, we tackled many problems of stability at massive scales. Whether it's spanning hundreds of nodes or storing over a trillion key-value pairs, we've seen our users and contributors put TiKV to the test in serious, real world, production scenarios. With 3.0, we've taken our ideas and lessons to bring a host of features that can better support these growing demands.
+
 ## Steady at scale
 
 In TiKV 3.0 we've improved our system by:
@@ -35,9 +36,11 @@ Using [`go-ycsb`](https://github.com/pingcap/go-ycsb) we benchmarked TiKV 3.0.0 
 * 10 Field Count
 * 3000 Thread Count (per node, so 9000 total)
 
+According to these results below, and the real-world experience of our customers, we're proud to say that TiKV 3.0.0 is the fastest, most usable TiKV yet!
+
 ### Reading the benchmarks
 
-Since we used 3 YCSB benchers running simutaneously, you can see the results of benchers 1 through 3 below.
+Since we used 3 YCSB benchers running simultaneously, you can see the results of benchers 1 through 3 below.
 
 For the results, `Takes(s)`, `Count`, and `OPS` are better if they are higher. The final fields detailing `us` units, lowest is best.
 
@@ -59,9 +62,9 @@ For the results, `Takes(s)`, `Count`, and `OPS` are better if they are higher. T
 3 - INSERT - Takes(s): 20.1, Count: 333000, OPS: 16603.8, Avg(us): 180926, Min(us): 6183, Max(us): 1165298, 95th(us): 339000, 99th(us): 543000
 ```
 
-$$ (12045+1189+1103) / (17966+11885+16603) * 100 = 30.8 $$
+$$ \frac{17966.8 + 11885.8 + 16603.8}{12045 + 1189.6 + 11030.8} = \frac{46454}{24264} = 1.9 $$
 
-. TiKV 3.0.0 performs approximately 30% better under high pure blind write performance.
+TiKV 3.0.0 has approximately **1.9x better under high pure blind write performance**.
 
 ### Workload A - 50% Read / 50% Update
 
@@ -76,7 +79,7 @@ $$ (12045+1189+1103) / (17966+11885+16603) * 100 = 30.8 $$
 3 - UPDATE - Takes(s): 69.8, Count: 499037, OPS: 7151.3, Avg(us): 319998, Min(us): 9771, Max(us): 4611633, 95th(us): 721000, 99th(us): 0
 ```
 
-3.0.0
+3.0.0:
 
 ```
 1 - READ - Takes(s): 67.2, Count: 499803, OPS: 7435.7, Avg(us): 49039, Min(us): 418, Max(us): 5944697, 95th(us): 98000, 99th(us): 407000
@@ -87,7 +90,13 @@ $$ (12045+1189+1103) / (17966+11885+16603) * 100 = 30.8 $$
 3 - UPDATE - Takes(s): 62.1, Count: 499880, OPS: 8054.1, Avg(us): 306264, Min(us): 2242, Max(us): 5717033, 95th(us): 831000, 99th(us): 0
 ```
 
+$$ \frac{7435.7 + 8271.7 + 8035.4}{6860.7 + 6821.9 + 7138.6} = \frac{23742.8}{20821.2} = 1.14 $$
 
+TiKV 3.0.0 has approximately **1.14x better read performance while under a 50% read / 50% update workload.**
+
+$$ \frac{7434.4 + 8259.1 + 8054.1}{6874.1 + 6849.9 + 7151.3} = \frac{23747.6}{20875.3} = 1.14 $$
+
+TiKV 3.0.0 has approximately **1.14x better update performance while under a 50% read / 50% update workload.**
 
 ### Workload B - 95% Read / 5% Update
 
@@ -113,9 +122,18 @@ $$ (12045+1189+1103) / (17966+11885+16603) * 100 = 30.8 $$
 3 - UPDATE - Takes(s): 23.4, Count: 50216, OPS: 2144.4, Avg(us): 234702, Min(us): 17188, Max(us): 1746959, 95th(us): 597000, 99th(us): 0
 ```
 
+$$ \frac{39384.2 + 47917.6 + 40378.4}{26205.6 + 24746.9 + 23002.5} = \frac{127680.2}{73955} = 1.73 $$
+
+TiKV 3.0.0 has approximately **1.73x better read performance while under a 95% read / 5% update workload.**
+
+$$ \frac{2094.5 + 2520.7 + 2144.4}{1378.2 + 1317.1 + 1224.5} = \frac{6759.6}{3919.8} = 1.72 $$
+
+TiKV 3.0.0 has approximately **1.72x better update performance while under a 95% read / 5% update workload.**
+
 ### Workload C - 100% Read
 
 2.1.14:
+
 ```
 1 - READ - Takes(s): 31.3, Count: 999000, OPS: 31967.8, Avg(us): 91216, Min(us): 495, Max(us): 2107986, 95th(us): 213000, 99th(us): 438000
 2 - READ - Takes(s): 30.3, Count: 999000, OPS: 32946.6, Avg(us): 81638, Min(us): 384, Max(us): 1174158, 95th(us): 188000, 99th(us): 391000
@@ -124,11 +142,16 @@ $$ (12045+1189+1103) / (17966+11885+16603) * 100 = 30.8 $$
 ```
 
 3.0.0:
+
 ```
 1 - READ - Takes(s): 24.0, Count: 999000, OPS: 41599.0, Avg(us): 64914, Min(us): 587, Max(us): 7320130, 95th(us): 137000, 99th(us): 466000
 2 - READ - Takes(s): 18.0, Count: 999000, OPS: 55351.7, Avg(us): 51959, Min(us): 454, Max(us): 1070117, 95th(us): 140000, 99th(us): 333000
 3 - READ - Takes(s): 21.0, Count: 999000, OPS: 47659.2, Avg(us): 59935, Min(us): 440, Max(us): 1768322, 95th(us): 157000, 99th(us): 385000
 ```
+
+$$ \frac{41599.0 + 55351.7 + 47659.2}{31967.8 + 32946.6 + 33495.9} = \frac{144609.9}{98410.3} = 1.47 $$
+
+TiKV 3.0.0 has approximately **1.47x better read performance while under a pure read workload.**
 
 ## A big thanks
 
