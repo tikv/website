@@ -9,12 +9,12 @@ weight: 1
 systems monitoring and alerting toolkit. Widely adopted by cloud native
 applications, Prometheus is a graduated project of the [CNCF].
 
-The TiKV team develop and maintain [rust-prometheus], the Rust clien for
+The TiKV team develops and maintains [rust-prometheus], the Rust client for
 Prometheus. The library is heavily used in TiKV to collect various metrics. 
 
 ## Data Model
 
-Prometheus stores all data as time series. Time series data are formed with
+Prometheus stores all data as time series. Time series data are made up of
 _samples_. Each sample consists of a float64 value and a millisecond-precision
 timestamp.
 
@@ -36,9 +36,9 @@ diagnosis.
 
 ### Counter
 
-A counter stores the totality of some value at each point in time. Therefore,
-it is easy to calculate the _increment_ during a period. Divided by time,
-we can also get its growth rate.
+A counter monotonically increases. It tends to store the totality of some value
+at each point in time. Therefore, it is easy to calculate the _increment_
+during a period. Divided by time, we can also get its growth rate.
 
 For example, TiKV [defines][ce] the `tikv_engine_cache_efficiency` counter
 [to count][inc] block cache hits and misses of RocksDB. When there are block
@@ -84,10 +84,23 @@ At the creation of a histogram, you need to set the upper bound of each bucket.
 Every time a value is observed, the counters of the matching buckets are
 incresed.
 
-For example, the upper bounds of the buckets are `0.05`, `0.2`, `1` and `5`.
+For example, the upper bounds of the buckets we set are `0.05`, `0.2`, `1`
+and `5`. The counter value of each bucket is shown in the chart below:
+
+{{< figure
+    src="/img/deep-dive/histogram_init.png">}}
+
+Because the counters are cumulative, the higher the bucket upper bound, the
+more the counter value, as you can see in the diagram above. You can also
+calculate the value in the range, for instance, `(1, 5]` by subtract the
+`(-∞, 1]` counter value from the `(-∞, 5]` value.
+
 If a value `0.5` is observed, the value will be added to the sum, the total
 event count will be increased, and the counters of buckets `(-∞, 1]`, `(-∞, 5]`
-will also be increased.
+will also be increased. The increase part is marked red in the chart below:
+
+{{< figure
+    src="/img/deep-dive/histogram_change.png">}}
 
 Usually, a histogram is used if we need to be calculate quantiles. Given a φ
 between 0 and 1, [`histogram_quantile()`][hq] can find which bucket the
