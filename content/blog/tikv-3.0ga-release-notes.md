@@ -29,7 +29,7 @@ You can see all the changes in detail in the [changelog](https://github.com/tikv
 
 ## Improved Performance
 
-Using [`go-ycsb`](https://github.com/pingcap/go-ycsb) we benchmarked TiKV 3.0.0 against TiKV 2.1.14. We benchmarked a cluster of 3 TiKV nodes, 1 PD node, and 1 node running YCSB. We used DigitalOcean `s-8vcpu-32gb` size machines, and you can reproduce the benchmark for yourself using the fully automated terraform script [here](https://github.com/Hoverbear/tikv-bench).
+Using [`go-ycsb`](https://github.com/pingcap/go-ycsb) we benchmarked TiKV 3.0.0 against TiKV 2.1.14. We benchmarked a cluster of 3 TiKV nodes, 1 PD node, and 1 node running YCSB. We used DigitalOcean `s-8vcpu-32gb` size machines, and you can reproduce the benchmark for yourself using the fully automated terraform script [here](https://github.com/tikv/terraform-tikv-bench).
 
 The settings for YCSB we used were:
 
