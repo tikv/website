@@ -13,13 +13,13 @@ For the 3.0 release, we've improved TiKV by:
 
 * **Optimizing the Raft heartbeat mechanism.** With the [hibernate region](https://github.com/tikv/tikv/blob/118f141f69f961e1b0110fa234ffd75c18210dc5/docs/reference/configuration/raftstore-config.md#hibernate-region) feature, TiKV now adjusts the heartbeat frequency according to region activity. That means you'll see less CPU time and network traffic from idle regions.
 
-* **Distributing Garbage Collection.** The introduction of a distributed garbage collector improves performance on large scale clusters dramatically, leading to better stability through more consistent performance.
+* **Distributing Garbage Collection.** A new distributed garbage collector improves performance on large scale clusters dramatically, leading to better stability through more consistent performance.
 
-* **Pessimistic Locking.** It's now possible to ask TiKV to enforce transactions using pessimistic locking. This means you can take exclusive ownership over a value for a duration, preventing other requests from modifying it.
+* **Pessimistic Locking.** It's now possible for TiKV to enforce transactions using pessimistic locking. This means you can take exclusive ownership over a value for a duration, preventing other requests from modifying it.
 
-* **Expanding our coprocessor.** With lots of new or improved functionalities such as vector operations, batch executor, [RPN](https://en.wikipedia.org/wiki/Reverse_Polish_notation) functions, a work-stealing thread pool model,  our coprocessor continues to evolve, accelerating increasingly powerful queries.
+* **Expanding our coprocessor.** With lots of new or improved functionalities such as vector operations, batch executor, [RPN](https://en.wikipedia.org/wiki/Reverse_Polish_notation) functions, and a work-stealing thread pool model our coprocessor continues to evolve accelerating increasingly powerful queries.
 
-* **Enhancing operator friendliness.** Human or machine, we've empowered our operators to get more out of TiKV by unifying our log format, adding new features to `tikv-ctl`, adding even more in-depth metrics, and serving HTTP based metrics. This makes TiKV easier to operate, inspect, and enjoy.
+* **Enhancing operator friendliness.** Human or machine, we've empowered our operators to get more out of TiKV by unifying our log format, adding new features to `tikv-ctl`, adding even more in-depth metrics, and serving HTTP based metrics. This makes TiKV easier to operate, inspect, and monitor.
 
 * **Refining request types.** While TiKV previously supported commands like `BatchGet`, 3.0 brings a new `BatchCommands` request type. This allows TiKV to handle batches of requests of differing kinds (such as `Get` and `Put`), leading to less data on the wire and better performance. We also added support for raw reversed scanning, and `Insert` semantics on prewrite.
 
@@ -38,7 +38,7 @@ The settings for YCSB we used were:
 * 10 Field Count
 * 3000 Thread Count (per node, so 9000 total)
 
-According to these results below, and the real-world experience of our customers, we're proud to say that TiKV 3.0.0 is the fastest, most usable TiKV yet!
+We're proud to say these results show that TiKV 3.0.0 is the fastest TiKV yet!
 
 {{< figure
     src="/img/blog/tikv-3.0ga/ops.svg"
