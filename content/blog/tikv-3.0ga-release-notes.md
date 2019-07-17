@@ -62,9 +62,9 @@ For the results, `Takes(s)`, `Count`, and `OPS` are better if they are higher. T
 3 - INSERT - Takes(s): 20.1, Count: 333000, OPS: 16603.8, Avg(us): 180926, Min(us): 6183, Max(us): 1165298, 95th(us): 339000, 99th(us): 543000
 ```
 
-$$ \frac{17966.8 + 11885.8 + 16603.8}{12045 + 1189.6 + 11030.8} = \frac{46454}{24264} = 1.9 $$
+$$ \frac{17966.8 + 11885.8 + 16603.8}{12045 + 11890.6 + 11030.8} = \frac{46454}{34966.4} = 1.3 $$
 
-TiKV 3.0.0 has approximately **1.9x better while under a pure blind write performance**.
+TiKV 3.0.0 has approximately **1.3x better while under a pure blind write performance**.
 
 ### Workload A - 50% Read / 50% Update
 
