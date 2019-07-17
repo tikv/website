@@ -38,11 +38,13 @@ Using [`go-ycsb`](https://github.com/pingcap/go-ycsb) we benchmarked TiKV 3.0.0 
 
 According to these results below, and the real-world experience of our customers, we're proud to say that TiKV 3.0.0 is the fastest, most usable TiKV yet!
 
-### Reading the benchmarks
+### Reading the benchmarks & a Disclaimer
 
 Since we used 3 YCSB benchers running simultaneously, you can see the results of benchers 1 through 3 below.
 
 For the results, `Takes(s)`, `Count`, and `OPS` are better if they are higher. The final fields detailing `us` units, lower is better.
+
+These benchmarks were run on a public cloud so you can replicate it yourself. The consequence of this is that public cloud machines have dramatic performance fluctuations, and transient failures. You may experience different results if you replicate it yourself, but on average, you should see relatively similar numbers as below.
 
 ### Load
 
