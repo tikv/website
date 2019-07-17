@@ -3,21 +3,21 @@ title: TiKV 3.0 GA Release & Benchmarks
 date: 2019-07-08
 ---
 
-Today we're proud to announce the general availability of TiKV 3.0! Before release, TiKV 3.0 underwent a rigorous testing regime, including the [official Jepsen test](https://www.pingcap.com/blog/tidb-passes-jepsen-test-for-snapshot-isolation-and-single-key-linearizability/) with TiDB.
+Today we're proud to announce the general availability of TiKV 3.0! Whether spanning hundreds of nodes or storing over a trillion key-value pairs, we've seen our users put TiKV to the test in serious, real-world, production scenarios. In 3.0, we've applied the lessons learned from these deployments to bring a host of new features that can better support users' growing demands.
 
-In this version, we tackled many problems of stability at massive scale. Whether spanning hundreds of nodes or storing over a trillion key-value pairs, we've seen our users put TiKV to the test in serious, real-world, production scenarios. In 3.0, we've applied the lessons learned from these deployments to bring a host of new features that can better support users' growing demands.
+Before release, TiKV 3.0 underwent an even more rigorous testing regime, including the [official Jepsen test](https://www.pingcap.com/blog/tidb-passes-jepsen-test-for-snapshot-isolation-and-single-key-linearizability/) with TiDB.
 
 ## Steady at scale
 
 For the 3.0 release, we've improved TiKV by:
 
-* **Optimizing the Raft heartbeat mechanism.** With the [hibernate region](https://github.com/tikv/rfcs/blob/master/text/2019-03-04-hibernate-raft.md) feature, TiKV now adjusts the heartbeat frequency according to region activity. That means you'll see less CPU time and network traffic from idle regions.
+* **Optimizing the Raft heartbeat mechanism.** With the [hibernate region](https://github.com/tikv/tikv/blob/118f141f69f961e1b0110fa234ffd75c18210dc5/docs/reference/configuration/raftstore-config.md#hibernate-region) feature, TiKV now adjusts the heartbeat frequency according to region activity. That means you'll see less CPU time and network traffic from idle regions.
 
 * **Distributing Garbage Collection.** The introduction of a distributed garbage collector improves performance on large scale clusters dramatically, leading to better stability through more consistent performance.
 
 * **Pessimistic Locking.** It's now possible to ask TiKV to enforce transactions using pessimistic locking. This means you can take exclusive ownership over a value for a duration, preventing other requests from modifying it.
 
-* **Expanding our coprocessor.** With lots of new or improved functionalities such as vector operations, batch executor, [RPN](https://en.wikipedia.org/wiki/Reverse_Polish_notation) functions, `work-stealing` thread pool model,  our coprocessor continues to evolve, allowing for more powerful and efficient ways to work with your data.
+* **Expanding our coprocessor.** With lots of new or improved functionalities such as vector operations, batch executor, [RPN](https://en.wikipedia.org/wiki/Reverse_Polish_notation) functions, a work-stealing thread pool model,  our coprocessor continues to evolve, accelerating increasingly powerful queries.
 
 * **Enhancing operator friendliness.** Human or machine, we've empowered our operators to get more out of TiKV by unifying our log format, adding new features to `tikv-ctl`, adding even more in-depth metrics, and serving HTTP based metrics. This makes TiKV easier to operate, inspect, and enjoy.
 
