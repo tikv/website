@@ -11,8 +11,8 @@ Monitoring is critical for large distributed systems like TiKV. It can:
 
 TiKV uses [Prometheus] as the monitoring system and time series database. Data
 visualization is achieved by [Grafana]. TiKV users usually also use the
-[Node exporter] to collect hardware and OS metrics and use the [Alertmanager]
-to handle alerts:
+[Node exporter] to collect hardware and OS metrics, as well as the
+[Alertmanager] to handle alerts:
 
 {{< figure
     src="/img/deep-dive/monitor.png"
