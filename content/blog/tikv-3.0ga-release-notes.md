@@ -159,6 +159,6 @@ TiKV 3.0.0 has approximately **1.5x better read performance while under a pure r
 
 ## A big thanks
 
-We'd especially like to thank our contributors who helped with this release. Whether you were a returning contributor or one of the many new folks we welcomed, **thank you**.
+We'd especially like to thank our [contributors](https://github.com/tikv/tikv/graphs/contributors) who helped with this release. Whether you were a returning contributor or one of the many new folks we welcomed, **thank you**.
 
 Not a contributor yet? [Let us know](https://github.com/tikv/tikv/issues) if you'd like to get involved with development and help drive forward the future of TiKV.
