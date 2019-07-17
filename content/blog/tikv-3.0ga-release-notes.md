@@ -3,33 +3,35 @@ title: TiKV 3.0 GA Release & Benchmarks
 date: 2019-07-08
 ---
 
-Today we're very proud to announce the general availability of TiKV 3.0! Before release, TiKV 3.0 underwent a rigorous testing regime, including the [official Jepsen test](https://www.pingcap.com/blog/tidb-passes-jepsen-test-for-snapshot-isolation-and-single-key-linearizability/) with TiDB.
+Today we're proud to announce the general availability of TiKV 3.0! Before release, TiKV 3.0 underwent a rigorous testing regime, including the [official Jepsen test](https://www.pingcap.com/blog/tidb-passes-jepsen-test-for-snapshot-isolation-and-single-key-linearizability/) with TiDB.
 
-In this version, we tackled many problems of stability at massive scales. Whether it's spanning hundreds of nodes or storing over a trillion key-value pairs, we've seen our users and contributors put TiKV to the test in serious, real world, production scenarios. With 3.0, we've taken our ideas and lessons to bring a host of features that can better support these growing demands.
+In this version, we tackled many problems of stability at massive scale. Whether spanning hundreds of nodes or storing over a trillion key-value pairs, we've seen our users put TiKV to the test in serious, real-world, production scenarios. In 3.0, we've applied the lessons learned from these deployments to bring a host of new features that can better support users' growing demands.
 
 ## Steady at scale
 
-In TiKV 3.0 we've improved our system by:
+For the 3.0 release, we've improved TiKV by:
 
-* **Optimizing the Raft heartbeat mechanism.** With the Hibernate Region feature, TiKV now adjusts the heartbeat frequency according to region activity. This means you'll see less CPU time and network traffic from idle regions.
+* **Optimizing the Raft heartbeat mechanism.** With the [hibernate region](https://github.com/tikv/rfcs/blob/master/text/2019-03-04-hibernate-raft.md) feature, TiKV now adjusts the heartbeat frequency according to region activity. That means you'll see less CPU time and network traffic from idle regions.
 
 * **Distributing Garbage Collection.** The introduction of a distributed garbage collector improves performance on large scale clusters dramatically, leading to better stability through more consistent performance.
 
-* **Pessimistic Locking.** It's now possible to ask TiKV to treat your transactions pessimistically. This means you can take exclusive ownership over a value for a duration. As Rust developers, we really like the idea of ownership!
+* **Pessimistic Locking.** It's now possible to ask TiKV to enforce transactions using pessimistic locking. This means you can take exclusive ownership over a value for a duration, preventing other requests from modifying it.
 
-* **Expanding our coprocessor.** With lots of new or improved functionalities such as vector operations, batch executor, RPN functions, `work-stealing` thread pool model,  our coprocessor continues to evolve, allowing for more efficient ways to work with your data.
+* **Expanding our coprocessor.** With lots of new or improved functionalities such as vector operations, batch executor, [RPN](https://en.wikipedia.org/wiki/Reverse_Polish_notation) functions, `work-stealing` thread pool model,  our coprocessor continues to evolve, allowing for more powerful and efficient ways to work with your data.
 
 * **Enhancing operator friendliness.** Human or machine, we've empowered our operators to get more out of TiKV by unifying our log format, adding new features to `tikv-ctl`, adding even more in-depth metrics, and serving HTTP based metrics. This makes TiKV easier to operate, inspect, and enjoy.
 
 * **Refining request types.** While TiKV previously supported commands like `BatchGet`, 3.0 brings a new `BatchCommands` request type. This allows TiKV to handle batches of requests of differing kinds (such as `Get` and `Put`), leading to less data on the wire and better performance. We also added support for raw reversed scanning, and `Insert` semantics on prewrite.
 
-* **Reducing write amplification.** Inspired by the great ideas from [WiscKey](https://www.usenix.org/system/files/conference/fast16/fast16-papers-lu.pdf), we implemented a storage engine plugin to RocksDB that we dubbed 'Titan'. It works best with larger (>1 KB) values.
+* **Reducing write amplification.** Inspired by the great ideas from [WiscKey](https://www.usenix.org/system/files/conference/fast16/fast16-papers-lu.pdf), we implemented Titan, a key-value plugin that improves write performance for scenarios with value sizes greater than 1KB, and relieves write amplification in certain degrees.
 
-You can see all the changes in detail [here](https://github.com/tikv/tikv/blob/release-3.0/CHANGELOG.md).
+You can see all the changes in detail in the [changelog](https://github.com/tikv/tikv/blob/release-3.0/CHANGELOG.md).
 
 ## Improved Performance
 
 Using [`go-ycsb`](https://github.com/pingcap/go-ycsb) we benchmarked TiKV 3.0.0 against TiKV 2.1.14. We benchmarked a cluster of 3 TiKV nodes, 1 PD node, and 1 node running YCSB. We used DigitalOcean `s-8vcpu-32gb` size machines, and you can reproduce the benchmark for yourself using the fully automated terraform script [here](https://github.com/Hoverbear/tikv-bench).
+
+The settings for YCSB we used were:
 
 * 1KB Value Size
 * 100 Field Length
@@ -42,7 +44,7 @@ According to these results below, and the real-world experience of our customers
 
 Since we used 3 YCSB benchers running simultaneously, you can see the results of benchers 1 through 3 below.
 
-For the results, `Takes(s)`, `Count`, and `OPS` are better if they are higher. The final fields detailing `us` units, lower is better.
+For the results, `Takes(s)`, `Count`, and `OPS` are better if they are higher. The final fields detailing `us` (microseconds) units, lower is better.
 
 These benchmarks were run on a public cloud so you can replicate it yourself. The consequence of this is that public cloud machines have dramatic performance fluctuations, and transient failures. You may experience different results if you replicate it yourself, but on average, you should see relatively similar numbers as below.
 
@@ -94,11 +96,11 @@ TiKV 3.0.0 has approximately **1.3x better while under a pure blind write perfor
 
 $$ \frac{7435.7 + 8271.7 + 8035.4}{6860.7 + 6821.9 + 7138.6} = \frac{23742.8}{20821.2} = 1.14 $$
 
-TiKV 3.0.0 has approximately **1.14x better read performance while under a 50% read / 50% update workload.**
+TiKV 3.0.0 has approximately **1.1x better read performance while under a 50% read / 50% update workload.**
 
 $$ \frac{7434.4 + 8259.1 + 8054.1}{6874.1 + 6849.9 + 7151.3} = \frac{23747.6}{20875.3} = 1.14 $$
 
-TiKV 3.0.0 has approximately **1.14x better update performance while under a 50% read / 50% update workload.**
+TiKV 3.0.0 has approximately **1.1x better update performance while under a 50% read / 50% update workload.**
 
 ### Workload B - 95% Read / 5% Update
 
@@ -126,11 +128,11 @@ TiKV 3.0.0 has approximately **1.14x better update performance while under a 50%
 
 $$ \frac{39384.2 + 47917.6 + 40378.4}{26205.6 + 24746.9 + 23002.5} = \frac{127680.2}{73955} = 1.73 $$
 
-TiKV 3.0.0 has approximately **1.73x better read performance while under a 95% read / 5% update workload.**
+TiKV 3.0.0 has approximately **1.7x better read performance while under a 95% read / 5% update workload.**
 
 $$ \frac{2094.5 + 2520.7 + 2144.4}{1378.2 + 1317.1 + 1224.5} = \frac{6759.6}{3919.8} = 1.72 $$
 
-TiKV 3.0.0 has approximately **1.72x better update performance while under a 95% read / 5% update workload.**
+TiKV 3.0.0 has approximately **1.7x better update performance while under a 95% read / 5% update workload.**
 
 ### Workload C - 100% Read
 
@@ -153,7 +155,7 @@ TiKV 3.0.0 has approximately **1.72x better update performance while under a 95%
 
 $$ \frac{41599.0 + 55351.7 + 47659.2}{31967.8 + 32946.6 + 33495.9} = \frac{144609.9}{98410.3} = 1.47 $$
 
-TiKV 3.0.0 has approximately **1.47x better read performance while under a pure read workload.**
+TiKV 3.0.0 has approximately **1.5x better read performance while under a pure read workload.**
 
 ## A big thanks
 
