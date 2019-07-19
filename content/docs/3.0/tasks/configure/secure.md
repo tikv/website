@@ -2,7 +2,7 @@
 title: Secure TiKV
 menu:
     docs:
-        parent: Tasks
+        parent: Configure TiKV
 ---
 
 This page discusses how to secure your TiKV deployment. Learn how to:
