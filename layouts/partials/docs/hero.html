@@ -31,16 +31,13 @@
     <nav class="tabs is-medium is-boxed">
       <div class="container">
         <ul>
-          {{ range $docsSections }}
-          {{ range .Sections }}
-          {{ $mainPage         := index (where .Pages "Weight" 1) 0 }}
-          {{ $isCurrentSection := eq .Name $currentSection }}
-          <li{{ if $isCurrentSection }} class="is-active"{{ end }}>
-            <a href="{{ $mainPage.RelPermalink }}">
-              {{ .Name }}
-            </a>
-          </li>
-          {{ end }}
+          {{ $currentPage := . }}
+          {{ range .Site.Menus.docs }}
+            <li {{ if (or ($currentPage.IsMenuCurrent "docs" .) ($currentPage.HasMenuCurrent "docs" .)) }}class="is-active"{{ end }}>
+              <a href="{{ .URL }}">
+                {{ .Name }}
+              </a>
+            </li>
           {{ end }}
         </ul>
       </div>

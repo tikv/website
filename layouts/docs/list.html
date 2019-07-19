@@ -4,17 +4,27 @@ TiKV | {{ .Title }}
 
 {{ define "main" }}
 {{ partial "docs/hero.html" . }}
+{{ $docs := .Site.Menus.docs }}
+{{ $currentPage := (index .Pages 0) }}
 
 <section class="section">
   <div class="container">
     <div class="columns">
       <div class="column is-3">
-        {{ partial "docs/section-toc.html" . }}
+        <div class="toc">
+          {{ range .Site.Menus.docs }}
+            {{ $submenu := (index (where $docs "Name" .Name) 0) }}
+            {{ if (or ($currentPage.HasMenuCurrent "docs" $submenu) ($currentPage.IsMenuCurrent "docs" $submenu)) }}
+              {{ partial "entry-tree.html" (dict "entries" .Children "currentPage" $currentPage ) }}
+            {{ end }}
+          {{ end }}
+        </div>
       </div>
       
       <div class="column">
         <div class="content is-medium docs-content">
           {{ partial "docs/version-warning.html" . }}
+          {{ partial "math.html" . }}
 
           {{ .Content }}
         </div>
