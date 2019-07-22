@@ -1,6 +1,6 @@
-{{- $latest   := site.Params.versions.latest }}
-/docs     /docs/concepts/overview
-/docs/latest     /docs/concepts/overview
-/docs/latest/*   /docs/:splat
-/security   /docs/security
+# {{- $latest   := site.Params.versions.latest }}
+/docs     /docs/{{ $latest }}/concepts/ 301!
+/docs/latest     /docs/{{ $latest }}/concepts/ 301
+/docs/latest/*   /docs/{{ $latest }}/:splat 301
+/security   /docs/{{ $latest }}/tasks/secure/ 301
 /chat   https://join.slack.com/t/tikv-wg/shared_invite/enQtNTUyODE4ODU2MzI0LTgzZDQ3NzZlNDkzMGIyYjU1MTA0NzIwMjFjODFiZjA0YjFmYmQyOTZiNzNkNzg1N2U1MDdlZTIxNTU5NWNhNjk

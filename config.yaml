@@ -48,8 +48,9 @@ params:
     socialmedia:
         twitter: "tikvproject"
         github: "https://github.com/tikv/tikv"
-    output:
-        home: ["HTML", "REDIRECTS"]
+
+outputs:
+    home: ["HTML", "REDIRECTS"]
 
 outputFormats:
     REDIRECTS:
