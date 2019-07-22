@@ -1,5 +1,5 @@
 ---
-title: TiKV overview
+title: Concepts
 description: Some basic facts about TiKV
 menu:
     nav:
@@ -7,7 +7,6 @@ menu:
         parent: Docs
         weight: 1
     docs:
-        name: Concepts
         weight: 1
 ---
 

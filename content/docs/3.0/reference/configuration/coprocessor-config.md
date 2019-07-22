@@ -1,6 +1,6 @@
 ---
-title: TiKV Coprocessor Configuration 
-description: Learn how to configure Coprocessor in TiKV.
+title: Coprocessor Options
+description: Learn how to configure the coprocessor in TiKV.
 menu:
     docs:
         parent: Configuration

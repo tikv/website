@@ -1,5 +1,5 @@
 ---
-title: gRPC Configuration 
+title: gRPC (Remote procedure Calls) 
 description: Learn how to configure gRPC.
 menu:
     docs:

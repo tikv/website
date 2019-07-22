@@ -1,7 +1,6 @@
 ---
 title: Deploy
 description: Run TiKV using Ansible or Docker
-draft: true
 menu:
     docs:
         parent: Tasks

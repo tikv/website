@@ -1,5 +1,5 @@
 ---
-title: TiKV Security Configuration 
+title: Security Options
 description: Learn about the security configuration in TiKV.
 menu:
     docs:

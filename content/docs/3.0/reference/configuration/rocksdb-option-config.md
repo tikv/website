@@ -1,5 +1,5 @@
 ---
-title: RocksDB Option Configuration 
+title: RocksDB Options
 description: Learn how to configure RocksDB options.
 menu:
     docs:

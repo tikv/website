@@ -1,5 +1,5 @@
 ---
-title: TiKV Storage Configuration 
+title: Storage Options
 description: Learn how to configure TiKV Storage.
 menu:
     docs:

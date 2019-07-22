@@ -1,9 +1,9 @@
 ---
-title: APIs
+title: Rust
 description: Interact with TiKV using the raw key-value API or the transactional key-value API
 menu:
     docs:
-        parent: Concepts
+        parent: Clients
 ---
 
 TiKV offers two APIs that you can interact with:

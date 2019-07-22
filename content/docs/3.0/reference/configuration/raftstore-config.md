@@ -1,5 +1,5 @@
 ---
-title: Raftstore Configuration 
+title: Raftstore Options
 description: Learn about Raftstore configuration in TiKV.
 menu:
     docs:

@@ -1,9 +1,12 @@
 ---
-title: Quick Start
+title: Tasks
 description: Use Docker Compose to quickly deploy a TiKV testing cluster on a single machine.
 menu:
+    nav:
+        parent: Docs
+        weight: 2
     docs:
-        parent: Tasks
+        weight: 2
 ---
 
 # Install and Deploy TiKV Using Docker Compose

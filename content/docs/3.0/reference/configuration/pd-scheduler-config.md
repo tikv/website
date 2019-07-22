@@ -1,5 +1,5 @@
 ---
-title: PD Scheduler Configuration
+title: PD Scheduler Options
 description: Learn how to configure PD Scheduler.
 menu:
     docs:
