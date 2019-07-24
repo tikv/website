@@ -1,10 +1,11 @@
 ---
-title: Software and Hardware Requirements
-description: Learn the software and hardware requirements for deploying and running TiKV.
-
+title: Deploy
+description: Run TiKV using Ansible or Docker
+menu:
+    docs:
+        parent: Tasks
+        weight: 1
 ---
-
-# Software and Hardware Requirements
 
 As an open source distributed Key-Value database with high performance, TiKV can be deployed in the Intel architecture server and major virtualization environments and runs well. TiKV supports most of the major hardware networks and Linux operating systems.
 

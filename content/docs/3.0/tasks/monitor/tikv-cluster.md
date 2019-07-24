@@ -1,12 +1,11 @@
 ---
-title: Monitor a TiKV Cluster
+title: Monitoring a Cluster
 description: Learn how to monitor the state of a TiKV cluster.
 menu:
     docs:
         parent: Monitor
+        weight: 1
 ---
-
-# Monitor a TiKV Cluster
 
 Currently, you can use two types of interfaces to monitor the state of the TiKV cluster:
 

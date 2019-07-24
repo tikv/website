@@ -1,12 +1,11 @@
 ---
-title: TiKV Control User Guide
-description: Use TiKV Control to manage a TiKV cluster.
+title: tikv-ctl User Guide
+description: Learn about interacting with tikv-ctl
 menu:
     docs:
         parent: Tools
+        weight: 2
 ---
-
-# TiKV Control User Guide
 
 TiKV Control (`tikv-ctl`) is a command line tool of TiKV, used to manage the cluster.
 

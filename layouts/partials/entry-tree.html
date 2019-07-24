@@ -35,7 +35,7 @@
                         {{ else }}
                             <li>
                                 <a
-                                    {{ if $currentPage.IsMenuCurrent .Menu . }}class="is-active"{{ end }}
+                                    {{ if (or ($currentPage.IsMenuCurrent .Menu .) ($currentPage.HasMenuCurrent .Menu .)) }}class="is-active"{{ end }}
                                     href="{{ .URL }}">
                                     {{ .Name }}
                                 </a>

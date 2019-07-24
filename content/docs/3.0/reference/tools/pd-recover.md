@@ -1,12 +1,11 @@
 ---
-title: PD Recover User Guide
-description: Use PD Recover to recover a PD cluster which cannot start or provide services normally.
+title: pd-recover User Guide
+description: Learn about interacting with pd-recover
 menu:
     docs:
         parent: Tools
+        weight: 5
 ---
-
-# PD Recover User Guide
 
 PD Recover is a disaster recovery tool of PD, used to recover the PD cluster which cannot start or provide services normally.
 

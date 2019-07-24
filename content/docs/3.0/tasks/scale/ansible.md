@@ -1,16 +1,14 @@
 ---
-title: Scale a TiKV Cluster Using TiDB-Ansible
+title: Ansible Scaling
 description: Use TiDB-Ansible to scale out or scale in a TiKV cluster.
 menu:
     docs:
         parent: Scale
 ---
 
-# Scale a TiKV Cluster Using TiDB-Ansible
-
 This document describes how to use TiDB-Ansible to scale out or scale in a TiKV cluster without affecting the online services.
 
-> **Note:** This document applies to the TiKV deployment using Ansible. If your TiKV cluster is deployed in other ways, see [Scale a TiKV Cluster](horizontal-scale.md).
+> **Note:** This document applies to the TiKV deployment using Ansible. If your TiKV cluster is deployed in other ways, see [Scale a TiKV Cluster](../introduction).
 
 Assume that the topology is as follows:
 

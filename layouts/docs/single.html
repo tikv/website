@@ -13,16 +13,17 @@ TiKV | {{ .Title }}
       <div class="column is-narrow">
         <div class="toc">
           {{ range .Site.Menus.docs }}
-            {{ $submenu := (index (where $docs "Name" .Name) 0) }}
-            {{ if (or ($currentPage.HasMenuCurrent "docs" $submenu) ($currentPage.IsMenuCurrent "docs" $submenu)) }}
-              {{ partial "entry-tree.html" (dict "entries" .Children "currentPage" $currentPage ) }}
-            {{ end }}
+          {{ $submenu := (index (where $docs "Name" .Name) 0) }}
+          {{ if (or ($currentPage.HasMenuCurrent "docs" $submenu) ($currentPage.IsMenuCurrent "docs" $submenu)) }}
+          {{ partial "entry-tree.html" (dict "entries" .Children "currentPage" $currentPage ) }}
+          {{ end }}
           {{ end }}
         </div>
       </div>
       
       <div class="column">
         <div class="content is-medium docs-content">
+            {{ partial "admonition.html" (dict "type" "info" "icon" "fa-info-circle" "text" ("We are currently refactoring our documentation. Please excuse any problems you may find and report them [here](https://github.com/tikv/website)." | markdownify)) }}
           {{ partial "docs/version-warning.html" . }}
           {{ partial "math.html" . }}
 

@@ -1,16 +1,15 @@
 ---
-title: Scale a TiKV Cluster
-description: Learn how to scale out or scale in a TiKV cluster.
+title: Scale
+description: SCale TiKV
 menu:
     docs:
-        parent: Scale
+        parent: Tasks
+        weight: 4
 ---
-
-# Scale a TiKV Cluster
 
 You can scale out a TiKV cluster by adding nodes to increase the capacity without affecting online services. You can also scale in a TiKV cluster by deleting nodes to decrease the capacity without affecting online services.
 
-> **Note:** If your TiKV cluster is deployed using Ansible, see [Scale the TiKV Cluster Using TiDB-Ansible](ansible-deployment-scale.md).
+> **Note:** If your TiKV cluster is deployed using Ansible, see [Scale the TiKV Cluster Using TiDB-Ansible](../ansible).
 
 ## Scale out or scale in PD
 

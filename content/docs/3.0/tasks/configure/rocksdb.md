@@ -1,12 +1,11 @@
 ---
-title: Configure TiKV
-description: Configure a wide range of TiKV facets, including RocksDB, gRPC, the Placement Driver, and more
+title: RocksDB Config
+description: Learn how to configure namespace in TiKV.
 menu:
     docs:
-        parent: Tasks
+        parent: Configure
+        weight: 6
 ---
-
-## RocksDB configuration {#rocksdb}
 
 TiKV uses [RocksDB](https://rocksdb.org/) as its underlying storage engine for storing both [Raft logs](architecture#raft) and KV (key-value) pairs.
 

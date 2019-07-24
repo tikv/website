@@ -1,12 +1,11 @@
 ---
-title: Overview of the TiKV Monitoring Framework
-description: Use Prometheus and Grafana to build the TiKV monitoring framework.
+title: Monitor
+description: Monitor TiKV
 menu:
     docs:
-        parent: Monitor
+        parent: Tasks
+        weight: 3
 ---
-
-# Overview of the TiKV Monitoring Framework
 
 The TiKV monitoring framework adopts two open-source projects: [Prometheus](https://github.com/prometheus/prometheus) and [Grafana](https://github.com/grafana/grafana). TiKV uses Prometheus to store the monitoring and performance metrics, and uses Grafana to visualize these metrics.
 
@@ -19,9 +18,10 @@ As a time series database, Prometheus has a multi-dimensional data model and fle
 - Pushgateway: to receive the data from Client Push for the Prometheus main server
 - AlertManager: for the alerting mechanism
 
-The diagram is as follows:
-
-![Prometheus in TiKV](../../images/prometheus-in-tikv.png)
+{{< figure
+    src="/img/docs/prometheus-in-tikv.png"
+    caption="Prometheus in TiKV"
+    number="" >}}
 
 ## About Grafana in TiKV
 

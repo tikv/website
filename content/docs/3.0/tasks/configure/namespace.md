@@ -1,12 +1,11 @@
 ---
-title: Namespace Configuration
+title: Namespace Config
 description: Learn how to configure namespace in TiKV.
 menu:
     docs:
-        parent: Configure TiKV
+        parent: Configure
+        weight: 3
 ---
-
-# Namespace Configuration
 
 Namespace is a mechanism used to meet the requirements of resource isolation. In this mechanism, TiKV supports dividing all the TiKV nodes in the cluster among multiple separate namespaces and classifying Regions into the corresponding namespace by using a custom namespace classifier.
 

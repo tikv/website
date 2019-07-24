@@ -1,7 +1,0 @@
----
-title: Monitor
-description: Monitor TiKV
-menu:
-    docs:
-        parent: Tasks
----

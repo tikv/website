@@ -1,12 +1,11 @@
 ---
-title: Install and Deploy TiKV Using Ansible
+title: Ansible Deployment
 description: Use TiDB-Ansible to deploy a TiKV cluster on multiple nodes.
 menu:
     docs:
         parent: Deploy
+        weight: 2
 ---
-
-# Install and Deploy TiKV Using Ansible
 
 This guide describes how to install and deploy TiKV using Ansible. Ansible is an IT automation tool that can configure systems, deploy software, and orchestrate more advanced IT tasks such as continuous deployments or zero downtime rolling updates.
 

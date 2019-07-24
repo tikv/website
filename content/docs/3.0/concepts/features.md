@@ -5,3 +5,5 @@ menu:
     docs:
         parent: Concepts
 ---
+
+{{< features >}}

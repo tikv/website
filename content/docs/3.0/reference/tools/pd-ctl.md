@@ -1,12 +1,11 @@
 ---
-title: PD Control User Guide
-description: Use PD Control to obtain the state information of a cluster and tune a cluster.
+title: pd-ctl User Guide
+description: Learn about interacting with pd-ctl
 menu:
     docs:
         parent: Tools
+        weight: 4
 ---
-
-# PD Control User Guide
 
 As a command line tool of PD, PD Control obtains the state information of the cluster and tunes the cluster.
 

@@ -9,8 +9,6 @@ menu:
         weight: 2
 ---
 
-# Install and Deploy TiKV Using Docker Compose
-
 This guide describes how to quickly deploy a TiKV testing cluster using [Docker Compose](https://github.com/pingcap/tidb-docker-compose/) on a single machine. Currently, this installation method only supports the Linux system.
 
 > **Warning:** Do not use Docker Compose to deploy the TiKV cluster in the production environment. For production, [use Ansible to deploy the TiKV cluster](../deploy/using-ansible.md).

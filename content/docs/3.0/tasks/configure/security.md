@@ -1,8 +1,10 @@
 ---
-title: Secure TiKV
+title: Security Config
+description: Keeping your TiKV deployment secure
 menu:
     docs:
-        parent: Configure TiKV
+        parent: Configure
+        weight: 1
 ---
 
 This page discusses how to secure your TiKV deployment. Learn how to:

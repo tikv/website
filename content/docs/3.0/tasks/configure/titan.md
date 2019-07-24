@@ -1,24 +1,26 @@
 ---
-title: Titan
+title: Titan Config
 description: Learn how to enable Titan in TiKV.
 menu:
     docs:
-        parent: Configure TiKV
+        parent: Configure
+        weight: 7
 ---
-
-# Titan
 
 Titan is a plugin of RocksDB developed by PingCAP to provide key-value separation. The goal of Titan is to reduce write amplification of RocksDB when using large values.
 
 ## How Titan works
 
-![Titan Architecture](../../images/titan-architecture.png)
+{{< figure
+    src="/img/docs/titan-architecture.png"
+    caption="Titan Architecture"
+    number="" >}}
 
 Titan separates values from the LSM-tree during flush and compaction. While the actual value is stored in a blob file, the value in the LSM tree functions as the position index of the actual value. When a GET operation is performed, Titan obtains the blob index for the corresponding key from the LSM tree. Using the index, Titan identifies the actual value from the blob file and returns it. For more details on design and implementation of Titan, please refer to [Titan: A RocksDB Plugin to Reduce Write Amplification](https://pingcap.com/blog/titan-storage-engine-design-and-implementation/).
 
-> Caveat:
->
-> Titan's improved write performance is at the cost of sacrificing storage space and range query performance. It's mostly recommended for scenarios of large values (>= 1KB).
+{{< info >}}
+**Caveat:** Titan's improved write performance is at the cost of sacrificing storage space and range query performance. It's mostly recommended for scenarios of large values (>= 1KB).
+{{< /info >}}
 
 ## How to enable Titan
 

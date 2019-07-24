@@ -1,12 +1,11 @@
 ---
-title: Store Limits
+title: Limit Config
 description: Learn how to configure scheduling rate limit on stores
 menu:
     docs:
-        parent: Configure TiKV
+        parent: Configure
+        weight: 4
 ---
-
-# Store Limit
 
 This section describes how to configure scheduling rate limit, specifically, at the store level.
 

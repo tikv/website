@@ -1,12 +1,11 @@
 ---
-title: Label Configuration
+title: Topology Config
 description: Learn how to configure labels.
 menu:
     docs:
-        parent: Deploy
+        parent: Configure
+        weight: 2
 ---
-
-# Label Configuration
 
 TiKV uses labels to label its location information and PD schedulers according to the topology of the cluster, to maximize TiKV's capability of disaster recovery. This document describes how to configure labels.
 

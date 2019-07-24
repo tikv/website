@@ -1,12 +1,11 @@
 ---
-title: Install and Deploy TiKV Using Docker
+title: Docker Deployment
 description: Use Docker to deploy a TiKV cluster on multiple nodes.
 menu:
     docs:
         parent: Deploy
+        weight: 3
 ---
-
-# Install and Deploy TiKV Using Docker
 
 This guide describes how to deploy a multi-node TiKV cluster using Docker.
 

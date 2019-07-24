@@ -1,12 +1,11 @@
 ---
-title: Install and Deploy TiKV Using Binary Files
+title: Binary Deployment
 description: Use binary files to deploy a TiKV cluster on a single machine or on multiple nodes for testing.
 menu:
     docs:
         parent: Deploy
+        weight: 4
 ---
-
-# Install and Deploy TiKV Using Binary Files
 
 This guide describes how to deploy a TiKV cluster using binary files.
 

@@ -4,9 +4,8 @@ description: Learn some key metrics displayed on the Grafana Overview dashboard.
 menu:
     docs:
         parent: Monitor
+        weight: 2
 ---
-
-# Key Metrics
 
 If your TiKV cluster is deployed using Ansible or Docker Compose, the monitoring system is deployed at the same time. For more details, see [Overview of the TiKV Monitoring Framework](../../how-to/monitor/overview.md).
 
