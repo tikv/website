@@ -14,9 +14,9 @@ API | Description | Atomicity | Use when...
 [Raw](#raw) | A lower-level key-value API for interacting directly with individual key-value pairs. | Single key | Your application doesn't require distributed transactions or multi-version concurrency control (MVCC)
 [Transactional](#transactional) | A higher-level key-value API that provides ACID semantics | Multiple keys | Your application requires distributed transactions and/or MVCC
 
-{{< info >}}
+{{< warning >}}
 It is **not recommended or supported** to use both the raw and transactional APIs on the same keyspace.
-{{< /info >}}
+{{< /warning >}}
 
 There are several clients that connect to TiKV:
 

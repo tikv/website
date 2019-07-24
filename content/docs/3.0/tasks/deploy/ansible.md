@@ -11,8 +11,6 @@ This guide describes how to install and deploy TiKV using Ansible. Ansible is an
 
 [TiDB-Ansible](https://github.com/pingcap/tidb-ansible) is a TiDB cluster deployment tool developed by PingCAP, based on Ansible playbook. TiDB-Ansible enables you to quickly deploy a new TiKV cluster which includes PD, TiKV, and the cluster monitoring modules.
 
-> **Warning:** For the production environment, use TiDB-Ansible to deploy your TiKV cluster. If you only want to try TiKV out and explore the features, see [Install and Deploy TiKV using Docker Compose](using-docker-compose.md) on a single machine.
-
 ## Prepare
 
 Before you start, make sure you have:
@@ -20,9 +18,7 @@ Before you start, make sure you have:
 1. Several target machines that meet the following requirements:
 
     - 4 or more machines
-
-        A standard TiKV cluster contains 6 machines. You can use 4 machines for testing.
-
+        + A standard TiKV cluster contains 6 machines. You can use 4 machines for testing.
     - CentOS 7.3 (64 bit) or later with Python 2.7 installed, x86_64 architecture (AMD64)
     - Network between machines
     
@@ -40,70 +36,71 @@ Before you start, make sure you have:
 
 Log in to the Control Machine using the `root` user account, and run the corresponding command according to your operating system.
 
-- If you use a Control Machine installed with CentOS 7, run the following command:
+If you use a Control Machine installed with **CentOS 7**, run the following command:
 
-    ```
-    # yum -y install epel-release git curl sshpass
-    # yum -y install python-pip
-    ```
+```bash
+$ yum -y install epel-release git curl sshpass
+$ yum -y install python-pip
+```
 
-- If you use a Control Machine installed with Ubuntu, run the following command:
+If you use a Control Machine installed with **Ubuntu**, run the following command:
 
-    ```
-    # apt-get -y install git curl sshpass python-pip
-    ```
+```bash
+$ apt-get -y install git curl sshpass python-pip
+```
 
 ## Step 2: Create the `tidb` user on the Control Machine and generate the SSH key
 
 Make sure you have logged in to the Control Machine using the `root` user account, and then run the following command.
 
-1. Create the `tidb` user.
+**Create the `tidb` user.**
 
-    ```
-    # useradd -m -d /home/tidb tidb
-    ```
+```bash
+$ useradd -m -d /home/tidb tidb
+```
 
-2. Set a password for the `tidb` user account.
+**Set a password for the `tidb` user account:**
 
-    ```
-    # passwd tidb
-    ```
+```bash
+$ passwd tidb
+```
 
-3. Configure sudo without password for the `tidb` user account by adding `tidb ALL=(ALL) NOPASSWD: ALL` to the end of the sudo file:
+Configure sudo without password for the `tidb` user account by adding `tidb ALL=(ALL) NOPASSWD: ALL` to the end of the sudo file:
 
-    ```
-    # visudo
-    tidb ALL=(ALL) NOPASSWD: ALL
-    ```
-4. Generate the SSH key.
+```bash
+$ visudo
+tidb ALL=(ALL) NOPASSWD: ALL
+```
 
-    Execute the `su` command to switch the user from `root` to `tidb`. Create the SSH key for the `tidb` user account and hit the Enter key when `Enter passphrase` is prompted. After successful execution, the SSH private key file is `/home/tidb/.ssh/id_rsa`, and the SSH public key file is `/home/tidb/.ssh/id_rsa.pub`.
+**Generate the SSH key:**
 
-    ```
-    # su - tidb
-    $ ssh-keygen -t rsa
-    Generating public/private rsa key pair.
-    Enter file in which to save the key (/home/tidb/.ssh/id_rsa):
-    Created directory '/home/tidb/.ssh'.
-    Enter passphrase (empty for no passphrase):
-    Enter same passphrase again:
-    Your identification has been saved in /home/tidb/.ssh/id_rsa.
-    Your public key has been saved in /home/tidb/.ssh/id_rsa.pub.
-    The key fingerprint is:
-    SHA256:eIBykszR1KyECA/h0d7PRKz4fhAeli7IrVphhte7/So tidb@172.16.10.49
-    The key's randomart image is:
-    +---[RSA 2048]----+
-    |=+o+.o.          |
-    |o=o+o.oo         |
-    | .O.=.=          |
-    | . B.B +         |
-    |o B * B S        |
-    | * + * +         |
-    |  o + .          |
-    | o  E+ .         |
-    |o   ..+o.        |
-    +----[SHA256]-----+
-    ```
+Execute the `su` command to switch the user from `root` to `tidb`. Create the SSH key for the `tidb` user account and hit the Enter key when `Enter passphrase` is prompted. After successful execution, the SSH private key file is `/home/tidb/.ssh/id_rsa`, and the SSH public key file is `/home/tidb/.ssh/id_rsa.pub`.
+
+```bash
+$ su - tidb
+$ ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/tidb/.ssh/id_rsa):
+Created directory '/home/tidb/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/tidb/.ssh/id_rsa.
+Your public key has been saved in /home/tidb/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:eIBykszR1KyECA/h0d7PRKz4fhAeli7IrVphhte7/So tidb@172.16.10.49
+The key's randomart image is:
++---[RSA 2048]----+
+|=+o+.o.          |
+|o=o+o.oo         |
+| .O.=.=          |
+| . B.B +         |
+|o B * B S        |
+| * + * +         |
+|  o + .          |
+| o  E+ .         |
+|o   ..+o.        |
++----[SHA256]-----+
+```
 
 ## Step 3: Download TiDB-Ansible to the Control Machine
 
@@ -113,15 +110,15 @@ Make sure you have logged in to the Control Machine using the `root` user accoun
 
     - Download the 2.0 GA version:
 
-        ```bash
-        $ git clone -b release-2.0 https://github.com/pingcap/tidb-ansible.git
-        ```
+    ```bash
+    $ git clone -b release-2.0 https://github.com/pingcap/tidb-ansible.git
+    ```
     
     - Download the master version:
 
-        ```bash
-        $ git clone https://github.com/pingcap/tidb-ansible.git
-        ```
+    ```bash
+    $ git clone https://github.com/pingcap/tidb-ansible.git
+    ```
 
     > **Note:** It is required to download `tidb-ansible` to the `/home/tidb` directory using the `tidb` user account. If you download it to the `/root` directory, a privilege issue occurs.
 
@@ -133,51 +130,51 @@ Make sure you have logged in to the Control Machine using the `tidb` user accoun
 
 It is required to use `pip` to install Ansible and its dependencies, otherwise a compatibility issue occurs. Currently, the TiDB 2.0 GA version and the master version are compatible with Ansible 2.4 and Ansible 2.5.
 
-1. Install Ansible and the dependencies on the Control Machine:
+**Install Ansible and the dependencies on the Control Machine:**
 
-    ```bash
-    $ cd /home/tidb/tidb-ansible
-    $ sudo pip install -r ./requirements.txt
-    ```
+```bash
+$ cd /home/tidb/tidb-ansible
+$ sudo pip install -r ./requirements.txt
+```
 
-    Ansible and the related dependencies are in the `tidb-ansible/requirements.txt` file.
+Ansible and the related dependencies are in the `tidb-ansible/requirements.txt` file.
 
-2. View the version of Ansible:
+**View the version of Ansible:**
 
-    ```bash
-    $ ansible --version
-    ansible 2.5.0
-    ```
+```bash
+$ ansible --version
+ansible 2.5.0
+```
 
 ## Step 5: Configure the SSH mutual trust and sudo rules on the Control Machine
 
 Make sure you have logged in to the Control Machine using the `tidb` user account.
 
-1. Add the IPs of your target machines to the `[servers]` section of the `hosts.ini` file.
+Add the IPs of your target machines to the `[servers]` section of the `hosts.ini` file.
 
-    ```bash
-    $ cd /home/tidb/tidb-ansible
-    $ vi hosts.ini
-    [servers]
-    172.16.10.1
-    172.16.10.2
-    172.16.10.3
-    172.16.10.4
-    172.16.10.5
-    172.16.10.6
+```bash
+$ cd /home/tidb/tidb-ansible
+$ vi hosts.ini
+[servers]
+172.16.10.1
+172.16.10.2
+172.16.10.3
+172.16.10.4
+172.16.10.5
+172.16.10.6
 
-    [all:vars]
-    username = tidb
-    ntp_server = pool.ntp.org
-    ```
+[all:vars]
+username = tidb
+ntp_server = pool.ntp.org
+```
 
-2. Run the following command and input the `root` user account password of your target machines.
+Run the following command and input the `root` user account password of your target machines.
 
-    ```bash
-    $ ansible-playbook -i hosts.ini create_users.yml -u root -k
-    ```
+```bash
+$ ansible-playbook -i hosts.ini create_users.yml -u root -k
+```
 
-    This step creates the `tidb` user account on the target machines, and configures the sudo rules and the SSH mutual trust between the Control Machine and the target machines.
+This step creates the `tidb` user account on the target machines, and configures the sudo rules and the SSH mutual trust between the Control Machine and the target machines.
 
 > **Note:** To configure the SSH mutual trust and sudo without password manually, see [How to manually configure the SSH mutual trust and sudo without password](https://github.com/pingcap/docs/blob/master/dev/how-to/deploy/orchestrated/ansible.md#how-to-manually-configure-the-ssh-mutual-trust-and-sudo-without-password).
 
@@ -206,8 +203,8 @@ Set the CPUfreq governor mode to `performance` to make full use of CPU performan
 
 You can run the `cpupower frequency-info --governors` command to check the governor modes which the system supports:
 
-```
-# cpupower frequency-info --governors
+```bash
+$ cpupower frequency-info --governors
 analyzing CPU 0:
   available cpufreq governors: performance powersave
 ```
@@ -216,8 +213,8 @@ Taking the above code for example, the system supports the `performance` and `po
 
 > **Note:** As the following shows, if it returns "Not Available", it means that the current system does not support CPUfreq configuration and you can skip this step.
 
-```
-# cpupower frequency-info --governors
+```bash
+$ cpupower frequency-info --governors
 analyzing CPU 0:
    available cpufreq governors: Not Available
 ```
@@ -226,8 +223,8 @@ analyzing CPU 0:
 
 You can run the `cpupower frequency-info --policy` command to check the current CPUfreq governor mode:
 
-```
-# cpupower frequency-info --policy
+```bash
+$ cpupower frequency-info --policy
 analyzing CPU 0:
   current policy: frequency should be within 1.20 GHz and 3.20 GHz.
                   The governor "powersave" may decide which speed to use
@@ -238,17 +235,17 @@ As the above code shows, the current mode is `powersave` in this example.
 
 ### Change the governor mode
 
-- You can run the following command to change the current mode to `performance`:
+* You can run the following command to change the current mode to `performance`:
 
-    ```
-    # cpupower frequency-set --governor performance
-    ```
+  ```bash
+  $ cpupower frequency-set --governor performance
+  ```
 
-- You can also run the following command to set the mode on the target machine in batches:
+* You can also run the following command to set the mode on the target machine in batches:
 
-    ```
-    $ ansible -i hosts.ini all -m shell -a "cpupower frequency-set --governor performance" -u tidb -b
-    ```
+  ```bash
+  $ ansible -i hosts.ini all -m shell -a "cpupower frequency-set --governor performance" -u tidb -b
+  ```
 
 ## Step 8: Mount the data disk ext4 filesystem with options on the target machines
 
@@ -256,66 +253,64 @@ Log in to the Control Machine using the `root` user account.
 
 Format your data disks to the ext4 filesystem and mount the filesystem with the `nodelalloc` and `noatime` options. It is required to mount the `nodelalloc` option, or else the Ansible deployment cannot pass the test. The `noatime` option is optional.
 
-> **Note:** If your data disks have been formatted to ext4 and have mounted the options, you can uninstall it by running the `# umount /dev/nvme0n1` command, follow the steps starting from editing the `/etc/fstab` file, and remount the filesystem with options.
+> **Note:** If your data disks have been formatted to ext4 and have mounted the options, you can uninstall it by running the `$ umount /dev/nvme0n1` command, follow the steps starting from editing the `/etc/fstab` file, and remount the filesystem with options.
 
 Take the `/dev/nvme0n1` data disk as an example:
 
-1. View the data disk.
+View the data disk.
 
-    ```
-    # fdisk -l
-    Disk /dev/nvme0n1: 1000 GB
-    ```
+```bash
+$ fdisk -l
+Disk /dev/nvme0n1: 1000 GB
+```
 
-2. Create the partition table.
+Create the partition table.
 
-    ```
-    # parted -s -a optimal /dev/nvme0n1 mklabel gpt -- mkpart primary ext4 1 -1
-    ```
+```bash
+$ parted -s -a optimal /dev/nvme0n1 mklabel gpt -- mkpart primary ext4 1 -1
+```
 
-3. Format the data disk to the ext4 filesystem.
+Format the data disk to the ext4 filesystem.
 
-    ```
-    # mkfs.ext4 /dev/nvme0n1
-    ```
+```bash
+$ mkfs.ext4 /dev/nvme0n1
+```
 
-4. View the partition UUID of the data disk.
+View the partition UUID of the data disk. (In this example, the UUID of `nvme0n1` is `c51eb23b-195c-4061-92a9-3fad812cc12f`.)
 
-    In this example, the UUID of `nvme0n1` is `c51eb23b-195c-4061-92a9-3fad812cc12f`.
+ ```bash
+ $ lsblk -f
+ NAME    FSTYPE LABEL UUID                                 MOUNTPOINT
+ sda
+ ├─sda1  ext4         237b634b-a565-477b-8371-6dff0c41f5ab /boot
+ ├─sda2  swap         f414c5c0-f823-4bb1-8fdf-e531173a72ed
+ └─sda3  ext4         547909c1-398d-4696-94c6-03e43e317b60 /
+ sr0
+ nvme0n1 ext4         c51eb23b-195c-4061-92a9-3fad812cc12f
+ ```
 
-    ```
-    # lsblk -f
-    NAME    FSTYPE LABEL UUID                                 MOUNTPOINT
-    sda
-    ├─sda1  ext4         237b634b-a565-477b-8371-6dff0c41f5ab /boot
-    ├─sda2  swap         f414c5c0-f823-4bb1-8fdf-e531173a72ed
-    └─sda3  ext4         547909c1-398d-4696-94c6-03e43e317b60 /
-    sr0
-    nvme0n1 ext4         c51eb23b-195c-4061-92a9-3fad812cc12f
-    ```
+Edit the `/etc/fstab` file and add the mount options.
 
-5. Edit the `/etc/fstab` file and add the mount options.
+```bash
+$ vi /etc/fstab
+UUID=c51eb23b-195c-4061-92a9-3fad812cc12f /data1 ext4 defaults,nodelalloc,noatime 0 2
+```
 
-    ```
-    # vi /etc/fstab
-    UUID=c51eb23b-195c-4061-92a9-3fad812cc12f /data1 ext4 defaults,nodelalloc,noatime 0 2
-    ```
+Mount the data disk.
 
-6. Mount the data disk.
+```
+# mkdir /data1
+# mount -a
+```
 
-    ```
-    # mkdir /data1
-    # mount -a
-    ```
+Check using the following command.
 
-7. Check using the following command.
+```
+# mount -t ext4
+/dev/nvme0n1 on /data1 type ext4 (rw,noatime,nodelalloc,data=ordered)
+```
 
-    ```
-    # mount -t ext4
-    /dev/nvme0n1 on /data1 type ext4 (rw,noatime,nodelalloc,data=ordered)
-    ```
-
-    If the filesystem is ext4 and `nodelalloc` is included in the mount options, you have successfully mount the data disk ext4 filesystem with options on the target machines.
+If the filesystem is ext4 and `nodelalloc` is included in the mount options, you have successfully mount the data disk ext4 filesystem with options on the target machines.
 
 ## Step 9: Edit the `inventory.ini` file to orchestrate the TiKV cluster
 
@@ -457,29 +452,33 @@ Edit the parameters in the service configuration file:
 
 ## Step 10: Edit variables in the `inventory.ini` file
 
-1. Edit the `deploy_dir` variable to configure the deployment directory.
+Edit the `deploy_dir` variable to configure the deployment directory.
 
-    The global variable is set to `/home/tidb/deploy` by default, and it applies to all services. If the data disk is mounted on the `/data1` directory, you can set it to `/data1/deploy`. For example:
+The global variable is set to `/home/tidb/deploy` by default, and it applies to all services. If the data disk is mounted on the `/data1` directory, you can set it to `/data1/deploy`. For example:
 
-    ```bash
-    ## Global variables
-    [all:vars]
-    deploy_dir = /data1/deploy
-    ```
+```bash
+## Global variables
+[all:vars]
+deploy_dir = /data1/deploy
+```
 
-    **Note:** To separately set the deployment directory for a service, you can configure the host variable while configuring the service host list in the `inventory.ini` file. It is required to add the first column alias, to avoid confusion in scenarios of mixed services deployment.
+**Note:** To separately set the deployment directory for a service, you can configure the host variable while configuring the service host list in the `inventory.ini` file. It is required to add the first column alias, to avoid confusion in scenarios of mixed services deployment.
 
-    ```bash
-    TiKV1-1 ansible_host=172.16.10.4 deploy_dir=/data1/deploy
-    ```
+```bash
+TiKV1-1 ansible_host=172.16.10.4 deploy_dir=/data1/deploy
+```
 
-2. Set the `deploy_without_tidb` variable to `True`.
+Set the `deploy_without_tidb` variable to `True`.
+    
+```bash
+deploy_without_tidb = True
+```
 
-    ```bash
-    deploy_without_tidb = True
-    ```
 
-> **Note:** If you need to edit other variables, see [the variable description table](https://github.com/pingcap/docs/blob/master/dev/how-to/deploy/orchestrated/ansible.md).
+{{< info >}}
+**Note:** If you need to edit other variables, see [the variable description table](https://github.com/pingcap/docs/blob/master/dev/how-to/deploy/orchestrated/ansible.md).
+{{< /info >}}
+
 
 ## Step 11: Deploy the TiKV cluster
 
@@ -487,51 +486,51 @@ When `ansible-playbook` executes the Playbook, the default concurrent number is 
 
 The following example uses `tidb` as the user who runs the service.
 
-1. Check the `tidb-ansible/inventory.ini` file to make sure `ansible_user = tidb`.
+Check the `tidb-ansible/inventory.ini` file to make sure `ansible_user = tidb`.
 
-    ```bash
-    ## Connection
-    # ssh via normal user
-    ansible_user = tidb
-    ```
+```bash
+## Connection
+# ssh via normal user
+ansible_user = tidb
+```
 
-2. Make sure the SSH mutual trust and sudo without password are successfully configured.
+Make sure the SSH mutual trust and sudo without password are successfully configured.
 
-    - Run the following command and if all servers return `tidb`, then the SSH mutual trust is successfully configured:
+- Run the following command and if all servers return `tidb`, then the SSH mutual trust is successfully configured:
 
-        ```bash
-        ansible -i inventory.ini all -m shell -a 'whoami'
-        ```
+  ```bash
+  ansible -i inventory.ini all -m shell -a 'whoami'
+  ```
 
-    - Run the following command and if all servers return `root`, then sudo without password of the `tidb` user is successfully configured:
+* Run the following command and if all servers return `root`, then sudo without password of the `tidb` user is successfully configured:
 
-        ```bash
-        ansible -i inventory.ini all -m shell -a 'whoami' -b
-        ```
+  ```bash
+  ansible -i inventory.ini all -m shell -a 'whoami' -b
+  ```
 
-3. Download the TiKV binary to the Control Machine.
+**Download the TiKV binary to the Control Machine.**
 
-    ```bash
-    ansible-playbook local_prepare.yml
-    ```
+```bash
+ansible-playbook local_prepare.yml
+```
 
-4. Initialize the system environment and modify the kernel parameters.
+**Initialize the system environment and modify the kernel parameters.**
 
-    ```bash
-    ansible-playbook bootstrap.yml
-    ```
+```bash
+ansible-playbook bootstrap.yml
+```
 
-5. Deploy the TiKV cluster.
+**Deploy the TiKV cluster.**
 
-    ```bash
-    ansible-playbook deploy.yml
-    ```
+```bash
+ansible-playbook deploy.yml
+```
 
-6. Start the TiKV cluster.
+**Start the TiKV cluster.**
 
-    ```bash
-    ansible-playbook start.yml
-    ```
+```bash
+ansible-playbook start.yml
+```
 
 You can check whether the TiKV cluster has been successfully deployed using the following command:
 
@@ -555,14 +554,14 @@ ansible-playbook stop.yml
 
 - If you do not need the data any more, you can clean up the data for test using the following command:
 
-    ```
-    ansible-playbook unsafe_cleanup_data.yml
-    ```
+  ```bash
+  ansible-playbook unsafe_cleanup_data.yml
+  ```
 
 - If you do not need the TiKV cluster any more, you can destroy it using the following command:
 
-    ```bash
-    ansible-playbook unsafe_cleanup.yml
-    ```
+  ```bash
+  ansible-playbook unsafe_cleanup.yml
+  ```
     
-    > **Note:** If the deployment directory is a mount point, an error might be reported, but the implementation result remains unaffected. You can just ignore the error.
+  > **Note:** If the deployment directory is a mount point, an error might be reported, but the implementation result remains unaffected. You can just ignore the error.
