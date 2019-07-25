@@ -22,7 +22,7 @@ Before you start, make sure you have:
     - CentOS 7.3 (64 bit) or later with Python 2.7 installed, x86_64 architecture (AMD64)
     - Network between machines
     
-    > **Note:** When you deploy TiKV using Ansible, use SSD disks for the data directory of TiKV and PD nodes. Otherwise, the system will not perform well. For more details, see [Software and Hardware Requirements](hardware-recommendation.md).
+    > **Note:** When you deploy TiKV using Ansible, use SSD disks for the data directory of TiKV and PD nodes. Otherwise, the system will not perform well. For more details, see [Software and Hardware Requirements](../introduction).
 
 2. A Control Machine that meets the following requirements:
 
@@ -108,10 +108,10 @@ The key's randomart image is:
 
 2. Download the corresponding TiDB-Ansible version from the [TiDB-Ansible project](https://github.com/pingcap/tidb-ansible). The default folder name is `tidb-ansible`.
 
-    - Download the 2.0 GA version:
+    - Download the 3.0 GA version:
 
     ```bash
-    $ git clone -b release-2.0 https://github.com/pingcap/tidb-ansible.git
+    $ git clone -b release-3.0 https://github.com/pingcap/tidb-ansible.git
     ```
     
     - Download the master version:
@@ -298,15 +298,15 @@ UUID=c51eb23b-195c-4061-92a9-3fad812cc12f /data1 ext4 defaults,nodelalloc,noatim
 
 Mount the data disk.
 
-```
-# mkdir /data1
-# mount -a
+```bash
+$ mkdir /data1
+$ mount -a
 ```
 
 Check using the following command.
 
-```
-# mount -t ext4
+```bash
+$ mount -t ext4
 /dev/nvme0n1 on /data1 type ext4 (rw,noatime,nodelalloc,data=ordered)
 ```
 
@@ -329,7 +329,7 @@ You can choose one of the following two types of cluster topology according to y
 
 - [The cluster topology of a single TiKV instance on each TiKV node](#option-1-use-the-cluster-topology-of-a-single-tikv-instance-on-each-tikv-node)
 
-    In most cases, it is recommended to deploy one TiKV instance on each TiKV node for better performance. However, if the CPU and memory of your TiKV machines are much better than the required in [Hardware and Software Requirements](https://github.com/pingcap/docs/blob/master/dev/how-to/deploy/hardware-recommendations.md), and you have more than two disks in one node or the capacity of one SSD is larger than 2 TB, you can deploy no more than 2 TiKV instances on a single TiKV node.
+    In most cases, it is recommended to deploy one TiKV instance on each TiKV node for better performance. However, if the CPU and memory of your TiKV machines are much better than the required in [Hardware and Software Requirements](../introduction), and you have more than two disks in one node or the capacity of one SSD is larger than 2 TB, you can deploy no more than 2 TiKV instances on a single TiKV node.
 
 - [The cluster topology of multiple TiKV instances on each TiKV node](#option-2-use-the-cluster-topology-of-multiple-tikv-instances-on-each-tikv-node)
 
@@ -476,7 +476,7 @@ deploy_without_tidb = True
 
 
 {{< info >}}
-**Note:** If you need to edit other variables, see [the variable description table](https://github.com/pingcap/docs/blob/master/dev/how-to/deploy/orchestrated/ansible.md).
+**Note:** If you need to edit other variables, see [the variable description table](https://pingcap.com/docs/dev/how-to/deploy/orchestrated/ansible/#edit-other-variables-optional).
 {{< /info >}}
 
 
@@ -496,7 +496,7 @@ ansible_user = tidb
 
 Make sure the SSH mutual trust and sudo without password are successfully configured.
 
-- Run the following command and if all servers return `tidb`, then the SSH mutual trust is successfully configured:
+* Run the following command and if all servers return `tidb`, then the SSH mutual trust is successfully configured:
 
   ```bash
   ansible -i inventory.ini all -m shell -a 'whoami'
@@ -538,7 +538,7 @@ You can check whether the TiKV cluster has been successfully deployed using the 
 curl 172.16.10.1:2379/pd/api/v1/stores
 ```
 
-If you want to try the Go client, see [Try Two Types of APIs](../../reference/clients/go-client-api.md).
+If you want to try the Go client, see [Try Two Types of APIs](../../../reference/clients/go).
 
 ## Stop the TiKV cluster
 
@@ -550,7 +550,9 @@ ansible-playbook stop.yml
 
 ## Destroy the TiKV cluster
 
-> **Warning:** Before you clean the cluster data or destroy the TiKV cluster, make sure you do not need it any more.
+{{< warning >}}
+**Warning:** Before you clean the cluster data or destroy the TiKV cluster, make sure you do not need it any more.
+{{< /warning >}}
 
 - If you do not need the data any more, you can clean up the data for test using the following command:
 

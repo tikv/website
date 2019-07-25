@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     {{ range $features }}
-    {{ $link := .link | default "docs/architecture" }}
+    {{ $link := .link | default "docs/3.0/concepts/architecture" }}
     {{ $url  := $link | relURL }}
     <tr>
       <td>
