@@ -10,8 +10,8 @@ There are a number of components and tools involved in maintaining a TiKV deploy
 
 You can browse documentation on:
 
-* [`tikv-server`](../tikv-server): The TiKV service which stores data and serves queries.
-* [`tikv-ctl`](../tikv-ctl)
-* [`pd-server`](../pd-server)
-* [`pd-ctl`](../pd-ctl)
-* [`pd-recover`](../pd-recover)
+* [`tikv-server`](../tikv-server): The TiKV service stores data and serves client requests.
+* [`tikv-ctl`](../tikv-ctl): The control plane tool for managing TiKV, both online or offline.
+* [`pd-server`](../pd-server): The PD service manages cluster metadata and transaction timestamps.
+* [`pd-ctl`](../pd-ctl): The control plane tool for managing PD.
+* [`pd-recover`](../pd-recover): A disaster recovery tool for PD.
