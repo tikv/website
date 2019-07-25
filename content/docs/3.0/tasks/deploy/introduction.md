@@ -7,55 +7,66 @@ menu:
         weight: 1
 ---
 
-As an open source distributed Key-Value database with high performance, TiKV can be deployed in the Intel architecture server and major virtualization environments and runs well. TiKV supports most of the major hardware networks and Linux operating systems.
 
-TiKV must work together with [Placement Driver](https://github.com/pingcap/pd/) (PD). PD is the cluster manager of TiKV, which periodically checks replication constraints to balance load and data automatically.
+Typical deployments of TiKV include a number of components:
 
-## Linux OS version requirements
+* 3+ TiKV nodes
+* 3+ Placement Driver (PD) nodes
+* 1 Monitoring node
+* 1 or more client application or query layer (like [TiDB](https://github.com/pingcap/tidb))
 
-| Linux OS Platform        | Version      |
-| :-----------------------:| :----------: |
-| Red Hat Enterprise Linux | 7.3 or later |
-| CentOS                   | 7.3 or later |
-| Oracle Enterprise Linux  | 7.3 or later |
-| Ubuntu LTS               | 16.04 or later |
+{{< info >}}
+TiKV is deployed alongside a [Placement Driver](https://github.com/pingcap/pd/) (PD) cluster. PD is the cluster manager of TiKV, which periodically checks replication constraints to balance load and data automatically.
+{{< /info >}}
 
-> **Note:**
-> 
-> - For Oracle Enterprise Linux, TiKV supports the Red Hat Compatible Kernel (RHCK) and does not support the Unbreakable Enterprise Kernel provided by Oracle Enterprise Linux.
-> - A large number of TiKV tests have been run on the CentOS 7.3 system, and in our community there are a lot of best practices in which TiKV is deployed on the Linux operating system. Therefore, it is recommended to deploy TiKV on CentOS 7.3 or later.
-> - The support for the Linux operating systems above includes the deployment and operation in physical servers as well as in major virtualized environments like VMware, KVM and XEN.
+For your **first steps** into TiKV requires only a few things:
 
-## Server requirements
+* A modest machine that fulfills the [system requirements](#system-requirements).
+* A running [Docker](https://docker.com) service.
 
-You can deploy and run TiKV on the 64-bit generic hardware server platform in the Intel x86-64 architecture. The requirements and recommendations about server hardware configuration for development, test and production environments are as follows:
+If you have those, follow through the [`docker-compose`](../docker-compose) guide to get a test setup of TiKV running on your machine.
 
-### Development and test environments
+**Production** usage is typically done via automation requiring:
 
-| Component | CPU     | Memory | Local Storage  | Network  | Instance Number (Minimum Requirement) |
-| :------: | :-----: | :-----: | :----------: | :------: | :----------------: |
-| PD      | 4 core+   | 8 GB+  | SAS, 200 GB+ | Gigabit network card | 1    |
-| TiKV    | 8 core+   | 32 GB+  | SAS, 200 GB+ | Gigabit network card | 3       |
-|         |         |         |              | Total Server Number |  4      |
+* A control machine (it can be one of your target servers) with [Ansible](https://www.ansible.com/) installed.
+* Several (6+) machines fulfilling the [system requirements](#system-requirements) and at least up to [production specifications](#production-specifications).
+* The ability to configure your infrastructure to allow the ports from [network requirements](#network-requirements).
 
-> **Note**: 
-> 
-> - Do not deploy PD and TiKV on the same server.
-> - For performance-related test, do not use low-performance storage and network hardware configuration, in order to guarantee the correctness of the test result.
+If you have these, follow through the [Ansible deployment](../ansible) guide. You may optionally choose unsupported manual [Docker deployment](../docker) or [binary deployment](../binary) strategies.
 
-### Production environment
+Finally, if you want to **develop** TiKV you should consult the [README](https://github.com/tikv/tikv/blob/master/README.md) of the repository.
 
-| Component | CPU | Memory | Hard Disk Type | Network | Instance Number (Minimum Requirement) |
-| :-----: | :------: | :------: | :------: | :------: | :-----: |
-| PD | 4 core+ | 8 GB+ | SSD | 10 Gigabit network card (2 preferred) | 3 |
-| TiKV | 16 core+ | 32 GB+ | SSD | 10 Gigabit network card (2 preferred) | 3 |
-| Monitor | 8 core+ | 16 GB+ | SAS | Gigabit network card | 1 |
-|     |     |     |      |  Total Server Number   |    7   |
 
-> **Note**:
-> 
-> - It is strongly recommended to use higher configuration in the production environment.
-> - It is recommended to keep the size of TiKV hard disk within 2 TB if you are using PCI-E SSD disks or within 1.5 TB if you are using regular SSD disks.
+## System requirements
+
+The **minimum** specifications for testing or developing TiKV or PD are:
+
+* 2+ core
+* 8+ GB RAM
+* An SSD
+
+TiKV hosts must support the x86-64 architecture and the SSE 4.2 instruction set.
+
+TiKV works well in VMWare, KVM, and Xen virtual machines.
+
+
+## Production Specifications
+
+The **suggested PD** specifications for production are:
+
+* 3+ nodes
+* 4+ cores
+* 8+ GB RAM
+* 200+ GB SSD
+* 10 Gigabit ethernet (2x preferred)
+
+The **suggested TiKV** specifications for production are:
+
+* 3+ nodes
+* 16+ cores
+* 32+ GB RAM
+* a less than 1.5 TB SSD
+
 
 ## Network requirements
 
@@ -74,6 +85,7 @@ TiKV requires the following network port configuration to run. Based on the TiKV
 | Grafana | 3000 | the port for the external Web monitoring service and client (Browser) access|
 | Grafana | 8686 | the `grafana_collector` communication port, used to export the Dashboard as the PDF format |
 | Kafka_exporter | 9308 | the `Kafka_exporter` communication port, used to monitor the binlog Kafka cluster |
+
 
 ## Web browser requirements
 
