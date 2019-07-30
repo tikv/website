@@ -1,9 +1,10 @@
 ---
-title: APIs
-description: Interact with TiKV using the raw key-value API or the transactional key-value API
+title: Rust Client
+description: Interact with TiKV using Rust.
 menu:
     docs:
-        parent: Concepts
+        parent: Clients
+        weight: 2
 ---
 
 TiKV offers two APIs that you can interact with:
@@ -13,9 +14,9 @@ API | Description | Atomicity | Use when...
 [Raw](#raw) | A lower-level key-value API for interacting directly with individual key-value pairs. | Single key | Your application doesn't require distributed transactions or multi-version concurrency control (MVCC)
 [Transactional](#transactional) | A higher-level key-value API that provides ACID semantics | Multiple keys | Your application requires distributed transactions and/or MVCC
 
-{{< info >}}
+{{< warning >}}
 It is **not recommended or supported** to use both the raw and transactional APIs on the same keyspace.
-{{< /info >}}
+{{< /warning >}}
 
 There are several clients that connect to TiKV:
 

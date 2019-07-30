@@ -2,10 +2,10 @@
 title: Deep Dive
 menu:
     docs:
-        weight: 3
+        weight: 4
     nav:
         parent: Docs
-        weight: 3
+        weight: 4
 ---
 
 [TiKV](https://github.com/tikv/tikv) is a distributed, transactional key-value database. It has been widely adopted in many critical production environments &mdash; see the [TiKV adopters](https://github.com/tikv/tikv/blob/master/docs/adopters.md). It has also been accepted by the [Cloud Native Computing Foundation](https://www.cfnc.org) as a [Sandbox project](https://www.cncf.io/blog/2018/08/28/cncf-to-host-tikv-in-the-sandbox/) in August, 2018.
