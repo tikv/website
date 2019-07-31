@@ -20,7 +20,7 @@ menu:
       parent: Community
       weight: 4
     - name: Docs
-      url: /docs/3.0/concepts
+      url: /docs/3.0/concepts/overview
       weight: 1
 
 
