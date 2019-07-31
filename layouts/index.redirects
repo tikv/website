@@ -1,5 +1,5 @@
 # {{- $latest   := site.Params.versions.latest }}
-/docs     /docs/{{ $latest }}/concepts/ 301!
+/docs     /docs/{{ $latest }}/concepts/overview/ 301!
 /docs/latest     /docs/{{ $latest }}/concepts/ 301
 /docs/latest/*   /docs/{{ $latest }}/:splat 301
 /security   /docs/{{ $latest }}/tasks/secure/ 301
