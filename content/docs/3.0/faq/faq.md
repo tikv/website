@@ -11,7 +11,7 @@ menu:
 
 ## What is TiKV?
 
-TiKV is a distributed Key-Value database that features in geo-replication,  horizontal scalability, consistent distributed transactions and coprocessor support. 
+TiKV is a distributed Key-Value database that features in geo-replication, horizontal scalability, consistent distributed transactions and coprocessor support. 
 
 ## How do TiDB and TiKV work together? What is the relationship between the two?
 
@@ -23,7 +23,7 @@ Inspired by Google F1 and Spanner, TiDB and TiKV adopt a highly-layered architec
 
 ## How do I run TiKV?
 
-For further information, see [TiDB Quick Start Guide](https://github.com/tikv/tikv/blob/master/docs/op-guide/deploy-tikv-using-docker-compose.md) and information under the [TiKV documentation](https://github.com/tikv/tikv/wiki/TiKV-Documentation).
+For further information, see [Quick Start](../tasks/getting-started.md) for deploying a TiKV testing cluster, or [Deploy TiKV](../tasks/deploy/introduction.md) for deploying TiKV in production.
 
 ## When to use TiKV?
 
@@ -60,8 +60,8 @@ Yes. The transaction model in TiKV is inspired by Google’s Percolator, a paper
 Yes. ACID semantics are guaranteed in TiKV:
 
 * Atomicity: Each transaction in TiKV is "all or nothing": if one part of the transaction fails, then the entire transaction fails, and the database state is left unchanged. TiKV guarantees atomicity in each and every situation, including power failures, errors, and crashes. 
-* Consistency: TiKV ensures that any transaction brings the database from one valid state to another. Any data written to the TiKV database must be valid according to all defined rules, including constraints, cascades, triggers, and any combination thereof. 
-* Isolation: TiKV provides snapshot isolation (SI), snapshot isolation with lock (SQL statement: SELECT ... FOR UPDATE), and externally consistent reads and writes in distributed transactions. 
+* Consistency: TiKV ensures that any transaction brings the database from one valid state to another. Any data written to the TiKV database must be valid according to all defined rules.
+* Isolation: TiKV provides snapshot isolation (SI), snapshot isolation with lock, and externally consistent reads and writes in distributed transactions.
 * Durability: TiKV allows a collection of machines to work as a coherent group that can survive the failures of some of its members. So in TiKV, once a transaction has been committed, it will remain so, even in the event of power loss, crashes, or errors. 
 
 ## How are transactions in TiKV lock-free?
@@ -70,15 +70,11 @@ TiKV has an optimistic transaction model, which means the client will buffer all
 
 ## Can I use TiKV as a key-value store?
 
-Yes. For now, we have a [TiKV driver for Go](https://github.com/pingcap/tidb/tree/master/store/tikv). You are welcome to develop drivers in other languages!
-
-## How does TiKV compare to traditional relational databases like Oracle or MySQL?
-
-TiKV scores in horizontal scalability while still maintains the traditional relational database features. You can easily increase the capacity or balance the load by adding more machines.
+Yes. For now, we have a stable [TiKV driver for Go](https://github.com/pingcap/tidb/tree/master/store/tikv). There are also drivers for [other languages in development](../reference/clients/introduction.md).
 
 ## How does TiKV compare to NoSQL databases like Cassandra, HBase, or MongoDB?
 
-TiKV is as scalable as NoSQL databases but features in the usability and functionality of traditional SQL databases, such as SQL syntax and consistent distributed transactions.
+TiKV is as scalable as NoSQL databases like to advertise, while including features like externally consistent distributed transactions and good support for stateless query layers such as TiSpark (Spark), Titan (Redis), or TiDB (MySQL)
 
 ## What is the recommended number of replicas in the TiKV cluster? Is it better to keep the minimum number for high availability?
 
@@ -86,7 +82,7 @@ Use 3 replicas for testing. If you increase the number of replicas, the performa
 
 ## If a node is down, will the service be affected? How long?
 
-TiKV uses Raft to synchronize data among multiple replicas and guarantees the strong consistency of data. If one replica goes wrong, the other replicas can guarantee data security. The default number of replicas in each Region is 3. Based on the Raft protocol, a leader is elected in each Region, and if a single leader fails, a follower is soon elected as Region leader after a maximum of 2 * lease time (lease time is 10 seconds).
+TiKV uses Raft to synchronize data among multiple replicas (by default 3 replicas for each Region). If one replica goes wrong, the other replicas can guarantee data safety. Based on the Raft protocol, if a single leader fails as the node goes down, a follower in another node is soon elected as the Region leader after a maximum of 2 * lease time (lease time is 10 seconds).
 
 ## Is the Range of the Key data table divided before data access?
 
@@ -94,7 +90,7 @@ No. It differs from the table splitting rules of MySQL. In TiKV, the table Range
 
 ## How does Region split?
 
-Region is not divided in advance, but it follows a Region split mechanism. When the Region size exceeds the value of the `region_split_size` or `region-split-keys` parameters, split is triggered. After the split, the information is reported to PD.
+Region is not divided in advance, but it follows a Region split mechanism. When the Region size exceeds the value of the `region-split-size` or `region-split-keys` parameters, split is triggered. After the split, the information is reported to PD.
 
 ## What are the features of TiKV block cache?
 
@@ -113,10 +109,6 @@ Writing or reading a large volume of data in TiKV takes up high I/O, memory and 
 
 Yes. Currently, the standalone storage engine uses two RocksDB instances. One instance is used to store the raft-log. When the `sync-log` parameter in TiKV is set to true, each commit is mandatorily flushed to the raft-log. If a crash occurs, you can restore the KV data using the raft-log.
 
-## Does TiDB have a InnoDB memcached plugin like MySQL which can directly use the KV interface and does not need the independent cache?
-
-TiKV supports calling the interface separately. Theoretically, you can take an instance as the cache. Because TiDB is a distributed relational database, we do not support TiKV separately.
-
 ## What is the recommended server configuration for WAL storage, such as SSD, RAID level, cache strategy of RAID card, NUMA configuration, file system, I/O scheduling strategy of the operating system?
 
 WAL belongs to ordered writing, and currently, we don't have separate configuration for it. Recommended configuration is as follows:
@@ -127,11 +119,13 @@ WAL belongs to ordered writing, and currently, we don't have separate configurat
 - NUMA: no specific suggestion; for memory allocation strategy, you can use `interleave = all`
 - File system: ext4
 
-## Can Raft + multiple replicas in the TiKV architecture achieve absolute data security? Is it necessary to apply the most strict mode (`sync-log = true`) to a standalone storage?
+## Can Raft + multiple replicas in the TiKV architecture achieve absolute data safety? Is it necessary to apply the most strict mode (`sync-log = true`) to a standalone storage?
 
 Data is redundantly copied between TiKV nodes using the [Raft consensus algorithm](https://raft.github.io/) to ensure recoverability should a node failure occur. Only when the data has been written into more than 50% of the replicas will the application return ACK (two out of three nodes). However, theoretically, two nodes might crash. Therefore, except for scenarios with less strict requirement on data security but extreme requirement on performance, it is strongly recommended that you enable the sync-log mode.
 
 As an alternative to using `sync-log`, you may also consider having five replicas instead of three in your Raft group. This would allow for the failure of two replicas, while still providing data safety.
+
+For a standalone TiKV node, it is still recommended to enable the sync-log mode. Otherwise, the last write might be lost in case of a node failure.
 
 ## Why does TiKV frequently switch Region leader?
 
@@ -149,3 +143,24 @@ If you previously deploy a PD cluster, but then you remove the PD data and deplo
 This is because the address in the startup parameter has been registered in the PD cluster by other TiKVs. This error occurs when there is no data folder under the directory that TiKV `--store` specifies, but you use the previous parameter to restart the TiKV.
 
 To solve this problem, use the [`store delete`](https://github.com/pingcap/pd/tree/55db505e8f35e8ab4e00efd202beb27a8ecc40fb/tools/pd-ctl#store-delete--label--weight-store_id----jqquery-string) function to delete the previous store and then restart TiKV.
+
+## TiKV master and slave use the same compression algorithm, why the results are different?
+
+Currently, some files of TiKV master have a higher compression rate, which depends on the underlying data distribution and RocksDB implementation. It is normal that the data size fluctuates occasionally. The underlying storage engine adjusts data as needed.
+
+## What are causes for "TiKV channel full"?
+
+- The Raftstore thread is too slow or blocked by I/O. You can view the CPU usage status of Raftstore.
+- TiKV is too busy (CPU, disk I/O, etc.) and cannot manage to handle it.
+
+## How is the write performance in the most strict data available mode (`sync-log = true`)?
+
+Generally, enabling `sync-log` reduces about 30% of the performance. For write performance when `sync-log` is set to `false`, see [Performance test result for TiDB using Sysbench](https://github.com/pingcap/docs/blob/master/v3.0/benchmark/sysbench-v4.md).
+
+## Why does `IO error: No space left on device While appending to file` occur?
+
+This is because the disk space is not enough. You need to add nodes or enlarge the disk space.
+
+## Why does the OOM (Out of Memory) error occur frequently in TiKV?
+
+The memory usage of TiKV mainly comes from the block-cache of RocksDB, which is 40% of the system memory size by default. When the OOM error occurs frequently in TiKV, you should check whether the value of `block-cache-size` is set too high. In addition, when multiple TiKV instances are deployed on a single machine, you need to explicitly configure the parameter to prevent multiple instances from using too much system memory that results in the OOM error.
