@@ -1,10 +1,8 @@
 ---
 title: Migrating the TiKV Rust client from futures 0.1 to 0.3
-date: 2019-07-09
+date: 2019-08-07
 author: Nick Cameron
 ---
-
-This article was originally posted at [Featherweight Musings](https://www.ncameron.org/blog/migrating-a-crate-from-futures-0-1-to-0-3/).
 
 I recently migrated a small/medium-sized crate from Futures 0.1 to 0.3. It was fairly easy, but there were some tricky bits and some things that were not well documented, so I think it is worth me writing up my experience.
 
@@ -15,8 +13,6 @@ Asynchronous programming in Rust is a large area and has been in development for
 Over the years, the futures library has changed a lot. A lot of older code was developed using the 0.1 series of releases and has not been updated. The more recent versions are the 0.3 series (futures-preview on crates.io). The reason for this divergence is that there are a lot of changes between 0.1 and 0.3. 0.1 is fairly stable, whereas 0.3 has been evolving rapidly. In the long term, 0.3 will turn into 1.0; parts of the library are moving into std, and the first parts have recently been stabilized (e.g., the `Future` trait).
 
 We want the Rust client to work with stable compilers, so we limited the core library to only use features which are stable or would be soon. We did use async/await in our documentation and examples since it is so much more ergonomic, and will eventually be the recommended way to program asynchronously in Rust. As well as avoiding async/await in our library, we also depend on crates which use futures 0.1, which means we needed to use the compatibility layer a lot. Therefore, this might not be a totally typical migration.
-
-You can see the whole conversion in [this PR](https://github.com/tikv/client-rust/pull/41).
 
 I'm not an async expert and I think there might be ways we could make this migration (and the code in general) more idiomatic. If you have suggestions, please let me know on [Twitter](https://twitter.com/nick_r_cameron). If you'd like to contribute a PR, that would be even better! We would love to get more people involved with the [TiKV client](https://github.com/tikv/client-rust).
 
@@ -68,3 +64,5 @@ The futures 0.1 library included a `LoopFn` future for handling futures which do
 ## Sink::send_all
 
 In a few places in the project, we use sinks. I found the migration of these much less easy than for futures. The trickiest issue was that `Sink::send_all` has changed. In 0.1, it took ownership of a stream and once everything is resolved, returned the sink and stream. In 0.3, it takes a mutable reference to the stream and returns nothing. I created our own [compatibility layer](https://github.com/tikv/client-rust/pull/41/commits/6353dbcfe391d66714686aafab9a49e593259dfb#diff-eeffc045326f81d4c46c22f225d3df90R68) to emulate 0.1 sinks with 0.3 futures. This wasn't particularly difficult, but there might be a better way to do this.
+
+You can see the whole conversion in [this PR](https://github.com/tikv/client-rust/pull/41). This article was originally posted at [Featherweight Musings](https://www.ncameron.org/blog/migrating-a-crate-from-futures-0-1-to-0-3/).
