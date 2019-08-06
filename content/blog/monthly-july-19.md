@@ -1,32 +1,34 @@
 ---
-title: This Month in TiKV: July 2019
+title: This Month in TiKV - July 2019
 date: 2019-08-07
+author: Nick Cameron
 ---
 
 Hi! Welcome to the first ever edition of 'This Month in TiKV', covering July 2019. As the name suggests, this is a monthly newsletter covering interesting things happening in the world of [TiKV](https://tikv.org/), an open-source, distributed key-value store.
 
 We're just getting started with the newsletter, and you should expect it to evolve as we go along. We hope to cover news and events of interest to TiKV contributors and users, significant PRs and issues in the TiKV [repo](https://github.com/tikv/tikv), and generally keep you informed of what is going on. Since this is the first issue we'll cover a few bits of news from before July.
 
-You'll find the newsletter [on the TiKV blog](https://tikv.org/blog/) from the first week of each month. We should have a mailing list so you can receive the newsletter by email soon.
+You'll find the newsletter [on the TiKV blog](https://tikv.org/blog/) from the first week of each month.
 
-[Let us know](https://github.com/nrc/tmit/issues/new) what you think!
+[Let us know](https://github.com/tikv/website/issues/new) what you think!
 
 ## News
 
-We [released version 3.0](https://tikv.org/blog/tikv-3.0ga/) of TiKV! This was a huge and exciting release, and supports the 3.0 release of [TiDB](https://pingcap.com/blog/tidb-3.0-announcement/).
+We [released version 3.0](https://tikv.org/blog/tikv-3.0ga/) of TiKV! This was a huge and exciting release, and is accompanied by the 3.0 release of [TiDB](https://pingcap.com/blog/tidb-3.0-announcement/).
 
-Jepsen tested TiDB and wrote a detailed [report](https://pingcap.com/blog/tidb-passes-jepsen-test-for-snapshot-isolation-and-single-key-linearizability/). This focussed on transaction guarantees and covered TiKV as the underlying system.
+Jepsen tested TiDB and TiKV in a detailed [analysis](https://pingcap.com/blog/tidb-passes-jepsen-test-for-snapshot-isolation-and-single-key-linearizability/). This focused on transaction guarantees and failure testing.
 
-We [released](https://pingcap.com/blog/database-cluster-deployment-and-management-made-easy-with-kubernetes/) 1.0 of TiDB Operator, a tool for deploying TiDB in the cloud.
+In other news, PingCAP also released 1.0 of TiDB Operator, a tool for deploying TiDB in the cloud. Release announcement in [English](https://pingcap.com/blog/database-cluster-deployment-and-management-made-easy-with-kubernetes/) and [Chinese](https://pingcap.com/blog-cn/tidb-operator-1.0-ga/)
 
 
 ## Reading material
 
 Some blog posts and articles related to TiKV:
 
-* TiKV launched a [training course](https://tikv.org/blog/talent-training/) covering Rust and distributed systems.
-* Nick Cameron wrote about migrating the Rust TiKV client from [futures 0.1 to 0.3](https://www.ncameron.org/blog/migrating-a-crate-from-futures-0-1-to-0-3/).
-* Ana Hobden wrote on the PingCAP blog about [benchmarking distributed databases](https://www.pingcap.com/blog/why-benchmarking-distributed-databases-is-so-hard/).
+* The TiKV team launched a [training course](https://tikv.org/blog/talent-training/) covering Rust and distributed systems (English).
+* Nick Cameron wrote about migrating the Rust TiKV client from [futures 0.1 to 0.3](https://www.ncameron.org/blog/migrating-a-crate-from-futures-0-1-to-0-3/) (English).
+* Ana Hobden wrote on the PingCAP blog about [benchmarking distributed databases](https://www.pingcap.com/blog/why-benchmarking-distributed-databases-is-so-hard/) (English).
+* Source code reading posts on [an analysis of control flow through service layers](https://pingcap.com/blog-cn/tikv-source-code-reading-9/), [Snapshot send and receive](https://pingcap.com/blog-cn/tikv-source-code-reading-10/), and [Storage and transaction control](https://pingcap.com/blog-cn/tikv-soucre-code-reading-11/) (Chinese).
 
 
 ## Current projects
@@ -35,24 +37,17 @@ There's lots going on in the TiKV ecosystem, here we'll try to highlight some of
 
 ### Performance
 
-There's ongoing work to measure and improve TiKV's performance in all areas. We hope to report more on specifics soon.
+There's ongoing work to measure and improve TiKV's performance in all areas. We hope to report more on specifics soon. We've been making heavy use of tools like Intel Vtune and flamegraphs to find the slowest parts of TiKV. We hope to report more on specifics soon.
 
 
 ### Titan
 
-[Titan](https://github.com/pingcap/titan) is a storage engine which improves on RocksDB. It is part of TiKV already and you can try it out by enabling it in the config file:
-
-```
-[rocksdb.titan]
-enabled = true
-```
-
-Note that you can't go back to RocksDB after enabling Titan. We're working to improve its performance and stability. You can read more in this [blog post](https://pingcap.com/blog/titan-storage-engine-design-and-implementation/).
+[Titan](https://github.com/pingcap/titan) is a storage engine which improves on RocksDB. It is part of TiKV already and you can try it out by following [these instructions](https://tikv.org/docs/3.0/tasks/configure/titan/). Note that you can't go back to RocksDB after enabling Titan. We're working to improve its performance and stability. You can read more in this [blog post](https://pingcap.com/blog/titan-storage-engine-design-and-implementation/).
 
 
 ### Docs
 
-We are currently migrating [our documentation](https://tikv.org/docs/3.0/concepts/overview/) from the TiKV's wiki to the official website.
+We are currently migrating [our documentation](https://tikv.org/docs/3.0/concepts/overview/) from the TiKV's wiki to the official website. We'll also be refactoring much of our documentation over the coming months. If you feel something is lacking please let us know!
 
 
 ### Replica read
@@ -72,7 +67,7 @@ We're working on making testing more reliable, adding long-running tests to our 
 
 ### Adding RPN functions
 
-TiKV supports executing SQL functions on the database using its coprocessor. We've been working to support RPN (reverse polish notation) functions, which are an optimisation technique for coprocessor. In the past month we've added support for `coalesce`, `in`, `case_when`, `if`, `abs`, `multiply`, `divide`, and `date_format`.
+TiKV supports executing SQL functions on the database using its coprocessor. We've been working to support RPN (reverse polish notation) functions, which are an optimisation technique for coprocessor. In the past month we've added support for `coalesce`, `in`, `case_when`, `if`, `abs`, `multiply`, `divide`, and `date_format`. There is [more information](https://pingcap.com/blog/adding-built-in-functions-to-tikv/) about implementing coprocessor functions.
 
 
 ### Rust client
@@ -124,7 +119,7 @@ If you'd like to get involved, we'd love to help you get started. You might be i
 
 ## This Week in TiDB
 
-For more detailed and comprehensive information about TiDB and TiKV, we have weekly updates. The following cover July,
+For more rapid and detailed information about TiKV progress, PingCAP publishes weekly updates about TiDB and TiKV. The following cover July,
 
 * [2019-07-08](https://pingcap.com/weekly/2019-07-08-tidb-weekly/)
 * [2019-07-15](https://pingcap.com/weekly/2019-07-15-tidb-weekly/)
