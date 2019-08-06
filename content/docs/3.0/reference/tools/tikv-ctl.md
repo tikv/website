@@ -1,5 +1,5 @@
 ---
-title: tikv-ctl User Guide
+title: tikv-ctl
 description: Learn about interacting with tikv-ctl
 menu:
     docs:

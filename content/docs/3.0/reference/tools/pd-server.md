@@ -1,5 +1,5 @@
 ---
-title: pd-server User Guide
+title: pd-server
 description: Learn about interacting with pd-server
 menu:
     docs:

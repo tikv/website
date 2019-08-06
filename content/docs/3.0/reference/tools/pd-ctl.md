@@ -1,5 +1,5 @@
 ---
-title: pd-ctl User Guide
+title: pd-ctl
 description: Learn about interacting with pd-ctl
 menu:
     docs:
