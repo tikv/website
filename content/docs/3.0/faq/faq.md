@@ -41,7 +41,7 @@ TiKV is not yet ready to deal with very low latency reads and writes.
 
 Grow TiKV as your business grows. You can increase the capacity simply by adding more machines. You can run TiKV across physical, virtual, container, and cloud environments.
 
-PD([Placement Driver](https://github.com/pingcap/pd))  periodically checks replication constraints and balances the load, and it handles data movement automatically. When PD notices that the load is too high, it will rebalance data.
+PD ([Placement Driver](https://github.com/pingcap/pd)) periodically checks replication constraints and balances the load, and it handles data movement automatically. When PD notices that the load is too high, it will rebalance data.
 
 ## How is TiKV highly available?
 
