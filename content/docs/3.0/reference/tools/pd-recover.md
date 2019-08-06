@@ -1,5 +1,5 @@
 ---
-title: pd-recover User Guide
+title: pd-recover
 description: Learn about interacting with pd-recover
 menu:
     docs:
