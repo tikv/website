@@ -8,10 +8,12 @@ serve:
 serve-production:
 	hugo server \
 		--disableFastRender \
+		--buildFuture \
 		--bind 0.0.0.0
 
 production-build:
-	hugo --minify
+	hugo --minify \
+		--buildFuture
 
 preview-build:
 	hugo \
