@@ -33,16 +33,16 @@ Some blog posts and articles related to TiKV:
 
 ## Current projects
 
-There's lots going on in the TiKV ecosystem, here we'll try to highlight some of the interesting projects.
+There's lots going on in the TiKV ecosystem. Here we'll try to highlight some of the interesting projects.
 
 ### Performance
 
-There's ongoing work to measure and improve TiKV's performance in all areas. We hope to report more on specifics soon. We've been making heavy use of tools like Intel Vtune and flamegraphs to find the slowest parts of TiKV. We hope to report more on specifics soon.
+There's ongoing work to measure and improve TiKV's performance in all areas. We've been making heavy use of tools like [Intel Vtune](https://software.intel.com/en-us/vtune) and [flame graph](http://www.brendangregg.com/flamegraphs.html) to find the slowest parts of TiKV. We hope to report more on specifics soon.
 
 
 ### Titan
 
-[Titan](https://github.com/pingcap/titan) is a storage engine which improves on RocksDB. It is part of TiKV already and you can try it out by following [these instructions](https://tikv.org/docs/3.0/tasks/configure/titan/). Note that you can't go back to RocksDB after enabling Titan. We're working to improve its performance and stability. You can read more in this [blog post](https://pingcap.com/blog/titan-storage-engine-design-and-implementation/).
+[Titan](https://github.com/pingcap/titan) is a storage engine plugin which improves on RocksDB. It is part of TiKV already and you can try it out by following [these instructions](https://tikv.org/docs/3.0/tasks/configure/titan/). We're working to improve its performance and stability. You can read more in this [blog post](https://pingcap.com/blog/titan-storage-engine-design-and-implementation/).
 
 
 ### Docs
@@ -89,9 +89,9 @@ Currently, the RFCs for a [Rust client](https://github.com/tikv/rfcs/pull/7) and
 
 ## Notable PRs
 
-In [PR 5041](https://github.com/tikv/tikv/pull/5041) we added support for [Mimalloc](https://github.com/microsoft/mimalloc), a new allocator from Microsoft. You currently have to opt-in to use it using `MIMALLOC=1` when building. Benchmarking has been inconclusive so far.
+In [PR 5041](https://github.com/tikv/tikv/pull/5041), we added support for [Mimalloc](https://github.com/microsoft/mimalloc), a new allocator from Microsoft. You currently have to opt-in to use it using `MIMALLOC=1` when building. Benchmarking has been inconclusive so far.
 
-In [PR 5155](https://github.com/tikv/tikv/pull/5155) we created a new crate inside the tikv repository called `tidb_query`, it contains large parts of the coprocessor which have been moved from `src/coprocessor/dag`. The PR also renames the `cop_xxx` crates to `tidb_query_xxx`. Due to increased parallelism, this improves compile times by up to 25%.
+In [PR 5155](https://github.com/tikv/tikv/pull/5155), we created a new crate inside the tikv repository called `tidb_query`, it contains large parts of the coprocessor which have been moved from `src/coprocessor/dag`. The PR also renames the `cop_xxx` crates to `tidb_query_xxx`. Due to increased parallelism, this improves compile times by up to 25%.
 
 In [PR 5036](https://github.com/tikv/tikv/pull/5036) the tikv importer was moved out of the tikv repository and into its own repository.
 
