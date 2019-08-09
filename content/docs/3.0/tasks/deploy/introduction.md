@@ -19,12 +19,12 @@ Typical deployments of TiKV include a number of components:
 TiKV is deployed alongside a [Placement Driver](https://github.com/pingcap/pd/) (PD) cluster. PD is the cluster manager of TiKV, which periodically checks replication constraints to balance load and data automatically.
 {{< /info >}}
 
-For your **first steps** into TiKV requires only a few things:
+Your **first steps** into TiKV require only the following:
 
 * A modest machine that fulfills the [system requirements](#system-requirements).
 * A running [Docker](https://docker.com) service.
 
-If you have those, follow through the [`docker-compose`](../docker-compose) guide to get a test setup of TiKV running on your machine.
+After you set up the environment, follow through the [`docker-compose`](../docker-compose) guide to get a test setup of TiKV running on your machine.
 
 **Production** usage is typically done via automation requiring:
 
@@ -32,9 +32,9 @@ If you have those, follow through the [`docker-compose`](../docker-compose) guid
 * Several (6+) machines fulfilling the [system requirements](#system-requirements) and at least up to [production specifications](#production-specifications).
 * The ability to configure your infrastructure to allow the ports from [network requirements](#network-requirements).
 
-If you have these, follow through the [Ansible deployment](../ansible) guide. You may optionally choose unsupported manual [Docker deployment](../docker) or [binary deployment](../binary) strategies.
+If you have your production environment ready, follow through the [Ansible deployment](../ansible) guide. You may optionally choose unsupported manual [Docker deployment](../docker) or [binary deployment](../binary) strategies.
 
-Finally, if you want to **develop** TiKV you should consult the [README](https://github.com/tikv/tikv/blob/master/README.md) of the repository.
+Finally, if you want to **build your own binary** TiKV you should consult the [README](https://github.com/tikv/tikv/blob/master/README.md) of the repository.
 
 
 ## System requirements
