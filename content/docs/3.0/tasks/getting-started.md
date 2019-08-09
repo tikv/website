@@ -163,5 +163,5 @@ All the following example docker compose config files must contain this base con
 
 ## What's next?
 
-+ If you want to try the Go client, see [Try Two Types of APIs](../../reference/clients/go-client-api.md). You need to build your docker image and add it to the docker compose config file like above YCSB or Titan does. 
++ If you want to try the Go client, see [Try Two Types of APIs](../../reference/clients/go-client-api). You need to build your docker image and add it to the docker compose config file like above YCSB or Titan does. 
 + If you want to run a full cluster with monitor support, please follow the [tidb-docker-compose guide](https://github.com/pingcap/tidb-docker-compose/blob/master/README.md), comment the `tidb` and `tispark` sections out in the [values.yaml](https://github.com/pingcap/tidb-docker-compose/blob/master/compose/values.yaml), generate the new docker compose config, then add your own binary image and run it.

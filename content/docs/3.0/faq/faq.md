@@ -23,7 +23,7 @@ Inspired by Google F1 and Spanner, TiDB and TiKV adopt a highly-layered architec
 
 ## How do I run TiKV?
 
-For further information, see [Quick Start](../tasks/getting-started.md) for deploying a TiKV testing cluster, or [Deploy TiKV](../tasks/deploy/introduction.md) for deploying TiKV in production.
+For further information, see [Quick Start](../../tasks/getting-started) for deploying a TiKV testing cluster, or [Deploy TiKV](../../tasks/deploy/introduction) for deploying TiKV in production.
 
 ## When to use TiKV?
 
@@ -70,7 +70,7 @@ TiKV has an optimistic transaction model, which means the client will buffer all
 
 ## Can I use TiKV as a key-value store?
 
-Yes. For now, we have a stable [TiKV driver for Go](https://github.com/pingcap/tidb/tree/master/store/tikv). There are also drivers for [other languages in development](../reference/clients/introduction.md).
+Yes. That's what TiKV is.
 
 ## How does TiKV compare to NoSQL databases like Cassandra, HBase, or MongoDB?
 
