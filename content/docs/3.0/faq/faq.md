@@ -78,7 +78,7 @@ TiKV is as scalable as NoSQL databases like to advertise, while including featur
 
 ## What is the recommended number of replicas in the TiKV cluster? Is it better to keep the minimum number for high availability?
 
-Use 3 replicas for testing. If you increase the number of replicas, the performance declines but it is more secure. Whether to configure more replicas depends on the specific business needs.
+You should never operate a TiKV cluster with under 3 nodes in a production scenario. Depending on infrastructure, workload, and resiliency needs, you may wish to increase this number.
 
 ## If a node is down, will the service be affected? How long?
 
