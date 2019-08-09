@@ -48,7 +48,7 @@
 <section class="section has-background-primary">
   <div class="container">
     <div class="columns">
-      {{ range $features }}
+      {{ range where $features "featured" true }}
       <div class="column">
         <div class="card">
           <header class="card-header">

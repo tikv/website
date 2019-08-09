@@ -4,6 +4,7 @@ description: Interact with TiKV using the raw key-value API or the transactional
 menu:
     docs:
         parent: Reference
+        weight: 2
 ---
 
 TiKV has clients for a number of languages:

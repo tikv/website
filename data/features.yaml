@@ -1,12 +1,33 @@
 - name: Geo-replication
   description: TiKV uses the [Raft](https://raft.github.io/) consensus algorithm and the [Placement Driver](/docs/3.0/concepts/architecture#placement-driver) to support geo-replication.
   icon: fa-globe
+  featured: true
 - name: Horizontal scalability
   description: With the [Placement Driver](/docs/3.0/concepts/architecture#placement-driver) and carefully designed Raft groups, TiKV excels in horizontal scalability and can easily scale to 100+ terabytes of data.
   icon: fa-ruler-horizontal
+  featured: true
 - name: Consistent distributed transactions
   description: Similar to Google's [Spanner](https://ai.google/research/pubs/pub39966), TiKV supports externally consistent distributed transactions.
   icon: fa-align-center
+  featured: true
 - name: Coprocessor support
   description: Similar to [Hbase](https://hbase.apache.org), TiKV implements a coprocessor framework to support distributed computing.
   icon: fa-microchip
+  featured: true
+- name: Automatic sharding
+  description: TiKV shards your data into regions without manual intervention, reducing maintenance burden.
+  icon: fa-boxes
+- name: Region balance
+  description: TiKV supports rebalancing regions due to faults, workload, or topology needs.
+  icon: fa-balance-scale
+- name: Dynamic membership
+  description: Grow or shrink TiKV clusters dynamically, without the need for downtime.
+  icon: fa-cogs
+- name: Rolling online updates
+  description: Using supported deployment methods, safely upgrade TiKV clusters without worry.
+- name: Extensive Metric Suite
+  description: Easily integrate TiKV into your infrastructure monitoring with extensive Prometheus reporting.
+  icon: fa-eye
+- name: Flexible APIs
+  description: Use transactional or raw gRPC APIs through clients in your favorite language, or use gRPC directly.
+  icon: fa-plug
