@@ -33,7 +33,7 @@ TiKV is at your service if your applications require:
 * Strong consistency
 * Support for distributed ACID transactions
 
-## When not to use TiKV?
+## When is TiKV inappropriate?
 
 TiKV is not yet ready to deal with very low latency reads and writes.
 
