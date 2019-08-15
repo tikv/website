@@ -4,7 +4,7 @@ description: Monitor TiKV
 menu:
     docs:
         parent: Tasks
-        weight: 3
+        weight: 4
 ---
 
 The TiKV monitoring framework adopts two open-source projects: [Prometheus](https://github.com/prometheus/prometheus) and [Grafana](https://github.com/grafana/grafana). TiKV uses Prometheus to store the monitoring and performance metrics, and uses Grafana to visualize these metrics.

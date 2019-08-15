@@ -1,10 +1,11 @@
 ---
 title: Deploy
-description: Run TiKV using Ansible or Docker
+description: Prerequisites for deploying TiKV
 menu:
     docs:
         parent: Tasks
-        weight: 1
+        weight: 2
+        name: Deploy
 ---
 
 
