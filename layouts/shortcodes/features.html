@@ -1,4 +1,7 @@
 {{ $features := site.Data.features }}
+{{ if eq (.Get 0) "featured"}}
+  {{ $features = where $features "featured" true  }}
+{{ end }}
 <table>
   <thead>
     <tr>
