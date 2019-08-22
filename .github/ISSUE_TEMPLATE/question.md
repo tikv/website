@@ -13,8 +13,5 @@ Before submitting your question, make sure you have:
 - Searched existing Stack Overflow questions.
 - Googled your question.
 - Searched the open and closed [GitHub issues](https://github.com/tikv/website/issues).
-- Read the documentation:
-  - [docs](https://github.com/pingcap/docs)
-  - [docs-cn](https://github.com/pingcap/docs-cn)
 
 Now, please describe your question here:

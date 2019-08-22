@@ -16,13 +16,13 @@ Please answer the following questions before submitting your issue. Thanks!
 
 - I saw a problem on the URL: <URL>
 
-<!-- Provide details for typos, grammatical errors, terminology misuse, ambiguity, broken links -->
+<!-- Provide details for typos, grammatical errors, terminology misuse, ambiguity, broken links, etc. -->
 
 - I couldn't find the information I wanted. I expected to find it near the following URL: <URL>
 
 <!-- Provide details for missing info -->
 
-- Other:  
+- Other:
 
 ### Suggest an improvement/fix
 
