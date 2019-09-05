@@ -1,6 +1,6 @@
 # The TiKV website
 
-This repo houses the assets used to build the [TiKV](../tikv) website available at https://tikv.org.
+This repo houses the assets used to build the [TiKV](https://github.com/tikv/tikv) website available at https://tikv.org.
 
 ## Publishing
 
@@ -9,7 +9,6 @@ The site is published automatically by [Netlify](https://netlify.com) whenever c
 ## Running the site locally
 
 To run the site locally, you'll need to install [Yarn](https://yarnpkg.com) and [Hugo](https://gohugo.io) (in particular the [extended](https://gohugo.io/getting-started/installing/) version).
-
 
 ## Adding blog posts
 
