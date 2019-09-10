@@ -10,7 +10,7 @@ TiKV | {{ .Title }}
 <section class="section">
   <div class="container">
     <div class="columns">
-      <div class="column is-narrow">
+      <div class="column is-one-quarter">
         <div class="toc">
           {{ range .Site.Menus.docs }}
           {{ $submenu := (index (where $docs "Name" .Name) 0) }}
@@ -21,12 +21,12 @@ TiKV | {{ .Title }}
         </div>
       </div>
       
-      <div class="column">
+      <div class="column is-three-quarters">
         <div class="content is-medium docs-content">
-            {{ partial "admonition.html" (dict "type" "info" "icon" "fa-info-circle" "text" ("We are currently refactoring our documentation. Please excuse any problems you may find and report them [here](https://github.com/tikv/website)." | markdownify)) }}
+          {{ partial "admonition.html" (dict "type" "info" "icon" "fa-info-circle" "text" ("We are currently refactoring our documentation. Please excuse any problems you may find and report them [here](https://github.com/tikv/website)." | markdownify)) }}
           {{ partial "docs/version-warning.html" . }}
           {{ partial "math.html" . }}
-
+          
           {{ .Content }}
         </div>
       </div>
