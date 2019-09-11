@@ -1,11 +1,4 @@
----
-title: Improve the Docs
-description: How to write documentation for TiKV
-menu:
-    docs:
-        parent: Contribute
-        weight: 2
----
+# Contributing to TiVK documentation
 
 We welcome contributions to help improve the TiKV documentation!
 

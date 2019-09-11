@@ -25,7 +25,7 @@ You can choose the one of the following areas to contribute:
 
 - [TiKV documentation](https://github.com/tikv/website/tree/master/content/docs)
 
-    We host our documentation within the [TiKV website] repository. The documentation is generated via the Hugo framework. See [Contribute to Docs](https://github.com/tikv/website/blob/master/contributing.md) for detailed steps of contribution.
+    We host our documentation within the [TiKV website] repository. The documentation is generated via the Hugo framework. See [Contribute to Docs](../docs) for detailed steps of contribution.
 
 - Libraries
 
@@ -38,6 +38,7 @@ You can choose the one of the following areas to contribute:
     - [fail-rs](https://github.com/pingcap/fail-rs): Fail points for Rust
     
     For details on how to contribute to the above dependent libraries of TiKV, refer to the **README** file in the corresponding repository.
+
 
 - [TiKV Clients](https://github.com/tikv)
 
@@ -58,7 +59,7 @@ You can choose the one of the following areas to contribute:
 
     As an open source project, we are passionate about meetups and events, where the community gather and share. Besides the official events hosted by TiKV, we would love to see you be the organizer or the participant of an event/meetup. Showing up, giving a talk, or joining in the discussions would all be a form of contribution in our eyes, and we appreciate that. Let us know if you have any ideas.
 
-- Art (To update by Ana)
+- Art
 
 ## Find an issue to work on
 
