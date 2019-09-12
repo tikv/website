@@ -8,21 +8,11 @@ about: Any suggestion? Want to add something new?
 <!--This repository is ONLY used to solve issues related to TiKV Website/Docs.
 For other issues (related to TiKV, PD, etc), please move to [other repositories](https://github.com/tikv).-->
 
-Please answer the following questions before submitting your issue. Thanks!
+### Describe the problem
 
-### Describe the problem <!--Required-->
+- Relevant URL(s): <URL>
 
-<!-- Help us find the problem quickly by choosing the following. -->
-
-- I saw a problem on the URL: <URL>
-
-<!-- Provide details for typos, grammatical errors, terminology misuse, ambiguity, broken links, etc. -->
-
-- I couldn't find the information I wanted. I expected to find it near the following URL: <URL>
-
-<!-- Provide details for missing info -->
-
-- Other:
+<!-- Provide details for typos, grammatical errors, terminology misuse, ambiguity, broken links, missing info, etc. -->
 
 ### Suggest an improvement/fix
 

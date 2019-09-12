@@ -1,11 +1,11 @@
 <!--Thanks for your contribution to TiKV documentation. -->
 
-### What is changed? <!--Required-->
+### What is changed?
 
 <!--Tell us what you did and why.-->
 
-### What is the related PR or issue link(s)? <!--Write "N/A" or remove this item if it is not applicable-->
+### Any related PRs or issues?
 
 <!--Provide a reference link that is related to your change. -->
 
-### Which version does your change affect? <!--Required; write "N/A" if it is not applicable-->
+### Which version does your change affect?
