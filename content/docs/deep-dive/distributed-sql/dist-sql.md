@@ -74,8 +74,6 @@ Supported executors:
     caption="Executors example"
     number="4" >}}
 
-![executors-example](images/executors-example.jpg)
-
 For the above example, we have the following executors on Region 1:
 
 * Aggregation: `count(*)`.
