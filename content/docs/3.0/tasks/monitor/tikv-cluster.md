@@ -134,8 +134,6 @@ See the following diagram for the deployment architecture:
     src="/img/docs/monitor-architecture.png"
     caption="Monitor architecture"
     number="1" >}}
-    
-![deployment architecture of Prometheus and Grafana in TiKV](../../images/monitor-architecture.png)
 
 > **Note:** You must add the Prometheus Pushgateway addresses to the startup parameters of the PD and TiKV components.
 
