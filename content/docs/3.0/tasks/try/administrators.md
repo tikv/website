@@ -15,71 +15,81 @@ Docker, when in Swarm mode, has a 'Stack' feature which is similar to `docker-co
 Combined with the tools learnt above, create a `dev-cluster.yml` file in your `tikv-example` folder that contains the following:
 
 ```yaml
-version: '3.7'
+version: "3.7"
 services:
-    tikv:
-        image: pingcap/tikv
-        hostname: "{{.Task.Name}}.dev_test"
-        deploy:
-            replicas: 3
-            restart_policy:
-                condition: on-failure
-                delay: 5s
-        networks:
-            test:
-                aliases:
-                    - tikv.dev_test
-        ports:
-            - "20160:20160"
-        entrypoint: /bin/sh
-        command: -c './tikv-server --addr 0.0.0.0:20160 --advertise-addr `cat /etc/hostname`:20160 --pd-endpoints pd-bootstrap.dev_test:2377,pd.dev_test:2378'
+    # In order to smooth startup and ensure the cluster doesn't get too delayed with voting, we use a bootstrap node for PD,
+    # it will always start as leader. Later it may lose it's leadership.
     pd-bootstrap:
         image: pingcap/pd
-        hostname: "{{.Task.Name}}.dev_test"
+        hostname: "{{.Task.Name}}.tikv"
         deploy:
             replicas: 1
             restart_policy:
                 condition: on-failure
                 delay: 5s
         networks:
-            test:
+            tikv:
                 aliases:
-                    - pd-bootstrap.dev_test
+                    - pd-bootstrap.tikv
         ports:
             - "2377:2377"
             - "2378:2378"
+        volumes:
+            - pd:/data
+        environment:
+            - SLOT={{.Task.Slot}}
         entrypoint: /bin/sh
-        command: -c './pd-server --name `cat /etc/hostname` --client-urls http://0.0.0.0:2377 --peer-urls http://0.0.0.0:2378 --advertise-client-urls http://`cat /etc/hostname`:2377 --advertise-peer-urls http://`cat /etc/hostname`:2378'
+        command: -c './pd-server --name `cat /etc/hostname` --data-dir /data/`cat /etc/hostname` --client-urls http://0.0.0.0:2377 --peer-urls http://0.0.0.0:2378 --advertise-client-urls http://`cat /etc/hostname`:2377 --advertise-peer-urls http://`cat /etc/hostname`:2378'
     pd:
         image: pingcap/pd
-        hostname: "{{.Task.Name}}.dev_test"
+        hostname: "{{.Task.Name}}.tikv"
         deploy:
             replicas: 2
             restart_policy:
                 condition: on-failure
                 delay: 5s
         networks:
-            test:
+            tikv:
                 aliases:
-                    - pd.dev_test
+                    - pd.tikv
         ports:
             - "2379:2379"
             - "2380:2380"
+        volumes:
+            - pd:/data
+        environment:
+            - SLOT={{.Task.Slot}}
         entrypoint: /bin/sh
-        command: -c './pd-server --name default.`cat /etc/hostname` --client-urls http://0.0.0.0:2379 --peer-urls http://0.0.0.0:2380 --advertise-client-urls http://`cat /etc/hostname`:2379 --advertise-peer-urls http://`cat /etc/hostname`:2380 --join http://pd-bootstrap.dev_test:2377'
-    example:
-        image: tikv-example
-        hostname: "{{.Task.Name}}.dev_test"
+        command: -c './pd-server --name default.`cat /etc/hostname` --data-dir /data/`cat /etc/hostname` --client-urls http://0.0.0.0:2379 --peer-urls http://0.0.0.0:2380 --advertise-client-urls http://`cat /etc/hostname`:2379 --advertise-peer-urls http://`cat /etc/hostname`:2380 --join http://pd-bootstrap.tikv:2377'
+    tikv:
+        image: pingcap/tikv
+        hostname: "{{.Task.Name}}.tikv"
         deploy:
-            replicas: 1
+            replicas: 3
+            restart_policy:
+                condition: on-failure
+                delay: 5s
         networks:
-            test:
+            tikv:
                 aliases:
-                    - example.dev_test
+                    - tikv.tikv
+        ports:
+            - "20160:20160"
+        volumes:
+            - tikv:/data
+        environment:
+            - SLOT={{.Task.Slot}}
+        entrypoint: /bin/sh
+        command: -c './tikv-server --addr 0.0.0.0:20160 --data-dir /data/`cat /etc/hostname` --advertise-addr `cat /etc/hostname`:20160 --pd-endpoints pd-bootstrap.tikv:2377,pd.tikv:2378'
 networks:
-    test:
-        driver: overlay
+    tikv:
+        name: "tikv"
+        driver: "overlay"
         attachable: true
+volumes:
+    pd:
+    tikv:
+
 ```
 
 Then, alter the `src/main.rs` file to point to `http://pd.test:2379` and rebuild the image `docker build -t tikv-example .`

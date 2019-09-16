@@ -8,9 +8,7 @@ menu:
 
 In this guide, you'll learn how to quickly get a tiny TiKV cluster running locally, then you'll use our Rust client to get, set, and scan data in TiKV. Then you'll learn how to quickly start and stop a TiKV cluster to accompany your development environment.
 
-After the [overview](), where you'll learn the basics of how TiKV works, and what you need to complete this guide, you'll be able to start a cluster using Docker in several different ways, [containers](), [services](), and as a [stack]().
-
-This guide won't worry about details such as security, resiliency, or production-readiness. (Those topics are covered more in the [Try for Administrators]() guide, and in detail in the [deploy]() guides.) Nor will this guide cover how to develop TiKV itself (See [`CONTRIBUTING.md`](https://github.com/tikv/tikv/blob/master/CONTRIBUTING.md).) Instead, this guide focuses on a good development experience and low resource consumption.
+This guide won't worry about details such as security, resiliency, or production-readiness. (Those topics are covered more in the [Try for Administrators](../administrators) guide, and in detail in the [deploy](../../deploy/introduction) guides.) Nor will this guide cover how to develop TiKV itself (See [`CONTRIBUTING.md`](https://github.com/tikv/tikv/blob/master/CONTRIBUTING.md).) Instead, this guide focuses on an easy development experience and low resource consumption.
 
 ## Overview
 
@@ -41,9 +39,9 @@ While it's possible to use TiKV through a query layer, like [TiDB](https://githu
 
 This guide assumes you have the following knowledge and tools at your disposal:
 
-* Working knowledge of your system's command line tools,
+* Working knowledge of your system's command line tools (`bash`, `powershell`),
 * Working knowledge about Docker (eg how to run or stop a container),
-* A modern Docker daemon which can support `docker service`, running on a machine with:
+* A modern Docker daemon which can support `docker stack` and the Compose File 3.7 version, running on a machine with:
     + A modern (circa >2012) x86 64-bit processor (supporting SSE4.2)
     + At least 10 GB of free storage space
     + A modest amount of memory (4+ GB) available
@@ -51,81 +49,40 @@ This guide assumes you have the following knowledge and tools at your disposal:
 
 While this guide was written with Linux in mind, you can use any operating system as long as the Docker service is able to run Linux containers. You may need to make small adaptations to commands to suite your operating system, [let us know if you get stuck](https://github.com/tikv/website/issues/new) so we can fix it!
 
-## Starting the services
+## Starting the Stack
 
-The maintainers from PingCAP publish battle-tested release images of both `pd` and `tikv` on [Docker Hub](https://hub.docker.com/u/pingcap).
+The maintainers from PingCAP publish battle-tested release images of both `pd` and `tikv` on [Docker Hub](https://hub.docker.com/u/pingcap). These are used in their [TiDB Cloud](https://pingcap.com/tidb-cloud/) kubernetes clusters as well as opt-in via their [`tidb-ansible`](https://github.com/pingcap/tidb-ansible) project.
 
 {{< info >}}
 The TiKV authors are working to publish to the [TiKV organization](https://hub.docker.com/u/tikv) by 2020.
 {{< /info >}}
 
-To begin, you can use `docker service create` to create the services. A brief overview of the command we're using:
+For a TiKV client to interact with a TiKV cluster, it needs to be able to reach each PD and TiKV node. Since TiKV balances and replicates data across all nodes, and any node may be in charge of any particular *Region* of data, your client needs to be able to reach every node involved. (Replicas of your clients do not need to be able to reach each other.)
 
-* `--name`: The name of the service.
-* `--replica`: This configuration only supports 1 replica.
-* `--network`: `host` means containers are addressable as `localhost`.
-* `--init`: Provide a `tini` based init for the service containers.
-* `--restart-condition`: `on-failure` configures the service to only restart when exit not zero.
-* `--restart-delay`: Using a `5s` delay helps prevent many quick restarts.
-* `--mount`: Using a volume means state will persist in case of restart.
+In the interest of making sure this guide can work for all platforms, it uses `docker stack` to deploy an ultra-minimal cluster that you can quickly tear down and bring back up again. This cluster won't feature security, persistence, or have static hostnames.
 
-Then the configuration for PD:
+**Unless you've tried using `docker stack` before**, you may need to run `docker swarm init`. If you're unsure, it's best just to run it and ignore the error if you see one.
+
+To begin, use `git` to clone the [`tikv-docker-stack`](https://github.com/Hoverbear/tikv-docker-stack) project:
 
 ```bash
-docker service create \
-    --name "pd" \
-    --replicas 1 \
-    --network "host" \
-    --init \
-    --restart-condition "on-failure" \
-    --restart-delay "5s" \
-    --mount "type=volume,src=pd,target=/data" \
-    pingcap/pd \
-        --client-urls "http://0.0.0.0:2379" \
-        --advertise-client-urls "http://localhost:2379" \
-        --data-dir "/data"
+git clone https://github.com/Hoverbear/tikv-docker-stack
+cd tikv-docker-stack
 ```
 
-* `--client-urls`: Listening on all ports keeps this configuration simple.
-* `--advertise-client-urls`: Inform other services to look for this on `localhost`.
-* `--data-dir`: Store data in `/data`, the volume created for it.
-
-Finally, the configuration for TiKV:
+Next, you can deploy the stack to Docker:
 
 ```bash
-docker service create \
-    --name "tikv" \
-    --replicas 1 \
-    --network "host" \
-    --init \
-    --restart-condition "on-failure" \
-    --restart-delay "5s" \
-    --mount "type=volume,src=tikv,target=/data" \
-    pingcap/tikv \
-        --addr "0.0.0.0:20160" \
-        --advertise-addr "localhost:20160" \
-        --pd-endpoints "localhost:2379" \
-        --data-dir "/data" \
-        --status-addr "0.0.0.0:20180"
+docker stack deploy --compose-file stack.yml tikv
 ```
 
-* `--addr`: Listening on all ports keeps this configuration simple.
-* `--advertise-client-urls`: Inform other services to look for this on `localhost`.
-* `--static-addr`: Serve metrics on port 20180.
-* `--pd-endpoints`: Search for PD on the localhost.
-* `--data-dir`: Store data in `/data`, the volume created for it.
-
-When the services are successfully started, you'll see a message like:
+The output should look like this:
 
 ```bash
-overall progress: 1 out of 1 tasks
-1/1: running   [==================================================>]
-verify: Service converged
+Creating network tikv
+Creating service tikv_pd
+Creating service tikv_tikv
 ```
-
-{{< warning >}}
-If you're using Docker Desktop (for Mac or Windows), you'll need to add ports **20160** and **2379** to your allowed passthroughs.
-{{</ warning >}}
 
 ## Managing Services
 
@@ -134,33 +91,41 @@ If you're using Docker Desktop (for Mac or Windows), you'll need to add ports **
 ```bash
 $ docker service ls
 ID                  NAME                MODE                REPLICAS            IMAGE                 PORTS
-qnld8dhk5lfx        pd                  replicated          1/1                 pingcap/pd:latest
-p4uxyyyatjjo        tikv                replicated          1/1                 pingcap/tikv:latest
+6ia0pefrd811        tikv_pd             replicated          1/1                 pingcap/pd:latest     *:2379-2380->2379-2380/tcp
+26u77puqmw4d        tikv_tikv           replicated          1/1                 pingcap/tikv:latest   *:20160->20160/tcp
 ```
 
 **Turn off the services:**
 
+{{< warning >}}
+This will delete data!
+{{</ warning >}}
+
 ```bash
-$ docker service scale pd=0 tikv=0
-pd scaled to 0
-tikv scaled to 0
-overall progress: 0 out of 0 tasks
-verify: Service converged
-overall progress: 0 out of 0 tasks
+$ docker service scale tikv_pd=0 tikv_tikv=0
+tikv_pd scaled to 0
+tikv_tikv scaled to 0
+overall progress: 0 out of 0 tasks 
+verify: Service converged 
+overall progress: 0 out of 0 tasks 
 verify: Service converged
 ```
 
 **Turn services back on:**
 
+{{< info >}}
+This creates brand new containers!
+{{</ info >}}
+
 ```bash
-$ docker service scale pd=1 tikv=1
-pd scaled to 1
-tikv scaled to 1
-overall progress: 1 out of 1 tasks
-1/1: running   [==================================================>]
-verify: Service converged
-overall progress: 1 out of 1 tasks
-1/1: running   [==================================================>]
+$ docker service scale tikv_pd=1 tikv_tikv=1
+tikv_pd scaled to 1
+tikv_tikv scaled to 1
+overall progress: 1 out of 1 tasks 
+1/1: running   [==================================================>] 
+verify: Service converged 
+overall progress: 1 out of 1 tasks 
+1/1: running   [==================================================>] 
 verify: Service converged
 ```
 
@@ -169,26 +134,38 @@ verify: Service converged
 Normally, these would be pulled by Prometheus, but it is human readable and functions as a basic liveliness test.
 
 ```bash
-$ curl localhost:2379/metrics
+$ docker run -ti --network tikv alpine sh -c "apk add curl; curl http://pd.tikv:2379/metrics"
 # A lot of output...
-$ curl localhost:20180/metrics
+$ docker run -ti --network tikv alpine sh -c "apk add curl; curl http://tikv.tikv:20180/metrics"
 # A lot of output...
+```
+
+**Inquire into the resource consuption of the containers:**
+
+```bash
+$ docker stats
+CONTAINER ID        NAME                                    CPU %               MEM USAGE / LIMIT     MEM %               NET I/O             BLOCK I/O           PIDS
+c4360f65ded3        tikv_tikv.1.a8sfm113yotkkv5klqtz5cvrn   0.36%               689MiB / 30.29GiB     2.22%               8.44kB / 7.42kB     0B / 0B             66
+3f18cc8f415b        tikv_pd.1.r58jn3kolaxgqdbyb8w2mcx8r     1.56%               22.21MiB / 30.29GiB   0.07%               8.11kB / 7.75kB     0B / 0B             21
 ```
 
 ## Creating a project
 
-Below, we'll use the Rust client, but you are welcome to use [any TiKV client](../../../reference/clients/introduction/).
+Below, you'll use the Rust client, but you are welcome to use [any TiKV client](../../../reference/clients/introduction/).
 
-Before you start, make sure you have **Rustup** installed through the recommended method on [`rustup.rs`](https://rustup.rs/) for your platform. You'll also need a version of the protobuf compiler. 
+Because you will eventually need to deploy the binary into the same network as the PD and TiKV nodes, 
 
-You can create a new example project with `cargo new tikv-example`, then, change into the directory.
+You can create a new example project then change into the directory:
+
+```bash
+cargo new tikv-example
+cd tikv-example
+```
 
 {{< warning >}}
 You will need to use a `nightly` toolchain that supports the `async`/`await` feature in order to use the TiKV client in the guide below. This is expected to become stable in Rust 1.38.0.
 
-For now, please `echo 'nightly' > ./rust-toolchain` in the project directory.
-
-We plan to publish the first stable version of the TiKV client shortly after.
+For now, please `echo 'nightly-2019-08-25' > ./rust-toolchain` in the project directory.
 {{< /warning >}}
 
 Next, you'll need to add the TiKV client as a dependency in the `Cargo.toml` file:
@@ -208,7 +185,7 @@ use tikv_client::{Config, RawClient, Error};
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
-    let config = Config::new(vec!["http://localhost:2379"]);
+    let config = Config::new(vec!["http://pd.tikv:2379"]);
     let client = RawClient::new(config)?;
     let key = "TiKV".as_bytes().to_owned();
     let value = "Works!".as_bytes().to_owned();
@@ -220,10 +197,8 @@ async fn main() -> Result<(), Error> {
         std::str::from_utf8(&value).unwrap()
     );
 
-    let returned: Vec<u8> = client.get(key.clone())
-        .await?
+    let returned: Vec<u8> = client.get(key.clone()).await?
         .expect("Value should be present.").into();
-
     assert_eq!(returned, value);
     println!(
         "Get: {} => {}",
@@ -241,9 +216,11 @@ cargo run
 ```
 
 {{< info >}}
-TiKV works with binary data to enable users to store arbitrary data such as binaries or non-UTF-8 encoded data.
+TiKV works with binary data to enable your project to store arbitrary data such as binaries or non-UTF-8 encoded data if necessary.
 {{< /info >}}
 
 At this point, you're ready to start developing against TiKV!
 
 Want to keep reading? You can explore [Deep Dive TiKV](../../../deep-dive/introduction) to learn more about how TiKV works at a technical level.
+
+Want to improve your Rust abilities? Some of our contributors work on creating [Practical Network Applications](https://github.com/pingcap/talent-plan/tree/master/rust), an open self guided study to master Rust while making fun distributed systems.
