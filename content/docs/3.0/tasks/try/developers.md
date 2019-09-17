@@ -134,9 +134,9 @@ verify: Service converged
 Normally, these would be pulled by Prometheus, but it is human readable and functions as a basic liveliness test.
 
 ```bash
-$ docker run -ti --network tikv alpine sh -c "apk add curl; curl http://pd.tikv:2379/metrics"
+$ docker run --rm -ti --network tikv alpine sh -c "apk add curl; curl http://pd.tikv:2379/metrics"
 # A lot of output...
-$ docker run -ti --network tikv alpine sh -c "apk add curl; curl http://tikv.tikv:20180/metrics"
+$ docker run --rm -ti --network tikv alpine sh -c "apk add curl; curl http://tikv.tikv:20180/metrics"
 # A lot of output...
 ```
 
@@ -172,9 +172,7 @@ Next, you'll need to add the TiKV client as a dependency in the `Cargo.toml` fil
 
 ```toml
 [dependencies]
-tikv-client = {
-    git = "https://github.com/tikv/client-rust.git"
-}
+tikv-client = { git = "https://github.com/tikv/client-rust.git" }
 tokio = "0.2.0-alpha.4"
 ```
 
@@ -238,7 +236,7 @@ WORKDIR /builder/build
 RUN cargo fetch
 RUN cargo build --release
 COPY src /builder/build/src
-RUN rm -rf ./target/release/.fingerprint/tikv-example
+RUN rm -rf ./target/release/.fingerprint/tikv-example*
 
 # Actually build the binary
 RUN cargo build --release
