@@ -1,7 +1,7 @@
 ---
 title: This Month in TiKV - August 2019
 date: 2019-09-18
-author: Nick Cameron
+author: Ana Hobden
 ---
 
 # This month in TiKV: August 2019
