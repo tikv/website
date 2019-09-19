@@ -14,7 +14,7 @@ You can alternatively use the provided `Dockerfile` via:
 
 ```bash
 docker build -t tikv/website .
-docker run -it --rm -p 1313:1313 -v `pwd`:/home/builder/build tikv/website sh -c "yarn && make serve-production"
+docker run -it --rm -p 1313:1313 -v `pwd`:/home/builder/build tikv/website
 ```
 
 ## Adding blog posts
