@@ -96,7 +96,7 @@ Here's some of the things our contributors have been working on over the last mo
 * [@sunxiaoguang] has been battle testing TiKV on massive, China-scale workloads at Zhihu ([See his article!](https://pingcap.com/success-stories/lesson-learned-from-queries-over-1.3-trillion-rows-of-data-within-milliseconds-of-response-time-at-zhihu/))
 * [@busyjay] and [@zhangjinpeng1987] have been evaluating bloom filters.
 * [@5kbpers], [@brson] and [@aknuds1] have begun work on the engine abstraction project.
-* [MyonKeminta] has been driving a project to facilitate larger transactions.
+* [@MyonKeminta] has been driving a project to facilitate larger transactions.
 
 If any of these projects sound like something you'd like to contribute to, let us know on our [chat](https://tikv.org/chat) and we'll try to help you get involved.
 
