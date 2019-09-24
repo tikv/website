@@ -59,8 +59,6 @@ You can choose the one of the following areas to contribute:
 
     As an open source project, we are passionate about meetups and events, where the community gather and share. Besides the official events hosted by TiKV, we would love to see you be the organizer or the participant of an event/meetup. Showing up, giving a talk, or joining in the discussions would all be a form of contribution in our eyes, and we appreciate that. Let us know if you have any ideas.
 
-- Art
-
 ## Find an issue to work on
 
 For beginners, we have prepared many suitable tasks for you. You can check out, for example, our [Help Wanted issues](https://github.com/tikv/tikv/issues?q=is%3Aissue+is%3Aopen+label%3A%22S%3A+HelpWanted%22) in the TiKV repository.
@@ -69,8 +67,8 @@ See below for some commonly used labels across major repositories listed in [Pic
 
 - **`bug`** Something is wrong; can be small or big in scope
 - **`good first issue`** - An ideal first issue to work on for beginners, with mentoring available
-- **`HelpWanted`** - Help wanted. Contributions are very welcome!
-- **`Discussion`** - Status: Under discussion or need discussion
+- **`help wanted`** - Help wanted. Contributions are very welcome!
+- **`discussion`** - Status: Under discussion or need discussion
 - **`enhancement`** New feature or request
 - **`question`** Further information is requested, or the question is to be answered.
 
@@ -79,11 +77,3 @@ See below for some commonly used labels across major repositories listed in [Pic
 {{< info >}}
 If you need any help or mentoring getting started, understanding the codebase, or making a PR (or anything else really), please ask on [Slack](https://join.slack.com/t/tikv-wg/shared_invite/enQtNTUyODE4ODU2MzI0LTgzZDQ3NzZlNDkzMGIyYjU1MTA0NzIwMjFjODFiZjA0YjFmYmQyOTZiNzNkNzg1N2U1MDdlZTIxNTU5NWNhNjk), [Discourse](https://forum.tikv.org/c/tikv), or [WeChat](https://github.com/tikv/tikv#wechat).
 {{< /info >}}
-
-
- 
-
- 
-
-
-

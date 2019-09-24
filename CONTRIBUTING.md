@@ -25,7 +25,7 @@ If you spot any issue in the documentation that requires a change, and you feel 
 
 If you have a specific idea of a fix or update, and you have everything ready (mostly Git environment), follow the steps below to submit a PR:
 
-1. Fork the repository and clone it to your local:
+1. **Fork the repository**, and then clone it to your local:
     
     ```bash
     git clone git@github.com:$user/tikv/website.git # Replace "$user" with your GitHub ID
@@ -64,7 +64,7 @@ If you have a specific idea of a fix or update, and you have everything ready (m
 
     ```bash
     git add <file> ... # Add the file(s) you want to commit
-    git commit -s -m "commit-message: update the xx" # "-s" is used for DCO sign-off, which is required.
+    git commit -s -m "description of changes" # "-s" is used for DCO sign-off, which is required.
     ```
 
     > **Note:** Our repository requires a DCO (Developer Certificate of Origin) for each commit. For more information see <https://github.com/probot/dco#how-it-works>.
@@ -85,7 +85,7 @@ By now you have finished the general procedure of submitting a PR. Congratulatio
 
 Our documentation and website is generated based on HUGO framework. If you want to test any changes that you made locally before submitting them as a PR, follow the steps below:
 
-1. Install Hugo and some dependencies. For example, on a Mac, run:
+1. Install Hugo and Node Package Manager (NPM). For example, on a Mac, run:
 
     ```
     brew update
@@ -107,13 +107,4 @@ Our documentation and website is generated based on HUGO framework. If you want 
     Press Ctrl+C to stop
     ```
 
-4. Point your browser at <http://localhost:1313/> to preview your changes. If you make further changes, the site is automatically regenerated each time you hit the **Save** button. You can refresh the page to see the new changes.
-When you finish the preview, press **Ctrl + C** to stop the local server.
-
-
-
-
-
-
-
-
+4. Point your browser at <http://localhost:1313/> to preview your changes. If you make further changes, the site is automatically regenerated each time you hit the **Save** button. You can refresh the page to see the new changes. When you finish the preview, press **Ctrl + C** to stop the local server.
