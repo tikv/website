@@ -211,7 +211,7 @@ async fn main() -> Result<(), Error> {
 TiKV works with binary data to enable your project to store arbitrary data such as binaries or non-UTF-8 encoded data if necessary. While the Rust client accepts `String` values as well as `Vec<u8>`, it will only output `Vec<u8>`.
 {{< /info >}}
 
-Now, because our client needs to be part of the same network (`tikv`) as the PD and TiKV nodes, you must to build this binary into a Docker container. Your `Dockerfile` should look something like this:
+Now, because our client needs to be part of the same network (`tikv`) as the PD and TiKV nodes, you must to build this binary into a Docker container. Your `Dockerfile` (in the root of your project directory) should look something like this:
 
 ```dockerfile
 FROM ubuntu:latest
