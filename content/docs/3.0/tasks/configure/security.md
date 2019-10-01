@@ -15,17 +15,70 @@ This page discusses how to secure your TiKV deployment. Learn how to:
 
 ## Transport Layer Security (TLS)
 
-Transport Layer Security protects TiKV communications from tampering or inspection. This is useful in data centers where there may be untrustworthy (or unpriviledged) users or binaries, when operating over a WAN, or fulfilling compliance demands.
+Transport Layer Security is an standard protocol for protecting networking communications from tampering or inspection. TiKV uses OpenSSL, an industry standard, to implement it's TLS encryption.
 
-To use TLS encryption with TiKV, you need to prepare the certificates for the deployment.
+It's often necessary to use TLS in situations where TiKV is being deployed or accessed from outside of a secure virtual local area network (VLAN).  This includes deployments which cross the WAN (the public internet), are part of an untrusted datacenter network, or where other untrustworthy users or services are active.
 
-### Prepare Certificates
+Before you get started, review your infrastructure. Your organization may already use something like the [Kubernetes certificates API](https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/) to issue certificates. You will need a *Certificate Authority's* certificate, a unique server certificate and key for each TiKV or PD service, and one or many client certificates depending on your needs. If you have these, you can skip the optional section below.
+
+If your organization doesn't yet have a public key infrastructure (PKI) you can create a simple *Certificate Authority* then issue *Certificates* for the services in your deployment. Below, you can see how to do this in a few relatively quick steps.
+
+### Optional: Generate a test certificate chain
+
+Prepare certificates for each TiKV and PD node to be involved with the cluster.
 
 It is recommended to prepare a separate server certificate for TiKV and the Placement Driver (PD), and make sure that they can authenticate each other. The clients of TiKV and PD can share one client certificate.
 
 You can use multiple tools to generate self-signed certificates, such as `openssl`, `easy-rsa`, and `cfssl`.
 
-See an example of [generating self-signed certificates](https://github.com/pingcap/docs/blob/master/op-guide/generate-self-signed-certificates.md) using `cfssl`.
+Here is an example of generating self-signed certificates using [`easyrsa`](https://github.com/OpenVPN/easy-rsa/):
+
+```bash
+#! /bin/bash
+set +e
+
+mkdir -p easyrsa
+cd easyrsa
+curl -L https://github.com/OpenVPN/easy-rsa/releases/download/v3.0.6/EasyRSA-unix-v3.0.6.tgz \
+    | tar xzv --strip-components=1
+
+./easyrsa init-pki \
+    && ./easyrsa build-ca nopass
+
+NUM_PD_NODES=3
+for i in $(seq 1 $NUM_PD_NODES); do
+    ./easyrsa gen-req pd$i nopass
+    ./easyrsa sign-req server pd$i
+done
+
+NUM_TIKV_NODES=3
+for i in $(seq 1 $NUM_TIKV_NODES); do
+    ./easyrsa gen-req tikv$i nopass
+    ./easyrsa sign-req server tikv$i
+done
+
+./easyrsa gen-req client nopass
+./easyrsa sign-req server client
+```
+
+If you run this script you'll need to interactively answer some questions and make some confirmations, you can answer anything for the CA common name, and for the PD and TiKV nodes you should use the hostnames.
+
+{{< info >}}
+You can explore the `easyrsa/vars.example` file if you are hoping to write an unattended script.
+{{< /info >}}
+
+After, you should have something like this:
+
+```bash
+$ ls easyrsa/pki/{ca.crt,issued,private}
+easyrsa/pki/ca.crt
+
+easyrsa/pki/issued:
+client.crt  pd1.crt  pd2.crt  pd3.crt  tikv1.crt  tikv2.crt  tikv3.crt
+
+easyrsa/pki/private:
+ca.key  client.key  pd1.key  pd2.key  pd3.key  tikv1.key  tikv2.key  tikv3.key
+```
 
 ### Configure the TiKV Server Certificates
 
