@@ -19,9 +19,9 @@ Transport Layer Security is an standard protocol for protecting networking commu
 
 It's often necessary to use TLS in situations where TiKV is being deployed or accessed from outside of a secure virtual local area network (VLAN).  This includes deployments which cross the WAN (the public internet), are part of an untrusted datacenter network, or where other untrustworthy users or services are active.
 
-Before you get started, review your infrastructure. Your organization may already use something like the [Kubernetes certificates API](https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/) to issue certificates. You will need a *Certificate Authority's* certificate, a unique server certificate and key for each TiKV or PD service, and one or many client certificates depending on your needs. If you have these, you can skip the optional section below.
+Before you get started, review your infrastructure. Your organization may already use something like the [Kubernetes certificates API](https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/) to issue certificates. You will need a **Certificate Authority** certificate, a unique **certificates** and **keys** for each TiKV or PD service, and one or many certificates for TiKV clients depending on your needs. If you have these, you can skip the optional section below.
 
-If your organization doesn't yet have a public key infrastructure (PKI) you can create a simple *Certificate Authority* then issue *Certificates* for the services in your deployment. Below, you can see how to do this in a few relatively quick steps.
+If your organization doesn't yet have a public key infrastructure (PKI) you can create a simple Certificate Authority then issue certificates for the services in your deployment. Below, you can see how to do this in a few relatively quick steps.
 
 ### Optional: Generate a test certificate chain
 
