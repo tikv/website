@@ -9,7 +9,7 @@ menu:
         weight: 2
 ---
 
-Learn to try, deploy, configure, monitor, then scale TiKV as you adopt the service into your project and infrastructure.
+Learn to try, deploy, configure, monitor, and scale TiKV as you adopt the service into your project and infrastructure.
 
 ## [Try](../try/introduction)
 
