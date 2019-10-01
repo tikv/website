@@ -1,14 +1,15 @@
 ---
-title: Developers
-description: Try docker locally
+title: Try
+description: Try locally with Docker
 menu:
     docs:
-        parent: Try
+        parent: Tasks
+        weight: 1
 ---
 
 In this guide, you'll learn how to quickly get a tiny TiKV cluster running locally, then you'll use our Rust client to get, set, and scan data in TiKV. Then you'll learn how to quickly start and stop a TiKV cluster to accompany your development environment.
 
-This guide won't worry about details such as security, resiliency, or production-readiness. (Those topics are covered more in the [Try for Administrators](../administrators) guide, and in detail in the [deploy](../../deploy/introduction) guides.) Nor will this guide cover how to develop TiKV itself (See [`CONTRIBUTING.md`](https://github.com/tikv/tikv/blob/master/CONTRIBUTING.md).) Instead, this guide focuses on an easy development experience and low resource consumption.
+This guide won't worry about details such as security, resiliency, or production-readiness. (Those topics are covered more in detail in the [deploy](../../deploy/introduction) guides.) Nor will this guide cover how to develop TiKV itself (See [`CONTRIBUTING.md`](https://github.com/tikv/tikv/blob/master/CONTRIBUTING.md).) Instead, this guide focuses on an easy development experience and low resource consumption.
 
 ## Overview
 
@@ -18,14 +19,7 @@ Communication between TiKV, PD, and any services which use TiKV is done via gRPC
 
 Using Docker, you'll create pair of persistent services `tikv` and `pd` and learn to manage them easily. Then you'll write a simple Rust client application and run it from your local host. Finally, you'll learn how to quicky teardown and bring up the services, and review some basic limitations of this configuration.
 
-{{< diagram >}}
-graph LR
-    client --- pd
-    client --- tikv
-    subgraph "Docker"
-        tikv --- pd
-    end
-{{< /diagram >}}
+![Architecture](../../../../img/docs/getting-started-docker.svg)
 
 {{< warning >}}
 In a production deployment there would be **at least** three TiKV services and three PD services spread among 6 machines. Most deployments also include kernel tuning, sysctl tuning, robust systemd services, firewalls, monitoring with prometheus, grafana dashboards, log collection, and more. Even still, to be sure of your resilience and security, consider consulting our [maintainers](https://github.com/tikv/tikv/blob/master/MAINTAINERS.md).
@@ -39,8 +33,7 @@ While it's possible to use TiKV through a query layer, like [TiDB](https://githu
 
 This guide assumes you have the following knowledge and tools at your disposal:
 
-* Working knowledge of your system's command line tools (`bash`, `powershell`),
-* Working knowledge about Docker (eg how to run or stop a container),
+* Working knowledge about Docker (e.g. how to run or stop a container),
 * A modern Docker daemon which can support `docker stack` and the Compose File 3.7 version, running on a machine with:
     + A modern (circa >2012) x86 64-bit processor (supporting SSE4.2)
     + At least 10 GB of free storage space
@@ -49,13 +42,9 @@ This guide assumes you have the following knowledge and tools at your disposal:
 
 While this guide was written with Linux in mind, you can use any operating system as long as the Docker service is able to run Linux containers. You may need to make small adaptations to commands to suite your operating system, [let us know if you get stuck](https://github.com/tikv/website/issues/new) so we can fix it!
 
-## Starting the Stack
+## Starting the stack
 
 The maintainers from PingCAP publish battle-tested release images of both `pd` and `tikv` on [Docker Hub](https://hub.docker.com/u/pingcap). These are used in their [TiDB Cloud](https://pingcap.com/tidb-cloud/) kubernetes clusters as well as opt-in via their [`tidb-ansible`](https://github.com/pingcap/tidb-ansible) project.
-
-{{< info >}}
-The TiKV authors are working to publish to the [TiKV organization](https://hub.docker.com/u/tikv) by 2020.
-{{< /info >}}
 
 For a TiKV client to interact with a TiKV cluster, it needs to be able to reach each PD and TiKV node. Since TiKV balances and replicates data across all nodes, and any node may be in charge of any particular *Region* of data, your client needs to be able to reach every node involved. (Replicas of your clients do not need to be able to reach each other.)
 
@@ -63,11 +52,94 @@ In the interest of making sure this guide can work for all platforms, it uses `d
 
 **Unless you've tried using `docker stack` before**, you may need to run `docker swarm init`. If you're unsure, it's best just to run it and ignore the error if you see one.
 
-To begin, use `git` to clone the [`tikv-docker-stack`](https://github.com/Hoverbear/tikv-docker-stack) project:
+To begin, create a `stack.yml`:
+
+```yml
+version: "3.7"
+
+x-defaults: &defaults
+    init: true
+    volumes:
+        - ./entrypoints:/entrypoints
+    environment:
+        SLOT: "{{.Task.Slot}}"
+        NAME: "{{.Task.Name}}"
+    entrypoint: /bin/sh
+    deploy:
+        replicas: 1
+        restart_policy:
+            condition: on-failure
+            delay: 5s
+
+services:
+    pd:
+        <<: *defaults
+        image: pingcap/pd
+        hostname: "{{.Task.Name}}.tikv"
+        init: true
+        networks:
+            tikv:
+                aliases:
+                    - pd.tikv
+        ports:
+            - "2379:2379"
+            - "2380:2380"
+        command: /entrypoints/pd.sh
+    tikv:
+        <<: *defaults
+        image: pingcap/tikv
+        hostname: "{{.Task.Name}}.tikv"
+
+        networks:
+            tikv:
+                aliases:
+                    - tikv.tikv
+        ports:
+            - "20160:20160"
+        command: /entrypoints/tikv.sh
+
+networks:
+    tikv:
+        name: "tikv"
+        driver: "overlay"
+        attachable: true
+```
+
+Then create `entrypoints/pd.sh` with the following:
 
 ```bash
-git clone https://github.com/Hoverbear/tikv-docker-stack
-cd tikv-docker-stack
+#! /bin/sh
+set -e
+
+if [ $SLOT = 1 ]; then 
+    exec ./pd-server \
+        --name $NAME \
+        --client-urls http://0.0.0.0:2379 \
+        --peer-urls http://0.0.0.0:2380 \
+        --advertise-client-urls http://`cat /etc/hostname`:2379 \
+        --advertise-peer-urls http://`cat /etc/hostname`:2380
+else
+    exec ./pd-server \
+        --name $NAME \
+        --client-urls http://0.0.0.0:2379 \
+        --peer-urls http://0.0.0.0:2380 \
+        --advertise-client-urls http://`cat /etc/hostname`:2379 \
+        --advertise-peer-urls http://`cat /etc/hostname`:2380 \
+        --join http://pd.tikv:2379
+fi
+```
+
+Last, an `entrypoints.tikv.sh` with the following:
+
+```bash
+#!/bin/sh
+set -e
+
+exec ./tikv-server \
+    --addr 0.0.0.0:20160 \
+    --status-addr 0.0.0.0:20180 \
+    --advertise-addr `cat /etc/hostname`:20160 \
+    --pd-endpoints pd.tikv:2379
 ```
 
 Next, you can deploy the stack to Docker:
@@ -84,7 +156,7 @@ Creating service tikv_pd
 Creating service tikv_tikv
 ```
 
-## Managing Services
+## Managing services
 
 **Check the state of running services:**
 
@@ -149,6 +221,12 @@ c4360f65ded3        tikv_tikv.1.a8sfm113yotkkv5klqtz5cvrn   0.36%               
 3f18cc8f415b        tikv_pd.1.r58jn3kolaxgqdbyb8w2mcx8r     1.56%               22.21MiB / 30.29GiB   0.07%               8.11kB / 7.75kB     0B / 0B             21
 ```
 
+**Remove the stack entirely:**
+
+```bash
+$ docker stack rm tikv
+```
+
 ## Creating a project
 
 Below, you'll use the Rust client, but you are welcome to use [any TiKV client](../../../reference/clients/introduction/).
@@ -211,7 +289,7 @@ async fn main() -> Result<(), Error> {
 TiKV works with binary data to enable your project to store arbitrary data such as binaries or non-UTF-8 encoded data if necessary. While the Rust client accepts `String` values as well as `Vec<u8>`, it will only output `Vec<u8>`.
 {{< /info >}}
 
-Now, because our client needs to be part of the same network (`tikv`) as the PD and TiKV nodes, you must to build this binary into a Docker container. Your `Dockerfile` (in the root of your project directory) should look something like this:
+Now, because the client needs to be part of the same network (`tikv`) as the PD and TiKV nodes, you must to build this binary into a Docker container. Create a `Dockerfile` in the root of your project directory with the following content:
 
 ```dockerfile
 FROM ubuntu:latest

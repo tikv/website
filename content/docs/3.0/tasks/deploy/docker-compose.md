@@ -4,7 +4,7 @@ description: Use Docker Compose to quickly deploy a TiKV testing cluster on a si
 menu:
     docs:
         parent: Deploy
-        weight: 1
+        weight: 5
 ---
 
 This guide describes how to quickly deploy a TiKV testing cluster using [Docker Compose](https://github.com/pingcap/tidb-docker-compose/) on a single machine. Currently, this installation method only supports the Linux system.
