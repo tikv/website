@@ -24,7 +24,7 @@ Using Docker, you'll create pair of persistent services `tikv` and `pd` and lear
 {{< warning >}}
 In a production deployment there would be **at least** three TiKV services and three PD services spread among 6 machines. Most deployments also include kernel tuning, sysctl tuning, robust systemd services, firewalls, monitoring with prometheus, grafana dashboards, log collection, and more. Even still, to be sure of your resilience and security, consider consulting our [maintainers](https://github.com/tikv/tikv/blob/master/MAINTAINERS.md).
 
-If you are interested in deploying for production we suggest investigating the [administrator's getting started guide](../administrators) then the [deploy](../../deploy/introduction) guides.
+If you are interested in deploying for production we suggest investigating the [deploy](../../deploy/introduction) guides.
 {{< /warning >}}
 
 While it's possible to use TiKV through a query layer, like [TiDB](https://github.com/pingcap/tidb) or [Titan](https://github.com/distributedio/titan), you should  refer to the user guides of those projects in order to set up test clusters. This guide only deals with TiKV, PD, and TiKV clients.
