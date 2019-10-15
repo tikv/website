@@ -73,7 +73,7 @@ The **suggested TiKV** specifications for production are:
 
 TiKV deployments require **total connectivity of all services**. Each TiKV, PD, and client must be able to reach each all other and advertise the addresses of all other services to new services. This connectivity allows TiKV and PD to replicate and balance data resiliently across the entire deployment.
 
-If the hosts are not already able to reach each other, it is possible accomplish this through a Virtual Local Area Network (VLAN). Speak to your system administrator to explore your options.
+If the hosts are not already able to reach each other, it is possible to accomplish this through a Virtual Local Area Network (VLAN). Speak to your system administrator to explore your options.
 
 TiKV requires the following network port configuration to run. Based on the TiKV deployment in actual environments, the administrator can open relevant ports in the network side and host side.
 
@@ -85,7 +85,7 @@ TiKV requires the following network port configuration to run. Based on the TiKV
 | PD | 2380 | gRPC | The server port, for communication with TiKV. |
 
 {{< info >}}
-If you are deploying tools alongside TiKV you may need to open or configure other ports. Such as port 3000 on a Grafana service, so that it is accessible.
+If you are deploying tools alongside TiKV you may need to open or configure other ports. For example, port 3000 for the Grafana service.
 {{< /info >}}
 
 You can ensure your confguration is correct by creating echo servers on the ports/IPs by using `ncat` (from the `nmap` package): 
@@ -94,10 +94,10 @@ You can ensure your confguration is correct by creating echo servers on the port
 ncat -l $PORT -k -c 'xargs -n1 echo'
 ```
 
-Then from the other machines, verify the echo server is reachable with `curl $IP:$PORT`.
+Then from the other machines, verify that the echo server is reachable with `curl $IP:$PORT`.
 
 ## Optional: Configure Monitoring
 
 TiKV can work with Prometheus and Grafana to provide a rich visual monitoring dashboard. This comes preconfigured if you use the [Ansible](../ansible) or [Docker Compose](../docker-compose) deployment methods.
 
-We strongly recommend using an up to date version of Mozilla Firefox or Google Chrome when accessing Grafana.
+We strongly recommend using an up-to-date version of Mozilla Firefox or Google Chrome when accessing Grafana.
