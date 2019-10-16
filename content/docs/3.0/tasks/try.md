@@ -129,7 +129,7 @@ else
 fi
 ```
 
-Last, an `entrypoints.tikv.sh` with the following:
+Last, an `entrypoints/tikv.sh` with the following:
 
 ```bash
 #!/bin/sh
@@ -222,6 +222,10 @@ c4360f65ded3        tikv_tikv.1.a8sfm113yotkkv5klqtz5cvrn   0.36%               
 ```
 
 **Remove the stack entirely:**
+
+{{< warning >}}
+This will delete data!
+{{</ warning >}}
 
 ```bash
 $ docker stack rm tikv
@@ -331,12 +335,6 @@ Then start the produced image:
 
 ```bash
 docker run -ti --rm --network tikv tikv-example
-```
-
-Often it's helpful to combine the build and run steps while doing interactive development. You can use the following command to use the container to build a new binary and run it:
-
-```bash
-docker run -ti --rm -v `pwd`:/builder/build --entrypoint /builder/.cargo/bin/cargo --network tikv tikv-example run
 ```
 
 At this point, you're ready to start developing against TiKV!
