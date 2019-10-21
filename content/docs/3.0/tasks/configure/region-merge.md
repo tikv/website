@@ -19,6 +19,7 @@ Region Merge is initiated by the Placement Driver (PD). The steps are:
 2. If the region size is less than `max-merge-region-size` and the number of keys the region includes is less than `max-merge-region-keys`, PD performs Region Merge on the region with the smaller one of the two adjacent Regions.
 
 **Note:**
+
 - All replicas of the two Regions to be merged must locate on the same set of TiKVs (It is ensured by PD scheduler).
 - Newly split Regions won't be merged within the period of time specified by `split-merge-interval`.
 - Region Merge won't happen within the period of time specified by `split-merge-interval` after PD starts or restarts.
