@@ -135,17 +135,17 @@ See the following diagram for the deployment architecture:
     caption="Monitor architecture"
     number="1" >}}
 
-> **Note:** You must add the Prometheus Pushgateway addresses to the startup parameters of the PD and TiKV components.
+{{< info >}}
+You must add the Prometheus Pushgateway addresses to the startup parameters of the PD and TiKV components.
+{{< /info >}}
 
 ### Set up the monitoring system
 
 See the following links for your reference:
 
-- Prometheus Pushgateway: [https://github.com/prometheus/pushgateway](https://github.com/prometheus/pushgateway)
-
-- Prometheus Server: [https://github.com/prometheus/prometheus#install](https://github.com/prometheus/prometheus#install)
-
-- Grafana: [http://docs.grafana.org](http://docs.grafana.org/)
+- [Prometheus Pushgateway](https://github.com/prometheus/pushgateway)
+- [Prometheus Server](https://github.com/prometheus/prometheus#install)
+- [Grafana](http://docs.grafana.org/)
 
 ## Manual configuration
 
@@ -186,19 +186,30 @@ Generally, you can use the default port `9091` and do not need to configure Push
 Add the Pushgateway address to the `yaml` configuration file:
 
 ```yaml
- scrape_configs:
-# The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-- job_name: 'TiKV'
+global:
+  scrape_interval:     15s  # By default, scrape targets every 15 seconds.
+  evaluation_interval: 15s  # By default, scrape targets every 15 seconds.
+  # scrape_timeout is set to the global default value (10s).
+    external_labels:
+      cluster: 'test-cluster'
+      monitor: "prometheus"
 
-  # Override the global default and scrape targets from this job every 5 seconds.
-  scrape_interval: 5s
+scrape_configs:
+  - job_name: 'pd'
+    honor_labels: true  # Do not overwrite job & instance labels.
+    static_configs:
+    - targets:
+      - '192.168.199.113:2379'
+      - '192.168.199.114:2379'
+      - '192.168.199.115:2379'
 
-  honor_labels: true
-
-  static_configs:
- - targets: ['host:port'] # use the Pushgateway address
-labels:
-  group: 'production'
+  - job_name: 'tikv'
+    honor_labels: true  # Do not overwrite job & instance labels.
+    static_configs:
+    - targets:
+      - '192.168.199.116:20180'
+      - '192.168.199.117:20180'
+      - '192.168.199.118:20180'
  ```
 
 ### Configure Grafana
@@ -206,34 +217,23 @@ labels:
 #### Create a Prometheus data source
 
 1. Log in to the Grafana Web interface.
-
     - Default address: [http://localhost:3000](http://localhost:3000)
-    - Default account name: admin
-    - Default password: admin
-
+    - Default account name: `admin`
+    - Default password: `admin`
 2. Click the Grafana logo to open the sidebar menu.
-
 3. Click "Data Sources" in the sidebar.
-
 4. Click "Add data source".
-
 5. Specify the data source information:
-
     - Specify the name for the data source.
     - For Type, select Prometheus.
     - For Url, specify the Prometheus address.
     - Specify other fields as needed.
-
 6. Click "Add" to save the new data source.
 
 #### Create a Grafana dashboard
 
 1. Click the Grafana logo to open the sidebar menu.
-
 2. On the sidebar menu, click "Dashboards" -> "Import" to open the "Import Dashboard" window.
-
-3. Click "Upload .json File" to upload a JSON file (Download [TiDB Grafana Config](https://grafana.com/tidb)).
-
+3. Click "Upload .json File" to upload a JSON file (Examples can be found in [`tidb-ansible`](https://github.com/pingcap/tidb-ansible/tree/master/scripts)).
 4. Click "Save & Open".
-
 5. A Prometheus dashboard is created.
