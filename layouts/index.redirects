@@ -2,5 +2,5 @@
 /docs     /docs/{{ $latest }}/concepts/overview/ 301!
 /docs/latest     /docs/{{ $latest }}/concepts/ 301
 /docs/latest/*   /docs/{{ $latest }}/:splat 301
-/security   /docs/{{ $latest }}/tasks/secure/ 301
+/security   /docs/{{ $latest }}/tasks/configure/security/ 301
 /chat   https://join.slack.com/t/tikv-wg/shared_invite/enQtNTUyODE4ODU2MzI0LWVlMWMzMDkyNWE5ZjY1ODAzMWUwZGVhNGNhYTc3MzJhYWE0Y2FjYjliYzY1OWJlYTc4OWVjZWM1NDkwN2QxNDE
