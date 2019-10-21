@@ -79,27 +79,6 @@ Execute the `su` command to switch the user from `root` to `tidb`. Create the SS
 ```bash
 $ su - tidb
 $ ssh-keygen -t rsa
-Generating public/private rsa key pair.
-Enter file in which to save the key (/home/tidb/.ssh/id_rsa):
-Created directory '/home/tidb/.ssh'.
-Enter passphrase (empty for no passphrase):
-Enter same passphrase again:
-Your identification has been saved in /home/tidb/.ssh/id_rsa.
-Your public key has been saved in /home/tidb/.ssh/id_rsa.pub.
-The key fingerprint is:
-SHA256:eIBykszR1KyECA/h0d7PRKz4fhAeli7IrVphhte7/So tidb@172.16.10.49
-The key's randomart image is:
-+---[RSA 2048]----+
-|=+o+.o.          |
-|o=o+o.oo         |
-| .O.=.=          |
-| . B.B +         |
-|o B * B S        |
-| * + * +         |
-|  o + .          |
-| o  E+ .         |
-|o   ..+o.        |
-+----[SHA256]-----+
 ```
 
 ## Step 3: Download TiDB-Ansible to the Control Machine
@@ -122,13 +101,13 @@ The key's randomart image is:
 
     > **Note:** It is required to download `tidb-ansible` to the `/home/tidb` directory using the `tidb` user account. If you download it to the `/root` directory, a privilege issue occurs.
 
-    If you have questions regarding which version to use, email to info@pingcap.com for more information or [file an issue](https://github.com/pingcap/tidb-ansible/issues/new).
+    If you have questions regarding which version to use, email to [info@pingcap.com](mailto:info@pingcap.com) for more information or [file an issue](https://github.com/pingcap/tidb-ansible/issues/new).
 
 ## Step 4: Install Ansible and its dependencies on the Control Machine
 
 Make sure you have logged in to the Control Machine using the `tidb` user account.
 
-It is required to use `pip` to install Ansible and its dependencies, otherwise a compatibility issue occurs. Currently, the TiDB 2.0 GA version and the master version are compatible with Ansible 2.4 and Ansible 2.5.
+It is required to use `pip` to install Ansible and its dependencies, otherwise a compatibility issue occurs. Currently, the tidb-ansible release-3.0 branch is compatible with Ansible 2.4 and Ansible 2.5.
 
 **Install Ansible and the dependencies on the Control Machine:**
 
@@ -427,10 +406,10 @@ Edit the parameters in the service configuration file:
 
 1. For the cluster topology of multiple TiKV instances on each TiKV node, you need to edit the `block-cache-size` parameter in `tidb-ansible/conf/tikv.yml`:
 
-    - `rocksdb defaultcf block-cache-size(GB)`: MEM * 80% / TiKV instance number * 30%
-    - `rocksdb writecf block-cache-size(GB)`: MEM * 80% / TiKV instance number * 45%
-    - `rocksdb lockcf block-cache-size(GB)`: MEM * 80% / TiKV instance number * 2.5% (128 MB at a minimum)
-    - `raftdb defaultcf block-cache-size(GB)`: MEM * 80% / TiKV instance number * 2.5% (128 MB at a minimum)
+    - `rocksdb defaultcf block-cache-size(GB)`: MEM * 80% / number of TiKV instances * 30%
+    - `rocksdb writecf block-cache-size(GB)`: MEM * 80% / number of TiKV instances * 45%
+    - `rocksdb lockcf block-cache-size(GB)`: MEM * 80% / number of TiKV instances * 2.5% (128 MB at a minimum)
+    - `raftdb defaultcf block-cache-size(GB)`: MEM * 80% / number of TiKV instances * 2.5% (128 MB at a minimum)
 
 2. For the cluster topology of multiple TiKV instances on each TiKV node, you need to edit the `high-concurrency`, `normal-concurrency` and `low-concurrency` parameters in the `tidb-ansible/conf/tikv.yml` file:
 
@@ -444,7 +423,7 @@ Edit the parameters in the service configuration file:
         # low-concurrency: 8
     ```
 
-    Recommended configuration: `number of instances * parameter value = CPU_Vcores * 0.8`.
+    Recommended configuration: `number of TiKV instances * parameter value = CPU_Vcores * 0.8`.
 
 3. If multiple TiKV instances are deployed on a same physical disk, edit the `capacity` parameter in `conf/tikv.yml`:
 
@@ -482,7 +461,7 @@ deploy_without_tidb = True
 
 ## Step 11: Deploy the TiKV cluster
 
-When `ansible-playbook` executes the Playbook, the default concurrent number is 5. If many target machines are deployed, you can add the `-f` parameter to specify the concurrency, such as `ansible-playbook deploy.yml -f 10`.
+When `ansible-playbook` executes the Playbook, the default concurrency number is 5. If many target machines are deployed, you can add the `-f` parameter to specify the concurrency, such as `ansible-playbook deploy.yml -f 10`.
 
 The following example uses `tidb` as the user who runs the service.
 
