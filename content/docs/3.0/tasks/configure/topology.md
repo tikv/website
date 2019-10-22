@@ -15,13 +15,13 @@ In order for PD to get the topology of the cluster, TiKV reports the topological
 
 - Startup parameter:
 
-    ```
+    ```bash
     tikv-server --labels zone=<zone>,rack=<rack>,host=<host>
     ```
 
 - Configuration:
 
-    ```
+    ```toml
     [server]
     labels = "zone=<zone>,rack=<rack>,host=<host>"
     ```
@@ -31,7 +31,7 @@ After getting the topology of the TiKV cluster, PD also needs to know the hierar
 
 - PD configuration:
 
-    ```
+    ```toml
     [replication]
     max-replicas = 3
     location-labels = ["zone", "rack", "host"]
@@ -39,7 +39,7 @@ After getting the topology of the TiKV cluster, PD also needs to know the hierar
 
 - PD controller:
 
-    ```
+    ```toml
     pd-ctl >> config set location-labels zone,rack,host
     ```
 
@@ -55,7 +55,7 @@ Assume that you have 4 data zones, each zone has 2 racks, and each rack has 2 ho
 
 Startup TiKV:
 
-```
+```bash
 # zone=z1
 tikv-server --labels zone=z1,rack=r1,host=h1
 tikv-server --labels zone=z1,rack=r1,host=h2
@@ -83,9 +83,9 @@ tikv-server --labels zone=z4,rack=r2,host=h2
 
 Configure PD:
 
-```
-use `pd-ctl` connect the PD:
-# pd-ctl 
+```bash
+# use `pd-ctl` connect the PD:
+$ pd-ctl 
 >> config set location-labels zone,rack,host
 ```
 

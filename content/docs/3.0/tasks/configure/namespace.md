@@ -7,11 +7,11 @@ menu:
         weight: 3
 ---
 
-Namespace is a mechanism used to meet the requirements of resource isolation. In this mechanism, TiKV supports dividing all the TiKV nodes in the cluster among multiple separate namespaces and classifying Regions into the corresponding namespace by using a custom namespace classifier.
+Namespacing can be used to meet the requirements of resource isolation. In this mechanism, TiKV supports dividing all the TiKV nodes in the cluster among multiple separate namespaces and classifying Regions into the corresponding namespace by using a custom namespace classifier.
 
 In this case, there is actually a constraint for the scheduling policy: the namespace that a Region belongs to should match the namespace of TiKV where each replica of this Region resides. PD continuously performs the constraint check during runtime. When it finds unmatched namespaces, it will schedule the Regions to make the replica distribution conform to the namespace configuration.
 
-In a typical TiDB cluster, the most common resource isolation requirement is resource isolation based on the SQL table schema -- for example, using non-overlapping hosts to carry data for different services. Therefore, PD provides `tableNamespaceClassifier` based on the SQL table schema by default. You can also adjust the PD server's `--namespace-classifier` parameter to use another custom classifier.
+In a typical cluster (which includes [TiDB](https://github.com/pingcap/tidb)) the most common resource isolation requirement is resource isolation based on the SQL table schema -- for example, using non-overlapping hosts to carry data for different services. Therefore, PD provides `tableNamespaceClassifier` based on the SQL table schema by default. You can also adjust the PD server's `--namespace-classifier` parameter to use another custom classifier.
 
 ## Configure namespace
 
