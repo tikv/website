@@ -8,7 +8,7 @@ Wonderful day! Welcome to the third edition of 'This Month in TiKV', covering Se
 
 ## News
 
-This month our team made one TiKV minor release! This minor releases include bug fixes and minor, backwards compatible features.
+This month our team made one TiKV minor release (v3.0.4)! This release includes bug fixes and minor, backwards compatible features.
 
 You can review the changelogs here:
 
