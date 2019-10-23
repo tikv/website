@@ -19,7 +19,15 @@ Transport Layer Security is an standard protocol for protecting networking commu
 
 It's often necessary to use TLS in situations where TiKV is being deployed or accessed from outside of a secure virtual local area network (VLAN). This includes deployments which cross the WAN (the public internet), which are part of an untrusted data center network, or where other untrustworthy users or services are active.
 
-Before you get started, review your infrastructure. Your organization may already use something like the [Kubernetes certificates API](https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/) to issue certificates. You will need a **Certificate Authority** (CA) certificate, the key for that CA certificate, as well as individual unique **certificates**, and **keys** for each TiKV or PD service, and one or many certificates for TiKV clients depending on your needs. If you have these, you can skip the optional section below.
+## Before you get started
+
+Before you get started, review your infrastructure. Your organization may already use something like the [Kubernetes certificates API](https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/) to issue certificates. You will need the following for your deployment:
+
+-  A **Certificate Authority** (CA) certificate
+-  Individual unique **certificates** and **keys** for each TiKV or PD service
+-  One or many **certificates** and **keys** for TiKV clients depending on your needs.
+
+ If you have these, you can skip the optional section below. 
 
 If your organization doesn't yet have a public key infrastructure (PKI), you can create a simple Certificate Authority to issue certificates for the services in your deployment. The instructions below show you how to do this in a few quick steps:
 
@@ -61,7 +69,7 @@ done
 ./easyrsa sign-req server client
 ```
 
-If you run this script, you'll need to interactively answer some questions and make some confirmations. You can answer with anything for the CA common name.  For the PD and TiKV nodes, you should use the hostnames.
+If you run this script, you'll need to interactively answer some questions and make some confirmations. You can answer with anything for the CA common name. For the PD and TiKV nodes, use the hostnames.
 
 {{< info >}}
 You can explore the `easyrsa/vars.example` file if you are hoping to write an unattended script.
