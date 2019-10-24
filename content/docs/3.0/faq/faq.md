@@ -11,7 +11,7 @@ menu:
 
 ## What is TiKV?
 
-TiKV is a distributed Key-Value database that features in geo-replication, horizontal scalability, consistent distributed transactions and coprocessor support. 
+TiKV is a distributed Key-Value database that features in geo-replication, horizontal scalability, consistent distributed transactions and coprocessor support.
 
 ## How do TiDB and TiKV work together? What is the relationship between the two?
 
@@ -53,16 +53,18 @@ Strong consistency means all replicas return the same value when queried for the
 
 ## Does TiKV support distributed transactions?
 
-Yes. The transaction model in TiKV is inspired by Google’s Percolator, a paper published in 2006. It’s mainly a two-phase commit protocol with some practical optimizations. This model relies on a timestamp allocator to assign monotone increasing timestamp for each transaction, so the conflicts can be detected.  
+Yes. The transaction model in TiKV is inspired by Google’s Percolator, a paper published in 2006. It’s mainly a two-phase commit protocol with some practical optimizations. This model relies on a timestamp allocator to assign
+monotonically increasing timestamp for each transaction, so that conflicts can
+be detected.  
 
 ## Does TiKV have ACID semantics?
 
 Yes. ACID semantics are guaranteed in TiKV:
 
-* Atomicity: Each transaction in TiKV is "all or nothing": if one part of the transaction fails, then the entire transaction fails, and the database state is left unchanged. TiKV guarantees atomicity in each and every situation, including power failures, errors, and crashes. 
+* Atomicity: Each transaction in TiKV is "all or nothing": if one part of the transaction fails, then the entire transaction fails, and the database state is left unchanged. TiKV guarantees atomicity in each and every situation, including power failures, errors, and crashes.
 * Consistency: TiKV ensures that any transaction brings the database from one valid state to another. Any data written to the TiKV database must be valid according to all defined rules.
 * Isolation: TiKV provides snapshot isolation (SI), snapshot isolation with lock, and externally consistent reads and writes in distributed transactions.
-* Durability: TiKV allows a collection of machines to work as a coherent group that can survive the failures of some of its members. So in TiKV, once a transaction has been committed, it will remain so, even in the event of power loss, crashes, or errors. 
+* Durability: TiKV allows a collection of machines to work as a coherent group that can survive the failures of some of its members. So in TiKV, once a transaction has been committed, it will remain so, even in the event of power loss, crashes, or errors.
 
 ## How are transactions in TiKV lock-free?
 
