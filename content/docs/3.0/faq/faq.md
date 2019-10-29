@@ -53,7 +53,7 @@ Strong consistency means all replicas return the same value when queried for the
 
 ## Does TiKV support distributed transactions?
 
-Yes. The transaction model in TiKV is inspired by Google’s Percolator, a paper published in 2006. It’s mainly a two-phase commit protocol with some practical optimizations. This model relies on a timestamp allocator to assign
+Yes. The transaction model in TiKV is inspired by Google’s Percolator, a paper published in 2006. It’s mainly a two-phase commit protocol with some practical optimizations. This model relies on a timestamp allocator to assign a
 monotonically increasing timestamp for each transaction, so that conflicts can
 be detected.  
 
