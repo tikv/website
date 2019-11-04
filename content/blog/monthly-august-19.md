@@ -4,8 +4,6 @@ date: 2019-09-18
 author: Ana Hobden
 ---
 
-# This month in TiKV: August 2019
-
 Happy day! Welcome to the second edition of 'This Month in TiKV', covering August 2019. (Yes we know it's later than the first week of September, sorry!)
 
 The TiKV authors have been busy working on improving stability, fixing bugs, and laying out the foundations of TiKV 4.0. That is a lot to cover, so let's get started!
