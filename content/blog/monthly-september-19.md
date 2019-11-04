@@ -23,7 +23,7 @@ Upgrading? Please take note of these things:
 
 Here are some articles our contributors have published over the last month:
 
-* [@AndreMouche] published an article teaching about [TiKV's MVCC implementation (Chinese)](https://pingcap.com/blog-cn/tikv-source-code-reading-13/).
+* [@breeswish] published an article teaching about [TiKV's MVCC implementation (Chinese)](https://pingcap.com/blog-cn/tikv-source-code-reading-13/).
 * [@nrc] talked on his blog about [migrating projects from Futures 0.1 to 0.3](https://www.ncameron.org/blog/migrating-a-crate-from-futures-0-1-to-0-3/).
 * [@yiwu-arbug] and [@pentium3] write about automatically tuning TiKV with [AutoTiKV (Chinese)](https://pingcap.com/blog-cn/autotikv/).
 
@@ -87,6 +87,7 @@ For more detailed and comprehensive information about TiDB and TiKV, we have wee
 * [2019-09-29](https://pingcap.com/weekly/2019-09-30-tidb-weekly/)
 
 [@AndreMouche]: https://github.com/AndreMouche
+[@breeswish]: https://github.com/breeswish/
 [@hoverbear]: https://github.com/hoverbear/
 [@sticnarf]: https://github.com/sticnarf/
 [@akunds1]: https://github.com/aknuds1
