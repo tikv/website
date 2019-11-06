@@ -10,7 +10,9 @@ menu:
 This guide describes how to deploy a multi-node TiKV cluster using Docker.
 
 {{< warning >}}
-**Warning:** Do not use Docker to deploy the TiKV cluster in the production environment. For production, [use Ansible to deploy the TiKV cluster](../ansible).
+The TiKV team  strongly recommends you use the [**Ansible Deployment**](../ansible/) method. It is the method our team uses when we assist with deployment.
+
+Other methods are documented for informational purposes. We strongly recommend [consulting with our contributors](/chat) before depending on a cluster deployed without the Ansible scripts.
 {{< /warning >}}
 
 ## Prerequisites

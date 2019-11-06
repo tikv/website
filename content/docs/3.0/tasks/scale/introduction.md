@@ -1,10 +1,10 @@
 ---
 title: Scale
-description: SCale TiKV
+description: Scale TiKV
 menu:
     docs:
         parent: Tasks
-        weight: 4
+        weight: 5
 ---
 
 You can scale out a TiKV cluster by adding nodes to increase the capacity without affecting online services. You can also scale in a TiKV cluster by deleting nodes to decrease the capacity without affecting online services.

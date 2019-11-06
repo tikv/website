@@ -9,12 +9,15 @@ menu:
 
 This guide describes how to deploy a TiKV cluster using binary files.
 
-{{< warning >}}
-**Warning:** Do not use binaries to deploy the TiKV cluster in the production environment. For production, [use Ansible to deploy the TiKV cluster](../ansible).
-{{< /warning >}}
 
 - To quickly understand and try TiKV, see [Deploy the TiKV cluster on a single machine](#deploy-the-tikv-cluster-on-a-single-machine).
 - To try TiKV out and explore the features, see [Deploy the TiKV cluster on multiple nodes for testing](#deploy-the-tikv-cluster-on-multiple-nodes-for-testing).
+
+{{< warning >}}
+The TiKV team strongly recommends you use the [**Ansible Deployment**](../ansible/) method. It is the method our team uses when we assist with deployment.
+
+Other methods are documented for informational purposes. We strongly recommend [consulting with our contributors](/chat) before depending on a cluster deployed without the Ansible scripts.
+{{< /warning >}}
 
 ## Deploy the TiKV cluster on a single machine
 

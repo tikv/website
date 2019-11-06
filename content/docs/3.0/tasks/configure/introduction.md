@@ -4,7 +4,7 @@ description: Configure a wide range of TiKV facets, including RocksDB, gRPC, the
 menu:
     docs:
         parent: Tasks
-        weight: 2
+        weight: 3
 ---
 
 TiKV features a large number of configuration options you can use to tweak TiKV's behavior. When getting started with TiKV, it's usually safe to start with the defaults, configuring only the `--pd` (`pd.endpoints`) configuration.
