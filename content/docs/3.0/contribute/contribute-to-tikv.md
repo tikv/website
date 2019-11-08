@@ -75,5 +75,5 @@ See below for some commonly used labels across major repositories listed in [Pic
 ## Ask a question
 
 {{< info >}}
-If you need any help or mentoring getting started, understanding the codebase, or making a PR (or anything else really), please ask on [Slack](https://join.slack.com/t/tikv-wg/shared_invite/enQtNTUyODE4ODU2MzI0LTgzZDQ3NzZlNDkzMGIyYjU1MTA0NzIwMjFjODFiZjA0YjFmYmQyOTZiNzNkNzg1N2U1MDdlZTIxNTU5NWNhNjk), [Discourse](https://forum.tikv.org/c/tikv), or [WeChat](https://github.com/tikv/tikv#wechat).
+If you need any help or mentoring getting started, understanding the codebase, or making a PR (or anything else really), please ask on [Slack](https://join.slack.com/t/tikv-wg/shared_invite/enQtNTUyODE4ODU2MzI0LTgzZDQ3NzZlNDkzMGIyYjU1MTA0NzIwMjFjODFiZjA0YjFmYmQyOTZiNzNkNzg1N2U1MDdlZTIxNTU5NWNhNjk), or [WeChat](https://github.com/tikv/tikv#wechat).
 {{< /info >}}
