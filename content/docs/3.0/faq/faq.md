@@ -23,7 +23,7 @@ Inspired by Google F1 and Spanner, TiDB and TiKV adopt a highly-layered architec
 
 ## How do I run TiKV?
 
-For further information, see [Quick Start](../../tasks/getting-started) for deploying a TiKV testing cluster, or [Deploy TiKV](../../tasks/deploy/introduction) for deploying TiKV in production.
+For further information, see [Quick Start](../../tasks/try) for deploying a TiKV testing cluster, or [Deploy TiKV](../../tasks/deploy/introduction) for deploying TiKV in production.
 
 ## When to use TiKV?
 
