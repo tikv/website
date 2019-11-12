@@ -7,10 +7,6 @@ disableKinds: ["taxonomy", "taxonomyTerm"]
 
 menu:
     nav:
-    - name: Forum
-      url: https://forum.tikv.org
-      parent: Community
-      weight: 1
     - name: Chat
       url: /chat
       parent: Community
