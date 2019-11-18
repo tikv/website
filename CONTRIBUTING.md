@@ -109,7 +109,7 @@ Our documentation and website is generated based on HUGO framework. If you want 
 
 ## Accomplishing common tasks
 
-There are a few common tasks done on the website, here's some pointers how to do them.
+There are a few common tasks done on the website. Here are some pointers on how to do them.
 
 ### Find which page to edit
 
@@ -137,9 +137,9 @@ We try to follow the ideas of 'Concepts', 'Tasks', and 'Reference' pages for our
 - **Tasks:** Explain how to perform a specific procedure. Eg. "How to configure TLS in TiKV?"
 - **Reference:** Detailed lists, facts, or configuration info. Eg. "Storage options in TiKV"
 
-If you're confused where to place a page or section, just write it and we'll figure out where best to put it.
+If you're confused about where to place a page or section, just write it and we'll figure out where it fits best.
 
-If you create a new page you'll need to copy the metadata from an existing page. It looks like this:
+If you create a new page, you'll need to copy the metadata from an existing page. It looks like this:
 
 ```yaml
 ---
@@ -152,11 +152,11 @@ menu:
 ---
 ```
 
-If your new page has the same name as another, you'll recieve an error and need to rename it.
+If your new page has the same name as an existing file, you need to rename it, or you'll receive an error when building the website.
 
 ### Use shortcodes
 
-In the `/layouts/shortcodes/` folder you can find a number of small 'custom elements' to add things like a `warning` or `info` panel.
+To use admonitions like a `warning` or `info` panel in the text, use shortcodes, which is a simple snippet inside a content file that Hugo will render using a predefined template, as shown below.  In the `/layouts/shortcodes/` folder, you can find a number of small 'custom elements', where you can add your custom shortcodes.
 
 ```markdown
 {{< warning >}}
@@ -166,7 +166,7 @@ Content of the warning
 
 ### Add a blog
 
-Create a file in `content/blog/` with a file with a slightly different metadata header:
+Create a file in `content/blog/` with the metadata updated accordingly:
 
 ```yaml
 ---
@@ -178,4 +178,4 @@ author: The author
 
 ### Adding an adopter
 
-Add the adopter to `data/adopters.yaml` using the format of the other datums.
+Add the adopter to `data/adopters.yaml` using the format of existing datums.
