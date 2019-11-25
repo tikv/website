@@ -18,7 +18,7 @@ Upgrading? This release includes only bugfixes!
 
 PingCAP wrote ["INSERT INTO tidb.hackathon_2019 VALUES ("Hack", "Fun", "TiDB Ecosystem")"](https://pingcap.com/blog/insert-into-tidb-hackathon-2019-values-hack-fun-tidb-ecosystem/) talking about the recent Hackathon they held in China! Two of the top three winning projects were improving TikV! Great job!
 
-See ["Using Raft to mitigate TiDB Cross-DC latency" (CN)](https://cdn2.hubspot.net/hubfs/4466002/Solution%20for%20Cross%20Datacenter%20Replication.pdf) and ["Unified Thread Pool" (EN)](https://cdn2.hubspot.net/hubfs/4466002/Unified%20Thread%20Pool.pdf) to more information!
+See ["Using Raft to mitigate TiDB Cross-DC latency" (CN)](https://cdn2.hubspot.net/hubfs/4466002/Solution%20for%20Cross%20Datacenter%20Replication.pdf) and ["Unified Thread Pool" (EN)](https://cdn2.hubspot.net/hubfs/4466002/Unified%20Thread%20Pool.pdf) for more information!
 
 ## Notable PRs
 
@@ -28,7 +28,7 @@ See ["Using Raft to mitigate TiDB Cross-DC latency" (CN)](https://cdn2.hubspot.n
 * ["Generate flamegraph at runtime"](https://github.com/tikv/tikv/pull/5697) by [@YangKeao] introduces a new HTTP interface to get flamegraphs from TiKV at runtime.
 * ["Coprocessor: v2 row format for decode"](https://github.com/tikv/tikv/pull/5725) by [@niedhui] furthers the implementation of the v2 row format.
 * ["txn: protect primary locks of pessimistic transactions from being collapsed"](https://github.com/tikv/tikv/pull/5575) by [@sticnarf] adds some additional safety to pessimistic locks.
-* ["Improve Coprocessor Table Lookup Performance"](https://github.com/tikv/tikv/pull/5682) by [@breeswish] introduces a new interface on the MVCC level which can reuse cursors when keys in ascending order, improving lookup performance.
+* ["Improve Coprocessor Table Lookup Performance"](https://github.com/tikv/tikv/pull/5682) by [@breeswish] introduces a new interface on the MVCC level which can reuse cursors when keys are in ascending order, improving lookup performance.
 * ["util: compare raw and encoded keys without explicit decoding"](https://github.com/tikv/tikv/pull/5613) by [@sticnarf] allows TiKV to determine if an encoded and raw format refer to the same key without needing to encode or decode.
 
 ## Notable issues
@@ -36,7 +36,7 @@ See ["Using Raft to mitigate TiDB Cross-DC latency" (CN)](https://cdn2.hubspot.n
 <!-- https://github.com/tikv/tikv/issues?utf8=%E2%9C%93&q=is%3Aissue+created%3A2019-10+sort%3Acomments-desc+ -->
 
 * [@siddontang] found a [performance regression](https://github.com/tikv/tikv/issues/5578) in our upgrade to RocksDB 6.4.
-* Many `Copr` and `PCP` tagged issues have appeared, `Copr` issues are related to the Coprocessor SIG that has started, and the PCP competition being facilitated by PingCAP in China.
+* Many `Copr` and `PCP` tagged issues have appeared, `Copr` issues are related to the Coprocessor SIG that has started, and the Performance Challenge Program (PCP) competition being facilitated by PingCAP in China.
 * [@onitake] asked about [binary releases on Github](https://github.com/tikv/tikv/issues/5647) and we confirmed they're in progress!
 * We begun talking with relevant parties about getting an [independent security audit](https://github.com/tikv/tikv/issues/5669).
 * We were able to discover a [few](https://github.com/tikv/tikv/issues/5603) [new](https://github.com/tikv/tikv/issues/5614) [occasionally](https://github.com/tikv/tikv/issues/5611) failing tests as part of our ongoing efforts to rid TiKV's bugs.
@@ -75,7 +75,7 @@ If you'd like to get involved, we'd love to help you get started. You might be i
 
 ## This Week in TiDB
 
-For more detailed and comprehensive information about TiDB and TiKV, we have weekly updates. The following cover September,
+For more detailed and comprehensive information about TiDB and TiKV, we have weekly updates. The following cover October,
 
 * [2019-10-13](https://pingcap.com/weekly/2019-10-14-tidb-weekly/)
 * [2019-10-21](https://pingcap.com/weekly/2019-10-21-tidb-weekly/)
