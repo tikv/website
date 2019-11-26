@@ -75,7 +75,7 @@ If you'd like to get involved, we'd love to help you get started. You might be i
 
 ## This Week in TiDB
 
-For more detailed and comprehensive information about TiDB and TiKV, we have weekly updates. The following cover October,
+For more detailed and comprehensive information about TiDB and TiKV, we have weekly updates. The following cover October:
 
 * [2019-10-13](https://pingcap.com/weekly/2019-10-14-tidb-weekly/)
 * [2019-10-21](https://pingcap.com/weekly/2019-10-21-tidb-weekly/)
