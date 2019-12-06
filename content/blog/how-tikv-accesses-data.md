@@ -1,5 +1,5 @@
 ---
-title: How TiKV accesses data
+title: How TiKV reads and writes
 date: 2019-12-06
 author: Tang Liu
 ---
@@ -47,25 +47,25 @@ The most common method of distributed transactions is two-phase commit, also kno
 
 First, Percolator needs a timestamp oracle (TSO) service to allocate global timestamps for transactions. This timestamp is monotonically increasing in time and globally unique. Any transaction gets a start timestamp (`startTS`) at the beginning, and then a commit timestamp (`commitTS`) when the transaction is committed.
 
-Percolator provides three column families (CF)—Lock, Data and Write. When a key-value pair is written, the lock of this key is placed in the Lock CF, and the actual value in Data CF. If the write is successfully committed, the corresponding commit information will be stored in Write CF.
+Percolator provides three column families (CF)—Lock, Data and Write. When a key-value pair is written, the lock of this key is placed in the Lock CF, and the actual value in the Data CF. If the write is successfully committed, the corresponding commit information will be stored in the Write CF.
 
-When the key is stored in Data CF and Write CF, the corresponding timestamp will be added to the Key — `startTS` for Data CF, and `commitTS` for Write CF.
+When the key is stored in the Data CF and the Write CF, the corresponding timestamp will be added to the Key — `startTS` for the Data CF, and `commitTS` for the Write CF.
 
-Suppose we need to write `a = 1`, first  a `startTS`, 10 for example, is obtained from the TSO; then comes the PreWrite stage of Percolator, when data is written in Lock CF and Data CF, as shown below:
+Suppose we need to write `a = 1`, first a `startTS`, 10 for example, is obtained from the TSO; then comes the PreWrite stage of Percolator, when data is written in the Lock CF and the Data CF, as shown below:
 
 ```
 Lock CF: W a = lock
 Data CF: W a_10 = value
 ```
 
-If PreWrite is successful,  2PC enters the Commit phase. A `commitTS`, 11 for example, is obtained firstly from TSO, and then the write continues:
+If the PreWrite is successful, 2PC enters the Commit phase. A `commitTS`, 11 for example, is obtained firstly from TSO, and then the write continues as below:
 
 ```
 Lock CF: D a
 Write CF: W a_11 = 10
 ```
 
-If the Commit is successful, the Data CF and the Write CF contain the record for the Key-Value, while the actual data is stored in the Data CF, and the corresponding startTS is recorded in the Write CF.
+If the Commit is successful, the Data CF and the Write CF contain the record for the Key-Value, while the actual data is stored in the Data CF, and the corresponding `startTS` is recorded in the Write CF.
 
 To read data, a `startTS`, 12 for example, is obtained from the TSO, and then the read is processed as below:
 
