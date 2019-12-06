@@ -60,9 +60,9 @@ if let Ok(report) = guard.report().build() {
 
 November was a busy month, here's some highlights:
 
-* [@nrc] submitted a great refactoring in [#5857](https://github.com/tikv/tikv/pull/5857), [#5935](https://github.com/tikv/tikv/pull/5935) and [#5964](https://github.com/tikv/tikv/pull/5964), helping us make TiKV more clean and understanable.
+* [@nrc] submitted a great refactoring PR in [#5857](https://github.com/tikv/tikv/pull/5857), [#5935](https://github.com/tikv/tikv/pull/5935) and [#5964](https://github.com/tikv/tikv/pull/5964), helping us make TiKV more clean and understanable.
 * [@little-wallace] submitted a PR to optimize the conflict check in `prewrite` in [#5846](https://github.com/tikv/tikv/pull/5846).
-* [@little-wallace] also submitted an latches schheduler optimization in [#6094]https://github.com/tikv/tikv/pull/6094).
+* [@little-wallace] also submitted a latches scheduler optimization in [#6094]https://github.com/tikv/tikv/pull/6094).
 * Numerous vectorization PRs were submitted, enabling even faster coprocessor execution.
 * [@wangwangwar] introduced in-place byte encoding in the codec, helping reduce the number of allocations needed in [#6061](https://github.com/tikv/tikv/pull/6061)
 * [@brson] moved more code into engine traits as part of our ongoing engine abstraction in [#5790](https://github.com/tikv/tikv/pull/5790) and [#5901](https://github.com/tikv/tikv/pull/5901).
@@ -74,11 +74,12 @@ November was a busy month, here's some highlights:
 
 ## Notable issues
 
-> TLA+ was firstly used by PingCAP in 2017, to verify a variant of Percolator transaction model is feasible. Different from original Percolator, TiDB optimizes its efficiency by supporting primary key and secondary keys prewriting concurrently in prewrite phase. It was a problematic idea at first glance, but with TLA+ the case was clearly identified and targeted changes were applied to enable this optimization. Another example is TLA+ verified the correctness of multi-raft region merge algorithm, which gives confidence before implementing and summarized a more clear documentation. These work was made by a 4-member group and proved a worthy investing afterwards.
+> TLA+ was firstly used by PingCAP in 2017 to verify the feasibility of a variant of the Percolator transaction model. Different from the original Percolator, TiDB’s model has improved efficiency greatly by supporting primary key and secondary key prewriting concurrently in the prewrite phase. The implementation was problematic at first. Thanks to TLA+, the root cause was clearly identified and targeted changes were applied to enable this optimization. Another application of TLA+ at PingCAP is the correctness verification of the multi-raft region merge algorithm, which provided the necessary confidence before we implemented the feature. There were only 4 members invested in the TLA+ related work, but the rewards are far beyond that.
 >
-> PingCAP has maintained a repo in Github recording all specifications they wrote, and keeps aligning TLA+ specifications with newly implemented database optimization. There're still active PRs and disccussions to verify new feature and fix bug from high-level.
+> Engineers at PingCAP believe that TLA+ is necessary when it comes to verifying the correctness of distributed systems and specifying the right system behaviors to avoid future patching. They agree that TLA+ is better at expressing the subtle details which natural languages are not good at.
 >
-> Engineers here agreed that TLA+ is necessary when proving the correctness of distributed systems, specifing the behavior to avoid patching in future, expressing the subtle details which natural languages not good at. Speech and posts were shared with infra community by PingCAP to discuss on technical reflection and experience of TLA+ application.
+> PingCAP has maintained a repo in Github that records all specifications they wrote and keeps aligning TLA+ specifications with the newly implemented database optimizations. Up to now, there're still active PRs and discussions on verifying new features and bugfixes. Speeches and posts on technical reflections and experience of TLA+ application have been shared with the infra community by PingCAP.
+
 
 [@lance6716] made a great summary about how TiKV uses TLA+ in this [comment](https://github.com/tikv/tikv/issues/5784#issuecomment-550368389) in [#5784](https://github.com/tikv/tikv/issues/5784), the top discussed issue in November.
 
