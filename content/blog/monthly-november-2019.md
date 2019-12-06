@@ -4,7 +4,7 @@ date: 2019-12-04
 author: Ana Hobden
 ---
 
-As winter descends on the northern hemisphere, we encourage you to keep warm by compiling TiKV! We In November we had new minor releases, a new crate release, and some new community governance!
+As winter descends on the northern hemisphere, we encourage you to keep warm by compiling TiKV! In November we had new minor releases, a new crate release, and some community updates!
 
 Let's take a look!
 
@@ -27,7 +27,7 @@ The other changes were minor bugfixes.
 
 ## New Community Groups
 
-After several discussions, our community has voted to adopt policies to support the founding of Special Interest Groups (SIGS) and Working Groups (WGs). Long term SIGs to focus on certain components of TiKV, as well as WGs to focus on short term, multi-component projects.
+fter several discussions, our community has voted to adopt policies to support the founding of Special Interest Groups (SIGS) and Working Groups (WGs). Long-term SIGs are intended to focus on certain components of TiKV, as well as WGs to focus on short-term, cross-component projects or goals.
 
 [@breeswish] and [@lonng] founded a coprocessor SIG (named copr). Information about their group is [here](https://github.com/tikv/community/tree/master/sig/coprocessor). [@zhangjinpeng1987], [@yiwu-arbug], and [@sunxiaoguang] founded an Engine SIG. You can review their group [here](https://github.com/tikv/community/tree/master/sig/engine).
 
@@ -58,7 +58,7 @@ if let Ok(report) = guard.report().build() {
 
 ## Notable PRs
 
-November was a busy month, here's some highlights:
+November was a busy month. Here are some highlights:
 
 * [@nrc] submitted a great refactoring PR in [#5857](https://github.com/tikv/tikv/pull/5857), [#5935](https://github.com/tikv/tikv/pull/5935) and [#5964](https://github.com/tikv/tikv/pull/5964), helping us make TiKV more clean and understanable.
 * [@little-wallace] submitted a PR to optimize the conflict check in `prewrite` in [#5846](https://github.com/tikv/tikv/pull/5846).
