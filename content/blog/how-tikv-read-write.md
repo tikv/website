@@ -4,7 +4,7 @@ date: 2019-12-06
 author: Tang Liu
 ---
 
-This article introduces in detail how TiKV handles read and write operations. After reading this document, you will learn how TiKV, as a distributed database, stores the data contained in a write request and how it retrieves the corresponding data with consistency guaranteed.
+This article introduces in detail how TiKV handles read and write operations. Together we will explore how TiKV, as a distributed database, stores the data contained in a write request and how it retrieves the corresponding data with consistency guaranteed.
 
 ## Before you read it
 
@@ -17,15 +17,15 @@ Before we begin, we need to introduce some essential concepts of TiKV to help yo
     caption="Raft Process in TiKV"
     number="" >}}
 
-TiKV uses the Raft consensus algorithm to ensure data safety and consistency. By default, three replicas are supported, and these three replicas form a Raft Group.
+TiKV uses the Raft consensus algorithm to ensure data safety and consistency. By default, TiKV uses three replicas form a Raft Group.
 
-When the client needs to write some data, it sends the request to the Raft Leader. This process is called **Propose** in TiKV. The Leader encodes the operation into an entry and writes it into its own **Raft Log**. This is called **Append**.
+When the client needs to write some data, it sends the request to the Raft Leader. This process is called Propose in TiKV. The Leader encodes the operation into an entry and writes it into its own Raft Log. This is called Append.
 
-The Leader will also copy the entry to other Followers through the Raft algorithm. This is called **Replicate**. After the Follower receives the entry, it will also perform an **Append** operation, and in the meantime inform the Leader that the Append is successful.
+The Leader will also copy the entry to other Followers through the Raft algorithm. This is called Replicate. After the Follower receives the entry, it will also perform an Append operation, and in the meantime inform the Leader that the Append is successful.
 
-When the Leader finds that the entry has been appended by majority of nodes, it considers that the entry Committed. Then, it can decode the operations in the entry, execute them, and apply them to the state machine. This is called **Apply**.
+When the Leader finds that the entry has been appended by majority of nodes, it considers that the entry Committed. Then, it can decode the operations in the entry, execute them, and apply them to the state machine. This is called Apply.
 
-TiKV supports a feature called Lease Read. For Read requests, they can be sent directly to the Leader. If the Leader determines that its lease has not expired, it directly provides the Read service without having to go through the Raft process. If the lease has expired, the Leader will be forced to go through the Raft process to renew the lease before it provides the Read service.
+TiKV supports a feature called Lease Read. For Read requests, they can be sent directly to the Leader. If the Leader determines that its time-based lease has not expired, it directly provides the Read service without having to go through the Raft process. If the lease has expired, the Leader will be forced to go through the Raft process to renew the lease before it provides the Read service.
 
 
 ### Multi Raft
@@ -35,15 +35,15 @@ TiKV supports a feature called Lease Read. For Read requests, they can be sent d
     caption="Multi Raft"
     number="" >}}
 
-Because one Raft Group only processes a limited amount of data, we split the data into multiple Raft Groups, each of which correspond to a Region. The way of splitting is to slice by range. That is, we sort the keys of the data in byte order to form an infinite sorted map, and then slice it into a segments of continuous key range. Each key range is treated as a Region. The range of the Region uses the front-end and back-open mode [start, end). The end key of the previous region is the start key of the next region.
+Because one Raft Group only processes a limited amount of data, we split the data into multiple Raft Groups, each of which correspond to a Region. The way of splitting is to slice by range. That is, we sort the keys of the data in byte order to form an infinite sorted map, and then slice it into a segments of continuous key range. Each key range is treated as a Region. The range of the Region uses the front-end and back-open mode \\([start, end)\\). The end key of the previous region is the start key of the next region.
 
-Regions in TiKV have a maximum size limit. When this threshold is exceeded, it splits into two Regions, such as [a, b)-> [a, ab) + [ab, b). Conversely, if there is very little data in the Region, it will be merged with the neighboring Regions to form a larger Region, such as `[a, ab) + [ab, b)-> [a, b)`.
+Regions in TiKV have a maximum size limit. When this threshold is exceeded, it splits into two Regions, such as \\([a, b) \rightarrow [a, ab) + [ab, b)\\). Conversely, if there is very little data in the Region, it will be merged with the neighboring Regions to form a larger Region, such as \\([a, ab) + [ab, b) \rightarrow [a, b)\\).
 
 ### Percolator
 
 For the same Region, we can guarantee the consistency of the key operations  through the Raft consensus protocol. But if we want to operate data that falls on different regions at the same time, we need distributed transactions to ensure the consistency of operations.
 
-The most common method of distributed transactions is two-phase commit, also known as 2PC. TiKV draws its inspirations of 2PC implementation from Google's Percolator, with some practical optimizations to provide the distributed transaction support. The underlying mechanism of Percolator is rather complicated. For illustration purposes, we highlight the following few points:
+The most common method of distributed transactions is two-phase commit, also known as 2PC. TiKV draws its inspirations of 2PC implementation from Google's Percolator, with some practical optimizations to provide the distributed transaction support. For illustration purposes, let's highlight a few points of the mechanism:
 
 First, Percolator needs a timestamp oracle (TSO) service to allocate global timestamps for transactions. This timestamp is monotonically increasing in time and globally unique. Any transaction gets a start timestamp (`startTS`) at the beginning, and then a commit timestamp (`commitTS`) when the transaction is committed.
 
@@ -52,6 +52,10 @@ Percolator provides three column families (CF)—Lock, Data and Write. When a ke
 When the key is stored in the Data CF and the Write CF, the corresponding timestamp will be added to the Key — `startTS` for the Data CF, and `commitTS` for the Write CF.
 
 Suppose we need to write `a = 1`, first a `startTS`, 10 for example, is obtained from the TSO; then comes the PreWrite stage of Percolator, when data is written in the Lock CF and the Data CF, as shown below:
+
+{{< info >}}
+The following operation instances use W for Write, R for Read, D for Delete, and S for Seek.
+{{< /info >}}
 
 ```
 Lock CF: W a = lock
@@ -75,7 +79,7 @@ Write CF: S a_12-> a_11 = 10
 Data CF: R a_10
 ```
 
-Below are how the Percolator model reads data:
+Below is how the Percolator model reads data:
 
 1. Check to see if there is a lock in the Lock CF. If so, the read fails. If not, seek the latest commit version in the Write CF (11 in our case).
 
@@ -116,14 +120,14 @@ RocksDB supports column families, so it can directly correspond to the column fa
 
 ### PD
 
-Each TiKV reports the information of all Regions to Placement Driver (PD), so that  PD gathers the Region information of the entire cluster. Based on this, a Region routing table is formed as shown below:
+Each TiKV reports the information of all Regions to Placement Driver (PD), so that PD is aware of the Region information for the entire cluster. Based on this, a Region routing table is formed as shown below:
 
 {{< figure
     src="/img/blog/how-tikv-accesses-data/region-routing.png"
     caption="Region Routing in TiKV"
     number="" >}}
 
-When the Client needs to manipulate the data of a certain key, it first asks the PD which Region the key belongs to. For example, for key a, PD knows that it belongs to Region 1, and will return the related information to the Client, such as how many replicas are there for Region 1, which peer is the Leader now, and on which TiKV are the replicas of this leader residing, etc.
+When the Client needs to manipulate the data of a certain key, it first asks the PD which Region the key belongs to. For example, for key `a`, PD knows that it belongs to Region 1, and will return the related information to the Client, such as how many replicas are there for Region 1, which peer is the Leader now, and on which TiKV are the replicas of this leader residing, etc.
 
 The client caches the relevant Region information locally, and proceed with subsequent operations. However it is possible that the Raft Leader of the Region is changed, or the Region is split and merged. The client will know that the cache is invalid, and then obtain the latest information from PD again.
 
@@ -140,13 +144,13 @@ RowKV API is a lower-level key-value API for interacting directly with individua
 ### Write with RawKV
 
 {{< figure
-    src="/img/blog/how-tikv-accesses-data/rawkv-write.png"
+    src="/img/blog/how-tikv-accesses-data/rawkv-write.jpeg"
     caption="Write with RawKV"
     number="" >}}
 
 A regular write operation with the RawKV API, writing `a = 1` for example, involves the following steps:
 
-1. Client requests the Region for a from PD
+1. Client requests the Region for `a` from PD
 2. PD returns the Region related information, mainly the TiKV node where the Leader is located
 3. Client sends command to the TiKV node where Leader is located
 4. Leader accepts the request and executes Raft process
@@ -155,7 +159,7 @@ A regular write operation with the RawKV API, writing `a = 1` for example, invol
 ### Read with RawKV
 
 {{< figure
-    src="/img/blog/how-tikv-accesses-data/rawkv-read.png"
+    src="/img/blog/how-tikv-accesses-data/rawkv-read.jpeg"
     caption="Read with RawKV"
     number="" >}}
 
@@ -169,7 +173,7 @@ TxnKV corresponds to the Percolator mentioned above. It is a higher-level key-va
 ### Write with TxnKV
 
 {{< figure
-    src="/img/blog/how-tikv-accesses-data/txnkv-write.png"
+    src="/img/blog/how-tikv-accesses-data/txnkv-write.jpeg"
     caption="Write with TxnKV"
     number="" >}}
 
@@ -221,9 +225,9 @@ Refer to the [Percolator](#percolator) section for detailed write process with t
 
 ### SQL Key Mapping between TiDB and TiKV
 
-TiKV is a distributed KV store. On top of it we built TiDB, a distributed relational database. You may wonder how a relational table is mapped to key-value. Take the following table:
+TiKV is a distributed KV store. On top of it companies are building databases that speak different dialects. How can they use TiKV to do this? Let's take a look at TiDB, a distributed relational database from PingCAP that speaks the MySQL protocol. You may wonder how a relational table is mapped to key-value. Take the following table:
 
-```
+```sql
 CREATE TABLE t1 {
 	id BIGINT PRIMARY KEY,
 	name VARCHAR (1024),
@@ -236,10 +240,10 @@ CREATE TABLE t1 {
 
 In this example, we create table t1 with 4 fields, with `ID` as the primary key, `name` as the unique index, and `age` as a non-unique index. So how does the data in this table correspond to TiKV?
 
-In TiDB, each table has a unique ID, such as 11 here, and each index also has a unique ID, for example, 12 for the name index and 13 for the age index. We use prefixes `t` and `i` to distinguish between data and index in the table. For table `t1` above, suppose it now has two rows of data, which are (1, “a”, 10, “hello”) and (2, “b”, 12, “world”). In TiKV, each row of data has different a corresponding key-value pair, as shown below:
+In TiDB, each table has a unique ID, such as 11 here, and each index also has a unique ID, for example, 12 for the name index and 13 for the age index. We use prefixes `t` and `i` to distinguish between data and index in the table. For table `t1` above, suppose it now has two rows of data, which are `(1, “a”, 10, “hello”)` and `(2, “b”, 12, “world”)`. In TiKV, each row of data has different a corresponding key-value pair, as shown below:
 
 ```
-PK
+Primary Key
 t_11_1-> (1, "a", 10, "hello")
 t_11_2-> (2, "b", 12, "world")
 
@@ -260,4 +264,4 @@ TiDB needs to ensure the consistency of keys when interacting with TiKV, so it u
 
 ## Conclusion
 
-The above briefly introduces the process of reading and writing data in TiKV. There are still many things that have not been covered, such as error handling and performance optimization of Percolator. You can refer to [TiKV documentation](https://tikv.org/docs/3.0/concepts/overview/) and [deep dive TiKV](https://tikv.org/docs/deep-dive/introduction/) for more details. Feel free if you are interested and even better, join us in the development of the [TiKV](https://github.com/tikv/tikv) project.
+The above briefly introduces the process of reading and writing data in TiKV. There are still many things that have not been covered, such as error handling and performance optimization of Percolator. You can refer to [TiKV documentation](https://tikv.org/docs/3.0/concepts/overview/) and [deep dive TiKV](https://tikv.org/docs/deep-dive/introduction/) for more details. Even better, join us in the development of the [TiKV](https://github.com/tikv/tikv) project!
