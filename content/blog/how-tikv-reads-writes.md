@@ -13,7 +13,7 @@ Before we begin, we need to introduce some essential concepts of TiKV to help yo
 ### Raft
 
 {{< figure
-    src="/img/blog/how-tikv-accesses-data/raft-process-in-tikv.png"
+    src="/img/blog/tikv-read-write/raft-process-in-tikv.png"
     caption="Raft Process in TiKV"
     number="" >}}
 
@@ -31,7 +31,7 @@ TiKV supports a feature called Lease Read. For Read requests, they can be sent d
 ### Multi Raft
 
 {{< figure
-    src="/img/blog/how-tikv-accesses-data/multiraft.png"
+    src="/img/blog/tikv-read-write/multiraft.png"
     caption="Multi Raft"
     number="" >}}
 
@@ -123,7 +123,7 @@ RocksDB supports column families, so it can directly correspond to the column fa
 Each TiKV reports the information of all Regions to Placement Driver (PD), so that PD is aware of the Region information for the entire cluster. Based on this, a Region routing table is formed as shown below:
 
 {{< figure
-    src="/img/blog/how-tikv-accesses-data/region-routing.png"
+    src="/img/blog/tikv-read-write/region-routing.png"
     caption="Region Routing in TiKV"
     number="" >}}
 
@@ -144,7 +144,7 @@ RowKV API is a lower-level key-value API for interacting directly with individua
 ### Write with RawKV
 
 {{< figure
-    src="/img/blog/how-tikv-accesses-data/rawkv-write.jpeg"
+    src="/img/blog/tikv-read-write/rawkv-write.jpeg"
     caption="Write with RawKV"
     number="" >}}
 
@@ -159,7 +159,7 @@ A regular write operation with the RawKV API, writing `a = 1` for example, invol
 ### Read with RawKV
 
 {{< figure
-    src="/img/blog/how-tikv-accesses-data/rawkv-read.jpeg"
+    src="/img/blog/tikv-read-write/rawkv-read.jpeg"
     caption="Read with RawKV"
     number="" >}}
 
@@ -173,7 +173,7 @@ TxnKV corresponds to the Percolator mentioned above. It is a higher-level key-va
 ### Write with TxnKV
 
 {{< figure
-    src="/img/blog/how-tikv-accesses-data/txnkv-write.jpeg"
+    src="/img/blog/tikv-read-write/txnkv-write.jpeg"
     caption="Write with TxnKV"
     number="" >}}
 
@@ -217,7 +217,7 @@ For TiKV, the Lock CF will be read during the Commit phase to determine transact
 ### Read with TxnKV
 
 {{< figure
-    src="/img/blog/how-tikv-accesses-data/txnkv-read.png"
+    src="/img/blog/tikv-read-write/txnkv-read.jpeg"
     caption="Read with TxnKV"
     number="" >}}
 
