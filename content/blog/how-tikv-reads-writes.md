@@ -120,7 +120,7 @@ RocksDB supports column families, so it can directly correspond to the column fa
 
 ### PD
 
-Each TiKV reports the information of all Regions to Placement Driver (PD), so that PD is aware of the Region information for the entire cluster. Based on this, a Region routing table is formed as shown below:
+[Placement Driver (PD)](https://tikv.org/docs/3.0/concepts/architecture/#placement-driver) is the cluster manager of TiKV. Each TiKV reports the information of all Regions to PD, so that PD is aware of the Region information for the entire cluster. Based on this, a Region routing table is formed as shown below:
 
 {{< figure
     src="/img/blog/tikv-read-write/region-routing.png"
