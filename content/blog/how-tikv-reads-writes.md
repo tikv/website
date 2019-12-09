@@ -57,14 +57,14 @@ Suppose we need to write `a = 1`, first a `startTS`, 10 for example, is obtained
 The following operation instances use W for Write, R for Read, D for Delete, and S for Seek.
 {{< /info >}}
 
-```
+```text
 Lock CF: W a = lock
 Data CF: W a_10 = value
 ```
 
 If the PreWrite is successful, 2PC enters the Commit phase. A `commitTS`, 11 for example, is obtained firstly from TSO, and then the write continues as below:
 
-```
+```text
 Lock CF: D a
 Write CF: W a_11 = 10
 ```
@@ -73,7 +73,7 @@ If the Commit is successful, the Data CF and the Write CF contain the record for
 
 To read data, a `startTS`, 12 for example, is obtained from the TSO, and then the read is processed as below:
 
-```
+```text
 Lock CF: R a
 Write CF: S a_12-> a_11 = 10
 Data CF: R a_10
@@ -95,7 +95,7 @@ Each TiKV contains two RocksDB instances. One of them is used to store Raft Log,
 
 A TiKV store contains multiple Regions. In Raft RocksDB, we use the Region ID as the prefix of the key, which is combined with Raft Log ID to uniquely identify a Raft Log. For example, if there are two Regions with IDs of 1 and 2, then the Raft Log is stored in RocksDB as below:
 
-```
+```text
 1_1-> Log {a = 1}
 1_2-> Log {a = 2}
 ...
@@ -109,7 +109,7 @@ A TiKV store contains multiple Regions. In Raft RocksDB, we use the Region ID as
 
 Because we slice the key according to range, we use the key to save directly, similar to the following:
 
-```
+```text
 a-> N
 b-> N
 ```
@@ -186,7 +186,7 @@ This way the latest commits can be stored in the front, and the seek can be dire
 
 For example, suppose a key now has two commits—commitTS is 10 and 12, and startTS is 9 and 11, then the order of keys in RocksDB is:
 
-```
+```text
 Write CF:
 
 a_12-> 11
@@ -200,7 +200,7 @@ a_9-> data_9
 
 In addition, it should be noted that for small values, TiKV directly stores the value in the Write CF, so that only Read CF is required when reading. For write operations, the process is as follows:
 
-```
+```text
 PreWrite:
 
 Lock CF: W a-> Lock + Data
@@ -228,21 +228,21 @@ Refer to the [Percolator](#percolator) section for detailed write process with t
 TiKV is a distributed KV store. On top of it companies are building databases that speak different dialects. How can they use TiKV to do this? Let's take a look at TiDB, a distributed relational database from PingCAP that speaks the MySQL protocol. You may wonder how a relational table is mapped to key-value. Take the following table:
 
 ```sql
-CREATE TABLE t1 {
+CREATE TABLE t1 (
 	id BIGINT PRIMARY KEY,
 	name VARCHAR (1024),
 	age BIGINT,
 	content BLOB,
 	UNIQUE (name),
 	INDEX (age),
-}
+)
 ```
 
 In this example, we create table t1 with 4 fields, with `ID` as the primary key, `name` as the unique index, and `age` as a non-unique index. So how does the data in this table correspond to TiKV?
 
 In TiDB, each table has a unique ID, such as 11 here, and each index also has a unique ID, for example, 12 for the name index and 13 for the age index. We use prefixes `t` and `i` to distinguish between data and index in the table. For table `t1` above, suppose it now has two rows of data, which are `(1, “a”, 10, “hello”)` and `(2, “b”, 12, “world”)`. In TiKV, each row of data has different a corresponding key-value pair, as shown below:
 
-```
+```text
 Primary Key
 t_11_1-> (1, "a", 10, "hello")
 t_11_2-> (2, "b", 12, "world")
