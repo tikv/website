@@ -4,7 +4,7 @@ date: 2019-12-06
 author: Tang Liu
 ---
 
-This article introduces in detail how TiKV handles read and write operations. Together we will explore how TiKV, as a distributed database, stores the data contained in a write request and how it retrieves the corresponding data with consistency guaranteed.
+This article introduces in detail how [TiKV](https://github.com/tikv/tikv) handles read and write operations. Together we will explore how TiKV, as a distributed key-value (KV) database, stores the data contained in a write request and how it retrieves the corresponding data with consistency guaranteed.
 
 ## Before you read it
 
@@ -17,7 +17,7 @@ Before we begin, we need to introduce some essential concepts of TiKV to help yo
     caption="Raft Process in TiKV"
     number="" >}}
 
-TiKV uses the Raft consensus algorithm to ensure data safety and consistency. By default, TiKV uses three replicas form a Raft Group.
+TiKV uses the Raft consensus algorithm to ensure data safety and consistency. By default, TiKV uses three replicas to form a Raft Group.
 
 When the client needs to write some data, it sends the request to the Raft Leader. This process is called Propose in TiKV. The Leader encodes the operation into an entry and writes it into its own Raft Log. This is called Append.
 
@@ -120,7 +120,7 @@ RocksDB supports column families, so it can directly correspond to the column fa
 
 ### PD
 
-Each TiKV reports the information of all Regions to Placement Driver (PD), so that PD is aware of the Region information for the entire cluster. Based on this, a Region routing table is formed as shown below:
+[Placement Driver (PD)](https://tikv.org/docs/3.0/concepts/architecture/#placement-driver) is the cluster manager of TiKV. Each TiKV reports the information of all Regions to PD, so that PD is aware of the Region information for the entire cluster. Based on this, a Region routing table is formed as shown below:
 
 {{< figure
     src="/img/blog/tikv-read-write/region-routing.png"
@@ -264,4 +264,4 @@ TiDB needs to ensure the consistency of keys when interacting with TiKV, so it u
 
 ## Conclusion
 
-The above briefly introduces the process of reading and writing data in TiKV. There are still many things that have not been covered, such as error handling and performance optimization of Percolator. You can refer to [TiKV documentation](https://tikv.org/docs/3.0/concepts/overview/) and [deep dive TiKV](https://tikv.org/docs/deep-dive/introduction/) for more details. Even better, join us in the development of the [TiKV](https://github.com/tikv/tikv) project!
+This article briefly introduces the process of reading and writing data in TiKV. There are still many things that have not been covered, such as error handling and performance optimization of Percolator. You can refer to [TiKV documentation](https://tikv.org/docs/3.0/concepts/overview/) and [deep dive TiKV](https://tikv.org/docs/deep-dive/introduction/) for more details. Even better, join us in the development of the [TiKV](https://github.com/tikv/tikv) project!
