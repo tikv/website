@@ -27,7 +27,7 @@ The other changes were minor bugfixes.
 
 ## New Community Groups
 
-fter several discussions, our community has voted to adopt policies to support the founding of Special Interest Groups (SIGS) and Working Groups (WGs). Long-term SIGs are intended to focus on certain components of TiKV, as well as WGs to focus on short-term, cross-component projects or goals.
+After several discussions, our community has voted to adopt policies to support the founding of Special Interest Groups (SIGS) and Working Groups (WGs). Long-term SIGs are intended to focus on certain components of TiKV, as well as WGs to focus on short-term, cross-component projects or goals.
 
 [@breeswish] and [@lonng] founded a coprocessor SIG (named copr). Information about their group is [here](https://github.com/tikv/community/tree/master/sig/coprocessor). [@zhangjinpeng1987], [@yiwu-arbug], and [@sunxiaoguang] founded an Engine SIG. You can review their group [here](https://github.com/tikv/community/tree/master/sig/engine).
 
