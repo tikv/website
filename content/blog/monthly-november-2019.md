@@ -1,6 +1,6 @@
 ---
 title: This Month in TiKV - November 2019
-date: 2019-12-04
+date: 2019-12-11
 author: Ana Hobden
 ---
 
