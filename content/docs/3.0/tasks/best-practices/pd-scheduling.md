@@ -1,5 +1,5 @@
 ---
-title: PD Scheduling Best Practices
+title: PD Scheduling
 description: Learn best practice and strategy for PD scheduling.
 menu:
     docs:
@@ -9,14 +9,14 @@ menu:
 
 This document details the principles and strategies of PD scheduling through common scenarios to facilitate your application. This document assumes that you have a basic understanding of TiDB, TiKV and PD with the following core concepts:
 
-- [leader/follower/learner](../../concepts/glossary.md#leaderfollowerlearner)
-- [operator](../../concepts/glossary.md#operator)
-- [operator step](../../concepts/glossary.md#operator-step)
-- [pending/down](../../concepts/glossary.md#pendingdown)
-- [region/peer/Raft group](../../concepts/glossary.md#regionpeerraft-group)
-- [region split](../../concepts/glossary.md#region-split)
-- [scheduler](../../concepts/glossary.md#scheduler)
-- [store](../../concepts/glossary.md#store)
+- [leader/follower/learner](../../concepts/glossary#leaderfollowerlearner)
+- [operator](../../concepts/glossary#operator)
+- [operator step](../../concepts/glossary#operator-step)
+- [pending/down](../../concepts/glossary#pendingdown)
+- [region/peer/Raft group](../../concepts/glossary#regionpeerraft-group)
+- [region split](../../concepts/glossary#region-split)
+- [scheduler](../../concepts/glossary#scheduler)
+- [store](../../concepts/glossary#store)
 
 > **Note:**
 >
@@ -102,7 +102,7 @@ Region merge refers to the process of merging adjacent small regions. It serves 
 
 ## Query scheduling status
 
-You can check the status of scheduling system through metrics, [pd-ctl](../../reference/tools/pd-ctl.md) and logs. This section briefly introduces the methods of metrics and pd-ctl.
+You can check the status of scheduling system through metrics, [pd-ctl](../../reference/tools/pd-ctl) and logs. This section briefly introduces the methods of metrics and pd-ctl.
 
 ### Operator status
 

@@ -11,4 +11,4 @@ The TiKV best practices are detailed through some typical scenarios in the produ
 
 You can further explore TiKV through the following best practices:
 
-* [PD scheduling](../pd-scheduling.md)
+* [PD scheduling](../pd-scheduling)
