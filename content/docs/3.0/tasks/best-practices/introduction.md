@@ -1,6 +1,6 @@
 ---
-title: Configure
-description: Learn best practices of TiKV.
+title: Best Practices
+description: Learn the best practices of TiKV.
 menu:
     docs:
         parent: Tasks
