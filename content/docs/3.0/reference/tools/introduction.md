@@ -4,6 +4,7 @@ description: Tools which can be used to administrate TiKV
 menu:
     docs:
         parent: Reference
+        weight: 3
 ---
 
 There are a number of components and tools involved in maintaining a TiKV deployment.

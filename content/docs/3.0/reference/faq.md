@@ -6,7 +6,10 @@ menu:
         parent: Docs
         weight: 5
     docs:
-        weight: 5
+        parent: Reference
+        weight: 4
+aliases:
+    - /docs/3.0/faq/faq/
 ---
 
 ## What is TiKV?

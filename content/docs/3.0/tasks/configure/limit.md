@@ -75,7 +75,7 @@ This method is not persistent, and the configuration will revert after restartin
         » store limit 2 10
         ```
 
-See [PD Control](../../reference/tools/pd-control.md) for more detailed description of these commands.
+See [PD Control](../../reference/tools/pd-ctl/) for more detailed description of these commands.
 
 ## Sample usages
 
