@@ -10,7 +10,7 @@ menu:
 
 ### leader/follower/learner
 
-Leader/Follower/Learner each corresponds to a role in a Raft group of [peers](#region/peer/raft-group). The leader services all client requests and replicates data to the followers. If the group leader fails, one of the followers will be elected as the new leader. Learners are non-voting followers that only serves in the process of replica addition.
+Leader/Follower/Learner each corresponds to a role in a Raft group of [peers](#region-peer-raft-group). The leader services all client requests and replicates data to the followers. If the group leader fails, one of the followers will be elected as the new leader. Learners are non-voting followers that only serves in the process of replica addition.
 
 ## O
 
