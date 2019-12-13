@@ -10,6 +10,7 @@ menu:
 This document details the principles and strategies of PD scheduling through common scenarios to facilitate your application. This document assumes that you have a basic understanding of TiDB, TiKV and PD with the following core concepts:
 
 - [leader/follower/learner](../../concepts/glossary.md#leaderfollowerlearner)
+- [operator](../../concepts/glossary.md#operator)
 - [operator step](../../concepts/glossary.md#operator-step)
 - [pending/down](../../concepts/glossary.md#pendingdown)
 - [region/peer/Raft group](../../concepts/glossary.md#regionpeerraft-group)
