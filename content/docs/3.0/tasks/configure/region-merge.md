@@ -37,4 +37,4 @@ To enable Region Merge, set the following parameters to a non-zero value:
 
 You can use `split-merge-interval` to control the interval between the `split` and `merge` operations.
 
-For detailed descriptions on the above parameters, refer to [PD Control](../../reference/tools/pd-control.md).
+For detailed descriptions on the above parameters, refer to [PD Control](../../reference/tools/pd-ctl/).

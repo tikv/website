@@ -6,7 +6,10 @@ menu:
         parent: Docs
         weight: 6
     docs:
+        parent: Reference
         weight: 6
+aliases:
+    - /docs/3.0/contribute/contribute-to-tikv/
 ---
 
 As an open source project, TiKV cannot grow without support and participating of contributors from the community. If you would like to contribute to the TiKV code, our documentation, or even the website, we would appreciate your help. And we are glad to provide any support along the way.
