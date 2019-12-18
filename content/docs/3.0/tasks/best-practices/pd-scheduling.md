@@ -7,7 +7,7 @@ menu:
         weight: 1
 ---
 
-This document details the principles and strategies of PD scheduling through common scenarios to facilitate your application. This document assumes that you have a basic understanding of TiDB, TiKV and PD with the following core concepts:
+This document details the principles and strategies of PD scheduling through common scenarios to facilitate your application. This document assumes that you have a basic understanding of TiKV and PD with the following core concepts:
 
 - [leader/follower/learner](../../../concepts/glossary#leader-follower-learner)
 - [operator](../../../concepts/glossary#operator)
@@ -20,7 +20,7 @@ This document details the principles and strategies of PD scheduling through com
 
 > **Note:**
 >
-> This document initially targets TiDB 3.0. Although some features are not supported in earlier versions (2.x), the underlying mechanisms are similar and this document can still be used as a reference.
+> This document initially targets TiKV 3.0. Although some features are not supported in earlier versions (2.x), the underlying mechanisms are similar and this document can still be used as a reference.
 
 ## PD scheduling policies
 
@@ -77,7 +77,7 @@ Because different nodes might differ in performance, you can also set the weight
 
 ### Hot regions scheduling
 
-For hot regions scheduling, use `hot-region-scheduler`. Currently, in TiDB 3.0, the process is performed as follows:
+For hot regions scheduling, use `hot-region-scheduler`. Currently the process is performed as follows:
 
 1. Count hot regions by determining read/write traffic that exceeds a certain threshold for a certain period based on the information reported by stores.
 2. Redistribute these regions in a similar way to load balancing.
@@ -86,13 +86,15 @@ For hot write regions, `hot-region-scheduler` attempts to redistribute both regi
 
 ### Cluster topology awareness
 
-Cluster topology awareness enables PD to distribute replicas of a region as much as possible. This is how TiKV ensures high availability and disaster recovery capability. PD continuously scans all regions in the background. When PD finds that the distribution of regions is not optimal, it generates an operator to replace peers and redistribute regions.
+Cluster topology awareness enables PD to distribute replicas of a region as much as possible. This is how TiKV ensures high availability and disaster recovery capability. Refer to [Topology Config](../../configure/topology) to see more details.
+
+PD continuously scans all regions in the background. When PD finds that the distribution of regions is not optimal, it generates an operator to replace peers and redistribute regions.
 
 The component to check region distribution is `replicaChecker`, which is similar to a scheduler except that it cannot be disabled. `replicaChecker` schedules based on the configuration of `location-labels`. For example, `[zone,rack,host]` defines a three-tier topology for a cluster. PD attempts to schedule region peers to different zones first, or to different racks when zones are insufficient (for example, 2 zones for 3 replicas), or to different hosts when racks are insufficient, and so on.
 
 ### Scale-down and failure recovery
 
-Scale-down refers to the process when you take a store offline and mark it as "offline" using a command. PD replicates the regions on the offline node to other nodes by scheduling. Failure recovery applies when stores failed and cannot be recovered. In this case, regions with peers distributed on the corresponding store might lose replicas, which requires PD to replenish on other nodes.
+Scale-down refers to the process when you take a store offline and mark it as "offline" using a command. PD replicates the regions on the offline node to other nodes by scheduling. Failure recovery applies when stores have failed and cannot be recovered. In this case, regions with peers distributed on the corresponding store might lose replicas, which requires PD to replenish on other nodes.
 
 The processes of scale-down and failure recovery are basically the same. `replicaChecker` finds a region peer in abnormal states, and then generates an operator to replace the abnormal peer with a new one on a healthy store.
 
@@ -102,7 +104,7 @@ Region merge refers to the process of merging adjacent small regions. It serves 
 
 ## Query scheduling status
 
-You can check the status of scheduling system through metrics, [pd-ctl](../../../reference/tools/pd-ctl) and logs. This section briefly introduces the methods of metrics and pd-ctl.
+You can check the status of scheduling system through metrics, [`pd-ctl`](../../../reference/tools/pd-ctl) and logs. This section briefly introduces the methods of metrics and `pd-ctl`.
 
 ### Operator status
 
@@ -112,7 +114,7 @@ The **Grafana PD/Operator** page shows the metrics about operators, among which:
 - Operator finish duration: Execution time consumed by each operator
 - Operator step duration: Execution time consumed by the operator step
 
-You can query operators using pd-ctl with the following commands:
+You can query operators using `pd-ctl` with the following commands:
 
 - `operator show`: Queries all operators generated in the current scheduling task
 - `operator show [admin | leader | region]`: Queries operators by type
@@ -125,7 +127,7 @@ The **Grafana PD/Statistics - Balance** page shows the metrics about load balanc
 - Store leader/region count: The number of leaders/regions in each store
 - Store available: Available storage on each store
 
-You can use store commands of pd-ctl to query the balance status of each store.
+You can use store commands of `pd-ctl` to query the balance status of each store.
 
 ### Hot Region status
 
@@ -134,19 +136,19 @@ The **Grafana PD/Statistics - hotspot** page shows the metrics about hot regions
 - Hot write region’s leader/peer distribution: the leader/peer distribution in hot write regions
 - Hot read region’s leader distribution: the leader distribution in hot read regions
 
-You can also query the status of hot regions using pd-ctl with the following commands:
+You can also query the status of hot regions using `pd-ctl` with the following commands:
 
 - `hot read`: Queries hot read regions
 - `hot write`: Queries hot write regions
 - `hot store`: Queries the distribution of hot regions by store
-- `region topread [limit]`: Queries the region with top read traffic
-- `region topwrite [limit]`: Queries the region with top write traffic
+- `region topread $LIMIT`: Queries the region with top read traffic
+- `region topwrite $LIMIT`: Queries the region with top write traffic
 
 ### Region health
 
 The **Grafana PD/Cluster/Region health** panel shows the metrics about regions in abnormal states.
 
-You can query the list of regions in abnormal states using pd-ctl with region check commands:
+You can query the list of regions in abnormal states using `pd-ctl` with region check commands:
 
 - `region check miss-peer`: Queries regions without enough peers
 - `region check extra-peer`: Queries regions with extra peers
@@ -155,19 +157,19 @@ You can query the list of regions in abnormal states using pd-ctl with region ch
 
 ## Control scheduling strategy
 
-You can use pd-ctl to adjust the scheduling strategy from the following three aspects.
+You can use `pd-ctl` to adjust the scheduling strategy from the following three aspects.
 
 ### Add/delete scheduler manually
 
-PD supports dynamically adding and removing schedulers directly through pd-ctl. For example:
+PD supports dynamically adding and removing schedulers directly through `pd-ctl`. For example:
 
 - `scheduler show`: Shows currently running schedulers in the system
-- `scheduler remove balance-leader-scheduler`: Removes (disable) balance-leader-scheduler
-- `scheduler add evict-leader-scheduler-1`: Adds a scheduler to remove all leaders in Store 1
+- `scheduler remove [scheduler name]`: Removes the corresponding scheduler
+- `scheduler add [scheduler name]`: Adds a scheduler
 
 ### Add/delete Operators manually
 
-PD also supports adding or removing operators directly through pd-ctl. For example:
+PD also supports adding or removing operators directly through `pd-ctl`. For example:
 
 - `operator add add-peer 2 5`: Adds peers to Region 2 in Store 5
 - `operator add transfer-leader 2 5`: Migrates the leader of Region 2 to Store 5
@@ -176,7 +178,7 @@ PD also supports adding or removing operators directly through pd-ctl. For examp
 
 ### Adjust scheduling parameter
 
-You can check the scheduling configuration using the `config show` command in pd-ctl, and adjust the values using `config set {key} {value}`. Common adjustments include:
+You can check the scheduling configuration using the `config show` command in `pd-ctl`, and adjust the values using `config set $KEY $VALUE`. Common adjustments include:
 
 - `leader-schedule-limit`: Controls the concurrency of transferring leader scheduling
 - `region-schedule-limit`: Controls the concurrency of adding/deleting peer scheduling
@@ -221,7 +223,7 @@ This scenario requires examining the generation and execution of operators throu
 
 If operators are successfully generated but the scheduling process is slow, possible reasons are:
 
-- The scheduling speed is limited by default. You can adjust `leader-schedule-limit` or `replica-schedule-limit` to larger value.s Similarly, you can consider loosening the limits on `max-pending-peer-count` and `max-snapshot-count`.
+- The scheduling speed is limited by default. You can adjust `leader-schedule-limit` or `replica-schedule-limit` to larger values. Similarly, you can consider loosening the limits on `max-pending-peer-count` and `max-snapshot-count`.
 - Other scheduling tasks are running concurrently and racing for resources in the system. You can refer to the solution in [Leaders/regions are not evenly distributed](#leadersregions-are-not-evenly-distributed).
 - When you take a single node offline, a number of region leaders to be processed (around 1/3 under the configuration of 3 replicas) are distributed on the node to remove. Therefore, the speed is limited by the speed at which snapshots are generated by this single node. You can speed it up by manually adding an `evict-leader-scheduler` to migrate leaders.
 
@@ -246,7 +248,7 @@ Hot regions scheduling issues generally fall into the following categories:
 
 - The load of some nodes is significantly higher than that of other nodes from TiKV-related metrics, which becomes the bottleneck of the whole system. Currently, PD counts hotspots through traffic analysis only, so it is possible that PD fails to identify hotspots in certain scenarios. For example, when there are intensive point lookup requests for some regions, it might not be obvious to detect in traffic, but still the high QPS might lead to bottlenecks in key modules.
 
-    **Solutions**: Firstly, locate the table where hot regions are formed based on the specific business. Then add a `scatter-range-scheduler` scheduler to make all regions of this table evenly distributed. TiDB also provides an interface in its HTTP API to simplify this operation. Refer to [TiDB HTTP API](https://github.com/pingcap/tidb/blob/master/docs/tidb_http_api.md) for more details.
+    **Solutions**: Firstly, locate the table where hot regions are formed based on the specific business. Then add a `scatter-range-scheduler` scheduler to make all regions of this table evenly distributed. You can simplify this operation by using [HTTP API](https://github.com/pingcap/tidb/blob/master/docs/tidb_http_api.md).
 
 ### Region merge is slow
 
@@ -263,6 +265,6 @@ For v3.0.4 and v2.1.16 or earlier, the `approximate_keys` of regions are inaccur
 
 ### Troubleshoot TiKV node
 
-If a TiKV node fails, PD defaults to setting the corresponding node to the **down** state after 30 minutes (customizable by configuration item `max-store-down-time`), and rebalancing replicas for regions involved.
+If a TiKV node fails, PD defaults to setting the corresponding node to the **down** state after 30 minutes (customizable by configuring `max-store-down-time`), and rebalancing replicas for regions involved.
 
 Practically, if a node failure is considered unrecoverable, you can immediately take it offline. This makes PD replenish replicas soon in another node and reduces the risk of data loss. In contrast, if a node is considered recoverable, but the recovery cannot be done in 30 minutes, you can temporarily adjust `max-store-down-time` to a larger value to avoid unnecessary replenishment of the replicas and resources waste after the timeout.
