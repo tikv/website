@@ -17,6 +17,12 @@ docker build -t tikv/website .
 docker run -it --rm -p 1313:1313 -v `pwd`:/home/builder/build tikv/website
 ```
 
+Or simpler, if you have [Docker Compose](https://docs.docker.com/compose/) installed:
+
+```bash
+docker-compose up
+```
+
 ## Adding blog posts
 
 To add a new blog post, add a Markdown file to the `content/blog` folder. There's currently a `first-post.md` file in that directory that can serve as a template.
