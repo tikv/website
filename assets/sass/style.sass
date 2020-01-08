@@ -68,40 +68,10 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
 .docs-content
   padding-bottom: 8rem
 
-.toc
-  padding: 1rem 0 3rem 2rem
-
-  li
-    font-size: 1.1rem
-
-    a.is-active
-      color: $tikv-blue
-      font-weight: 700
-
-  ul
-    list-style: square !important;
-    ul
-      margin-left: 1rem
-
-.section-toc
-  padding: 1rem 0 3rem 0
-  border-right: 1px solid $grey-light
-  margin-right: 1rem
-
-  li
-    line-height: 125%
-    font-size: 1.5rem
-    padding-right: 1.5rem
-
-    & + li
-      margin-top: 1rem
-
-    &.is-active
-      border-right: 2px solid $grey-light
-
-      a
-        color: $tikv-blue
-        font-weight: 700
+.menu-label
+  font-weight: 700
+.menu-list li ul
+  margin: 0
 
 .content
   &.is-blog-content
