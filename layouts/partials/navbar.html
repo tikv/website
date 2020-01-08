@@ -58,7 +58,7 @@
           </a>
 
           {{ if .HasChildren }}
-            <div class="navbar-dropdown">
+            <div class="navbar-dropdown is-hidden-touch">
               {{ range .Children }}
                 <a class="navbar-item" href="{{ .URL }}">
                   {{ .Name }}
@@ -76,7 +76,7 @@
           </a>
 
           {{ if .HasChildren }}
-            <div class="navbar-dropdown">
+            <div class="navbar-dropdown is-hidden-touch">
               {{ range .Children }}
                 <a class="navbar-item" href="{{ .URL }}">
                   {{ .Name }}
@@ -92,15 +92,15 @@
           Blog
         </a>
 
-        <div class="navbar-dropdown">
+        <div class="navbar-dropdown is-hidden-touch">
           <a class="navbar-item" href="/blog">
             Blog home
           </a>
 
           <hr class="navbar-divider" />
-
+          
           {{ range first 5 $blogPosts }}
-          {{ .Render "blog/navbar-link" }}
+            {{ .Render "blog/navbar-link" }}
           {{ end }}
 
           <hr class="navbar-divider" />

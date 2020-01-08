@@ -49,6 +49,7 @@ params:
         color: "img/logos/horizontal/color/tikv-horizontal-color.png"
         black: "img/logos/horizontal/black/tikv-horizontal-black.png"
         cncf: "img/logos/cncf-color.png"
+        cncf-black: "img/logos/cncf-color.png"
         card: "img/logos/card.png"
     assets:
         fontAwesomeVersion: "5.3.1"
