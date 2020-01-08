@@ -2,9 +2,6 @@
 title: Contribute
 description: How to be a part of TiKV
 menu:
-    nav:
-        parent: Docs
-        weight: 6
     "3.1-beta":
         parent: Reference
         weight: 6

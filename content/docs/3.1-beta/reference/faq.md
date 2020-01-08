@@ -2,9 +2,6 @@
 title: FAQ
 description: FAQs about TiKV
 menu:
-    nav:
-        parent: Docs
-        weight: 5
     "3.1-beta":
         parent: Reference
         weight: 4

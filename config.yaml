@@ -7,6 +7,12 @@ disableKinds: ["taxonomy", "taxonomyTerm"]
 
 menu:
     nav:
+    - name: Community
+      url: /contribute
+    - name: Contribute
+      parent: Community
+      weight: 1
+      url: /contribute
     - name: Chat
       url: /chat
       parent: Community
@@ -15,10 +21,14 @@ menu:
       url: https://branding.cncf.io/projects/tikv
       parent: Community
       weight: 4
-    - name: Docs
-      url: /docs/3.0/concepts/overview
-      weight: 1
-
+    - name: Adopters
+      url: /adopters
+      parent: Community
+      weight: 5
+    - name: CNCF
+      url: https://www.cncf.io/
+      parent: Community
+      weight: 5
 
 params:
     favicon: "favicon.png"
@@ -59,3 +69,5 @@ outputFormats:
 mediaTypes:
     "text/netlify":
         delimiter: ""
+
+enableGitInfo: true
