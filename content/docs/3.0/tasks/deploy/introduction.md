@@ -58,7 +58,7 @@ The **suggested PD** specifications for production are:
 * 8+ GB RAM, with no swap space.
 * 200+ GB Optane, NVMe, or SSD drive
 * 10 Gigabit ethernet (2x preferred)
-* A Linux Operating System, PD is most widely tested on CentOS 7.
+* A Linux Operating System (PD is most widely tested on CentOS 7).
 
 The **suggested TiKV** specifications for production are:
 
@@ -67,7 +67,7 @@ The **suggested TiKV** specifications for production are:
 * 32+ GB RAM, with no swap space.
 * 200+ GB Optane, NVMe, or SSD drive (Under 1.5 TB capacity is ideal in our tests)
 * 10 Gigabit ethernet (2x preferred)
-* A Linux Operating System, PD is most widely tested on CentOS 7.
+* A Linux Operating System (TiKV is most widely tested on CentOS 7).
 
 ## Network requirements
 
