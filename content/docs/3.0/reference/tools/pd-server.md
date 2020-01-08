@@ -2,7 +2,7 @@
 title: pd-server
 description: Learn about interacting with pd-server
 menu:
-    docs:
+    "3.0":
         parent: Tools
         weight: 3
 ---

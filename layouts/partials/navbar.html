@@ -6,6 +6,8 @@
 {{ $twitter    := site.Params.socialmedia.twitter }}
 {{ $github     := site.Params.socialmedia.github }}
 {{ $latest     := site.Params.versions.latest }}
+{{ $versions   := site.Params.versions.all }}
+{{ $currentVersion := trim (index (findRE "\\/(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)(-\\w*)?\\/" .Permalink) 0) "/" }}
 {{ $color      := cond $isHome "light" "black" }}
 {{ $blogPosts  := where site.RegularPages "Section" "blog" }}
 {{ $deepDive   := where site.Sections "Section" "deep-dive" }}
@@ -29,13 +31,22 @@
           <span class="is-version has-text-weight-bold">
             Version
           </span>
-          <span class="is-hidden-desktop">
-            {{ $latest }}
-          </span>
-          <div class="is-navbar-version has-text-weight-bold is-hidden-touch">
-            {{ $latest }}
+          <div class="navbar-item has-dropdown is-hoverable">
+            <span class="is-navbar-version has-text-weight-bold">
+              {{ if $currentVersion }}
+                {{ $currentVersion }}
+              {{ else }}
+                {{ $latest }}
+              {{ end }}
+            </span>
+            <div class="navbar-dropdown">
+              {{ range $versions }}
+                <a class="navbar-item" href="/docs/{{ . }}/concepts/overview/">
+                  {{ . }}
+                </a>
+              {{ end }}
+            </div>
           </div>
-        </div>
       </div>
 
       <div class="navbar-end">

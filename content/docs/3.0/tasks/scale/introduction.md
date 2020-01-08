@@ -2,7 +2,7 @@
 title: Scale
 description: Scale TiKV
 menu:
-    docs:
+    "3.0":
         parent: Tasks
         weight: 5
 ---

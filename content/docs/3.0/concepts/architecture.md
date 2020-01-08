@@ -2,7 +2,7 @@
 title: Architecture
 description: How TiKV works and how it was built
 menu:
-    docs:
+    "3.0":
         parent: Concepts
 ---
 

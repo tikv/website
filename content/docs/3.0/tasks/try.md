@@ -2,7 +2,7 @@
 title: Try
 description: Try locally with Docker
 menu:
-    docs:
+    "3.0":
         parent: Tasks
         weight: 1
 ---

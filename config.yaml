@@ -25,6 +25,9 @@ params:
     googleAnalyticsId: "UA-130734531-1"
     versions:
         latest: "3.0"
+        all:
+        - "3.1-beta"
+        - "3.0"
     description:
         brief: "A distributed transactional key-value database"
         long: "Based on the design of [Google Spanner](https://ai.google/research/pubs/pub39966) and [HBase](https://hbase.apache.org), but simpler to manage and without dependencies on any distributed filesystem"

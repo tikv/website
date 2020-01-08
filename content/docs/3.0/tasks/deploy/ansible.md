@@ -2,7 +2,7 @@
 title: Ansible Deployment
 description: Use TiDB-Ansible to deploy a TiKV cluster on multiple nodes.
 menu:
-    docs:
+    "3.0":
         parent: Deploy
         weight: 2
 ---

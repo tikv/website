@@ -2,7 +2,7 @@
 title: Key Metrics
 description: Learn some key metrics displayed on the Grafana Overview dashboard.
 menu:
-    docs:
+    "3.0":
         parent: Monitor
         weight: 2
 ---

@@ -2,7 +2,7 @@
 title: Titan Config
 description: Learn how to enable Titan in TiKV.
 menu:
-    docs:
+    "3.0":
         parent: Configure
         weight: 7
 ---

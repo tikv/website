@@ -2,7 +2,7 @@
 title: Ansible Scaling
 description: Use TiDB-Ansible to scale out or scale in a TiKV cluster.
 menu:
-    docs:
+    "3.0":
         parent: Scale
 ---
 

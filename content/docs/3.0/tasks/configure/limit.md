@@ -2,7 +2,7 @@
 title: Limit Config
 description: Learn how to configure scheduling rate limit on stores
 menu:
-    docs:
+    "3.0":
         parent: Configure
         weight: 4
 ---

@@ -2,7 +2,7 @@
 title: Clients
 description: Interact with TiKV using the raw key-value API or the transactional key-value API
 menu:
-    docs:
+    "3.0":
         parent: Reference
         weight: 2
 ---

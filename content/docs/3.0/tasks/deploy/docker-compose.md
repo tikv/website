@@ -2,7 +2,7 @@
 title: Docker Compose/Swarm
 description: Use Docker Compose or Swarm to quickly deploy a TiKV testing cluster.
 menu:
-    docs:
+    "3.0":
         parent: Deploy
         weight: 5
 ---
