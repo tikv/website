@@ -24,13 +24,17 @@ Upgrading? Here's things you should know:
 * In **3.0.8** we reduced the severity of errors occuring in the coprocessor to `warn`.
 * In **3.0.8** the default value of `split-region-on-table` is now `false` to help reduce region creation pressure during table creation/deletion.
 * In **3.0.8** we now welcome you to experiment with a new feature to get flame graphs from a running TiKV. Try visiting `$SERVER:20180/debug/pprof/profile?seconds=10` to see a flamegraph of that TiKV. We'll be adding more details to our documentation about this soon!
-* Version **3.1.0** is a beta and should not be adopted in production deployments. It includes new follower read and backup/restore features.
+* Version **3.1.0** is a beta and should not be adopted in production deployments. Please do try it out and let us know if you find issues. It includes new follower read and backup/restore features.
 
 ## News
 
 TiKV 3.1.0 is now in beta, with a stable release coming soon! This includes new major features like follower read and distributed backup/restore.
 
+<<<<<<< HEAD
 Follower read will allow clients to read data from followers in a region, reducing pressure on the region leader. Distributed backup and restore is a long-awaited feature to make TiKV more practical and efficient to both prepare for the worst, and handle it if it does happen.
+=======
+Follower read will allow clients to read data from followers in a region, reducing pressure on the region leader. Distributed backup and restore are a long awaited feature to make it more practical and efficient to both prepare for the worst, and handle it if it does happen.
+>>>>>>> 10863fef0e9c92ccbfacb38cf4a8f6b17e2313fc
 
 ## Reading materials
 
