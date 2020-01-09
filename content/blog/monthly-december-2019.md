@@ -6,11 +6,11 @@ author: Ana Hobden
 
 <!-- Fill in the below from the API: https://developer.github.com/v4/explorer/ -->
 
-Happy new year, new decade! How did our contributors wrap up the decade? Let's take a look, then take a peek at what's coming this year!
+Happy new year and happy new decade! How did our contributors wrap up the decade? Let's take a look, and then take a peek at what's coming this year!
 
 ## Releases
 
-This month our team made 4 TiKV releases! One doesn't *really* count, since it's a beta-release, but we'll count it anyways! 3.0.x and 2.1.x releases are minor releases, and 3.1.0-beta is our upcoming next major release before 4.0.
+This month our team made 4 TiKV releases - 3.0.x and 2.1.x releases are minor releases, and 3.1.0-beta is our upcoming next major release before 4.0.
 
 You can review the changelogs here:
 
@@ -30,13 +30,13 @@ Upgrading? Here's things you should know:
 
 TiKV 3.1.0 is now in beta, with a stable release coming soon! This includes new major features like follower read and distributed backup/restore.
 
-Follower read will allow clients to read data from followers in a region, reducing pressure on the region leader. Distributed backup and restore are a long awaited feature to make it more practical and efficient to both prepare for the worst, and handle when it does happen.
+Follower read will allow clients to read data from followers in a region, reducing pressure on the region leader. Distributed backup and restore is a long-awaited feature to make TiKV more practical and efficient to both prepare for the worst, and handle it if it does happen.
 
 ## Reading materials
 
 Tang Liu wrote an in depth article about [how TiKV handles read and write operations](https://tikv.org/blog/how-tikv-reads-writes/) over on the TiKV blog.
 
-Yuanli Wang wrote about recent work on [AutoTiKV](https://pingcap.com/blog/autotikv-tikv-tuning-made-easy-by-machine-learning/), a tuning tool for DBAs to help them find the ideal workload settings for their TiKVs.
+Yuanli Wang wrote about recent work on [AutoTiKV](https://pingcap.com/blog/autotikv-tikv-tuning-made-easy-by-machine-learning/), an AI-powered tuning tool for DBAs to help them find the ideal workload settings for their TiKVs.
 
 Back in October Dongxu Haung wrote about how TiDB is using TiKV's [pessimistic transaction feature](https://developpaper.com/talking-about-tidbs-new-features-pessimistic-transactions/). We missed it then, so as part of a "better late than never" idea, we've included it here.
 
