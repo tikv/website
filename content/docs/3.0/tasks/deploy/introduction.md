@@ -37,7 +37,6 @@ If you have your production environment ready, follow through the [Ansible deplo
 
 Finally, if you want to **build your own binary** TiKV you should consult the [README](https://github.com/tikv/tikv/blob/master/README.md) of the repository.
 
-
 ## System requirements
 
 The **minimum** specifications for testing or developing TiKV or PD are:
@@ -50,7 +49,6 @@ TiKV hosts must support the x86-64 architecture and the SSE 4.2 instruction set.
 
 TiKV works well in VMWare, KVM, and Xen virtual machines.
 
-
 ## Production Specifications
 
 The **suggested PD** specifications for production are:
@@ -60,6 +58,7 @@ The **suggested PD** specifications for production are:
 * 8+ GB RAM, with no swap space.
 * 200+ GB Optane, NVMe, or SSD drive
 * 10 Gigabit ethernet (2x preferred)
+* A Linux Operating System (PD is most widely tested on CentOS 7).
 
 The **suggested TiKV** specifications for production are:
 
@@ -68,7 +67,7 @@ The **suggested TiKV** specifications for production are:
 * 32+ GB RAM, with no swap space.
 * 200+ GB Optane, NVMe, or SSD drive (Under 1.5 TB capacity is ideal in our tests)
 * 10 Gigabit ethernet (2x preferred)
-
+* A Linux Operating System (TiKV is most widely tested on CentOS 7).
 
 ## Network requirements
 
