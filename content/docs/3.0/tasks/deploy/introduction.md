@@ -25,7 +25,7 @@ Your **first steps** into TiKV require only the following:
 * A modest machine that fulfills the [system requirements](#system-requirements).
 * A running [Docker](https://docker.com) service.
 
-After you set up the environment, follow through the [Try](../try) guide to get a test setup of TiKV running on your machine.
+After you set up the environment, follow through the [Try](../../try) guide to get a test setup of TiKV running on your machine.
 
 **Production** usage is typically done via automation requiring:
 
