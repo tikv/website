@@ -51,23 +51,19 @@
     </div>
 
     <div class="navbar-end">
-      {{ range (index .Site.Menus $currentVersion) }}
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="{{ .URL }}">
-            {{ .Name }}
-          </a>
-
-          {{ if .HasChildren }}
-            <div class="navbar-dropdown is-hidden-touch">
-              {{ range .Children }}
-                <a class="navbar-item" href="{{ .URL }}">
-                  {{ .Name }}
-                </a>
-              {{ end }}
-            </div>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" href="{{ .URL }}">
+          Docs
+        </a>
+        
+        <div class="navbar-dropdown is-hidden-touch">
+          {{ range (index .Site.Menus $currentVersion) }}
+            <a class="navbar-item" href="{{ .URL }}">
+              {{ .Name }}
+            </a>
           {{ end }}
         </div>
-      {{ end }}
+      </div>
 
       {{ range .Site.Menus.nav }}
         <div class="navbar-item has-dropdown is-hoverable">
