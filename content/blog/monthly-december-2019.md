@@ -1,6 +1,6 @@
 ---
 title: This Month in TiKV - December 2019
-date: 2020-1-7
+date: 2020-1-19
 author: Ana Hobden
 ---
 
