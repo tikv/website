@@ -131,7 +131,7 @@ This section introduces the deployment architecture of Prometheus and Grafana in
 See the following diagram for the deployment architecture:
 
 {{< figure
-    src="/img/docs/monitor-architecture.png"
+    src="/img/docs/prometheus.svg"
     caption="Monitor architecture"
     number="1" >}}
 
@@ -141,99 +141,92 @@ You must add the Prometheus Pushgateway addresses to the startup parameters of t
 
 ### Set up the monitoring system
 
-See the following links for your reference:
+You can use your existing [Prometheus](https://prometheus.io/) server to pull metrics from TiKV, or quickly create your first server below. This pairs well with [Grafana](https://grafana.com/) for monitoring.
 
-- [Prometheus Pushgateway](https://github.com/prometheus/pushgateway)
-- [Prometheus Server](https://github.com/prometheus/prometheus#install)
-- [Grafana](http://docs.grafana.org/)
+The easiest way to bootstrap Grafana and Prometheus on a local CentOS system:
 
-## Manual configuration
+```bash
+cat <<EOT > /etc/yum.repos.d/prometheus.repo
+[prometheus]
+name=prometheus
+baseurl=https://packagecloud.io/prometheus-rpm/release/el/\$releasever/\$basearch
+repo_gpgcheck=1
+enabled=1
+gpgkey=https://packagecloud.io/prometheus-rpm/release/gpgkey
+      https://raw.githubusercontent.com/lest/prometheus-rpm/master/RPM-GPG-KEY-prometheus-rpm
+gpgcheck=1
+metadata_expire=300
+EOT
+cat <<EOT > /etc/yum.repos.d/grafana.repo
+[grafana]
+name=grafana
+baseurl=https://packages.grafana.com/oss/rpm
+repo_gpgcheck=1
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.grafana.com/gpg.key
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+EOT
+yum install -y prometheus grafana
+systemctl enable --now prometheus grafana-server
+```
 
-This section describes how to manually configure PD and TiKV, PushServer, Prometheus, and Grafana.
+Browse to [port 3000 on the host](http://127.0.0.1:3000) and you should be able to log in with `admin`/`admin`.
 
-> **Note:** If your TiKV cluster is deployed using Ansible or Docker Compose, the configuration is automatically done, and generally, you do not need to configure it manually again. If your TiKV cluster is deployed using Docker, you can follow the configuration steps below.
+## Configuring Prometheus
 
-### Configure PD and TiKV
-
-+ PD: update the `toml` configuration file with the Pushgateway address and the the push frequency:
-
-    ```toml
-    [metric]
-    # prometheus client push interval, set "0s" to disable prometheus.
-    interval = "15s"
-    # prometheus pushgateway address, leaves it empty will disable prometheus.
-    address = "host:port"
-    ```
-
-+ TiKV: update the `toml` configuration file with the Pushgateway address and the the push frequency. Set the `job` field to `"tikv"`.
-
-    ```toml
-    [metric]
-    # the Prometheus client push interval. Setting the value to 0s stops Prometheus client from pushing.
-    interval = "15s"
-    # the Prometheus pushgateway address. Leaving it empty stops Prometheus client from pushing.
-    address = "host:port"
-    # the Prometheus client push job name. Note: A node id will automatically append, e.g., "tikv_1".
-    job = "tikv"
-    ```
-
-### Configure PushServer
-
-Generally, you can use the default port `9091` and do not need to configure PushServer.
-
-### Configure Prometheus
-
-Add the Pushgateway address to the `yaml` configuration file:
+Edit the `/etc/prometheus/prometheus.yml` and edit the `scrape_configs` block:
 
 ```yaml
 global:
-  scrape_interval:     15s  # By default, scrape targets every 15 seconds.
-  evaluation_interval: 15s  # By default, scrape targets every 15 seconds.
-  # scrape_timeout is set to the global default value (10s).
-    external_labels:
-      cluster: 'test-cluster'
-      monitor: "prometheus"
+  scrape_interval:     15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'test-cluster'
+    monitor: "prometheus"
 
 scrape_configs:
   - job_name: 'pd'
-    honor_labels: true  # Do not overwrite job & instance labels.
+    honor_labels: true
     static_configs:
-    - targets:
-      - '192.168.199.113:2379'
-      - '192.168.199.114:2379'
-      - '192.168.199.115:2379'
-
+      - targets:
+        - '127.0.0.1:2379'
   - job_name: 'tikv'
-    honor_labels: true  # Do not overwrite job & instance labels.
+    honor_labels: true
     static_configs:
-    - targets:
-      - '192.168.199.116:20180'
-      - '192.168.199.117:20180'
-      - '192.168.199.118:20180'
- ```
+      - targets:
+        - '127.0.0.1:20160'
+```
 
-### Configure Grafana
+Restart Prometheus with `systemctl restart prometheus`.
 
-#### Create a Prometheus data source
+#### Configuring Grafana
 
-1. Log in to the Grafana Web interface.
-    - Default address: [http://localhost:3000](http://localhost:3000)
-    - Default account name: `admin`
-    - Default password: `admin`
-2. Click the Grafana logo to open the sidebar menu.
-3. Click "Data Sources" in the sidebar.
-4. Click "Add data source".
-5. Specify the data source information:
+ Visiting [Add a Data Source](http://127.0.0.1:3000/datasources/new), choose Prometheus and add the URL or your Prometheus server (`http://127.0.0.1:9090`). Finally, save & test it.
+
+1. Log in to the [Grafana Web interface](http://127.0.0.1:3000/) (default login `admin`/`admin`).
+2. Visit [Add a data source](http://127.0.0.1:3000/datasources/new).
+3. Specify the data source information:
     - Specify the name for the data source.
     - For Type, select Prometheus.
     - For Url, specify the Prometheus address.
     - Specify other fields as needed.
-6. Click "Add" to save the new data source.
+4. Click 'Test & Save' to save the new data source.
 
 #### Create a Grafana dashboard
 
 1. Click the Grafana logo to open the sidebar menu.
-2. On the sidebar menu, click "Dashboards" -> "Import" to open the "Import Dashboard" window.
-3. Click "Upload .json File" to upload a JSON file (Examples can be found in [`tidb-ansible`](https://github.com/pingcap/tidb-ansible/tree/master/scripts)).
-4. Click "Save & Open".
-5. A Prometheus dashboard is created.
+2. Visit [Import Dashboard](http://127.0.0.1:3000/dashboard/import).
+3. Paste in, or upload the JSON dashboard.
+4. Hit 'Load'.
+
+#### Grafana Dashboard Templates
+
+The TiKV community has developed several useful dashboards to get you started with Grafana! You made need to adjust some settings, poarticularly if you configured the `external_labels` option in the `prometheus.yml` configuration above.
+
+* [TiKV Summary Dashboard](https://raw.githubusercontent.com/pingcap/tidb-ansible/master/scripts/tikv_summary.json).
+* [TiKV Raw Dashboard](https://raw.githubusercontent.com/pingcap/tidb-ansible/master/scripts/tikv_raw.json)
+* [TiKV Details Dashboard](https://raw.githubusercontent.com/pingcap/tidb-ansible/master/scripts/tikv_details.json)
+* [TiKV Troubleshooting Dashboard](https://raw.githubusercontent.com/pingcap/tidb-ansible/master/scripts/tikv_trouble_shooting.json)
+* [PD Dashboard](https://raw.githubusercontent.com/pingcap/tidb-ansible/master/scripts/pd.json)
