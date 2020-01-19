@@ -104,3 +104,4 @@ For more detailed and comprehensive information about TiDB and TiKV, we have wee
 [@sticnarf]: https://github.com/sticnarf
 [@nrc]: https://github.com/nrc
 [@zhouqiang-cl]: https://github.com/zhouqiang-cl
+[@koushiro]: https://github.com/koushiro
