@@ -30,11 +30,7 @@ Upgrading? Here's things you should know:
 
 TiKV 3.1.0 is now in beta, with a stable release coming soon! This includes new major features like follower read and distributed backup/restore.
 
-<<<<<<< HEAD
-Follower read will allow clients to read data from followers in a region, reducing pressure on the region leader. Distributed backup and restore is a long-awaited feature to make TiKV more practical and efficient to both prepare for the worst, and handle it if it does happen.
-=======
 Follower read will allow clients to read data from followers in a region, reducing pressure on the region leader. Distributed backup and restore are a long awaited feature to make it more practical and efficient to both prepare for the worst, and handle it if it does happen.
->>>>>>> 10863fef0e9c92ccbfacb38cf4a8f6b17e2313fc
 
 ## Reading materials
 
