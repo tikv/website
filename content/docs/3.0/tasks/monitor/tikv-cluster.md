@@ -141,9 +141,9 @@ You must add the Prometheus Pushgateway addresses to the startup parameters of t
 
 ### Set up the monitoring system
 
-You can use your existing [Prometheus](https://prometheus.io/) server to pull metrics from TiKV, or quickly create your first server below. This pairs well with [Grafana](https://grafana.com/) for monitoring.
+You can use your existing [Prometheus](https://prometheus.io/) server to pull metrics from TiKV, or quickly bootstrap a test server below. This pairs well with [Grafana](https://grafana.com/) for monitoring.
 
-The easiest way to bootstrap Grafana and Prometheus on a local CentOS system:
+Use the following script to bootstrap Grafana and Prometheus on a local CentOS system:
 
 ```bash
 cat <<EOT > /etc/yum.repos.d/prometheus.repo
@@ -174,9 +174,9 @@ systemctl enable --now prometheus grafana-server
 
 Browse to [port 3000 on the host](http://127.0.0.1:3000) and you should be able to log in with `admin`/`admin`.
 
-## Configuring Prometheus
+### Configure Prometheus
 
-Edit the `/etc/prometheus/prometheus.yml` and edit the `scrape_configs` block:
+To configure Prometheus, edit the `/etc/prometheus/prometheus.yml` and the `scrape_configs` block:
 
 ```yaml
 global:
@@ -201,7 +201,7 @@ scrape_configs:
 
 Restart Prometheus with `systemctl restart prometheus`.
 
-#### Configuring Grafana
+### Configure Grafana
 
  Visiting [Add a Data Source](http://127.0.0.1:3000/datasources/new), choose Prometheus and add the URL or your Prometheus server (`http://127.0.0.1:9090`). Finally, save & test it.
 
@@ -214,16 +214,9 @@ Restart Prometheus with `systemctl restart prometheus`.
     - Specify other fields as needed.
 4. Click 'Test & Save' to save the new data source.
 
-#### Create a Grafana dashboard
-
-1. Click the Grafana logo to open the sidebar menu.
-2. Visit [Import Dashboard](http://127.0.0.1:3000/dashboard/import).
-3. Paste in, or upload the JSON dashboard.
-4. Hit 'Load'.
-
 #### Grafana Dashboard Templates
 
-The TiKV community has developed several useful dashboards to get you started with Grafana! You made need to adjust some settings, poarticularly if you configured the `external_labels` option in the `prometheus.yml` configuration above.
+The TiKV community has developed several useful dashboards to get you started with Grafana. You may need to adjust some settings, particularly if you configured the `external_labels` option in the `prometheus.yml` configuration above.
 
 * [TiKV Summary Dashboard](https://raw.githubusercontent.com/pingcap/tidb-ansible/master/scripts/tikv_summary.json).
 * [TiKV Raw Dashboard](https://raw.githubusercontent.com/pingcap/tidb-ansible/master/scripts/tikv_raw.json)
