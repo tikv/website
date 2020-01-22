@@ -7,7 +7,7 @@
 {{ $github     := site.Params.socialmedia.github }}
 {{ $latest     := site.Params.versions.latest }}
 {{ $versions   := site.Params.versions.all }}
-{{ $currentVersion := trim (index (findRE "\\/(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)(-\\w*)?\\/" .Permalink) 0) "/" }}
+{{ $currentVersion := default $latest (trim (index (findRE "\\/(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)(-\\w*)?\\/" .Permalink) 0) "/") }}
 {{ $color      := cond $isHome "light" "black" }}
 {{ $blogPosts  := where site.RegularPages "Section" "blog" }}
 {{ $deepDive   := where site.Sections "Section" "deep-dive" }}
@@ -49,72 +49,86 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="navbar-end">
-        {{ range .Site.Menus.nav }}
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link" href="{{ .URL }}">
+    <div class="navbar-end">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" href="{{ .URL }}">
+          Docs
+        </a>
+        
+        <div class="navbar-dropdown is-hidden-touch">
+          {{ range (index .Site.Menus $currentVersion) }}
+            <a class="navbar-item" href="{{ .URL }}">
               {{ .Name }}
             </a>
+          {{ end }}
+        </div>
+      </div>
 
-            {{ if .HasChildren }}
-              <div class="navbar-dropdown">
-                {{ range .Children }}
-                  <a class="navbar-item" href="{{ .URL }}">
-                    {{ .Name }}
-                  </a>
-                {{ end }}
-              </div>
-            {{ end }}
-          </div>
-        {{ end }}
-
+      {{ range .Site.Menus.nav }}
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="/blog">
-            Blog
+          <a class="navbar-link" href="{{ .URL }}">
+            {{ .Name }}
           </a>
 
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="/blog">
-              Blog home
-            </a>
-
-            <hr class="navbar-divider" />
-
-            {{ range first 5 $blogPosts }}
-            {{ .Render "blog/navbar-link" }}
-            {{ end }}
-
-            <hr class="navbar-divider" />
-
-            <a class="navbar-item" href="/blog">
-              More...
-            </a>
-          </div>
+          {{ if .HasChildren }}
+            <div class="navbar-dropdown is-hidden-touch">
+              {{ range .Children }}
+                <a class="navbar-item" href="{{ .URL }}">
+                  {{ .Name }}
+                </a>
+              {{ end }}
+            </div>
+          {{ end }}
         </div>
+      {{ end }}
 
-        <div class="navbar-item">
-          <div class="field is-grouped">
-            <p class="control">
-              <a class="button is-twitter-blue" target="_blank" href="https://twitter.com/{{ $twitter }}">
-                <span class="icon has-text-white">
-                  <i class="fab fa-twitter"></i>
-                </span>
-                <span>
-                  Twitter
-                </span>
-              </a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" href="/blog">
+          Blog
+        </a>
 
-              <a class="button is-black{{ if not $isHome }} is-inverted{{ end }}" target="_blank" href="{{ $github }}">
-                <span class="icon">
-                  <i class="fab fa-github"></i>
-                </span>
-                <span>
-                  GitHub
-                </span>
-              </a>
-            </p>
-          </div>
+        <div class="navbar-dropdown is-hidden-touch">
+          <a class="navbar-item" href="/blog">
+            Blog home
+          </a>
+
+          <hr class="navbar-divider" />
+          
+          {{ range first 5 $blogPosts }}
+            {{ .Render "blog/navbar-link" }}
+          {{ end }}
+
+          <hr class="navbar-divider" />
+
+          <a class="navbar-item" href="/blog">
+            More...
+          </a>
+        </div>
+      </div>
+
+      <div class="navbar-item">
+        <div class="field is-grouped">
+          <p class="control">
+            <a class="button is-twitter-blue" target="_blank" href="https://twitter.com/{{ $twitter }}">
+              <span class="icon has-text-white">
+                <i class="fab fa-twitter"></i>
+              </span>
+              <span>
+                Twitter
+              </span>
+            </a>
+
+            <a class="button is-black{{ if not $isHome }} is-inverted{{ end }}" target="_blank" href="{{ $github }}">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span>
+                GitHub
+              </span>
+            </a>
+          </p>
         </div>
       </div>
     </div>
