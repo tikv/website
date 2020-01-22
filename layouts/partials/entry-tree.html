@@ -5,45 +5,46 @@
 <ul>
   {{ range $entries }}
     {{ if .HasChildren }}
-      <li>
-        <a {{ if (or ($currentPage.IsMenuCurrent .Menu .) ($currentPage.HasMenuCurrent .Menu .)) }}class="is-active"{{ end }} href="{{ .URL }}">
+      {{ $active := (or ($currentPage.IsMenuCurrent .Menu .) ($currentPage.HasMenuCurrent .Menu .)) }}
+      <li><details {{ if $active }}open{{ end }}>
+        <summary><a {{ if $active }}class="is-active"{{ end }} href="{{ .URL }}">
           {{ .Name }}
-        </a>
+        </a></summary>
         <ul>
           {{ $parent := . }}
           {{ range .Children }}
             {{ if .HasChildren }}
-              <li>
-                <a 
-                  {{ if (or ($currentPage.IsMenuCurrent .Menu .) ($currentPage.HasMenuCurrent .Menu .)) }}class="is-active"{{ end }}
+              {{ $active := (or ($currentPage.IsMenuCurrent .Menu .) ($currentPage.HasMenuCurrent .Menu .)) }}
+              <li><details {{ if $active }}open{{ end }}>
+                <summary><a 
+                  {{ if $active }}class="is-active"{{ end }}
                   href="{{ .URL }}">
                   {{ .Name }}
-                </a>
+                </a></summary>
                 <ul>
                   {{ $parent = . }}
                   {{ range .Children }}
-                    <li>
-                      <a 
-                        {{ if $currentPage.IsMenuCurrent .Menu . }}class="is-active"{{ end }}
+                    {{ $active := $currentPage.IsMenuCurrent .Menu . }}
+                    <li><a 
+                        {{ if $active }}class="is-active"{{ end }}
                         href="{{ .URL }}">
                         {{ .Name }}
-                      </a> 
+                      </a>
                     </li>
                   {{ end }}
                 </ul>
               </li>
             {{ else }}
-              <li>
-                <a
-                  {{ if (or ($currentPage.IsMenuCurrent .Menu .) ($currentPage.HasMenuCurrent .Menu .)) }}class="is-active"{{ end }}
+              {{ $active := (or ($currentPage.IsMenuCurrent .Menu .) ($currentPage.HasMenuCurrent .Menu .)) }}
+              <li><a
+                  {{ if $active }}class="is-active"{{ end }}
                   href="{{ .URL }}">
                   {{ .Name }}
-                </a>
-              </li>
+                </a></li>
             {{ end }}
           {{ end }}
         </ul>
-      </li>
+      </details></li>
     {{ else }}
       <li>
           <a 
