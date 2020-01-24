@@ -2,7 +2,7 @@
 title: Java Client
 description: Interact with TiKV using Java.
 menu:
-    docs:
+    "3.0":
         parent: Clients
         weight: 3
 ---

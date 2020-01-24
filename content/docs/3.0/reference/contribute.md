@@ -2,10 +2,7 @@
 title: Contribute
 description: How to be a part of TiKV
 menu:
-    nav:
-        parent: Docs
-        weight: 6
-    docs:
+    "3.0":
         parent: Reference
         weight: 6
 aliases:

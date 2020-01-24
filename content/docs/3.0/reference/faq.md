@@ -2,10 +2,7 @@
 title: FAQ
 description: FAQs about TiKV
 menu:
-    nav:
-        parent: Docs
-        weight: 5
-    docs:
+    "3.0":
         parent: Reference
         weight: 4
 aliases:

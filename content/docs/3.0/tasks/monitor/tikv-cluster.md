@@ -2,7 +2,7 @@
 title: Monitoring a Cluster
 description: Learn how to monitor the state of a TiKV cluster.
 menu:
-    docs:
+    "3.0":
         parent: Monitor
         weight: 1
 ---

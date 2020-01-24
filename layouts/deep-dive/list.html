@@ -1,0 +1,29 @@
+{{ define "title" }}
+TiKV | {{ .Title }}
+{{ end }}
+
+{{ define "main" }}
+{{ partial "docs/hero.html" . }}
+{{ $currentPage := . }}
+
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-quarter">
+        <div class="toc">
+          {{ partial "entry-tree.html" (dict "entries" .Site.Menus.nav "currentPage" $currentPage ) }}
+        </div>
+      </div>
+      
+      <div class="column">
+        <div class="content is-medium docs-content">
+          {{ partial "docs/version-warning.html" . }}
+          {{ partial "math.html" . }}
+
+          {{ .Content }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

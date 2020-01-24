@@ -2,7 +2,7 @@
 title: pd-ctl
 description: Learn about interacting with pd-ctl
 menu:
-    docs:
+    "3.0":
         parent: Tools
         weight: 4
 ---

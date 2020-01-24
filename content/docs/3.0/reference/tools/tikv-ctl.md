@@ -2,7 +2,7 @@
 title: tikv-ctl
 description: Learn about interacting with tikv-ctl
 menu:
-    docs:
+    "3.0":
         parent: Tools
         weight: 2
 ---

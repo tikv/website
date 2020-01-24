@@ -2,7 +2,7 @@
 title: Namespace Config
 description: Learn how to configure namespace in TiKV.
 menu:
-    docs:
+    "3.0":
         parent: Configure
         weight: 3
 ---

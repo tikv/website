@@ -2,7 +2,7 @@
 title: Binary Deployment
 description: Use binary files to deploy a TiKV cluster on a single machine or on multiple nodes for testing.
 menu:
-    docs:
+    "3.0":
         parent: Deploy
         weight: 4
 ---

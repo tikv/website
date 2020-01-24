@@ -2,11 +2,8 @@
 title: Reference
 description: Details about TiKV
 menu:
-    docs:
+    "3.0":
         name: Reference
-        weight: 3
-    nav:
-        parent: Docs
         weight: 3
 ---
 

@@ -2,7 +2,7 @@
 title: Query Layers
 description: Extend TiKV using stateless query layers
 menu:
-    docs:
+    "3.0":
         parent: Reference
         weight: 3
 ---

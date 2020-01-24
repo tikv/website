@@ -2,7 +2,7 @@
 title: Deploy
 description: Prerequisites for deploying TiKV
 menu:
-    docs:
+    "3.0":
         parent: Tasks
         weight: 2
         name: Deploy

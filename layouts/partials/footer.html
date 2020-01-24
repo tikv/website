@@ -3,59 +3,63 @@
 {{ $docs      := where site.Pages "Section" "docs" }}
 {{ $latest    := site.Params.versions.latest }}
 {{ $blogPosts := where site.RegularPages "Section" "blog" }}
+{{ $versions   := site.Params.versions.all }}
+{{ $currentVersion := default $latest (trim (index (findRE "\\/(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)(-\\w*)?\\/" .Permalink) 0) "/") }}
 <footer class="footer is-dark">
   <div class="container">
     <div class="columns">
       <div class="column">
         <img class="image is-footer-image" src="{{ $logo }}" alt="TiKV footer logo">
+        <br>
+        <p class="has-text-weight-bold has-text-white">
+          TiKV is an Apache 2.0 licensed open source distributed transactional key-value store.
+        </p>
+        <br>
+        <img class="image is-footer-image" src="/img/logos/stacked/white/cncf-stacked-white.svg" alt="CNCF footer logo">
       </div>
 
       <div class="column">
         <h5 class="is-size-5 has-text-weight-bold has-text-white">
           Docs
         </h4>
-
-        <hr class="hr has-background-primary">
-
+        
+        <hr class="hr has-background-primary is-hidden-touch">
+        
         <ul>
-          <li>
-            <a href="/docs/{{ $latest }}/concepts/overview">
-              Overview
-            </a>
-          </li>
-          <li>
-            <a href="/docs/{{ $latest }}/concepts/overview">
-              Concepts
-            </a>
-          </li>
-          <li>
-            <a href="/docs/{{ $latest }}/tasks/getting-started">
-              Tasks
-            </a>
-          </li>
-          <li>
-            <a href="/docs/{{ $latest }}/reference/introduction">
-              Reference
-            </a>
-          </li>
+          {{ range (index .Site.Menus $currentVersion) }}
+            <li>
+              <a href="{{ .URL }}">
+                {{ .Name }}
+              </a>
+            </li>
+          {{ end }}
         </ul>
       </div>
 
-      <div class="column">
-        <h5 class="is-size-5 has-text-weight-bold has-text-white">
-          Project
-        </h4>
-
-        <hr class="hr has-background-primary">
-
-        <ul>
-          <li>
-            <a href="/adopters">
-              TiKV Adopters
+      
+      {{ range .Site.Menus.nav }}
+        <div class="column">
+          <h5 class="is-size-5 has-text-weight-bold has-text-white">
+            <a href="{{ .URL }}">
+              {{ .Name }}
             </a>
-          </li>
-        </ul>
-      </div>
+          </h4>
+
+          <hr class="hr has-background-primary is-hidden-touch">
+
+          {{ if .HasChildren }}
+            <ul class="is-hidden-touch">
+              {{ range .Children }}
+                <li>
+                  <a href="{{ .URL }}">
+                    {{ .Name }}
+                  </a>
+                </li>
+              {{ end }}
+            </ul>
+          {{ end }}
+        </div>
+      {{ end }}
 
       {{ if gt (len $blogPosts) 0 }}
       <div class="column">
@@ -63,7 +67,7 @@
           Blog
         </h4>
 
-        <hr class="hr has-background-primary">
+        <hr class="hr has-background-primary is-hidden-touch">
 
         <ul>
           {{ range first 5 $blogPosts }}

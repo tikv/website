@@ -2,7 +2,7 @@
 title: pd-recover
 description: Learn about interacting with pd-recover
 menu:
-    docs:
+    "3.0":
         parent: Tools
         weight: 5
 ---

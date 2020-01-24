@@ -7,6 +7,12 @@ disableKinds: ["taxonomy", "taxonomyTerm"]
 
 menu:
     nav:
+    - name: Community
+      url: /contribute
+    - name: Contribute
+      parent: Community
+      weight: 1
+      url: /contribute
     - name: Chat
       url: /chat
       parent: Community
@@ -15,16 +21,23 @@ menu:
       url: https://branding.cncf.io/projects/tikv
       parent: Community
       weight: 4
-    - name: Docs
-      url: /docs/3.0/concepts/overview
-      weight: 1
-
+    - name: Adopters
+      url: /adopters
+      parent: Community
+      weight: 5
+    - name: CNCF
+      url: https://www.cncf.io/
+      parent: Community
+      weight: 5
 
 params:
     favicon: "favicon.png"
     googleAnalyticsId: "UA-130734531-1"
     versions:
         latest: "3.0"
+        all:
+        - "3.1-beta"
+        - "3.0"
     description:
         brief: "A distributed transactional key-value database"
         long: "Based on the design of [Google Spanner](https://ai.google/research/pubs/pub39966) and [HBase](https://hbase.apache.org), but simpler to manage and without dependencies on any distributed filesystem"
@@ -36,6 +49,7 @@ params:
         color: "img/logos/horizontal/color/tikv-horizontal-color.png"
         black: "img/logos/horizontal/black/tikv-horizontal-black.png"
         cncf: "img/logos/cncf-color.png"
+        cncf-black: "img/logos/cncf-color.png"
         card: "img/logos/card.png"
     assets:
         fontAwesomeVersion: "5.3.1"
@@ -56,3 +70,5 @@ outputFormats:
 mediaTypes:
     "text/netlify":
         delimiter: ""
+
+enableGitInfo: true

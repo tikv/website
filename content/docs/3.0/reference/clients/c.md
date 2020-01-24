@@ -2,7 +2,7 @@
 title: C Client
 description: Interact with TiKV using C.
 menu:
-    docs:
+    "3.0":
         parent: Clients
         weight: 4
 ---

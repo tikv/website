@@ -4,20 +4,16 @@ TiKV | {{ .Title }}
 
 {{ define "main" }}
 {{ partial "docs/hero.html" . }}
-{{ $docs := .Site.Menus.docs }}
-{{ $currentPage := (index .Pages 0) }}
+{{ $currentPage := . }}
+{{ $version := trim (index (findRE "\\/(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)(-\\w*)?\\/" $currentPage.Permalink) 0) "/" }}
+{{ $docs := (index .Site.Menus $version) }}
 
 <section class="section">
   <div class="container">
     <div class="columns">
-      <div class="column is-3">
+      <div class="column is-one-quarter">
         <div class="toc">
-          {{ range .Site.Menus.docs }}
-            {{ $submenu := (index (where $docs "Name" .Name) 0) }}
-            {{ if (or ($currentPage.HasMenuCurrent "docs" $submenu) ($currentPage.IsMenuCurrent "docs" $submenu)) }}
-              {{ partial "entry-tree.html" (dict "entries" .Children "currentPage" $currentPage ) }}
-            {{ end }}
-          {{ end }}
+          {{ partial "entry-tree.html" (dict "entries" $docs "currentPage" $currentPage ) }}
         </div>
       </div>
       

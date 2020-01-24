@@ -2,7 +2,7 @@
 title: Monitor
 description: Monitor TiKV
 menu:
-    docs:
+    "3.0":
         parent: Tasks
         weight: 4
 ---

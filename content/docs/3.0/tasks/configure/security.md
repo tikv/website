@@ -2,7 +2,7 @@
 title: Security Config
 description: Keeping your TiKV deployment secure
 menu:
-    docs:
+    "3.0":
         parent: Configure
         weight: 1
 ---

@@ -2,7 +2,7 @@
 title: Features
 description: The features of TiKV
 menu:
-    docs:
+    "3.0":
         parent: Concepts
 ---
 

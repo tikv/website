@@ -2,7 +2,7 @@
 title: tikv-server
 description: Learn about interacting with tikv-server
 menu:
-    docs:
+    "3.0":
         parent: Tools
         weight: 1
 ---

@@ -2,7 +2,7 @@
 title: Rust Client
 description: Interact with TiKV using Rust.
 menu:
-    docs:
+    "3.0":
         parent: Clients
         weight: 2
 ---

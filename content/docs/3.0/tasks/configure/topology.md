@@ -2,7 +2,7 @@
 title: Topology Config
 description: Learn how to configure labels.
 menu:
-    docs:
+    "3.0":
         parent: Configure
         weight: 2
 ---

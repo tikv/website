@@ -2,11 +2,7 @@
 title: Concepts
 description: Some basic facts about TiKV
 menu:
-    nav:
-        name: Concepts
-        parent: Docs
-        weight: 1
-    docs:
+    "3.0":
         weight: 1
 ---
 

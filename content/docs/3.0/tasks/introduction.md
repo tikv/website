@@ -2,10 +2,7 @@
 title: Tasks
 description: How to accomplish common tasks with TiKV
 menu:
-    nav:
-        parent: Docs
-        weight: 2
-    docs:
+    "3.0":
         weight: 2
 ---
 

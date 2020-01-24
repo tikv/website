@@ -2,7 +2,7 @@
 title: Go Client
 description: Interact with TiKV using Go.
 menu:
-    docs:
+    "3.0":
         parent: Clients
         weight: 1
 ---
