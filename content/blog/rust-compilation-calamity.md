@@ -65,7 +65,10 @@ The first entry in this series is just a story about the history of Rust with re
 
 ## Rust's designs for poor compilation time
 
-As mentioned in the begining, when it came to the tradeoff of **run-time performance** vs. **compile-time performance**, the Rust team nearly always (if not always) chose run-time over compile-time.
+_The Rust programming language was designed for slow compilation times._
+
+I mean, that wasn't _the goal_. As is often cautioned in debates among their designers, programming language design is full of tradeoffs. One of those fundamental tradeoffs is **run-time performance** vs. **compile-time performance**, and the Rust team nearly always (if not always) chose run-time over compile-time.
+
 The intentional run-time/compile-time tradeoff isn't the only reason Rust compile times are horrific, but it's a big one. There are also language designs that are not crucial for run-time performance, but accidentally bad for compile-time performance. The Rust compiler was also implemented in ways that inhibit compile-time performance.
 
 So there are intrinsic language-design reasons and accidental language-design reasons for Rust's bad compile times. Those mostly can't be fixed ever, although they may be mitigated by compiler improvements, design patterns, and language evolution. There are also accidental compiler-architecture reasons for Rust's bad compile times, which can generally be fixed through enormous engineering effort and time.
