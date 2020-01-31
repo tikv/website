@@ -262,3 +262,5 @@ A number of people helped with this blog series. Thanks especially to Niko Matsa
 ## About the author
 
 [**Brian Anderson**](https://github.com/brson) is one of the co-founders of the Rust programming language and its sister project, the Servo web browser. He is now working in PingCAP as a senior database engineer.
+
+This article is originally posted at <https://pingcap.com/blog/rust-compilation-model-calamity/>.
