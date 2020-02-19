@@ -12,7 +12,7 @@ Welcome to the first monthly wrap-up of 2020. We had to send this post remotely 
 
 This month our team made 2 TiKV releases:
 
-- The [3.0.9](https://github.com/tikv/tikv/releases/tag/v3.0.9) release includes the configuration change to speed up the Region scattering, some optimized configuration items and a fixed issue.
+- The [3.0.9](https://github.com/tikv/tikv/releases/tag/v3.0.9) release includes the configuration change to speed up the Region scattering, some optimized configuration items and a [fixed issue](https://github.com/tikv/tikv/pull/6431) for Region Merge.  
 - The [4.0.0-beta](https://github.com/tikv/tikv/releases/tag/v4.0.0-beta) release includes major updates such as quick backup and restoration support, RocksDB version upgrade, and also bugs fixes.
 
 {{< info >}}
