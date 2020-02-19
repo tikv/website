@@ -29,7 +29,11 @@ This month our team made 2 TiKV releases:
 
 - [@yiwu-arbug](https://github.com/yiwu-arbug) added S3 support in `external_storage` crate in [#6209](https://github.com/tikv/tikv/pull/6209). The `external_storage` crate provids a unified interface to read & write files in the local file system, S3 and GCS.
 
+- [@NingLin-P](https://github.com/NingLin-P) made it possible to change TiKV configurations online in [#6331] (https://github.com/tikv/tikv/pull/6331).
+
 - [@breeswish](https://github.com/breeswish) integrated dashboard into PD in [#2086](https://github.com/pingcap/pd/pull/2086).
+
+- [nolouch](https://github.com/nolouch) upgraded etcd to v3.4.3 for PD in [#2063](https://github.com/pingcap/pd/pull/2063).
 
 - [@sticnarf](https://github.com/sticnarf) replaced all the readpools with [yatp](https://github.com/tikv/yatp) (a thread pool in Rust) in [#6375](https://github.com/tikv/tikv/pull/6375) and [#6401](https://github.com/tikv/tikv/pull/6401).
 
