@@ -6,7 +6,9 @@ author: TiKV Authors
 
 <!-- Fill in the below from the API: https://developer.github.com/v4/explorer/ -->
 
-Welcome to the first monthly wrap-up of 2020. We had to send this post remotely from home because of the outbreak of coronavirus in China. As the battle against the virus continues, we shall keep our fingers crossed and hope this could end soon. In the mean time, we stay healthy and focus on driving forward our project.
+Welcome to the first monthly wrap-up of 2020. In January, we had regular releases, some great articles, some great PRs and issues, and of course, new members of the community.
+
+Let's take a look!
 
 ## Releases
 
