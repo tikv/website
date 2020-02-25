@@ -182,7 +182,7 @@ To use the Transactional Key-Value API in applications developed by golang, take
         "github.com/juju/errors"
         "github.com/pingcap/tidb/kv"
         "github.com/pingcap/tidb/store/tikv"
-        "github.com/pingcap/tidb/terror"
+        "github.com/pingcap/parser/terror"
 
         goctx "golang.org/x/net/context"
     )
@@ -276,7 +276,7 @@ func get(k []byte) (KV, error) {
     if err != nil {
         return KV{}, errors.Trace(err)
     }
-    v, err := tx.Get(k)
+    v, err := tx.Get(goctx.Background(), k)
     if err != nil {
         return KV{}, errors.Trace(err)
     }
