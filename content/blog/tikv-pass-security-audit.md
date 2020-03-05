@@ -42,7 +42,7 @@ We would reintegrate the tests into an automated CI task, running them at least 
 
 There are also some minor security concerns with regards to configuration, documenation, security handling process, etc. We are thankful for these findings. To follow up, we have created a GitHub project, [Security TIK-01](https://github.com/tikv/tikv/projects/29), to keep track of all the issues that are valid for improvements.
 
-The full report is available [here](https://github.com/tikv/tikv/blob/master/docs/Security-Audit.pdf).
+The full report is available [here](./TiKV-Security-Audit.pdf).
 
 We would like to thank Cure53, CNCF, The Linux Foundation, and all TiKV contributors for their efforts in making this happen.
 
