@@ -32,17 +32,17 @@ Here are some highlights:
 
 Cure53 also identified a noteworthy issue and some areas of improvement for the TiKV team to work on:
 
-> **TIK-01-001 SCA**: *Security vulnerabilities in outdated library versions: Analyzing the libraries in use revealed that multiple ones do not leverage the most recent versions available. Some libraries are no longer actively maintained and pose a threat to the future security posture of the project.*
+- **TIK-01-001 SCA**: *Security vulnerabilities in outdated library versions: Analyzing the libraries in use revealed that multiple ones do not leverage the most recent versions available. Some libraries are no longer actively maintained and pose a threat to the future security posture of the project.*
 
 To address this, we will upgrade the outdated vulnerable dependencies and integrate `cargo-audit` into CI. We have created issues [#7004](https://github.com/tikv/tikv/issues/7004) and [#7005](https://github.com/tikv/tikv/issues/7005) are created on Github to track the progress.
 
-> *TiKV integrates multiple different fuzzing libraries to test their project extensively, namely LLVMs libfuzzer, AFL and Googles Honggfuzz. However, the tests do not run in an automated pipeline and are currently run sporadically in a manual fashion*
+- *TiKV integrates multiple different fuzzing libraries to test their project extensively, namely LLVMs libfuzzer, AFL and Googles Honggfuzz. However, the tests do not run in an automated pipeline and are currently run sporadically in a manual fashion*
 
 We would reintegrate the tests into an automated CI task, running them at least in a monthly rhythm as suggested by cure53. Issue [#7007](https://github.com/tikv/tikv/issues/7004) is created to track the progress.
 
 There are also some minor security concerns with regards to configuration, documenation, security handling process, etc. We are thankful for these findings. To follow up, we have created a GitHub project, [Security TIK-01](https://github.com/tikv/tikv/projects/29), to keep track of all the issues that are valid for improvements.
 
-The full report is available [here](https://github.com/tikv/tikv/blob/master/docs/Security Audit.pdf).
+The full report is available [here](https://github.com/tikv/tikv/blob/master/docs/Security-Audit.pdf).
 
 We would like to thank Cure53, CNCF, The Linux Foundation, and all TiKV contributors for their efforts in making this happen.
 
