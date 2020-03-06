@@ -6,7 +6,7 @@ date: 2020-03-05
 
 Today we're glad to announce that TiKV just finished a third-party security assessment, funded by CNCF/The Linux Foundation.
 
-From Feb 10 to March 03, 2019, the team from Cure53 performed comprehensive tests on TiKV in the following aspects:
+From Feb 10 to March 03, 2020, the team from Cure53 performed comprehensive tests on TiKV in the following aspects:
 
 - General security posture checks that entail:
   - Language specifics (Rust)
