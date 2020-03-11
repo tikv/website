@@ -4,26 +4,19 @@ TiKV authors
 
 March 12, 2020
 
-As the cold winter has passed, we are welcoming a beautiful spring with blossom, gentle breeze and of course our monthly TiKV update, covering February 2020.
+As the cold winter has passed, we are welcoming a beautiful spring with blossoms, gentle breeze, and of course our monthly TiKV update, covering February 2020.
 
 Let’s get started!
 
-
 ### Releases
 
-This month our team made 2 TiKV releases (3.0.10 and 4.0.0- beta.1). The 3.0.10 release is a minor one with bug fixes and the 4.0.0- beta.1 release includes compatibility changes, 2 new features, and bug fixes. 
+This month our team made 2 TiKV releases (3.0.10 and 4.0.0- beta.1). The 3.0.10 release is a minor one with bug fixes and the 4.0.0- beta.1 release includes compatibility improvements, 2 new features, and bug fixes. 
 
 You can review the changelogs here:
 
 [3.0.10](https://github.com/tikv/tikv/releases/tag/v3.0.10)
 
 [4.0.0- beta.1](https://github.com/tikv/tikv/releases/tag/v4.0.0-beta.1)
-
-
-### News
-
-[CNCF has decided to postpone KubeCon + CloudNativeCon Europe (originally set for March 30 to April 2, 2020) to instead be held in July or August 2020](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/attend/novel-coronavirus-update/) due to the outbreak of Novel Coronavirus in Europe. We thus expect to have TiKV speaking sessions by mid-summer. 
-
 
 ### Reading materials
 
