@@ -65,8 +65,6 @@ As a long-time Rust programmer, [@nrc](https://github.com/nrc) wrote [Early Impr
 
 We'd like to welcome the following new contributors to TiKV and thank them for their work!
 
-
-
 *   [@silathdiir](https://github.com/silathdiir)
 *   [@xinhua5](https://github.com/xinhua5)
 *   [@Poytr1](https://github.com/Poytr1)
