@@ -1,7 +1,7 @@
 ---
 title: This Month in TiKV - February 2020
 date: 2020-03-12
-author: TiKV authors
+author: TiKV Authors
 ---
 
 As the cold winter has passed, we are welcoming a beautiful spring with blossoms, gentle breeze, and of course our monthly TiKV update, covering February 2020.
