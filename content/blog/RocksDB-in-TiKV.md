@@ -8,12 +8,11 @@ date: 2020-03-18
 
 This is the speech presented by Liu (Siddon) Tang at the [RocksDB meetup](https://www.meetup.com/RocksDB/events/242226234/) on August 28, 2017. Some of the content has been adapted to be up to date.
 
-* [Speaker Introduction](##Speaker-Introduction)
-* [Agenda](#Agenda)
+* [Speaker Introduction](#Speaker-Introduction)
 * [Why did we choose RocksDB?](#Why-did-we-choose-RocksDB?)
 * [How are we using RocksDB?](#How-are-we-using-RocksDB?)
     * [TiKV Architecture](#TiKV-Architecture)
-    * [Region](#Rgion)
+    * [Region](#Region)
     * [Raft](#Raft)
     * [InsertWithHint](#InsertWithHint)
     * [Prefix Iterator](#Prefix-Iterator)
@@ -29,15 +28,6 @@ This is the speech presented by Liu (Siddon) Tang at the [RocksDB meetup](https:
 Hi everyone, thanks for having me here, the RocksDB team.
 
 Today, I will talk about how we use [RocksDB](https://github.com/facebook/rocksdb) in [TiKV](https://github.com/pingcap/tikv). Before we start, I will introduce myself briefly. My name is Siddon Tang, chief engineer at PingCAP. Now I am working on [TiDB](https://github.com/pingcap/tidb), the next generation SQL database; and [TiKV](https://github.com/pingcap/tikv), a distributed transactional key-value store. I am an open source lover and I have developed some open source projects like LedisDB (BTW, the backend engine is also RocksDB), go-mysql, go-mysql-elasticsearch, etc…
-
-## Agenda
-
-What I will talk about today is as follows:
-
-*   Why did we choose RocksDB in TiKV?
-*   How are we using RocksDB in TiKV?
-*   How are we contributing to RocksDB?
-*   Our future plan
 
 ## Why did we choose RocksDB?
 
