@@ -9,8 +9,8 @@ date: 2020-03-18
 This is the speech presented by Liu (Siddon) Tang at the [RocksDB meetup](https://www.meetup.com/RocksDB/events/242226234/) on August 28, 2017. Some of the content has been adapted to be up to date.
 
 * [Speaker Introduction](#Speaker-Introduction)
-* [Why did we choose RocksDB?](#Why-did-we-choose-RocksDB?)
-* [How are we using RocksDB?](#How-are-we-using-RocksDB?)
+* [Why did we choose RocksDB?](#Why-did-we-choose-RocksDB)
+* [How are we using RocksDB?](#How-are-we-using-RocksDB)
     * [TiKV Architecture](#TiKV-Architecture)
     * [Region](#Region)
     * [Raft](#Raft)
@@ -20,7 +20,7 @@ This is the speech presented by Liu (Siddon) Tang at the [RocksDB meetup](https:
     * [Table Property for GC Check](#Table-Property-for-GC-Check)
     * [Ingest the SST File](#Ingest-the-SST-File)
     * [Others](#Others)
-* [How are we contributing?](#How-are-we-contributing?)
+* [How are we contributing?](#How-are-we-contributing)
 * [Future Plans](#Future-Plans)
 
 ## Speaker Introduction
