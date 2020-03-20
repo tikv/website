@@ -8,6 +8,8 @@ date: 2020-03-18
 
 This is the speech presented by Liu (Siddon) Tang at the [RocksDB meetup](https://www.meetup.com/RocksDB/events/242226234/) on August 28, 2017. Some of the content has been adapted to be up to date.
 
+<!-- TOC -->
+
 * [Speaker Introduction](#Speaker-Introduction)
 * [Why did we choose RocksDB?](#Why-did-we-choose-RocksDB)
 * [How are we using RocksDB?](#How-are-we-using-RocksDB)
@@ -22,6 +24,8 @@ This is the speech presented by Liu (Siddon) Tang at the [RocksDB meetup](https:
     * [Others](#Others)
 * [How are we contributing?](#How-are-we-contributing)
 * [Future Plans](#Future-Plans)
+
+<!-- TOC -->
 
 ## Speaker Introduction
 
