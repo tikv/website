@@ -51,7 +51,7 @@ In the recap of [RocksDB in TiKV](https://tikv.org/blog/rocksdb-in-tikv/) in a 2
 
 [@overvenus](https://github.com/overvenus) supported encryption at rest in [#6990](https://github.com/tikv/tikv/pull/6990).
 
-[@zhangjinpeng1987](https://github.com/zhangjinpeng1987) calculated CPU quota and memory limit in container, and adjusted related configurations in TiKV automatically in [#7074](https://github.com/tikv/tikv/pull/7074).
+[@zhangjinpeng1987](https://github.com/zhangjinpeng1987) calculated CPU quota and memory limit in the container environment in [#7074](https://github.com/tikv/tikv/pull/7074), and automatically adjusted related configurations in TiKV.
 
 [@yiwu-arbug](https://github.com/yiwu-arbug) added utilities to enable AWS IAM in k8s in [#7201](https://github.com/tikv/tikv/pull/7201).
 
@@ -69,7 +69,7 @@ In the recap of [RocksDB in TiKV](https://tikv.org/blog/rocksdb-in-tikv/) in a 2
 
 **Call for participation**
 
-[@MyonKeminta](https://github.com/MyonKeminta) **** opened issue **** [#7153](https://github.com/tikv/tikv/issues/7153), requesting to avoid incorrect "engine" label to distinguish nodes with different engines. [@overvenus](https://github.com/overvenus) and [@disksing](https://github.com/disksing) presented their opinions on this issue, and what is yours?
+[@MyonKeminta](https://github.com/MyonKeminta) opened issue [#7153](https://github.com/tikv/tikv/issues/7153), requesting to avoid incorrect "engine" label to distinguish nodes with different engines. [@overvenus](https://github.com/overvenus) and [@disksing](https://github.com/disksing) presented their opinions on this issue, and what is yours?
 
 [@5kbpers](https://github.com/5kbpers) suggested in [#7113](https://github.com/tikv/tikv/issues/7113) to support to delay the GC for delete record to relax the limitation of the GC interval. [@MyonKeminta](https://github.com/MyonKeminta) agreed with [@5kbpers](https://github.com/5kbpers). What do you think?
 
