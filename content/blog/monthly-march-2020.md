@@ -12,12 +12,14 @@ Let’s take a look at what we have achieved in March!
 
 TiKV has finished[ a third-party security assessment](https://tikv.org/blog/tikv-pass-security-audit/)! This assessment of the TiKV scope, curated by CNCF and executed by Cure53 in early 2020, concludes with generally positive results. The full report is available [here](https://tikv.org/blog/TiKV-Security-Audit.pdf).
 
-The TiKV community had the first-ever community meeting on March 26, 2020. Liu Tang ([@siddontang](https://github.com/siddontang)), one of our maintainers, kicked off the meeting, and the community manager, Calvin Weng ([@dcalvin](https://github.com/dcalvin)) shared about recent updates on community governance and membership. Also, a demo of Unified Read Pool, a thread pool in Rust to improve TiKV’s performance in allocating and scheduling resources, was presented by Yilin Chen ([@sticnarf](https://github.com/sticnarf)) at the end of the meeting. In case you missed it, the recording video is available [here](https://www.youtube.com/watch?v=hkDvakA-efA&feature=youtu.be) and the meeting notes are available [here](https://docs.google.com/document/d/1CWUAkBrcm9KPclAu8fWHZzByZ0yhsQdRggnEdqtRMQ8/edit#heading=h.ut5w82fnx9bc).
+The TiKV community had the first-ever community meeting on March 26, 2020. Liu Tang ([@siddontang](https://github.com/siddontang)), one of our maintainers, kicked off the meeting, and the community manager, Calvin Weng ([@dcalvin](https://github.com/dcalvin)) shared about recent updates on community governance and membership. Also, a demo of [unified thread pool](https://docs.google.com/presentation/d/1HWC9SmthBdbp633wLCtORRvCwQqAfJ8zWkjr82O_gN0/edit#slide=id.g71ef919454_1_5), a thread pool in Rust to improve TiKV’s performance in allocating and scheduling resources, was presented by Yilin Chen ([@sticnarf](https://github.com/sticnarf)) at the end of the meeting. In case you missed it, the recording video is available [here](https://www.youtube.com/watch?v=hkDvakA-efA&feature=youtu.be) and the meeting notes are available [here](https://docs.google.com/document/d/1CWUAkBrcm9KPclAu8fWHZzByZ0yhsQdRggnEdqtRMQ8/edit#heading=h.ut5w82fnx9bc).
 
 We have two new TiKV maintainers - Daobing Li ([@lidaobing](https://github.com/lidaobing)) from JD Cloud & AI and Fu Chen ([@fredchenbj](https://github.com/fredchenbj)) from Yidian Zixun. Congratulations! We look forward to working with them. The nominating PRs are here:
 
-*   [Daobing Li](https://github.com/tikv/tikv/pull/7237)
-*   [Fu Chen](https://github.com/tikv/tikv/pull/7259)
+*   [Add Daobing Li as TiKV Maintainer](https://github.com/tikv/tikv/pull/7237)
+*   [Add Fu Chen as TiKV maintainer](https://github.com/tikv/tikv/pull/7259)
+
+The 2020 TiKV & [GSoC](https://summerofcode.withgoogle.com/) projects are going smoothly. Mentors, Yi Wu ([@yiwu-arbug](https://github.com/yiwu-arbug)) and Wei Liu ([@Little-Wallace](https://github.com/Little-Wallace)), had a video call with students on Mar 27 to help them learn details about these projects. Students have already submitted their proposals to GSoC. Good luck to them and we look forward to seeing their great achievements by the end of summer. 
 
 CNCF has confirmed the new event dates for [KubeCon + CloudNativeCon Europe 2020](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/) and TiKV speaking sessions are scheduled on August 15 and 16. We keep fingers crossed for those fighting against the Novel Coronavirus and expect to see you in TiKV speaking sessions by mid-summer. 
 
