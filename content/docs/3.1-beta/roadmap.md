@@ -33,16 +33,6 @@ Let us know on [Slack](https://tikv-wg.slack.com/join/shared_invite/enQtNTUyODE4
 
 * Refactor log content
 
-### TiFlash
-
-#### Features
-
-* Column-based storage
-* Replicate data from TiKV by using Raft learner
-* Snapshot read
-
-## Medium-term goals
-
 ### Features
 
 * Fast incremental backup and restoration
