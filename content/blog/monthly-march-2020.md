@@ -4,15 +4,15 @@ date: 2020-04-02
 author: TiKV Authors
 ---
 
-In this unprecedented global situation, we hope all of you could keep a positive attitude and stay healthy.  
+In this unprecedented global situation, we hope you can all keep a positive attitude and stay healthy.  
 
 Let’s take a look at what we have achieved in March!
 
 ## News
 
-TiKV has finished[ a third-party security assessment](https://tikv.org/blog/tikv-pass-security-audit/)! This assessment of the TiKV scope, curated by CNCF and executed by Cure53 in early 2020, concludes with generally positive results. The full report is available [here](https://tikv.org/blog/TiKV-Security-Audit.pdf).
+TiKV has finished [a third-party security assessment](https://tikv.org/blog/tikv-pass-security-audit/)! This assessment of the TiKV scope, commissioned by CNCF and executed by Cure53 in early 2020, concludes with generally positive results. The full report is available [here](https://tikv.org/blog/TiKV-Security-Audit.pdf).
 
-The TiKV community had the first-ever community meeting on March 26, 2020. Liu Tang ([@siddontang](https://github.com/siddontang)), one of our maintainers, kicked off the meeting, and the community manager, Calvin Weng ([@dcalvin](https://github.com/dcalvin)) shared about recent updates on community governance and membership. Also, a demo of [unified thread pool](https://docs.google.com/presentation/d/1HWC9SmthBdbp633wLCtORRvCwQqAfJ8zWkjr82O_gN0/edit#slide=id.g71ef919454_1_5), a thread pool in Rust to improve TiKV’s performance in allocating and scheduling resources, was presented by Yilin Chen ([@sticnarf](https://github.com/sticnarf)) at the end of the meeting. In case you missed it, the recording video is available [here](https://www.youtube.com/watch?v=hkDvakA-efA&feature=youtu.be) and the meeting notes are available [here](https://docs.google.com/document/d/1CWUAkBrcm9KPclAu8fWHZzByZ0yhsQdRggnEdqtRMQ8/edit#heading=h.ut5w82fnx9bc).
+The TiKV community held the first-ever community meeting on March 26, 2020. Liu Tang ([@siddontang](https://github.com/siddontang)), one of our maintainers, kicked off the meeting, and the community manager, Calvin Weng ([@dcalvin](https://github.com/dcalvin)) shared about recent updates on community governance and membership. Also, a demo of [unified thread pool](https://docs.google.com/presentation/d/1HWC9SmthBdbp633wLCtORRvCwQqAfJ8zWkjr82O_gN0/edit#slide=id.g71ef919454_1_5), a thread pool in Rust to improve TiKV’s performance in allocating and scheduling resources, was presented by Yilin Chen ([@sticnarf](https://github.com/sticnarf)) at the end of the meeting. In case you missed it, the recording video is available [here](https://www.youtube.com/watch?v=hkDvakA-efA&feature=youtu.be) and the meeting notes are available [here](https://docs.google.com/document/d/1CWUAkBrcm9KPclAu8fWHZzByZ0yhsQdRggnEdqtRMQ8/edit#heading=h.ut5w82fnx9bc).
 
 We have two new TiKV maintainers - Daobing Li ([@lidaobing](https://github.com/lidaobing)) from JD Cloud & AI and Fu Chen ([@fredchenbj](https://github.com/fredchenbj)) from Yidian Zixun. Congratulations! We look forward to working with them. The nominating PRs are here:
 
@@ -55,23 +55,23 @@ In the recap of [RocksDB in TiKV](https://tikv.org/blog/rocksdb-in-tikv/) in a 2
 
 [@zhangjinpeng1987](https://github.com/zhangjinpeng1987) calculated CPU quota and memory limit in the container environment in [#7074](https://github.com/tikv/tikv/pull/7074), and automatically adjusted related configurations in TiKV.
 
-[@yiwu-arbug](https://github.com/yiwu-arbug) added utilities to enable AWS IAM in k8s in [#7201](https://github.com/tikv/tikv/pull/7201).
+[@yiwu-arbug](https://github.com/yiwu-arbug) added utilities to enable AWS Identity and Access Management (IAM) in Kubernetes in [#7201](https://github.com/tikv/tikv/pull/7201).
 
-[@loxp](https://github.com/loxp) added swagger supports in [#2276](https://github.com/pingcap/pd/pull/2276).
+[@loxp](https://github.com/loxp) added [swagger](https://swagger.io/) supports for API in [#2276](https://github.com/pingcap/pd/pull/2276), making API easy to use. 
 
-[@innerr](https://github.com/innerr) implemented the pipelined pessimistic lock in [#6984](https://github.com/tikv/tikv/pull/6984), which can improve much performance of the pessimistic transaction.
+[@innerr](https://github.com/innerr) and [@youjiali1995](https://github.com/youjiali1995) implemented pipelined pessimistic locks in [#6984](https://github.com/tikv/tikv/pull/6984). Pipelining can improve performance in pessimistic transactions.
 
 ## Notable issues
 
-**Helped wanted issues (mentoring available)**
+**Help wanted issues (mentoring available)**
 
-[@zhangjinpeng1987](https://github.com/zhangjinpeng1987) suggested improving the coverage of the components/codec module, the coverage of components/raftstore module and the coverage of the components/tidb_query_datatypes module separately in [#7186](https://github.com/tikv/tikv/issues/7186), [#7191](https://github.com/tikv/tikv/issues/7191) and [#7192](https://github.com/tikv/tikv/issues/7192).
+[@zhangjinpeng1987](https://github.com/zhangjinpeng1987) suggested improving the test coverage of the components/codec module, the test coverage of components/raftstore module and the test coverage of the components/tidb_query_datatypes module separately in [#7186](https://github.com/tikv/tikv/issues/7186), [#7191](https://github.com/tikv/tikv/issues/7191) and [#7192](https://github.com/tikv/tikv/issues/7192).
 
-[@breeswish](https://github.com/breeswish) created issue [#7039](https://github.com/tikv/tikv/issues/7039), requesting a feature to optimize the coprocessor analytical performance.
+[@breeswish](https://github.com/breeswish) created issue [#7039](https://github.com/tikv/tikv/issues/7039), requesting a feature to optimize the coprocessor's analytical performance.
 
 **Call for participation**
 
-[@MyonKeminta](https://github.com/MyonKeminta) opened issue [#7153](https://github.com/tikv/tikv/issues/7153), requesting to avoid incorrect "engine" label to distinguish nodes with different engines. [@overvenus](https://github.com/overvenus) and [@disksing](https://github.com/disksing) presented their opinions on this issue, and what is yours?
+[@MyonKeminta](https://github.com/MyonKeminta) opened issue [#7153](https://github.com/tikv/tikv/issues/7153), requesting to avoid incorrect "engine" label to distinguish nodes with different engines. [@overvenus](https://github.com/overvenus) and [@disksing](https://github.com/disksing) presented their opinions on this issue; what is yours?
 
 [@5kbpers](https://github.com/5kbpers) suggested in [#7113](https://github.com/tikv/tikv/issues/7113) to support to delay the GC for delete record to relax the limitation of the GC interval. [@MyonKeminta](https://github.com/MyonKeminta) agreed with [@5kbpers](https://github.com/5kbpers). What do you think?
 
