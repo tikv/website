@@ -20,7 +20,7 @@ Let us know on [Slack](https://tikv-wg.slack.com/join/shared_invite/enQtNTUyODE4
 - [ ] Fine-grained memory control
 - [ ] Raft
     + Joint Consensus
-    + [x]Read-only Replicas
+    + [x] Read-only Replicas
 
 ### Performance
 
