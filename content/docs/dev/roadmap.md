@@ -19,7 +19,7 @@ Let us know on [Slack](https://tikv-wg.slack.com/join/shared_invite/enQtNTUyODE4
 - [x] Dynamically split and merge hot spot Regions
 - [ ] Fine-grained memory control
 - [ ] Raft
-    + Joint Consensus
+    + [ ] Joint Consensus
     + [x] Read-only Replicas
 
 ### Performance
@@ -41,11 +41,11 @@ Let us know on [Slack](https://tikv-wg.slack.com/join/shared_invite/enQtNTUyODE4
 - [ ] Fine-grained QoS control
 - [x] Configure the number of replicas and distribution strategy by Regions
 - [ ] Raft
-    + Chain replication of data
-    + Witness role
+    + [ ] Chain replication of data
+    + [ ] Witness role
 - Storage engine
     + [x] Support splitting SSTables according to Guards During compaction in RocksDB (WIP)
-    + Separate cold and hot data
+    + [ ] Separate cold and hot data
 
 ### Performance
 
