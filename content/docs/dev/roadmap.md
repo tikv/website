@@ -14,33 +14,33 @@ Let us know on [Slack](https://tikv-wg.slack.com/join/shared_invite/enQtNTUyODE4
 
 ### Features
 
-[x] Support up to 200+ nodes in a cluster
-[x] Fast full backup and restoration
-[x] Dynamically split and merge hot spot Regions
-[ ] Fine-grained memory control
-[ ] Raft
+- [x] Support up to 200+ nodes in a cluster
+- [x] Fast full backup and restoration
+- [x] Dynamically split and merge hot spot Regions
+- [ ] Fine-grained memory control
+- [ ] Raft
     + Joint Consensus
     + [x]Read-only Replicas
 
 ### Performance
 
-[x] Improve scan performance
-[x] Dynamically increase the number of worker threads (WIP)
-[x] Flexibly increase read-only replicas (WIP)
-[x] Optimize the scheduling system to prevent QPS jitter
+- [x] Improve scan performance
+- [x] Dynamically increase the number of worker threads (WIP)
+- [x] Flexibly increase read-only replicas (WIP)
+- [x] Optimize the scheduling system to prevent QPS jitter
 
 ### Usability
 
-[x] Refactor log content
+- [x] Refactor log content
 
 ### Features
 
-[x] Fast incremental backup and restoration
-[ ] Flashback to any point-in-time
-[ ] Hierarchical storage
-[ ] Fine-grained QoS control
-[x] Configure the number of replicas and distribution strategy by Regions
-[ ] Raft
+- [x] Fast incremental backup and restoration
+- [ ] Flashback to any point-in-time
+- [ ] Hierarchical storage
+- [ ] Fine-grained QoS control
+- [x] Configure the number of replicas and distribution strategy by Regions
+- [ ] Raft
     + Chain replication of data
     + Witness role
 - Storage engine
@@ -49,8 +49,8 @@ Let us know on [Slack](https://tikv-wg.slack.com/join/shared_invite/enQtNTUyODE4
 
 ### Performance
 
-[x] Improve fast backup performance
-[x] Improve fast restoration performance
-[ ] 1PC
-[ ] Support storage class memory hardware
-[ ] New Raft engine
+- [x] Improve fast backup performance
+- [x] Improve fast restoration performance
+- [ ] 1PC
+- [ ] Support storage class memory hardware
+- [ ] New Raft engine
