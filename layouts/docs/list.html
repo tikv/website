@@ -5,7 +5,7 @@ TiKV | {{ .Title }}
 {{ define "main" }}
 {{ partial "docs/hero.html" . }}
 {{ $currentPage := . }}
-{{ $version := trim (index (findRE "\\/(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)(-\\w*)?\\/" $currentPage.Permalink) 0) "/" }}
+{{ $version := trim (index (findRE "\\/(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)(-\\w*)?\\/|dev\\/" $currentPage.Permalink) 0) "/" }}
 {{ $docs := (index .Site.Menus $version) }}
 
 <section class="section">

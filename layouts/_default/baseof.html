@@ -3,24 +3,27 @@
 {{ $pageType := cond $isHome "home" .Section }}
 <!DOCTYPE html>
 <html lang="{{ site.LanguageCode }}">
-  <head>
-    {{ if not $isServer }}
-    {{ partial "google-analytics.html" . }}
-    {{ end }}
-    {{ partial "meta.html" . }}
-    {{ partial "twitter-card.html" . }}
-    {{ partial "open-graph-tags.html" . }}
-    <title>{{ block "title" . }}{{ site.Title }} | {{ site.Params.description.brief }}{{ end }}</title>
-    {{ partial "css.html" . }}
-  </head>
-  <body class="has-navbar-fixed-top page is-{{ $pageType }}-page">
-    {{ partial "navbar.html" . }}
 
-    <main class="main">
-      {{ block "main" . }}{{ end }}
-    </main>
+<head>
+  {{ if not $isServer }}
+  {{ partial "google-analytics.html" . }}
+  {{ end }}
+  {{ partial "meta.html" . }}
+  {{ partial "twitter-card.html" . }}
+  {{ partial "open-graph-tags.html" . }}
+  <title>{{ block "title" . }}{{ site.Title }} | {{ site.Params.description.brief }}{{ end }}</title>
+  {{ partial "css.html" . }}
+</head>
 
-    {{ partial "footer.html" . }}
-    {{ partial "javascript.html" . }}
-  </body>
+<body class="has-navbar-fixed-top page is-{{ $pageType }}-page">
+  {{ partial "navbar.html" . }}
+
+  <main class="main">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "footer.html" . }}
+  {{ partial "javascript.html" . }}
+</body>
+
 </html>
