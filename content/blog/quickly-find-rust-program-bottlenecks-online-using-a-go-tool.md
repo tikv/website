@@ -3,6 +3,7 @@ title: Quickly Find Rust Program Bottlenecks Online Using a Go Tool
 author: [Ke'ao Yang]
 date: 2020-04-09
 ---
+
 {{< figure src="/img/blog/pprof/find-rust-program-bottlenecks-online-using-go-tool.jpg" number="" >}}
 
 Profiling large [Rust](https://en.wikipedia.org/wiki/Rust_(programming_language)) applications online is difficult. Current profilers are not up to the job.
@@ -31,23 +32,21 @@ If we want to obtain detailed profiling data for a comprehensive analysis or use
 
 TiKV is a distributed, transactional, key-value database written in Rust. Taking it as an example, let's see how to use pprof to visualize a Rust program's profiling data:
 
-**Note**:
+> **Note**:
+> 
+> Before you start, make sure that you've installed the following in the environment:
+> 
+> *   [Graphviz](https://www.graphviz.org/download/)
+> *   [The Go client](https://golang.org/doc/install/source)
 
-Before you start, make sure that you've installed the following in the environment:
-
-*   [Graphviz](https://www.graphviz.org/download/)
-*   [The Go client](https://golang.org/doc/install/source)
-
-Assume that TiKV exports protobuf files via ``http://127.0.0.1:22039/``.
+Assume that TiKV exports protobuf files via `http://127.0.0.1:22039/`.
 
 1. Sample the program and download a protobuf file. In this example, pprof samples the program for 50 seconds:
 
     ```   
-
     curl -H "Content-Type: application/protobuf"
 
     http://127.0.0.1:22039/debug/pprof/profile\?seconds=50 > some.pb
-
     ```
 
    After 50 seconds, sampling stops, and the corresponding protobuf file is returned.
@@ -55,16 +54,14 @@ Assume that TiKV exports protobuf files via ``http://127.0.0.1:22039/``.
 2. Use pprof to parse the protobuf file.    
 
     ```
-
     go tool pprof -http=:8080 some.pb
-
     ```
 
 3. Go to `http://localhost:8080`, and you can see the graph of stack traces:
 
 {{< figure src="/img/blog/pprof/graph-of-stack-traces.png" caption="Graph of stack traces" number="" >}}
 
-4. (Optional) From the **VIEW**drop-down menu, select **Flame Graph**. You can see the [flame graph, ](http://www.brendangregg.com/flamegraphs.html)a visualization of profiled software which quickly and accurately identifies the most frequent code paths.
+4. (Optional) From the **VIEW** drop-down menu, select **Flame Graph**. You can see the [flame graph](http://www.brendangregg.com/flamegraphs.html), a visualization of profiled software which quickly and accurately identifies the most frequent code paths.
 
 {{< figure src="/img/blog/pprof/flame-graph.gif" caption="Flame graph" number="" >}}
 
@@ -73,9 +70,7 @@ With the protobuf format, you can write your own visualization or performance an
 For example, you can run this command to ignore `threadpool`-related information:
 
 ```
-
 go tool pprof -ignore threadpool -http=:8080 some.pb
-
 ```
 
 ## Conclusion
