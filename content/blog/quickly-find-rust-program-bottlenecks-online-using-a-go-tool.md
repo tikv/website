@@ -1,6 +1,6 @@
 ---
 title: Quickly Find Rust Program Bottlenecks Online Using a Go Tool
-author: [Ke'ao Yang]
+author: Ke'ao Yang
 date: 2020-04-09
 ---
 
