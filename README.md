@@ -10,12 +10,21 @@ The site is published automatically by [Netlify](https://netlify.com) whenever c
 
 To run the site locally, you'll need to install [Yarn](https://yarnpkg.com) and [Hugo](https://gohugo.io) (in particular the [extended](https://gohugo.io/getting-started/installing/) version).
 
-You can alternatively use the provided `Dockerfile` via:
+You can then host the development server for the site with:
 
 ```bash
-docker build -t tikv/website .
-docker run -it --rm -p 1313:1313 -v `pwd`:/home/builder/build tikv/website
+make serve
 ```
+
+Next, browse to [http://localhost:1313/](http://localhost:1313/).
+
+Alternatively you can use the provided `Dockerfile` via:
+
+```bash
+make docker
+```
+
+> If you're using Docker for Mac or Windows, you may need to browse to the correct address, or set up port forwarding `1313`. On Linux or [WSL2 with Docker](https://hoverbear.org/blog/getting-the-most-out-of-wsl/#get-systemd-functional) you can visit [http://localhost:1313/](http://localhost:1313/).
 
 ## Adding blog posts
 

@@ -21,3 +21,7 @@ preview-build:
 		--buildFuture \
 		--baseURL $(DEPLOY_PRIME_URL) \
 		--minify
+
+docker:
+	docker build -t tikv/website .
+	docker run -it --rm -p 1313:1313 -v `pwd`:/home/builder/build tikv/website
