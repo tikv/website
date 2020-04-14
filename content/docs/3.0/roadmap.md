@@ -46,4 +46,4 @@ Let us know on [Slack](https://tikv-wg.slack.com/join/shared_invite/enQtNTUyODE4
 - [x] Decentralize scheduling table Regions
 - [x] Scheduler supports prioritization to be more controllable
 - [ ] Use machine learning to optimize scheduling
-- [ ] Optimize Region metadata - Save Region metadata in detached storage engine
+- [x] Optimize Region metadata - Save Region metadata in detached storage engine
