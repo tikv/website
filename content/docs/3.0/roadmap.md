@@ -19,25 +19,25 @@ Let us know on [Slack](https://tikv-wg.slack.com/join/shared_invite/enQtNTUyODE4
     - [x] Raft Learner - Support Raft learner to smooth the configuration change process
     - [x] Raft Pre-vote - Support Raft pre-vote to avoid unnecessary leader election on network isolation
     - [ ] Joint Consensus - Change multi members safely.
-    - [ ] Multi-thread Raftstore - Process Region Raft logic in multiple threads
-    - [ ] Multi-thread apply pool - Apply Region Raft committed entries in multiple threads
+    - [x] Multi-thread Raftstore - Process Region Raft logic in multiple threads
+    - [x] Multi-thread apply pool - Apply Region Raft committed entries in multiple threads
 + Engine
-    - [ ] Titan - Separate large key-values from LSM-Tree
+    - [x] Titan - Separate large key-values from LSM-Tree
     - [ ] Pluggable Engine Interface - Clean up the engine wrapper code and provide more extensibility
 + Storage
     - [ ] Flow Control - Do flow control in scheduler to avoid write stall in advance
 + Transaction
     - [x] Optimize transaction conflicts
-    - [ ] Distributed GC - Distribute MVCC garbage collection control to TiKV
+    - [x] Distributed GC - Distribute MVCC garbage collection control to TiKV
 + Coprocessor
     - [x] Streaming - Cut large data set into small chunks to optimize memory consumption
-    - [ ] Chunk Execution - Process data in chunk to improve performance
+    - [x] Chunk Execution - Process data in chunk to improve performance
     - [ ] Request Tracing - Provide per-request execution details
 + Tools
     - [x] TiKV Importer - Speed up data importing by SST file ingestion
 + Client
-    - [ ] TiKV client (Rust crate)
-    - [ ] Batch gRPC Message - Reduce message overhead
+    - [x] TiKV client (Rust crate)
+    - [x] Batch gRPC Message - Reduce message overhead
 
 ## PD
 
