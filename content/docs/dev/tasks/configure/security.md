@@ -103,7 +103,7 @@ cert-path = "/path/to/tikv-server-cert.pem"
 key-path = "/path/to/tikv-server-key.pem"
 # The name list used to verify the common name in client’s certificates. Verification is
 # not enabled if this field is empty.
-cert-allowed-cn = ["name1", "name2"]
+cert-allowed-cn = ["tikv-server", "pd-server"]
 ```
 
 You'll also need to **change the connection URL to `https://`**.
@@ -122,7 +122,7 @@ cert-path = "/path/to/pd-server-cert.pem"
 key-path = "/path/to/pd-server-key.pem"
 # The name list used to verify the common name in client’s certificates. Verification is
 # not enabled if this field is empty.
-cert-allowed-cn = ["name1", "name2"]
+cert-allowed-cn = ["tikv-server", "pd-server"]
 ```
 
 You'll also need to **change the connection URL to `https://`**.
