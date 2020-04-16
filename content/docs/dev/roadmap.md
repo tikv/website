@@ -3,7 +3,7 @@ title: TiKV RoadMap
 description: Roadmap to TiKV 4.0 and beyond
 menu:
     "dev":
-        weight: 4
+        weight: 5
 ---
 
 This document describes the roadmap for TiKV development. As an open source project, TiKV is developed by a community of contributors and adopted by many of them in production. That's where most of the goals on the roadmap come from. Currently, the 4.0 goals are being actively implemented. However, there is no guarantee that the medium-term goals will be implemented in any specific order.

@@ -3,7 +3,7 @@ title: TiKV RoadMap
 description: Roadmap to TiKV 3.0
 menu:
     "3.0":
-        weight: 4
+        weight: 5
 ---
 
 This document describes the roadmap for TiKV development. As an open source project, TiKV is developed by a community of contributors and adopted by many of them in production. That's where most of the goals on the roadmap come from.
