@@ -1,7 +1,7 @@
 ---
 title: Quickly Find Rust Program Bottlenecks Online Using a Go Tool
 author: Ke'ao Yang
-date: 2020-04-09
+date: 2020-04-23
 ---
 
 {{< figure src="/img/blog/pprof/find-rust-program-bottlenecks-online-using-go-tool.jpg" number="" >}}
