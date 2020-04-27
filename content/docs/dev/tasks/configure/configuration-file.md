@@ -24,7 +24,7 @@ This document only describes the parameters that are not included in command-lin
 ### `grpc-compression-type`
 
 + The compression algorithm for gRPC messages
-+ Available values: `none`, `deflate`, `gzip`
++ Optional values: `none`, `deflate`, `gzip`
 + Default value: `none`
 
 ### `grpc-concurrency`
@@ -259,6 +259,21 @@ Configuration items related to storage
 + The size of the temporary file that preoccupies the extra space when TiKV is started. The name of temporary file is `space_placeholder_file`, located in the `storage.data-dir` directory. When TiKV runs out of disk space and cannot be started normally, you can delete this file as an emergency intervention and set `reserve-space` to `0MB`.
 + Default value: `2GB`
 + Unit: MB|GB
+
+## storage.block-cache
+
+Configuration items related to the sharing of block cache among multiple RocksDB Column Families (CF). When these configuration items are enabled, block cache separately configured for each column family is disabled.
+
+### `shared`
+
++ Enables or disables the sharing of block cache.
++ Default value: `true`
+
+### `capacity`
+
++ The size of the shared block cache.
++ Default value: 45% of the size of total system memory
++ Unit: KB|MB|GB
 
 ## raftstore
 
@@ -660,7 +675,7 @@ Configuration items related to RocksDB
 ### `wal-recovery-mode`
 
 + WAL recovery mode
-+ Available values: `0` (`TolerateCorruptedTailRecords`), `1` (`AbsoluteConsistency`), `2` (`PointInTimeRecovery`), `3` (`SkipAnyCorruptedRecords`)
++ Optional values: `0` (`TolerateCorruptedTailRecords`), `1` (`AbsoluteConsistency`), `2` (`PointInTimeRecovery`), `3` (`SkipAnyCorruptedRecords`)
 + Default value: `2`
 + Minimum value: `0`
 + Maximum value: `3`
@@ -723,7 +738,7 @@ Configuration items related to RocksDB
 ### `rate-limiter-mode`
 
 + Rate LImiter mode
-+ Available values: `1` (`ReadOnly`), `2` (`WriteOnly`), `3` (`AllIo`)
++ Optional values: `1` (`ReadOnly`), `2` (`WriteOnly`), `3` (`AllIo`)
 + Default value: `2`
 + Minimum value: `1`
 + Maximum value: `3`
@@ -862,14 +877,14 @@ Configuration items related to `rocksdb.defaultcf`
 ### `read-amp-bytes-per-bit`
 
 + Enables or disables statistics of read amplification.
-+ Available values: `0` (disabled), > `0` (enabled).
++ Optional values: `0` (disabled), > `0` (enabled).
 + Default value: `0`
 + Minimum value: `0`
 
 ### `compression-per-level`
 
 + The default compression algorithm for each level
-+ Available values: ["no", "no", "lz4", "lz4", "lz4", "zstd", "zstd"]
++ Optional values: ["no", "no", "lz4", "lz4", "lz4", "zstd", "zstd"]
 + Default value: `No` for the first two levels, and `lz4` for the next five levels
 
 ### `write-buffer-size`
@@ -933,7 +948,7 @@ Configuration items related to `rocksdb.defaultcf`
 ### `compaction-pri`
 
 + The priority type of compaction
-+ Available values: `3` (`MinOverlappingRatio`), `0` (`ByCompensatedSize`), `1` (`OldestLargestSeqFirst`), `2` (`OldestSmallestSeqFirst`)
++ Optional values: `3` (`MinOverlappingRatio`), `0` (`ByCompensatedSize`), `1` (`OldestLargestSeqFirst`), `2` (`OldestSmallestSeqFirst`)
 + Default value: `3`
 
 ### `dynamic-level-bytes`
@@ -954,7 +969,7 @@ Configuration items related to `rocksdb.defaultcf`
 ### `rocksdb.defaultcf.compaction-style`
 
 + Compaction method
-+ Available values: `level`, `universal`
++ Optional values: `level`, `universal`
 + Default value: `level`
 
 ### `disable-auto-compactions`
@@ -988,7 +1003,7 @@ Configuration items related to `rocksdb.defaultcf.titan`
 ### `blob-file-compression`
 
 + The compression algorithm used in a Blob file
-+ Available values: `no`, `snappy`, `zlib`, `bzip2`, `lz4`, `lz4hc`, `zstd`
++ Optional values: `no`, `snappy`, `zlib`, `bzip2`, `lz4`, `lz4hc`, `zstd`
 + Default value: `lz4`
 
 ### `blob-cache-size`
@@ -1032,6 +1047,25 @@ Configuration items related to `rocksdb.defaultcf.titan`
 + Default value: `8MB`
 + Minimum value: `0`
 + Unit: KB|MB|GB
+
+### `blob-run-mode`
+
++ Specifies the running mode of Titan.
++ Optional values:
+    + `normal`: Writes data to the blob file when the value size exceeds `min-blob-size`.
+    + `read_only`: Refuses to write new data to the blob file, but still reads the original data from the blob file.
+    + `fallback`: Writes data in the blob file back to LSM.
++ Default value: `normal`
+
+### `level-merge`
+
++ Determines whether to optimize the read performance. When `level-merge` is enabled, there is more write amplification.
++ Default value: `true`
+
+### `gc-merge-rewrite`
+
++ Determines whether to use the merge operator to write back blob indexes for Titan GC. When `gc-merge-rewrite` is enabled, it reduces the effect of Titan GC on the writes in the foreground.
++ Default value: `true`
 
 ## rocksdb.writecf
 
