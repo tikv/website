@@ -1,16 +1,19 @@
 ---
-title: TiKV Configuration File
-summary: Learn the TiKV configuration file.
-category: reference
+title: Configuration File
+description: Learn the TiKV configuration file.
+menu:
+    "dev":
+        parent: Configure
+        weight: 8
 ---
 
-# TiKV Configuration File
+# Configuration File
 
 <!-- markdownlint-disable MD001 -->
 
 The TiKV configuration file supports more options than command-line parameters. You can find the default configuration file in [etc/config-template.toml](https://github.com/tikv/tikv/blob/master/etc/config-template.toml) and rename it to `config.toml`.
 
-This document only describes the parameters that are not included in command-line parameters. For more details, see [command-line parameter](/reference/configuration/tikv-server/configuration.md).
+This document only describes the parameters that are not included in command-line parameters. For more details, see [command-line parameter](https://pingcap.com/docs/stable/reference/configuration/tikv-server/configuration/).
 
 ### `status-thread-pool-size`
 
@@ -1130,7 +1133,7 @@ Configuration items related to `import`
 
 ### `enabled`
 
-- Enables the pessimistic transaction mode. For pessimistic transaction usage, refer to [TiDB Pessimistic Transaction Mode](/reference/transactions/transaction-pessimistic.md).
+- Enables the pessimistic transaction mode. For pessimistic transaction usage, refer to [TiDB Pessimistic Transaction Mode](https://pingcap.com/docs/stable/reference/transactions/transaction-pessimistic/).
 - Default value: `true`
 
 ### `wait-for-lock-timeout`
