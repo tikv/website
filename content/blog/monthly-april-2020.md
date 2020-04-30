@@ -4,15 +4,15 @@ date: 2020-04-30
 author: TiKV Authors
 ---
 
-April 1st marked TiKV’s 4th birthday. We are grateful for the support and contribution of the community while focusing on making better TiKV.
+April 1st marked TiKV’s 4th birthday. We are grateful for the support and contribution of the community while focusing on making a better TiKV.
 
 Let’s take a look at what we have achieved in April!
 
 ## News
 
-We're working on another API- VerKV, a multi-versioned KV between RawKV and TxnKV, to help TiKV expand application scenarios. The work plan proposed by [@fredchenbj](https://github.com/fredchenbj) is available [here](https://github.com/tikv/tikv/issues/7295) and join us by picking the task you are interested in.
+We're working on another API - VerKV, a multi-versioned KV without transactions, to help TiKV expand application scenarios. It is an API halfway between RawKV and TxnKV. The work plan proposed by [@fredchenbj](https://github.com/fredchenbj) is available [here](https://github.com/tikv/tikv/issues/7295); join us by picking a task you are interested in!
 
-It is halfway through the [TiDB Usability Challenge](https://pingcap.com/blog/tidb-usability-challenge-dare-to-dream-bigger/) and we are glad to see TiKV related projects are popular. Congratulations to the teams that grabbed scores and let’s take a look at the top 5 most scored projects in TiKV repo.
+It is halfway through the [TiDB Usability Challenge](https://pingcap.com/blog/tidb-usability-challenge-dare-to-dream-bigger/) and we are glad to see TiKV related projects are popular. Congratulations to the teams that grabbed scores! Let’s take a look at the top 5 most scored projects in TiKV repo:
 
 *   [Extract tidb_query into different workspaces](https://github.com/tikv/tikv/issues/5706) by team [SSebo](https://github.com/tidb-challenge-program/register/issues/72)
 *   [Support auto flush metrics](https://github.com/tikv/tikv/issues/7062) by team [BABAIsWatchingYou](https://github.com/tidb-challenge-program/register/issues/15)
@@ -33,8 +33,8 @@ You can review the changelogs here:
 *   [3.1.0-rc](https://github.com/tikv/tikv/releases/tag/v3.1.0-rc)
     *   New features
         *   Support backing up data with the Raw KV API in [#7051](https://github.com/tikv/tikv/pull/7051)
-        *   Support the Transport Layer Security (TLS) authentication for the status server in [#7142](https://github.com/tikv/tikv/pull/7142)
-        *   Support the TLS authentication for the KV server in [#7305](https://github.com/tikv/tikv/pull/7305)
+        *   Support the TLS authentication for the status server in [#7142](https://github.com/tikv/tikv/pull/7142)
+        *   Support TLS authentication for the KV server in [#7305](https://github.com/tikv/tikv/pull/7305)
     *   Bug fixes
 *   [4.0.0-rc](https://github.com/tikv/tikv/releases/tag/v4.0.0-rc)
     *   New features
@@ -42,7 +42,7 @@ You can review the changelogs here:
         *   Support TLS in the HTTP port in [#5393](https://github.com/tikv/tikv/pull/5393)
         *   Enable the `unify-read-pool` configuration item in new clusters by default in [#7059](https://github.com/tikv/tikv/pull/7059)
     *   Bug fixes
-*   [3.1.0](https://github.com/tikv/tikv/releases/tag/v3.1.0)
+*   **[3.1.0](https://github.com/tikv/tikv/releases/tag/v3.1.0)**
     *   Bug fixes
 *   [3.0.13](https://github.com/tikv/tikv/releases/tag/v3.0.13)
     *   Bug fixes
