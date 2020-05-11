@@ -1,5 +1,6 @@
 ---
 title: Deep Dive
+aliases: ['docs/deep-dive/introduction']
 menu:
     nav:
         weight: 1
