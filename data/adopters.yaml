@@ -77,9 +77,6 @@
   stories:
   - language: Chinese
     url: https://www.pingcap.com/cases-cn/user-case-qunar/
-- name: VNG
-  url: https://en.wikipedia.org/wiki/VNG_Corporation
-  industry: Entertainment
 - name: Hulu
   url: https://www.hulu.com/
   industry: Entertainment
@@ -173,6 +170,12 @@
 - name: Panda.tv
   url: https://www.crunchbase.com/organization/panda-tv
   industry: Live Streaming
+- name: VNG
+  url: https://en.wikipedia.org/wiki/VNG_Corporation
+  industry: Mobile Payment
+  stories:
+  - language: English
+    url: https://pingcap.com/success-stories/tidb-at-zalopay-infrastructure-lesson-learned/
 - name: Ping++
   url: https://www.crunchbase.com/organization/ping-5
   industry: Mobile Payment
