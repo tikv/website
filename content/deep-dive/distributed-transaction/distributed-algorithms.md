@@ -1,6 +1,6 @@
 ---
 title: Distributed Algorithms
-aliases: ['docs/deep-dive/distributed-transaction/distributed-algorithms']
+aliases: ['/docs/deep-dive/distributed-transaction/distributed-algorithms']
 menu:
     nav:
         parent: Distributed transaction

@@ -1,6 +1,6 @@
 ---
 title: Kubernetes
-aliases: ['docs/deep-dive/resource-scheduling/kubernetes']
+aliases: ['/docs/deep-dive/resource-scheduling/kubernetes']
 menu:
     nav:
         parent: Resource scheduling

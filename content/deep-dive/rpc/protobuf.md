@@ -1,6 +1,6 @@
 ---
 title: Protocol Buffers
-aliases: ['docs/deep-dive/rpc/protobuf']
+aliases: ['/docs/deep-dive/rpc/protobuf']
 menu:
     nav:
         parent: Remote Procedure Calls (RPC)

@@ -1,6 +1,6 @@
 ---
 title: Optimized Percolator
-aliases: ['docs/deep-dive/distributed-transaction/optimized-percolator']
+aliases: ['/docs/deep-dive/distributed-transaction/optimized-percolator']
 menu:
     nav:
         parent: Distributed transaction

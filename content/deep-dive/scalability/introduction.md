@@ -1,6 +1,6 @@
 ---
 title: Scalability
-aliases: ['docs/deep-dive/scalability/introduction']
+aliases: ['/docs/deep-dive/scalability/introduction']
 menu:
     nav:
         parent: Deep Dive

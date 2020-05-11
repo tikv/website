@@ -1,6 +1,6 @@
 ---
 title: Remote Procedure Calls (RPC)
-aliases: ['docs/deep-dive/rpc/introduction']
+aliases: ['/docs/deep-dive/rpc/introduction']
 menu:
     nav:
         parent: Deep Dive

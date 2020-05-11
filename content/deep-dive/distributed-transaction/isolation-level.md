@@ -1,6 +1,6 @@
 ---
 title: Isolation Level
-aliases: ['docs/deep-dive/distributed-transaction/isolation-level']
+aliases: ['/docs/deep-dive/distributed-transaction/isolation-level']
 menu:
     nav:
         parent: Distributed transaction

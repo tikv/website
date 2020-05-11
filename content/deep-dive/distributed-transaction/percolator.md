@@ -1,6 +1,6 @@
 ---
 title: Percolator
-aliases: ['docs/deep-dive/distributed-transaction/percolator']
+aliases: ['/docs/deep-dive/distributed-transaction/percolator']
 menu:
     nav:
         parent: Distributed transaction

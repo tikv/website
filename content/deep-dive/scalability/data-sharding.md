@@ -1,6 +1,6 @@
 ---
 title: Data Sharding
-aliases: ['docs/deep-dive/scalability/data-sharding']
+aliases: ['/docs/deep-dive/scalability/data-sharding']
 menu:
     nav:
         parent: Scalability

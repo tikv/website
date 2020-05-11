@@ -1,6 +1,6 @@
 ---
 title: Testing
-aliases: ['docs/deep-dive/testing/introduction']
+aliases: ['/docs/deep-dive/testing/introduction']
 menu:
     nav:
         parent: Deep Dive

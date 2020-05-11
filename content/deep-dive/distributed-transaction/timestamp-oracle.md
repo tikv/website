@@ -1,6 +1,6 @@
 ---
 title: Timestamp Oracle
-aliases: ['docs/deep-dive/distributed-transaction/timestamp-oracle']
+aliases: ['/docs/deep-dive/distributed-transaction/timestamp-oracle']
 menu:
     nav:
         parent: Distributed transaction
