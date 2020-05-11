@@ -1,6 +1,6 @@
 ---
 title: Failure Injection
-aliases: ['docs/deep-dive/testing/failure_injection']
+aliases: ['/docs/deep-dive/testing/failure_injection']
 menu:
     nav:
         parent: Testing

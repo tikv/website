@@ -1,6 +1,6 @@
 ---
 title: Paxos
-aliases: ['docs/deep-dive/consensus-algorithm/paxos']
+aliases: ['/docs/deep-dive/consensus-algorithm/paxos']
 menu:
     nav:
         parent: Consensus algorithm

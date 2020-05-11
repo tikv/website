@@ -1,6 +1,6 @@
 ---
 title: Consensus algorithm
-aliases: ['docs/deep-dive/consensus-algorithm/introduction']
+aliases: ['/docs/deep-dive/consensus-algorithm/introduction']
 menu:
     nav:
         parent: Deep Dive

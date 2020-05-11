@@ -1,6 +1,6 @@
 ---
 title: RocksDB
-aliases: ['docs/deep-dive/key-value-engine/rocksdb']
+aliases: ['/docs/deep-dive/key-value-engine/rocksdb']
 menu:
     nav:
         parent: Key-value engine

@@ -1,6 +1,6 @@
 ---
 title: Raft
-aliases: ['docs/deep-dive/consensus-algorithm/raft']
+aliases: ['/docs/deep-dive/consensus-algorithm/raft']
 menu:
     nav:
         parent: Consensus algorithm

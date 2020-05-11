@@ -1,6 +1,6 @@
 ---
 title: CAP Theorem
-aliases: ['docs/deep-dive/consensus-algorithm/consistency-availability-partitioning']
+aliases: ['/docs/deep-dive/consensus-algorithm/consistency-availability-partitioning']
 menu:
     nav:
         parent: Consensus algorithm
