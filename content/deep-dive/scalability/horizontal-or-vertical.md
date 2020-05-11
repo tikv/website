@@ -1,5 +1,6 @@
 ---
 title: Horizontal or Vertical
+aliases: ['docs/deep-dive/scalability/horizontal-or-vertical']
 menu:
     nav:
         parent: Scalability

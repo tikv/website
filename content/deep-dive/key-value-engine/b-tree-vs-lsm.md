@@ -1,5 +1,6 @@
 ---
 title: B-Tree vs LSM-Tree
+aliases: ['docs/deep-dive/key-value-engine/b-tree-vs-lsm']
 menu:
     nav:
         parent: Key-value engine

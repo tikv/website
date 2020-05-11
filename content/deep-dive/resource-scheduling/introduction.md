@@ -1,5 +1,6 @@
 ---
 title: Resource scheduling
+aliases: ['docs/deep-dive/resource-scheduling/introduction']
 menu:
     nav:
         parent: Deep Dive

@@ -1,5 +1,6 @@
 ---
 title: Key-value engine
+aliases: ['docs/deep-dive/key-value-engine/introduction']
 menu:
     nav:
         parent: Deep Dive

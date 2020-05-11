@@ -1,5 +1,6 @@
 ---
 title: Multi-raft
+aliases: ['docs/deep-dive/scalability/multi-raft']
 menu:
     nav:
         parent: Scalability

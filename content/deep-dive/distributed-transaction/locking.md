@@ -1,5 +1,6 @@
 ---
 title: Locking
+aliases: ['docs/deep-dive/distributed-transaction/locking']
 menu:
     nav:
         parent: Distributed transaction
