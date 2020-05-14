@@ -18,10 +18,7 @@ In this post, I won’t cover the ins-and-outs of the Raft algorithm in detail, 
 
 As you probably already know, Raft replicates the state machine through logs. If we can ensure all the machines have the same sequence of logs, after applying all logs in order, the state machine will reach a consistent state.
 
-{{< figure
-    src="/img/blog/raft-in-rust/
-    the-design-of-raft-rs.png"
-    number="" >}}
+{{< figure src="/img/blog/raft-in-rust/the-design-of-raft-rs.png" number="" >}}
 
 A complete Raft model contains 4 essential parts:
 
