@@ -155,11 +155,11 @@ $ ansible-playbook -i hosts.ini create_users.yml -u root -k
 
 This step creates the `tidb` user account on the target machines, and configures the sudo rules and the SSH mutual trust between the Control Machine and the target machines.
 
-> **Note:** To configure the SSH mutual trust and sudo without password manually, see [How to manually configure the SSH mutual trust and sudo without password](https://github.com/pingcap/docs/blob/master/dev/how-to/deploy/orchestrated/ansible.md#how-to-manually-configure-the-ssh-mutual-trust-and-sudo-without-password).
+> **Note:** To configure the SSH mutual trust and sudo without password manually, see [How to manually configure the SSH mutual trust and sudo without password](https://pingcap.com/docs/stable/online-deployment-using-ansible/#how-to-manually-configure-the-ssh-mutual-trust-and-sudo-without-password).
 
 ## Step 6: Install the NTP service on the target machines
 
-> **Note:** If the time and time zone of all your target machines are same, the NTP service is on and is normally synchronizing time, you can ignore this step. See [How to check whether the NTP service is normal](https://github.com/pingcap/docs/blob/master/op-guide/ansible-deployment.md#how-to-check-whether-the-ntp-service-is-normal).
+> **Note:** If the time and time zone of all your target machines are same, the NTP service is on and is normally synchronizing time, you can ignore this step. See [How to check whether the NTP service is normal](https://pingcap.com/docs/stable/online-deployment-using-ansible/#how-to-check-whether-the-ntp-service-is-normal).
 
 Make sure you have logged in to the Control Machine using the `tidb` user account, run the following command:
 
