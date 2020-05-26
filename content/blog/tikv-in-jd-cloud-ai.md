@@ -1,5 +1,5 @@
 ---
-title: Case Study: TiKV in JD Cloud & AI
+title: TiKV in JD Cloud & AI
 date: 2020-05-26
 author: Can Cui
 ---
