@@ -7,8 +7,6 @@ author: Can Cui
 
 **Author:** Can Cui (Infrastructure Specialist at JD Cloud & AI)
 
-{{< figure src="/img/blog/tikv-in-jd-cloud-ai/replacing-mysql-with-a-horizontally-scaling-database.jpg" number="" >}}
-
 [JD Cloud & AI](https://www.crunchbase.com/organization/jd-cloud) is a smart technology provider under [JD Group](https://en.wikipedia.org/wiki/JD.com) and is built upon JD Group's business expertise and technological accumulations in areas such as artificial intelligence, big data, cloud computing and the internet of things. It has established a technology ecosystem that delivers unmatched customer value through comprehensive services spanning from foundational platform building to business consultation and planning, business platform construction and operations and maintenance, and is driven by industry leading products that enable smart and digital enterprises and governments through solutions across a wide variety of scenarios. 
 
 Like Microsoft Azure, we deliver comprehensive cloud computing services ranging from infrastructure building and strategic consulting to business platform development and operations. By November, 2018, we had achieved technical innovation in more than 120 cloud computing products and services, exceeding 330 thousand registered users. In 2018, Forrester, the world-renowned research and advisory firm, evaluated our product capacity, strategic layout, marketing performance, and other factors, and recognized JD Cloud & AI as a “[Strong Performer](https://www.jdcloud.com/en/news/detail/376).”
