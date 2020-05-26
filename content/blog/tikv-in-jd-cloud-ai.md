@@ -6,7 +6,7 @@ author: Can Cui
 **Industry:** Cloud Computing
 **Author:** Can Cui (Infrastructure Specialist at JD Cloud)
 
-{{< figure src="/img/blog/tikv-in-jd-cloud-ai/replacing-mysql-with-a-horizontally-scaling-database.jpg"  number="" >}}
+{{< figure src="/img/blog/tikv-in-jd-cloud-ai/replacing-mysql-with-a-horizontally-scaling-database.jpg" number="" >}}
 
 [JD Cloud & AI](https://www.crunchbase.com/organization/jd-cloud) is a smart technology provider under [JD Group](https://en.wikipedia.org/wiki/JD.com) and is built upon JD Group's business expertise and technological accumulations in areas such as artificial intelligence, big data, cloud computing and the internet of things. It has established a technology ecosystem that delivers unmatched customer value through comprehensive services spanning from foundational platform building to business consultation and planning, business platform construction and operations and maintenance, and is driven by industry leading products that enable smart and digital enterprises and governments through solutions across a wide variety of scenarios. Like Microsoft Azure, we deliver comprehensive cloud computing services ranging from infrastructure building and strategic consulting to business platform development and operations. By November, 2018, we had achieved technical innovation in more than 120 cloud computing products and services, exceeding 330 thousand registered users. In 2018, Forrester, the world-renowned research and advisory firm, evaluated our product capacity, strategic layout, marketing performance, and other factors, and recognized JD Cloud & AI as a “[Strong Performer](https://www.jdcloud.com/en/news/detail/376).”
 
@@ -24,7 +24,7 @@ In this section, I’ll elaborate on challenges we encountered in storing OSS me
 
 As shown in the figure below, we previously used MySQL to store OSS metadata (such as image size). Metadata was grouped in buckets, which are similar to namespaces. 
 
-{{< figure src="/img/blog/tikv-in-jd-cloud-ai/original-oss-metadata-storage-system-based-on-mysql.png"  caption="Original OSS metadata storage system based on MySQL"  number="" >}}
+{{< figure src="/img/blog/tikv-in-jd-cloud-ai/original-oss-metadata-storage-system-based-on-mysql.png" caption="Original OSS metadata storage system based on MySQL" number="" >}}
 
 Many similar systems use such a design. But facing business growth with metadata booming, we were plagued by the following challenges:
 
@@ -46,7 +46,7 @@ We hoped our metadata storage database could scale infinitely; for example, to h
 
 To conquer the difficulties mentioned above, we redesigned our metadata storage system as shown in the following figure:
 
-{{< figure src="/img/blog/tikv-in-jd-cloud-ai/redesigning-the-oss-metadata-storage-system.png"  caption="Redesigning the OSS metadata storage system"  number="" >}}
+{{< figure src="/img/blog/tikv-in-jd-cloud-ai/redesigning-the-oss-metadata-storage-system.png" caption="Redesigning the OSS metadata storage system" number="" >}}
 
 The core technique of this solution was making the most data static, because static data was easy to store, migrate, and split. Every day, we made the data written on the previous day static, and merged the static data into the historical data. 
 
@@ -55,7 +55,7 @@ However, as the following diagram reveals, this solution had two problems:
 + Data distribution was complex, so it was hard to manage.
 + Data scheduling was inflexible, which made system maintenance more difficult.
 
-{{< figure src="/img/blog/tikv-in-jd-cloud-ai/complexity-of-the-metadata-storage-system.png"  caption="Complexity of the metadata storage system"  number="" >}}
+{{< figure src="/img/blog/tikv-in-jd-cloud-ai/complexity-of-the-metadata-storage-system.png" caption="Complexity of the metadata storage system" number="" >}}
 
 Therefore, we began to look for a new solution: a **globally ordered key-value** store with **great storage capacity** and **elastic scalability**. Finally, we found TiKV, and it turns out it’s a perfect match for storing enormous amounts of data.
 
@@ -71,7 +71,7 @@ TiKV complements other CNCF project technologies like [etcd](https://etcd.io/), 
 
 The overall architecture of TiKV is illustrated in the figure below:
 
-{{< figure src="/img/blog/tikv-in-jd-cloud-ai/tikv-architecture.png"  caption="TiKV architecture"  number="" >}}
+{{< figure src="/img/blog/tikv-in-jd-cloud-ai/tikv-architecture.png" caption="TiKV architecture" number="" >}}
 
 TiKV connect to clients. To understand how TiKV works, you need to understand some basic terms:
 
@@ -117,7 +117,7 @@ Besides the advantages above, TiKV also passed our tests, including:
 
 The test results showed that TiKV met our requirements for system performance and security. Then, we applied TiKV in our OSS metadata storage system, as shown in the following figure:
 
-{{< figure src="/img/blog/tikv-in-jd-cloud-ai/oss-metadata-storage-system-based-on-tikv.png"  caption="OSS metadata storage system based on TiKV"  number="" >}}
+{{< figure src="/img/blog/tikv-in-jd-cloud-ai/oss-metadata-storage-system-based-on-tikv.png" caption="OSS metadata storage system based on TiKV" number="" >}}
 
 ## Migrating data from MySQL to TiKV
 
@@ -129,7 +129,7 @@ This section covers how we migrated data from MySQL to TiKV, including our migra
 
 The following figure shows our data migration policy:
 
-{{< figure src="/img/blog/tikv-in-jd-cloud-ai/data-migration-policy.png"  caption="Data migration policy"  number="" >}}
+{{< figure src="/img/blog/tikv-in-jd-cloud-ai/data-migration-policy.png" caption="Data migration policy" number="" >}}
 
 The key points of this policy are as follows:
 + To guarantee data security, we enabled the doublewrite buffer for all the production data.
