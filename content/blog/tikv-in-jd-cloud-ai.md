@@ -172,6 +172,8 @@ The current application status is as follows:
 + The data volume of the largest cluster hits **20+ billion rows**, and this cluster contains **500,000+ Regions**.
 + The latency is about **10 milliseconds**.
 
+We have taken MySQL offline and deployed TiKV 3.0 to the production environment. 
+
 ## What’s next
 
 Thanks to the horizontal scalability of TiKV, we can deal with an enormous amount of OSS metadata in a storage architecture that is simpler than before. 
