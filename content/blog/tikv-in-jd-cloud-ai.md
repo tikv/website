@@ -4,6 +4,7 @@ date: 2020-05-26
 author: Can Cui
 ---
 **Industry:** Cloud Computing
+
 **Author:** Can Cui (Infrastructure Specialist at JD Cloud)
 
 {{< figure src="/img/blog/tikv-in-jd-cloud-ai/replacing-mysql-with-a-horizontally-scaling-database.jpg" number="" >}}
