@@ -70,7 +70,7 @@ In [TiKV in JD Cloud & AI](https://tikv.org/blog/tikv-in-jd-cloud-ai/), Can Cui,
 
 *   [@Little-Wallace](https://github.com/Little-Wallace) supported batching multiple write requests into an entry in [#6683](https://github.com/tikv/tikv/pull/6683).
 *   [@nrc](https://github.com/nrc) enabled TiKV to split a region automatically if it contains many locks in [#7676](https://github.com/tikv/tikv/pull/7676), which can improve the performance of the large transaction if it continues writing to a single region.
-*   [@hicqu](https://github.com/hicqu) found that index-read requests can be out-of-order during configuration change, and fixed it in [#363](https://github.com/tikv/raft-rs/pull/363)
+*   [@hicqu](https://github.com/hicqu) found that index-read requests can be out-of-order during configuration change, and fixed it in [#363](https://github.com/tikv/raft-rs/pull/363).
 
 ## Notable issues
 
