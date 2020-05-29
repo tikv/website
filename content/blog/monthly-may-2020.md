@@ -10,7 +10,7 @@ Let’s take a look at what we have accomplished.
 
 ## News
 
-The first CNCF ambassador spotlight goes to Queeny Jin, who has been spreading the word about TiKV to English speakers since its inception in 2016. We appreciate Queeny’s contribution and look forward to further cooperation with her. The full blog is available [here](https://www.cncf.io/blog/2020/05/01/cncf-ambassador-spotlight-queeny-jin-of-tikv/).
+The first CNCF ambassador spotlight goes to Queeny Jin, who has been spreading the word about TiKV to English speakers since its inception in 2016. We appreciate Queeny’s contribution. "Together we can go further!" The full blog is available [here](https://www.cncf.io/blog/2020/05/01/cncf-ambassador-spotlight-queeny-jin-of-tikv/).
 
 2 GSoC proposals and 1 Community Bridge project idea from TiKV project were accepted. Congratulations to accepted mentees and we look forward to working with them this summer.
 
