@@ -1,7 +1,7 @@
 ---
 title: TiKV 4.0 GA Release
 date: 2020-06-18
-author: Jinpeng Zhang
+author: TiKV Authors
 ---
 
 We are excited to announce the general availability of TiKV 4.0! So glad and proud that we’ve seen more than 1000 adopters use TiKV in production scenarios across multiple industries worldwide. Thanks to all users who have given us feedback, bug reports, and pull requests contributions over the past year, we’ve applied the lessons learned from these deployments to bring new features and better security that can support users’ growing demands.
