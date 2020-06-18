@@ -34,7 +34,7 @@ To ensure TiKV is protected from internal and external threats, our team has bee
 
 TiKV 4.0 encrypts data stored at rest to ensure data reliability and security. Encryption at rest prevents unauthorized access to the unencrypted data by ensuring the data is encrypted when on disk to provide data protection for stored data.
 
-*   **TLS in the HTTP(status) port**
+*   **TLS in the HTTP (status) port**
 
 TiKV 4.0 supports TLS in the HTTP (status) port and dynamically updates the certificate online, making it safe to fetch TiKV’s internal status through the HTTP port. 
 
