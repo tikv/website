@@ -22,13 +22,13 @@ Titan is a RocksDB plugin for key-value separation. Compatible with all RocksDB 
 
 TiKV's unified thread pool is a unified adaptive thread pool for processing read requests. It unifies the point-get read pool and the coprocessor read pool to give priority to small requests, which improves resource utilization and limits the impact of large queries on small requests.
 
-*   **Load-based Splitting** 
+*   **Load-based splitting** 
 
-Load-based Splitting enables a Region to be automatically split into several small Regions when the Region remains a read hotspot continuously. After splitting, these small Regions can be evenly distributed to different TiKV nodes. Load-based Splitting solves the hot spots caused by the uneven distribution of Regions, such as full table scan and index query of small tables.
+Load-based splitting enables a region to be automatically split into several small regions when it is a read hotspot. After splitting, the new regions are evenly distributed to different TiKV nodes. Load-based splitting solves the hot spots caused by an uneven distribution of regions, such as full table scan and index query of small tables.
 
 # Security
 
-To ensure TiKV is protected from internal and external threats, our team has been working hard on data protection. TiKV completed [a third-party security assessment](https://tikv.org/blog/tikv-pass-security-audit/) in March and this assessment of the TiKV scope, commissioned by CNCF and executed by Cure53 concludes with generally positive results. Besides, we have made TiKV 4.0 reach a higher level of data security for TiKV clusters deployed in cloud environments by:
+To ensure TiKV is protected from internal and external threats, our team has been working hard on data protection. TiKV completed [a third-party security assessment](https://tikv.org/blog/tikv-pass-security-audit/) in March. This assessment of the TiKV scope, commissioned by CNCF and executed by Cure53, concluded with generally positive results. We have also improved data security for TiKV clusters deployed in cloud environments by implementing:
 
 *   **Encryption at rest**
 
@@ -36,13 +36,13 @@ TiKV 4.0 supports encryption at rest to ensure data reliability and security. En
 
 *   **TLS in the HTTP (status) port**
 
-TiKV 4.0 supports TLS in the HTTP (status) port and dynamically updates the certificate online, making it safe to fetch TiKV’s internal status through the HTTP port. 
+TiKV 4.0 supports TLS in the HTTP (status) port and dynamically updates the certificate online, making it safer to fetch TiKV’s internal status through the HTTP port. 
 
 # What’s next
 
-Going GA means that TiKV 4.0 is ready for usage in production environments, but there is still much more to come for us. We’d love to listen to feature requests from the community. Currently, the best way to make feature requests is to [open an issue](https://github.com/tikv/tikv/issues/new?template=feature-request.md) on GitHub. The TiKV team will surely take that information to heart when driving this project forward.
+Going GA means that TiKV 4.0 is ready for use in production environments. There is still much more to come for us. We’re planning future versions of TiKV, and we'd love to hear feature requests from the community. Currently, the best way to make feature requests is to [open an issue](https://github.com/tikv/tikv/issues/new?template=feature-request.md) on GitHub. The TiKV team will surely take that information to heart as we drive the project forward.
 
-# Collaborate with TiKV Community
+# Collaborate with the TiKV Community
 
 Most importantly, we’d like to thank our contributors who helped with this release. Whether you were a returning contributor or one of the many new folks we welcomed, thank you!
 
