@@ -1,26 +1,26 @@
 ---
 title: TiKV 4.0 GA Release
 date: 2020-06-18
-author: TiKV Authors
+author: The TiKV Authors
 ---
 
-We are excited to announce the general availability of TiKV 4.0! So glad and proud that we’ve seen more than 1000 adopters use TiKV in production scenarios across multiple industries worldwide. Thanks to all users who have given us feedback, bug reports, and pull requests contributions over the past year, we’ve applied the lessons learned from these deployments to bring new features and better security that can support users’ growing demands.
+We are excited to announce the general availability of TiKV 4.0! We're so glad and proud to have seen more than 1000 adopters use TiKV in production scenarios across multiple industries worldwide. Thanks to all users who have given us feedback, bug reports, and pull requests contributions over the past year. We’ve applied the lessons learned from these deployments to bring new features and better security to support users’ growing needs.
 
 # New Features
 
-For the 4.0 release, our team has kept polishing TiKV’s stability and creating new features. We’d like to highlight the following features which brought TiKV better performance and functionality!
+For the 4.0 release, our team has kept polishing TiKV’s stability and creating new features. We’d like to highlight the following features which have brought TiKV better performance and functionality.
 
-*   **Follower Read**
+*   **Follower read**
 
-The Follower Read feature uses a series of load balancing mechanisms to offload read requests on the Raft leader onto its followers in a Region. It ensures the linearizability of single-row data reads, helps reduce the load on the Region leader and substantially enhances the throughput of the entire system.
+With follower read, TiKV uses a series of load balancing mechanisms to offload read requests from the Raft leader to its followers. It ensures the linearizability of single-row data reads, helps reduce the load on the region leader, and substantially enhances the throughput of the entire system.
 
 *   **Titan**
 
-Titan is a RocksDB plugin for key-value separation. Compatible with all RocksDB features used by the current TiKV, it reduces write amplification by separating values from the long-structured merge-tree (LSM tree) and storing them independently. Besides, it improves range query performance and reduces its impact on write performance. Titan has reached general availability in TiKV 4.0. 
+Titan is a RocksDB plugin for key-value separation. Compatible with all RocksDB features used by TiKV, it reduces write amplification by separating large values from the log-structured merge tree (LSM tree) and storing them independently. It improves range query performance and reduces its impact on write performance. Titan has previously been available as en experimental feature, and has reached general availability in TiKV 4.0. 
 
-*   **Unified Thread Pool**
+*   **Unified thread pool**
 
-Unified Thread Pool is a unified adaptive thread pool in TiKV to process read requests. It unifies the Point Get Readpool and the Coprocessor Readpool to give priority to small requests, which improves resource utilization and predictably limit the impact of large queries on small requests.
+TiKV's unified thread pool is a unified adaptive thread pool for processing read requests. It unifies the point-get read pool and the coprocessor read pool to give priority to small requests, which improves resource utilization and limits the impact of large queries on small requests.
 
 *   **Load-based Splitting** 
 
@@ -44,9 +44,9 @@ Going GA means that TiKV 4.0 is ready for usage in production environments, but 
 
 # Collaborate with TiKV Community
 
-Most importantly, we’d like to thank our contributors who helped with this release. Whether you were a returning contributor or one of the many new folks we welcomed, thank you.
+Most importantly, we’d like to thank our contributors who helped with this release. Whether you were a returning contributor or one of the many new folks we welcomed, thank you!
 
-Not a contributor yet? We’d love to help you get started if you’d like to get involved with the development and help drive forward the future of TiKV! You might be interested in tackling one of [these issues](https://github.com/tikv/tikv/issues?q=is%3Aopen+is%3Aissue+label%3Adifficulty%2Feasy). If you don’t know how to begin, just leave a comment and our team will help you out. 
+Not a contributor yet? We’d love to help you get started! If you’d like to get involved with the development and help drive forward the future of TiKV, you might be interested in tackling one of [these issues](https://github.com/tikv/tikv/issues?q=is%3Aopen+is%3Aissue+label%3Adifficulty%2Feasy). If you don’t know how to begin, just leave a comment and our team will help you out. 
 
 Also, don’t miss the chance to talk to us! You could reach us by:
 
