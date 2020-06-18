@@ -32,7 +32,7 @@ To ensure TiKV is protected from internal and external threats, our team has bee
 
 *   **Encryption at rest**
 
-TiKV 4.0 encrypts data stored at rest to ensure data reliability and security. Encryption at rest prevents unauthorized access to the unencrypted data by ensuring the data is encrypted when on disk to provide data protection for stored data.
+TiKV 4.0 supports encryption at rest to ensure data reliability and security. Encryption at rest prevents unauthorized access to the unencrypted data by ensuring the data is encrypted when on disk to provide data protection for stored data.
 
 *   **TLS in the HTTP (status) port**
 
