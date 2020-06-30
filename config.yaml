@@ -8,7 +8,7 @@ disableKinds: ["taxonomy", "taxonomyTerm"]
 menu:
     nav:
     - name: Community
-      url: /contribute
+      url: /community/community/
     - name: Contribute
       parent: Community
       weight: 1
