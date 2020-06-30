@@ -56,9 +56,7 @@ In episodes 2, 3 and 4 of Rust compile time series, [@brson](https://github.com/
 **Help wanted issues (mentoring available)**
 
 *   [@yiwu-arbug](https://github.com/yiwu-arbug) created [#8140](https://github.com/tikv/tikv/issues/8140), requesting a feature to support in-memory compaction in RocksDB and use it to lock CF.
-
 *   [@breeswish](https://github.com/breeswish) suggested enabling TiKV to search RocksDB logs in [#8062](https://github.com/tikv/tikv/issues/8062).
-
 *   [@xieqiang2020](https://github.com/xieqiang2020) opened issue [#8041](https://github.com/tikv/tikv/issues/8041), requesting a feature to support big-endian.
 
 ## Collaborate with TiKV Community
