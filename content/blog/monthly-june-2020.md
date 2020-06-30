@@ -10,14 +10,13 @@ Let’s take a look at what we have achieved in June!
 
 ## News
 
-[TiKV has reached general availability](https://tikv.org/blog/tikv-4.0-ga/)! Thanks to all users and contributors who helped with release, TiKV has been used by more than 1,000 adopters in production scenarios across multiple industries worldwide. Currently, we’re planning future versions of TiKV; [open an issue](https://github.com/tikv/tikv/issues/new?template=feature-request.md) on Github to make feature requests to let us know what you’d like to have in TiKV 5.0.
+[TiKV has reached general availability](https://tikv.org/blog/tikv-4.0-ga/)! Thanks to all users and contributors who helped with release, TiKV has been used by more than 1,000 adopters in production scenarios across multiple industries worldwide. Currently, we’re planning future versions of TiKV; let us know what you’d like to have in TiKV 5.0 by [opening an issue](https://github.com/tikv/tikv/issues/new?template=feature-request.md) on Github to make feature requests.
 
-Our first CNCF project webinar, [How We Doubled System Read Throughput with Only 26 Lines of Code](https://www.cncf.io/webinars/how-we-doubled-system-read-throughput-with-only-26-lines-of-code/), is scheduled on July 31, at 10 am PT. Minghua Tang will share how we introduced Follower Read, and how we implemented it at this webinar. [Register](https://zoom.us/webinar/register/WN_UobO7CidQWShiPE-HreKXA) if you’re interested; we expect to see you there.
-
-Our official [YouTube channel](https://www.youtube.com/channel/UCXyuUR4qEm0HLDniz46k6sg/featured?view_as=subscriber) is available! Previously, our community meeting videos were uploaded to CNCF’s channel. Now, we have our own channel for TiKV information with two playlists right now, community meetings and technical demos. Subscribe to it if you’re interested in keeping up with our video information.
+Our first CNCF project webinar, [How We Doubled System Read Throughput with Only 26 Lines of Code](https://www.cncf.io/webinars/how-we-doubled-system-read-throughput-with-only-26-lines-of-code/), is scheduled on July 31, at 10 am PT. Minghua Tang will share how we introduced Follower Read, and how we implemented it at this webinar. [Register](https://zoom.us/webinar/register/WN_UobO7CidQWShiPE-HreKXA) if you’re interested.
 
 The transaction special interest group (SIG-transaction) has built a [repo](https://github.com/tikv/sig-transaction) in the TiKV project! They have a focus on transactions in TiKV and TiDB, but discuss academic work and other implementations too. Recently, [@sticnarf](https://github.com/sticnarf), [@MyonKeminta](https://github.com/MyonKeminta) and [@nrc](https://github.com/nrc) have drafted a [design document](https://github.com/tikv/sig-transaction/blob/master/design/parallel-commit/initial-design.md) for Parallel Commit. Join them if you have an interest in it.
 
+Our official [YouTube channel](https://www.youtube.com/channel/UCXyuUR4qEm0HLDniz46k6sg/featured?view_as=subscriber) is available! Previously, our community meeting videos were uploaded to CNCF’s channel. Now, we have our own channel for TiKV information with two playlists, community meetings and technical demos. Subscribe to it if you’re interested in keeping up with our video information.
 
 ## Releases
 
@@ -54,7 +53,7 @@ In episodes 2, 3 and 4 of Rust compile time series, [@brson](https://github.com/
 
 ## Notable issues
 
-### Help wanted issues (mentoring available)
+**Help wanted issues (mentoring available)**
 
 *   [@yiwu-arbug](https://github.com/yiwu-arbug) created [#8140](https://github.com/tikv/tikv/issues/8140), requesting a feature to support in-memory compaction in RocksDB and use it to lock CF.
 
