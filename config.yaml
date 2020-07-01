@@ -12,7 +12,7 @@ menu:
     - name: Contribute
       parent: Community
       weight: 1
-      url: /docs/3.0/reference/contribute/
+      url: /community/contribute/
     - name: Chat
       url: /chat
       parent: Community
