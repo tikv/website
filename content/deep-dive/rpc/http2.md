@@ -1,5 +1,6 @@
 ---
 title: HTTP/2
+aliases: ['/docs/deep-dive/rpc/http2']
 menu:
     nav:
         parent: Remote Procedure Calls (RPC)

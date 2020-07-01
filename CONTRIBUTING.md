@@ -36,7 +36,7 @@ If you have a specific idea of a fix or update, and [you have everything ready](
 
     ```bash
     $ cd website
-    $ git remote add upstream git@github.com:tikv/tikv.git
+    $ git remote add upstream git@github.com:tikv/website.git
     $ git remote -v
     origin	git@github.com:$GITHUB_USER/website.git (fetch)
     origin	git@github.com:$GITHUB_USER/website.git (push)

@@ -1,5 +1,6 @@
 ---
 title: gRPC
+aliases: ['/docs/deep-dive/rpc/grpc']
 menu:
     nav:
         parent: Remote Procedure Calls (RPC)

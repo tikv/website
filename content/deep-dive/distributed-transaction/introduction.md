@@ -1,5 +1,6 @@
 ---
 title: Distributed transaction
+aliases: ['/docs/deep-dive/distributed-transaction/introduction']
 menu:
     nav:
         parent: Deep Dive

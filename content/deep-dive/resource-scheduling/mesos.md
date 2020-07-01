@@ -1,5 +1,6 @@
 ---
 title: Mesos
+aliases: ['/docs/deep-dive/resource-scheduling/mesos']
 menu:
     nav:
         parent: Resource scheduling
