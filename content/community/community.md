@@ -25,11 +25,11 @@ In TiKV community we value open communication and open collaboration. Here are t
     - [Reddit](https://www.reddit.com/r/TiKV)
     - [Stack Overflow](https://stackoverflow.com/questions/tagged/tikv)
 
-- **Report Security Vulnerabilities**
+- **Report security vulnerabilities**
 
     To report a security vulnerability, please send an email to [TiKV-security](tikv-security@lists.cncf.io) group.
 
-- **Community Monthly Meeting**
+- **Community monthly meeting**
 
   The TiKV team meets on the 4th Wednesday of every month (unless otherwise specified) at 07.00 p.m. PST. See [Meeting notes](https://docs.google.com/document/d/1CWUAkBrcm9KPclAu8fWHZzByZ0yhsQdRggnEdqtRMQ8/edit) for details.
 
@@ -37,7 +37,7 @@ In TiKV community we value open communication and open collaboration. Here are t
 
 As an open-source and vendor-neutral project, TiKV thrives by collaborating with the wider community. Here are are some projects that are built upon TiKV:
 
-- [Tidis](https://github.com/yongman/tidis) -  a distributed NoSQL database, providing a Redis protocol API (string, list, hash, set, sorted set),
+- [Tidis](https://github.com/yongman/tidis) -  a distributed NoSQL database, providing a Redis protocol API (string, list, hash, set, sorted set)
 - [Titan](https://github.com/meitu/titan) - a distributed implementation of Redis compatible layer based on TiKV
 - [Titea](https://github.com/gengmei-tech/titea) - a distributed redis protocol compatible NoSQL Database, providing a Redis protocol, base on Tikv and PD
 - [TiPrometheus](https://github.com/bragfoo/TiPrometheus) - A adapter/gateway for TiKV
