@@ -4,13 +4,13 @@ date: 2020-07-01
 author: TiKV Authors
 ---
 
-How time flies! It’s halfway through the year already! We are expecting the next 6 months of this year to be as fruitful as the first 6 months this year.
+How time flies! It’s halfway through the year already! We are expecting the next six months of this year to be as fruitful as the first six.
 
 Let’s take a look at what we have achieved in June!
 
 ## News
 
-[TiKV has reached general availability](https://tikv.org/blog/tikv-4.0-ga/)! Thanks to all users and contributors who helped with release, TiKV has been used by more than 1,000 adopters in production scenarios across multiple industries worldwide. Currently, we’re planning future versions of TiKV; let us know what you’d like to have in TiKV 5.0 by [opening an issue](https://github.com/tikv/tikv/issues/new?template=feature-request.md) on Github to make feature requests.
+[TiKV 4.0 has reached general availability](https://tikv.org/blog/tikv-4.0-ga/)! Thanks to all users and contributors who helped with the release! TiKV has been used by more than 1,000 adopters in production scenarios across multiple industries worldwide. Currently, we’re planning future versions of TiKV; let us know what you’d like to have in TiKV 5.0 by [opening an issue](https://github.com/tikv/tikv/issues/new?template=feature-request.md) on Github to make feature requests.
 
 Our first CNCF project webinar, [How We Doubled System Read Throughput with Only 26 Lines of Code](https://www.cncf.io/webinars/how-we-doubled-system-read-throughput-with-only-26-lines-of-code/), is scheduled on July 31, at 10 am PT. Minghua Tang will share how we introduced Follower Read, and how we implemented it at this webinar. [Register](https://zoom.us/webinar/register/WN_UobO7CidQWShiPE-HreKXA) if you’re interested.
 
@@ -20,7 +20,7 @@ Our official [YouTube channel](https://www.youtube.com/channel/UCXyuUR4qEm0HLDni
 
 ## Releases
 
-This month our team made 4 releases!
+This month our team made four releases.
 
 You can review the changelogs here:
 
@@ -37,7 +37,7 @@ You can review the changelogs here:
 
 ## Reading materials
 
-In [TiKV Performance Tuning with Massive Regions](https://tikv.org/blog/tune-with-massive-regions-in-tikv/), [@Connor1996](https://github.com/Connor1996) introduces the workflow of Raftstore, explains why a massive amount of Regions affect the performance and offers 5 methods for tuning TiKV’s performance.
+In [TiKV Performance Tuning with Massive Regions](https://tikv.org/blog/tune-with-massive-regions-in-tikv/), [@Connor1996](https://github.com/Connor1996) introduces the workflow of Raftstore, explains why a large nummber of regions affects TiKV's performance, and offers five methods for tuning TiKV’s performance.
 
 [@lucperkins](https://github.com/lucperkins) wrote [Rust at CNCF](https://www.cncf.io/blog/2020/06/22/rust-at-cncf/) to shed light on how TiKV and Linkerd are contributing to the Rust ecosystem.
 
