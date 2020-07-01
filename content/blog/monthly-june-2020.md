@@ -10,7 +10,7 @@ Let’s take a look at what we have achieved in June!
 
 ## News
 
-[TiKV 4.0 has reached general availability](https://tikv.org/blog/tikv-4.0-ga/)! Thanks to all users and contributors who helped with the release! TiKV has been used by more than 1,000 adopters in production scenarios across multiple industries worldwide. Currently, we’re planning future versions of TiKV; let us know what you’d like to have in TiKV 5.0 by [opening an issue](https://github.com/tikv/tikv/issues/new?template=feature-request.md) on Github to make feature requests.
+[TiKV 4.0 has reached general availability](https://tikv.org/blog/tikv-4.0-ga/)! Thanks to all users and contributors who helped with the release! TiKV has been used by more than 1,000 adopters in production scenarios across multiple industries worldwide. Currently, we’re planning future versions of TiKV; let us know what you’d like to have in TiKV 5.0 by [opening an issue](https://github.com/tikv/tikv/issues/new?template=feature-request.md) on Github.
 
 Our first CNCF project webinar, [How We Doubled System Read Throughput with Only 26 Lines of Code](https://www.cncf.io/webinars/how-we-doubled-system-read-throughput-with-only-26-lines-of-code/), is scheduled on July 31, at 10 am PT. Minghua Tang will share how we introduced Follower Read, and how we implemented it at this webinar. [Register](https://zoom.us/webinar/register/WN_UobO7CidQWShiPE-HreKXA) if you’re interested.
 
