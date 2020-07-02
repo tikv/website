@@ -1,10 +1,6 @@
 ---
 title: Contribute
 description: How to be a part of TiKV
-menu:
-    "3.0":
-        parent: Reference
-        weight: 6
 aliases:
     - /docs/3.0/contribute/contribute-to-tikv/
 ---
@@ -36,7 +32,7 @@ You can choose the one of the following areas to contribute:
     - [raft-rs](https://github.com/pingcap/raft-rs): The Raft distributed consensus algorithm implemented in Rust
     - [grpc-rs](https://github.com/pingcap/grpc-rs): The gRPC library for Rust built on the gRPC C Core library and Rust Futures
     - [fail-rs](https://github.com/pingcap/fail-rs): Fail points for Rust
-    
+
     For details on how to contribute to the above dependent libraries of TiKV, refer to the **README** file in the corresponding repository.
 
 
