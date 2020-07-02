@@ -39,7 +39,7 @@ TiKV is an open-source and vendor-neutral project. It thrives by collaborating w
 - [Tidis](https://github.com/yongman/tidis) -  a distributed NoSQL database, providing a Redis protocol API (string, list, hash, set, sorted set)
 - [Titan](https://github.com/meitu/titan) - a distributed implementation of Redis compatible layer based on TiKV
 - [Titea](https://github.com/gengmei-tech/titea) - a distributed redis protocol compatible NoSQL Database, providing a Redis protocol, based on TiKV and PD
-- [TiPrometheus](https://github.com/bragfoo/TiPrometheus) - A adapter/gateway for TiKV used to collect monitoring info via Prometheus
+- [TiPrometheus](https://github.com/bragfoo/TiPrometheus) - An adapter/gateway for TiKV used to collect monitoring info via Prometheus
 - [TiBigData](https://github.com/pingcap-incubator/TiBigData) - Misc BigData components for TiDB
 - [Zetta](https://github.com/zhihu/zetta) - an open-source NoSQL database that supports transactions and a Cloud Spanner-like API
 
