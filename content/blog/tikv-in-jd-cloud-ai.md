@@ -2,6 +2,7 @@
 title: TiKV in JD Cloud & AI
 date: 2020-05-26
 author: Can Cui
+tags: ['Case study', 'Horizontal scalability']
 ---
 **Industry:** Cloud Computing
 

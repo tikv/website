@@ -2,6 +2,7 @@
 title: This Month in TiKV - May 2020
 date: 2020-05-28
 author: TiKV Authors
+tags: ['Monthly update', 'Community']
 ---
 
 As the summer tiptoed in, we were cheerful about everything it brings to us: sunshine, ice cream, and a busy but fulfilling May!

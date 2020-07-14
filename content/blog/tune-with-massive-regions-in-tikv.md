@@ -2,6 +2,7 @@
 title: TiKV Performance Tuning with Massive Regions
 author: Bokang Zhang
 date: 2020-06-11
+tags: ['Performance tuning', 'Performance', 'Raft']
 ---
 
 In TiKV clients, data is split into Regions, each storing data for a specific key range. These Regions are distributed among multiple TiKV instances. As data is written into a cluster, millions of or even tens of millions of Regions are created. Too many Regions on a single TiKV instance can bring a heavy burden to the cluster and affect its performance.

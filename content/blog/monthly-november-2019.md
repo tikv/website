@@ -2,6 +2,7 @@
 title: This Month in TiKV - November 2019
 date: 2019-12-11
 author: Ana Hobden
+tags: ['Monthly update', 'Community']
 ---
 
 As winter descends on the northern hemisphere, we encourage you to keep warm by compiling TiKV! In November we had new minor releases, a new crate release, and some community updates!

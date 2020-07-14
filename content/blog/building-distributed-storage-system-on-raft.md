@@ -2,6 +2,7 @@
 title: Building a Large-scale Distributed Storage System Based on Raft
 date: 2020-05-21
 author: Edward Huang
+tags: ['Raft', 'Distributed system', 'Architecture']
 ---
 
 In recent years, building a large-scale distributed storage system has become a hot topic. Distributed consensus algorithms like [Paxos](https://en.wikipedia.org/wiki/Paxos_(computer_science)) and [Raft](https://raft.github.io/) are the focus of many technical articles. But those articles tend to be introductory, describing the basics of the algorithm and log replication. They seldom cover how to build a large-scale distributed storage system based on the distributed consensus algorithm.

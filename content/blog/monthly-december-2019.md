@@ -2,6 +2,7 @@
 title: This Month in TiKV - December 2019
 date: 2020-01-18
 author: Ana Hobden
+tags: ['Monthly update', 'Community']
 ---
 
 <!-- Fill in the below from the API: https://developer.github.com/v4/explorer/ -->

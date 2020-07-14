@@ -2,6 +2,7 @@
 title: RocksDB in TiKV
 author: Siddon Tang
 date: 2020-03-18
+tags: ['RocksDB', 'Architecture']
 ---
 
 <span id="top"><span>

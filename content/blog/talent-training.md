@@ -2,6 +2,7 @@
 title: Distributed Systems Training in Rust and Go
 date: 2019-06-20
 author: Brian Anderson, Senior Database Engineer for TiKV
+tags: ['Rust', 'Golang', 'Distributed system']
 ---
 
 On the TiKV team we love the [Rust] and [Go] programming languages. They are the

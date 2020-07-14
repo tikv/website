@@ -2,6 +2,7 @@
 title: This Month in TiKV - June 2020
 date: 2020-07-01
 author: TiKV Authors
+tags: ['Monthly update', 'Community']
 ---
 
 How time flies! It’s halfway through the year already! We are expecting the next six months of this year to be as fruitful as the first six.

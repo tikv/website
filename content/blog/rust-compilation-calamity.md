@@ -2,6 +2,7 @@
 title: The Rust Compilation Calamity
 date: 2020-01-31
 author: Brian Anderson
+tags: ['Rust']
 ---
 
 {{< figure
