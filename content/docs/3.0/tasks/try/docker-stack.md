@@ -1,10 +1,10 @@
 ---
-title: Try
+title: Using Docker Stack
 description: Try locally with Docker
 menu:
-    "4.0":
-        parent: Tasks
-        weight: 1
+    "3.0":
+        parent: Try
+        weight: 2
 ---
 
 In this guide, you'll learn how to quickly get a tiny TiKV cluster running locally, then you'll use our Rust client to get, set, and scan data in TiKV. Then you'll learn how to quickly start and stop a TiKV cluster to accompany your development environment.
@@ -15,7 +15,7 @@ This guide won't worry about details such as security, resiliency, or production
 
 In order to get a functioning TiKV service you will need to start a TiKV service and a PD service. PD works alongside TiKV to act as a coordinator and timestamp oracle.
 
-Communication between TiKV, PD, and any services which use TiKV is done via gRPC. We provide clients for [several languages](../../../reference/clients/introduction/), and this guide will briefly show you how to use the Rust client.
+Communication between TiKV, PD, and any services which use TiKV is done via gRPC. We provide clients for [several languages](../../reference/clients/introduction/), and this guide will briefly show you how to use the Rust client.
 
 Using Docker, you'll create pair of persistent services `tikv` and `pd` and learn to manage them easily. Then you'll write a simple Rust client application and run it from your local host. Finally, you'll learn how to quicky teardown and bring up the services, and review some basic limitations of this configuration.
 
@@ -233,7 +233,7 @@ $ docker stack rm tikv
 
 ## Creating a project
 
-Below, you'll use the Rust client, but you are welcome to use [any TiKV client](../../../reference/clients/introduction/).
+Below, you'll use the Rust client, but you are welcome to use [any TiKV client](../../reference/clients/introduction/).
 
 Because you will eventually need to deploy the binary into the same network as the PD and TiKV nodes, 
 

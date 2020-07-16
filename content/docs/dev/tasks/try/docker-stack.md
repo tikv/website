@@ -1,10 +1,10 @@
 ---
-title: Try
+title: Using Docker Stack
 description: Try locally with Docker
 menu:
-    "3.0":
-        parent: Tasks
-        weight: 1
+    "dev":
+        parent: Try
+        weight: 2
 ---
 
 In this guide, you'll learn how to quickly get a tiny TiKV cluster running locally, then you'll use our Rust client to get, set, and scan data in TiKV. Then you'll learn how to quickly start and stop a TiKV cluster to accompany your development environment.
