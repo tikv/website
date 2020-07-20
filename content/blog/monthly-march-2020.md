@@ -2,6 +2,7 @@
 title: This Month in TiKV - March 2020
 date: 2020-04-02
 author: TiKV Authors
+tags: ['Monthly update', 'Community']
 ---
 
 In this unprecedented global situation, we hope you can all keep a positive attitude and stay healthy.  

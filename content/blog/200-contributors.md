@@ -2,6 +2,7 @@
 title: TiKV celebrates 200 contributors!
 date: 2019-11-22
 author: Tang Liu
+tags: ['Community']
 ---
 
 Dear TiKV contributors:

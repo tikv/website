@@ -2,6 +2,7 @@
 title: This Month in TiKV - July 2019
 date: 2019-08-07
 author: Nick Cameron
+tags: ['Monthly update', 'Community']
 ---
 
 Hi! Welcome to the first ever edition of 'This Month in TiKV', covering July 2019. As the name suggests, this is a monthly newsletter covering interesting things happening in the world of [TiKV](https://tikv.org/), an open-source, distributed key-value store.

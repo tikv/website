@@ -2,6 +2,7 @@
 title: CNCF TOC votes to move TiKV to Incubating Status
 date: 2019-05-21
 author: The TiKV Team
+tags: ['Community', 'CNCF', 'Announcement']
 ---
 
 Today, the [Cloud Native Computing Foundation](http://cncf.io/)’s (CNCF) [Technical Oversight Committee](https://github.com/cncf/toc) (TOC) voted to accept TiKV as an incubation-level hosted project.

@@ -2,6 +2,7 @@
 title: This Month in TiKV - August 2019
 date: 2019-09-18
 author: Ana Hobden
+tags: ['Monthly update', 'Community']
 ---
 
 Happy day! Welcome to the second edition of 'This Month in TiKV', covering August 2019. (Yes we know it's later than the first week of September, sorry!)

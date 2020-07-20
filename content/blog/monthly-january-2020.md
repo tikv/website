@@ -2,6 +2,7 @@
 title: This Month in TiKV - January 2020
 date: 2020-02-19
 author: TiKV Authors
+tags: ['Monthly update', 'Community']
 ---
 
 <!-- Fill in the below from the API: https://developer.github.com/v4/explorer/ -->

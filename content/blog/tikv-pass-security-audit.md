@@ -2,6 +2,7 @@
 title: TiKV Security Audit Results
 author: TiKV Authors
 date: 2020-03-05
+tags: ['Community']
 ---
 
 Today we're glad to announce that TiKV just finished a third-party security assessment, funded by CNCF/The Linux Foundation.

@@ -2,6 +2,7 @@
 title: This Month in TiKV - October 2019
 date: 2019-11-20
 author: Ana Hobden
+tags: ['Monthly update', 'Community']
 ---
 
 It's time for a very non-spooky October edition of This month in TiKV! We have a few treats for you while we've been teaching TiKV some new tricks.

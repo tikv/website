@@ -2,6 +2,7 @@
 title: TiKV Community Connections
 date: 2019-04-03
 author: Ana Hobden, TiKV Ecosystem Lead
+tags: ['Community']
 ---
 
 A few months ago at [TiDB DevCon](https://pingcap.com/community-cn/devcon2019/) we talked about how we'd be opening new TiKV community forums & a community chat. We're very happy to announce we're releasing [forum.tikv.org](http://forum.tikv.org/) for forums, and [tikv-wg slack](https://join.slack.com/t/tikv-wg/shared_invite/enQtNTUyODE4ODU2MzI0LTgzZDQ3NzZlNDkzMGIyYjU1MTA0NzIwMjFjODFiZjA0YjFmYmQyOTZiNzNkNzg1N2U1MDdlZTIxNTU5NWNhNjk) for chat.

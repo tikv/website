@@ -2,6 +2,7 @@
 title: This Month in TiKV - April 2020
 date: 2020-04-30
 author: TiKV Authors
+tags: ['Monthly update', 'Community']
 ---
 
 April 1st marked TiKV’s 4th birthday. We are grateful for the support and contribution of the community while focusing on making a better TiKV.

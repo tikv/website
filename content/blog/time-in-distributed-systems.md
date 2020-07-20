@@ -2,6 +2,7 @@
 title: Tick or Tock? Keeping Time and Order in Distributed Databases
 date: 2020-04-16
 author: Siddon Tang
+tags: ['Distributed system']
 ---
 
 {{< figure
