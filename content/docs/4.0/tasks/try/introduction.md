@@ -7,7 +7,7 @@ menu:
         weight: 1
 ---
 
-There are two ways to start a TiKV cluster:
+There are two ways to quickly spin up a TiKV cluster for testing purposes:
 
 * [Getting Started with TiKV Operator](../tikv-operator)
 * [Using Docker Stack](../docker-stack)
