@@ -1,6 +1,6 @@
 ---
-title: Try TiKV
-description: Get Started with TiKV
+title: Try
+description: Try TiKV
 menu:
     "4.0":
         parent: Tasks
