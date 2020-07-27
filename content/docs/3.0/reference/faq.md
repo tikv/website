@@ -144,7 +144,7 @@ This is because the address in the startup parameter has been registered in the 
 
 To solve this problem, use the [`store delete`](https://github.com/pingcap/pd/tree/55db505e8f35e8ab4e00efd202beb27a8ecc40fb/tools/pd-ctl#store-delete--label--weight-store_id----jqquery-string) function to delete the previous store and then restart TiKV.
 
-## TiKV leader replicas and follower replicas use the same compression algorithm, why the amount of disk space occupied is different?
+## TiKV leader replicas and follower replicas use the same compression algorithm. Why the amount of disk space occupied is different?
 
 TiKV stores data in the LSM tree, in which each layer has a different compression algorithm. If two replicas of the same data are located in different layers in two TiKV nodes, the two replicas might occupy different space.
 
