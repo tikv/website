@@ -51,8 +51,8 @@ You can review the changelogs here:
 
 *   [@skyzh](https://github.com/skyzh) implemented the Chunk memory format for all TiKV Coprocessor data types in [#8214](https://github.com/tikv/tikv/pull/8214) and [#8239](https://github.com/tikv/tikv/pull/8239).
 *   [@de-sh](https://github.com/de-sh) created [rust-rocksdb#517](https://github.com/tikv/rust-rocksdb/pull/517) to add support of rocksdb-cloud for rust-rocksdb.
-*   [@little-wallace](https://github.com/Little-Wallace) created and merged [#7878](https://github.com/tikv/tikv/pull/7878) to support acquiring  RocksSnapshot once for different regions.
-*   [@Busyjay](https://github.com/BusyJay) synchronized raft-rs with upstream etcd/raft in [#382](https://github.com/tikv/raft-rs/pull/382) [#383](https://github.com/tikv/raft-rs/pull/383).
+*   [@little-wallace](https://github.com/Little-Wallace) created [#7878](https://github.com/tikv/tikv/pull/7878) to support acquiring  RocksSnapshot once for different regions.
+*   [@Busyjay](https://github.com/BusyJay) synchronized raft-rs with upstream etcd/raft in [#382](https://github.com/tikv/raft-rs/pull/382) and [#383](https://github.com/tikv/raft-rs/pull/383).
 *   [@Busyjay](https://github.com/BusyJay) introduced joint consensus into raft-rs in [#386](https://github.com/tikv/raft-rs/pull/386).
 *   [@sticnarf](https://github.com/sticnarf) created [#8258](https://github.com/tikv/tikv/pull/8258) to support async commit in `CheckTxnStatus`.
 *   [@nrc](https://github.com/nrc) implemented async commit prewrite in [#8205](https://github.com/tikv/tikv/pull/8205).
@@ -69,7 +69,6 @@ You can review the changelogs here:
 **Call for participation**
 
 *   [@sticnarf](https://github.com/sticnarf) created [#8170](https://github.com/tikv/tikv/issues/8170) to discuss whether we should audit specialization usage in the coprocessor.
-*   [@MyonKeminta](https://github.com/MyonKeminta) reported a bug about TiKV panics in [#8243](https://github.com/tikv/tikv/issues/8243). [@yiwu-arbug](https://github.com/yiwu-arbug) explained the reason for the error and self-assigned the followup task.
 
 ## New Contributors
 
