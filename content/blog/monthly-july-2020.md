@@ -13,7 +13,7 @@ TiKV is up for graduation from CNCF! This is a milestone that would not be possi
 
 [@breeswish](https://github.com/breeswish) has talked about TiKV’s development path and new features in the 4.0 GA version at Kubernetes Paris meetup. In case you missed it, the recorded video is available [here](https://www.youtube.com/watch?v=pAattr8cwSY&list=PLfR-valDYipfVN7ICQF_DnlZHcTY7O1F3&index=10&t=0s).
 
-[Cloud Native and Open Source Virtual Summit China 2020](https://cncf.lfasiallc.cn/) is going to happen from July 30 to August 1. We have three TiKV-related talks scheduled as follows. These talks will be delivered in Chinese and the timezone displayed is UTC+8. Mark your calendars to join them! 
+[Cloud Native and Open Source Virtual Summit China 2020](https://cncf.lfasiallc.cn/) is going to happen from July 30 to August 1. We have three TiKV-related talks scheduled. These talks will be delivered in Chinese and the timezone displayed is UTC+8. Mark your calendars to join them! 
 
 *   [Intro: Backup and Restore in TiKV](https://sched.co/cpAn) - Jay Lee (16:20, Jul 31)
 *   [TiFlash: Make TiKV 10x Faster and HTAP-able](https://sched.co/cp9v) - Xiaoyu Ma (15:40, Aug 1)
