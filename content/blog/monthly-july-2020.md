@@ -3,23 +3,23 @@ title: This Month in TiKV - July 2020
 date: 2020-07-30
 author: TiKV Authors
 ---
-The warmest month in the Northern Hemisphere comes to an end soon. It’s time to wrap up everything we have achieved in this month!
+The warmest month in the Northern Hemisphere is coming to an end soon. It’s time to wrap up everything we have achieved in July!
 
 Let’s get started.
 
 ## News
 
-TiKV is up for graduation from CNCF! This is a milestone that would not be possible without you! If you would like to support TiKV in the vote, follow the [instructions](https://lists.cncf.io/g/cncf-toc/join) to join TOC and post your replies [here](https://lists.cncf.io/g/cncf-toc/message/4902)!
+TiKV is up for graduation from CNCF! This is a major milestone we have been waiting for, which consummates the efforts and commitments of the TiKV community since it was born. It would not be possible without you, our contributors and adopters! If you would like to support TiKV in the vote, follow the [instructions](https://lists.cncf.io/g/cncf-toc/join) to join the CNCF TOC group and post your replies [here](https://lists.cncf.io/g/cncf-toc/message/4902)!
 
-[@breeswish](https://github.com/breeswish) has talked about TiKV’s development path and new features in the 4.0 GA version at Kubernetes Paris meetup. In case you missed it, the recorded video is available [here](https://www.youtube.com/watch?v=pAattr8cwSY&list=PLfR-valDYipfVN7ICQF_DnlZHcTY7O1F3&index=10&t=0s).
+[@breeswish](https://github.com/breeswish) talked about TiKV’s development path and new features in the 4.0 GA at Kubernetes Paris meetup. In case you missed it, the recorded video is available [here](https://www.youtube.com/watch?v=pAattr8cwSY&list=PLfR-valDYipfVN7ICQF_DnlZHcTY7O1F3&index=10&t=0s).
 
-[Cloud Native and Open Source Virtual Summit China 2020](https://cncf.lfasiallc.cn/) is going to happen from July 30 to August 1. We have three TiKV-related talks scheduled. These talks will be delivered in Chinese and the timezone displayed is UTC+8. Mark your calendars to join them! 
+[Cloud Native and Open Source Virtual Summit China 2020](https://cncf.lfasiallc.cn/) is happening from July 30 to August 1. We have three TiKV-related talks prepared for you. These talks will be delivered in Chinese and the timezone displayed is UTC+8. Mark your calendars to join them! 
 
 *   [Intro: Backup and Restore in TiKV](https://sched.co/cpAn) - Jay Lee (16:20, Jul 31)
 *   [TiFlash: Make TiKV 10x Faster and HTAP-able](https://sched.co/cp9v) - Xiaoyu Ma (15:40, Aug 1)
 *   [BPF for Chaos and Tracing in Kubernetes](https://sched.co/cp9I) - Wenbo Zhang (20:50, Aug 1)
 
-Our first CNCF project webinar, [How We Doubled System Read Throughput with Only 26 Lines of Code](https://www.cncf.io/webinars/how-we-doubled-system-read-throughput-with-only-26-lines-of-code/), is scheduled on at 10 am PT, July 31. Minghua Tang will share why we introduced Follower Read, and how we implemented it. [Register](https://zoom.us/webinar/register/WN_UobO7CidQWShiPE-HreKXA) if you’re interested.
+Our first CNCF project webinar, [How We Doubled System Read Throughput with Only 26 Lines of Code](https://www.cncf.io/webinars/how-we-doubled-system-read-throughput-with-only-26-lines-of-code/), is scheduled at 10 am PT, July 31. Minghua Tang will share why we introduced Follower Read, a TiKV 4.0 feature that improves the throughput of the TiKV cluster and reduces the load of the leader, and how we implemented it. [Register](https://zoom.us/webinar/register/WN_UobO7CidQWShiPE-HreKXA) if you’re interested.
 
 ## Releases
 
@@ -40,7 +40,7 @@ You can review the changelogs here:
 *   [4.0.3](https://github.com/tikv/tikv/releases/tag/v4.0.3)
     *   Improvements
         *   Introduce the new `backup.num-threads` configuration to control the size of the backup thread pool in [#8199](https://github.com/tikv/tikv/pull/8199)
-        *   Support dynamically changing the shared block cache's capacity in [#8232](https://github.com/tikv/tikv/pull/8232)
+        *   Support dynamic change of the shared block cache's capacity in [#8232](https://github.com/tikv/tikv/pull/8232)
     *   Bug fixes
 
 ## Reading materials
