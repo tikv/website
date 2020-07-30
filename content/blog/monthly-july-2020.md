@@ -3,7 +3,7 @@ title: This Month in TiKV - July 2020
 date: 2020-07-30
 author: TiKV Authors
 ---
-The warmest month in most of the Northern Hemisphere and the coldest month in much of the Southern Hemisphere comes to an end soon. It’s time to wrap up everything we have achieved in this month!
+The warmest month in the Northern Hemisphere comes to an end soon. It’s time to wrap up everything we have achieved in this month!
 
 Let’s get started.
 
