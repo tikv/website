@@ -7,7 +7,7 @@ menu:
         weight: 3
 ---
 
-Paxos is a protocol that Leslie Lamport and others have written extensively about. The most succinct paper describing Paxos is ["Paxos Made Easy"](https://lamport.azurewebsites.net/pubs/paxos-simple.pdf) published by Lamport in 2001. The original paper ["The Part-Time Parliment"](http://lamport.azurewebsites.net/pubs/pubs.html#lamport-paxos) was published in 1989.
+Paxos is a protocol that Leslie Lamport and others have written extensively about. The most succinct paper describing Paxos is ["Paxos Made Simple"](https://lamport.azurewebsites.net/pubs/paxos-simple.pdf) published by Lamport in 2001. The original paper ["The Part-Time Parliment"](http://lamport.azurewebsites.net/pubs/pubs.html#lamport-paxos) was published in 1989.
 
 Paxos defines several roles, and each node in a cluster may perform in one or many roles. Each cluster has a **single eventually chosen leader**, and then some number of **learners** (which take action on the agreed upon request), **Acceptors** (which form quorums and act as "memory"), and **proposers** (which advocate for client requests and coordinate).
 
