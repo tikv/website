@@ -25,7 +25,7 @@ Replacing the Rust vector with a new data structure seems trivial at first glanc
 
 According to this plan, I made the following roadmap for this project to better manage and monitor my tasks.
 
-{{< figure src="/img/blog/community-bridge/roadmap of full chunck-based computing.png" caption="Roadmap of TiKV Full Chunk-based Computing" number="" >}}
+{{< figure src="/img/blog/community-bridge/roadmap of full chunck based computing.png" caption="Roadmap of TiKV Full Chunk-based Computing" number="" >}}
 
 During the coding period, I found that timely communication with the community and mentors was a crucial part of this project. Thus, I summarized some of my experience as below, hoping they can be helpful for anyone involved in the open source community.
 
