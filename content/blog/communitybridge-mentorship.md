@@ -15,7 +15,7 @@ Every project in this program has a different selection process. As for the TiKV
 
 ## The coding period
 
-My project for the program is [Full Chunk-based Computing](https://github.com/tikv/tikv/issues/7724). It is about changing how data is stored in memory during the computation process. Previously, the memory layout of TiKV was very loose and not cache-friendly because all data was stored within a Rust vector. Using chunk format would make a more compact memory layout - there is a bitmap representation if a cell is null or not; strings are stored continuously. This makes the computation process more efficient. 
+My project for the program is [Full Chunk-based Computing](https://github.com/tikv/tikv/issues/7724). It is about changing how data is stored in memory during the computation process. Previously, the memory layout of TiKV was very loose and not cache-friendly because all data was stored within a Rust vector. Using chunk format would make a more compact memory layout - there is a bitmap representation if a cell is null or not; strings are stored continuously. This makes the computation process more efficient.
 
 Replacing the Rust vector with a new data structure seems trivial at first glance, but is by no means easy to implement. After a week’s discussion with my mentors, we came up with a three-step migration plan. 
 
@@ -25,13 +25,13 @@ Replacing the Rust vector with a new data structure seems trivial at first glanc
 
 According to this plan, I made the following roadmap for this project to better manage and monitor my tasks.
 
-{{< figure src="/img/blog/community-bridge/roadmap of full chunck based computing.png" caption="Roadmap of TiKV Full Chunk-based Computing" number="" >}}
+{{< figure src="/img/blog/community-bridge/full-chunk-based-computing-roadmap.png" caption="Roadmap of TiKV Full Chunk-based Computing" number="" >}}
 
-During the coding period, I found that timely communication with the community and mentors was a crucial part of this project. Thus, I summarized some of my experience as below, hoping they can be helpful for anyone involved in the open source community.
+During the coding period, I found that timely communication with the community and mentors was a crucial part of this project. Thus, I summarized some of my experiences as below, hoping they can be helpful for anyone involved in the open source community.
 
 **Plan ahead.** I spent about a week reading through the TiKV codebase to gain some basic ideas on how to implement “Chunk-based Computing”. After that, I laid out the plan and split them into small tasks. These tasks were then added to [my GitHub Project](https://github.com/skyzh/tikv/projects/1). I used the GitHub project board to keep  track of my progress. This way, my mentors would know well what I have done and what I will do next.
 
-{{< figure src="/img/blog/community-bridge/github project board.png" caption="My GitHub Project of TiKV Full Chunk-based Computing" number="" >}}
+{{< figure src="/img/blog/community-bridge/github-project-board.png" caption="My GitHub Project of TiKV Full Chunk-based Computing" number="" >}}
 
 **Get advice.** The coding process went smooth at first, until I found that something was overlooked: introducing the chunk vector requires refactoring two more modules, which was  beyond the plan! After a few trials, I still failed to compile the refactored code. I explained the obstacles to my mentors, and presented my failed attempts. Fortunately, my mentors came up with a solution in just a few minutes. Their advice inspired me a lot, and I finally succeeded in submitting this [PR](https://github.com/tikv/tikv/pull/8141) and continuing with the project.
 
