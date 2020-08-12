@@ -1,6 +1,6 @@
 ---
 title: My CommunityBridge Mentorship with TiKV Project
-date: 2020-8-12
+date: 2020-08-12
 author: Chi Zhang
 tags: ['Community', 'CNCF']
 ---
