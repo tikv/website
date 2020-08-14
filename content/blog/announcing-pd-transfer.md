@@ -3,11 +3,8 @@ title: Announcing PD Transfer to TiKV Project
 date: 2020-08-14
 author: TiKV Authors
 summary: We decide to move the Placement Driver library entirely to TiKV org, happening at 11 AM, UTC+8, August 17, 2020.
-image: /img/blog/pd-transfer/pd-transfer.jpg
 tags: ['Community', 'Announcement']
 ---
-
-{{< figure src="/img/blog/pd-transfer/pd-transfer.jpg" caption="" number="" >}}
 
 Dear fellow community members,
 
@@ -24,7 +21,7 @@ We expect the transfer to be finished within 24 hours, and will keep you informe
 
 **Important:** If the project you are working on depends on PD, you will need to modify the import path correspondingly next time you update PD.
 
-Leave your comment on related issue/RFC if any:
+Leave your comment on related issue/RFC if any, and let us know if you encounter any issues that are caused by the transfer.
 
 * https://github.com/pingcap/pd/issues/2758
 * https://github.com/tikv/rfcs/pull/55/files
