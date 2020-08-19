@@ -5,7 +5,7 @@ author: Edward Huang
 tags: ['Architecture', 'Raft']
 ---
 
-For TiKV3.1 Beta, Follower Read is a highlight open-source feature. To understand how important this feature is, you’ll need a bit of background. [TiKV](https://pingcap.com/docs/v3.1/architecture/#tikv-server) stores data in basic units called [Regions](https://pingcap.com/docs/v3.1/glossary/#regionpeerraft-group). Multiple replicas of a Region form a [Raft group](https://pingcap.com/docs/v3.1/glossary/#regionpeerraft-group). When a read hotspot appears in a Region, the Region [leader](https://pingcap.com/docs/v3.1/glossary/#leaderfollowerlearner) can become a read bottleneck for the entire system. In this situation, enabling the Follower Read feature can significantly reduce the load on the leader and improve the read throughput of the whole system by balancing the load among multiple [followers](https://pingcap.com/docs/v3.1/glossary/#leaderfollowerlearner). 
+Follower Read is a highlight open-source feature that improves the throughput of the TiKV clients and reduces the load on the Raft leader. To understand how important this feature is, you’ll need a bit of background. [TiKV](https://pingcap.com/docs/v3.1/architecture/#tikv-server) stores data in basic units called [Regions](https://pingcap.com/docs/v3.1/glossary/#regionpeerraft-group). Multiple replicas of a Region form a [Raft group](https://pingcap.com/docs/v3.1/glossary/#regionpeerraft-group). When a read hotspot appears in a Region, the Region [leader](https://pingcap.com/docs/v3.1/glossary/#leaderfollowerlearner) can become a read bottleneck for the entire system. In this situation, enabling the Follower Read feature can significantly reduce the load on the leader and improve the read throughput of the whole system by balancing the load among multiple [followers](https://pingcap.com/docs/v3.1/glossary/#leaderfollowerlearner). 
 
 We wrote only [26 lines of code](https://github.com/tikv/tikv/pull/5051) to implement Follower Read. In our benchmark test, when this feature was enabled, we could roughly double the read throughput of the entire system.
 
@@ -203,7 +203,6 @@ The client had higher latency than TiKV. We ran netstat and found that there wer
 Scenario description: The leader, client, and follower were in the same data center. The follower served read requests.
 
 Test results:
-
 
 | Number of scan keys | QPS |P99 latency for TiKV | P99 latency for the cline |
 | :---- | :---- | :---- | :---- |
