@@ -5,8 +5,6 @@ author: Edward Huang
 tags: ['Architecture', 'Raft']
 ---
 
-{{< figure src="/img/blog/follower-read/follower-read-banner.png" caption="" number="" >}}
-
 For TiKV3.1 Beta, Follower Read is a highlight open-source feature. To understand how important this feature is, you’ll need a bit of background. [TiKV](https://pingcap.com/docs/v3.1/architecture/#tikv-server) stores data in basic units called [Regions](https://pingcap.com/docs/v3.1/glossary/#regionpeerraft-group). Multiple replicas of a Region form a [Raft group](https://pingcap.com/docs/v3.1/glossary/#regionpeerraft-group). When a read hotspot appears in a Region, the Region [leader](https://pingcap.com/docs/v3.1/glossary/#leaderfollowerlearner) can become a read bottleneck for the entire system. In this situation, enabling the Follower Read feature can significantly reduce the load on the leader and improve the read throughput of the whole system by balancing the load among multiple [followers](https://pingcap.com/docs/v3.1/glossary/#leaderfollowerlearner). 
 
 We wrote only [26 lines of code](https://github.com/tikv/tikv/pull/5051) to implement Follower Read. In our benchmark test, when this feature was enabled, we could roughly double the read throughput of the entire system.
@@ -147,78 +145,14 @@ Scenario description: The follower and the client were in the same data center (
 
 Test results:
 
-<table>
-  <tr>
-   <td><strong>Number of scan keys</strong>
-   </td>
-   <td><strong>QPS</strong>
-   </td>
-   <td><strong>P99 latency for TiKV</strong>
-   </td>
-   <td><strong>P99 latency for the client</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>10
-   </td>
-   <td>3,110
-   </td>
-   <td>43 ms
-   </td>
-   <td>115 ms
-   </td>
-  </tr>
-  <tr>
-   <td>100
-   </td>
-   <td>314
-   </td>
-   <td>450 ms
-   </td>
-   <td>7,888 ms
-   </td>
-  </tr>
-  <tr>
-   <td>200
-   </td>
-   <td>158
-   </td>
-   <td>480 ms
-   </td>
-   <td>13,180 ms
-   </td>
-  </tr>
-  <tr>
-   <td>500
-   </td>
-   <td>63
-   </td>
-   <td>500 ms
-   </td>
-   <td>23,630 ms
-   </td>
-  </tr>
-  <tr>
-   <td>1,000
-   </td>
-   <td>31
-   </td>
-   <td>504 ms
-   </td>
-   <td>34,693 ms
-   </td>
-  </tr>
-  <tr>
-   <td>1,500
-   </td>
-   <td>8
-   </td>
-   <td>507 ms
-   </td>
-   <td>50,220 ms
-   </td>
-  </tr>
-</table>
+| Number of scan keys | QPS |P99 latency for TiKV | P99 latency for the cline |
+| :---- | :---- | :---- | :---- |
+| 10 | 3,110 | 43 ms | 115 ms |
+| 100 | 314 | 450 ms | 7,888 ms |
+| 200 | 158 | 480 ms | 13,180 ms |
+| 500 | 63 | 500 ms | 23,630 ms|
+| 1,000 | 31 | 504 ms | 34,693 ms |
+| 1,500 | 8 | 507 ms | 50,220 ms |
 
 Result analysis: 
 
@@ -232,78 +166,14 @@ Scenario description: The follower and the client were in the same data center. 
 
 Test results:
 
-<table>
-  <tr>
-   <td><strong>Number of scan keys</strong>
-   </td>
-   <td><strong>QPS</strong>
-   </td>
-   <td><strong>P99 latency for TiKV</strong>
-   </td>
-   <td><strong>P99 latency for the client</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>10
-   </td>
-   <td>3,836
-   </td>
-   <td>88 ms
-   </td>
-   <td>126 ms
-   </td>
-  </tr>
-  <tr>
-   <td>100
-   </td>
-   <td>3,087
-   </td>
-   <td>127 ms
-   </td>
-   <td>140 ms
-   </td>
-  </tr>
-  <tr>
-   <td>200
-   </td>
-   <td>1,966
-   </td>
-   <td>130 ms
-   </td>
-   <td>323 ms
-   </td>
-  </tr>
-  <tr>
-   <td>500
-   </td>
-   <td>920
-   </td>
-   <td>256 ms
-   </td>
-   <td>1,026 ms
-   </td>
-  </tr>
-  <tr>
-   <td>1,000
-   </td>
-   <td>446
-   </td>
-   <td>504 ms
-   </td>
-   <td>2,651 ms
-   </td>
-  </tr>
-  <tr>
-   <td>1,500
-   </td>
-   <td>285
-   </td>
-   <td>980 ms
-   </td>
-   <td>4,525 ms
-   </td>
-  </tr>
-</table>
+| Number of scan keys | QPS |P99 latency for TiKV | P99 latency for the cline |
+| :---- | :---- | :---- | :---- |
+| 10 | 3,863 | 88 ms | 126 ms |
+| 100 | 3,087 | 127 ms | 140 ms |
+| 200 | 1,996 | 130 ms | 323 ms |
+| 500 | 920 | 256 ms | 1,026 ms|
+| 1,000 | 446 | 504 ms | 2,651 ms |
+| 1,500 | 285 | 980 ms | 4,525 ms |
 
 Result analysis:
 
@@ -315,78 +185,14 @@ Scenario description: The leader and the client were on the same node. The leade
 
 Test results:
 
-<table>
-  <tr>
-   <td><strong>Number of scan keys</strong>
-   </td>
-   <td><strong>QPS</strong>
-   </td>
-   <td><strong>P99 latency for TiKV</strong>
-   </td>
-   <td><strong>P99 latency for the client</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>10
-   </td>
-   <td>18,865
-   </td>
-   <td>31 ms
-   </td>
-   <td>33 ms
-   </td>
-  </tr>
-  <tr>
-   <td>100
-   </td>
-   <td>4,233
-   </td>
-   <td>58 ms
-   </td>
-   <td>267 ms
-   </td>
-  </tr>
-  <tr>
-   <td>200
-   </td>
-   <td>2,321
-   </td>
-   <td>94 ms
-   </td>
-   <td>550 ms
-   </td>
-  </tr>
-  <tr>
-   <td>500
-   </td>
-   <td>1,008
-   </td>
-   <td>130 ms
-   </td>
-   <td>1,455 ms
-   </td>
-  </tr>
-  <tr>
-   <td>1,000
-   </td>
-   <td>480
-   </td>
-   <td>330 ms
-   </td>
-   <td>3,228 ms
-   </td>
-  </tr>
-  <tr>
-   <td>1,500
-   </td>
-   <td>298
-   </td>
-   <td>450 ms
-   </td>
-   <td>6,438 ms
-   </td>
-  </tr>
-</table>
+| Number of scan keys | QPS |P99 latency for TiKV | P99 latency for the cline |
+| :---- | :---- | :---- | :---- |
+| 10 | 18,865 | 31 ms | 33 ms |
+| 100 | 4,233 | 58 ms | 267 ms |
+| 200 | 2,321 | 94 ms | 550 ms |
+| 500 | 1,008 | 130 ms | 1,455 ms|
+| 1,000 | 480 | 330 ms | 3,228 ms |
+| 1,500 | 298 | 450 ms | 6,438 ms |
 
 Result analysis: 
 
@@ -398,78 +204,15 @@ Scenario description: The leader, client, and follower were in the same data cen
 
 Test results:
 
-<table>
-  <tr>
-   <td><strong>Number of scan keys</strong>
-   </td>
-   <td><strong>QPS</strong>
-   </td>
-   <td><strong>P99 latency for TiKV</strong>
-   </td>
-   <td><strong>P99 latency for the client</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>10
-   </td>
-   <td>15,021
-   </td>
-   <td>31 ms
-   </td>
-   <td>34 ms
-   </td>
-  </tr>
-  <tr>
-   <td>100
-   </td>
-   <td>3,859
-   </td>
-   <td>62 ms
-   </td>
-   <td>272 ms
-   </td>
-  </tr>
-  <tr>
-   <td>200
-   </td>
-   <td>2,186
-   </td>
-   <td>120 ms
-   </td>
-   <td>560 ms
-   </td>
-  </tr>
-  <tr>
-   <td>500
-   </td>
-   <td>947
-   </td>
-   <td>243 ms
-   </td>
-   <td>1,305 ms
-   </td>
-  </tr>
-  <tr>
-   <td>1,000
-   </td>
-   <td>450
-   </td>
-   <td>480 ms
-   </td>
-   <td>3,189 ms
-   </td>
-  </tr>
-  <tr>
-   <td>1,500
-   </td>
-   <td>277
-   </td>
-   <td>763 ms
-   </td>
-   <td>5,058 ms
-   </td>
-  </tr>
-</table>
+
+| Number of scan keys | QPS |P99 latency for TiKV | P99 latency for the cline |
+| :---- | :---- | :---- | :---- |
+| 10 | 15,021 | 31 ms | 34 ms |
+| 100 | 3,859 | 62 ms | 272 ms |
+| 200 | 2,186 | 120 ms | 560 ms |
+| 500 | 947 | 243 ms | 1,305 ms|
+| 1,000 | 450 | 480 ms | 3,189 ms |
+| 1,500 | 277 | 763 ms | 5,058 ms |
 
 Result analysis:
 
