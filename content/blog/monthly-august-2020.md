@@ -48,6 +48,7 @@ In [Doubling System Read Throughput with Only 26 Lines of Code](https://tikv.org
 *   [@xhebox](https://github.com/xhebox) forbade adding multiple leaders over the same range in [#2761](https://github.com/tikv/pd/pull/2761).
 *   [@disksing](https://github.com/disksing) supported the `RuleGroup` configuration in placement rules in [#2740](https://github.com/tikv/pd/pull/2740).
 *   [@xhebox](https://github.com/xhebox) supported the batch deletion and insertion in [#2699](https://github.com/tikv/pd/pull/2699).
+*   [@hskang9](https://github.com/hskang9) implemented part of VerKV functionalities in [#8282](https://github.com/tikv/tikv/pull/8282).
 
 ## Notable issues
 
