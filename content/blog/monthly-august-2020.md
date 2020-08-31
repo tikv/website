@@ -5,7 +5,7 @@ author: TiKV Authors
 tags: ['Monthly update', 'Community']
 ---
 
-August ends with the completion of KubeCon + CloudNative Con EU Virtual and mentorship programs. We can’t wait to see more to come in the future months!
+August ends with the completion of KubeCon + CloudNative Con EU Virtual and our mentorship programs. We can’t wait to see more to come in the future months!
 
 Let’s take a look at what we have achieved!
 
