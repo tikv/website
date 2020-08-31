@@ -40,7 +40,7 @@ In [Doubling System Read Throughput with Only 26 Lines of Code](https://tikv.org
 ## Notable PRs
 
 *   [@Renkai](https://github.com/Renkai) implemented server-side streaming requests in coprocessor batch executors in [#8322](https://github.com/tikv/tikv/pull/8322).
-*   [@skyzh](https://github.com/skyzh) added merge_null support for rpn_fn in [#8345](https://github.com/tikv/tikv/pull/8345).
+*   [@skyzh](https://github.com/skyzh) added `merge_null` support for `rpn_fn` in [#8345](https://github.com/tikv/tikv/pull/8345).
 *   [@de-sh](https://github.com/de-sh) added support for the cloud data store in [#517](https://github.com/tikv/rust-rocksdb/pull/517).
 *   [@accelsao](https://github.com/accelsao) conducted port data-driven tests from CockroachDB in [#388](https://github.com/tikv/raft-rs/pull/388).
 *   [@hicqu](https://github.com/hicqu) added the global entry cache to Raft engine in [#21](https://github.com/tikv/raft-engine/pull/21).
