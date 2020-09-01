@@ -28,6 +28,7 @@ $notification-padding: 1rem 1rem
 $navbar-dropdown-radius: none
 $navbar-dropdown-boxed-shadow: none
 $navbar-dropdown-arrow: $primary !important
+$base-width: 112px
 
 @import "bulma/sass/utilities/derived-variables"
 
@@ -35,15 +36,12 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
 
 @import "bulma/bulma"
 
-=logo($tablet, $touch)
+=logo($times)
   margin: 0 auto
-  +tablet
-    width: percentage($tablet / 100)
-  +touch
-    width: percentage($touch / 100)
+  width: $times * $base-width
 
 .is-home-logo
-  +logo(40, 60)
+  +logo(2)
   +tablet
     margin-bottom: 1.5rem
 
@@ -51,11 +49,11 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
     margin-bottom: 2rem
 
 .is-cncf-logo
-  +logo(40, 50)
-  margin: 2.5rem 0 0 0
+  +logo(4)
+  margin: 1.5rem 0 0 0
 
 .is-footer-image
-  +logo(50, 30)
+  +logo(1)
 
 =branded-button($bgColor)
   border: none
@@ -67,6 +65,18 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
 
 .docs-content
   padding-bottom: 8rem
+
+.home-page
+  .title
+    font-size: 1.875rem !important
+    font-weight: bold
+    color: #30323e
+
+  .subtitle
+    font-size: 1.25rem !important
+    color: #606060
+    font-weight: normal !important
+
 
 .toc
   padding: 1rem 0 3rem 2rem
@@ -170,13 +180,14 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
       color: $dark !important
 
   .notification
-    margin: 6rem 0
+    margin: 4rem 0
     
     p
       font-weight: bold
+      color: #606060
+      font-size: 1.5rem !important
 
     a.is-link
-      font-weight: bold
       color: #2E2FFF !important
       text-decoration: none !important
 
