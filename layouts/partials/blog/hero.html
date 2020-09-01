@@ -7,6 +7,11 @@
       <h1 class="title is-size-1 is-size-2-mobile has-text-white has-text-weight-light{{ if $author }} is-spaced{{ end }}">
         {{ .Title }}
       </h1>
+
+      {{ if eq .RelPermalink "/blog/" }}
+      <a href="/blog/index.xml"><i class="fa fa-rss"></i> &nbsp; Subscribe via RSS</a>
+      {{ end }}
+
       {{ with $author }}
       <p class="subtitle is-size-3 is-size-4-mobile has-text-white-bis has-text-weight-light">
         {{ . | markdownify }}

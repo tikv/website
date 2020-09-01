@@ -1,8 +1,8 @@
 {{ $fontAwesomeVersion := site.Params.assets.fontAwesomeVersion }}
 {{ $fontAwesomeUrl     := printf "https://use.fontawesome.com/releases/v%s/css/all.css" $fontAwesomeVersion }}
 @charset "utf-8"
-@import url(https://fonts.googleapis.com/icon?family=Titillium+Web:300,400,600,700|Inconsolata:300,400,600,700)
-@import url({{ $fontAwesomeUrl }})
+@import url("https://fonts.googleapis.com/icon?family=Titillium+Web:300,400,600,700|Inconsolata:300,400,600,700")
+@import url("{{ $fontAwesomeUrl }}")
 
 // Misc
 $twitter-blue: #1da1f3

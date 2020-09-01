@@ -1,16 +1,17 @@
 ---
 title: Percolator
+aliases: ['/docs/deep-dive/distributed-transaction/percolator']
 menu:
     nav:
         parent: Distributed transaction
         weight: 5
 ---
 
-TiKV supports distributed transactions, which is inspired by Google's [Percolator](https://ai.google/research/pubs/pub36726.pdf). In this section, we will briefly introduce Percolator and how we make use of it in TiKV.
+TiKV supports distributed transactions, which is inspired by Google's [Percolator](https://research.google/pubs/pub36726.pdf). In this section, we will briefly introduce Percolator and how we make use of it in TiKV.
 
 ## What is Percolator?
 
-*Percolator* is a system built by Google for incremental processing on a very large data set. Since this is just a brief introduction, you can view the full paper [here](https://ai.google/research/pubs/pub36726#) for more details. If you are already very familiar with it, you can skip this section and go directly to [Percolator in TiKV](#Percolator-in-TiKV)
+*Percolator* is a system built by Google for incremental processing on a very large data set. Since this is just a brief introduction, you can view the full paper [here](https://ai.google/research/pubs/pub36726#) for more details. If you are already very familiar with it, you can skip this section and go directly to [Percolator in TiKV](#percolator-in-tikv)
 
 Percolator is built based on Google's BigTable, a distributed storage system that supports single-row transactions. Percolator implements distributed transactions in ACID snapshot-isolation semantics, which is not supported by BigTable. A column `c` of Percolator is actually divided into the following internal columns of BigTable:
 

@@ -1,5 +1,6 @@
 ---
 title: Distributed SQL
+aliases: ['/docs/deep-dive/distributed-sql/dist-sql']
 menu:
     nav:
         parent: Distributed SQL over TiKV

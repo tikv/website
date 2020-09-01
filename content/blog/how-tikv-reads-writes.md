@@ -2,6 +2,7 @@
 title: How TiKV reads and writes
 date: 2019-12-06
 author: Tang Liu
+tags: ['Architecture', 'Raft']
 ---
 
 This article introduces in detail how [TiKV](https://github.com/tikv/tikv) handles read and write operations. Together we will explore how TiKV, as a distributed key-value (KV) database, stores the data contained in a write request and how it retrieves the corresponding data with consistency guaranteed.

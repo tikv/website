@@ -1,6 +1,8 @@
 {{ $favicon := site.Params.favicon | relURL }}
+{{ $rssFeed := "blog/index.xml" | absURL }}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {{ hugo.Generator }}
 
 <link rel="shorcut icon" href="{{ $favicon }}">
+<link rel="alternate" type="application/rss+xml" href="{{ $rssFeed }}" title="TiKV"/>

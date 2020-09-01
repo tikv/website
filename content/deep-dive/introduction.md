@@ -1,5 +1,6 @@
 ---
 title: Deep Dive
+aliases: ['/docs/deep-dive/introduction']
 menu:
     nav:
         weight: 1
@@ -19,7 +20,7 @@ As far as we knew, proxy-based solutions have following problems:
 
 + Building a proxy on top of the MySQL servers cannot guarantee ACID compliance. Notably, the cross-node transactions are not supported natively.
 + It poses great challenges for business flexibility because the users have to worry about the data distribution and design their sharding keys carefully to avoid inefficient queries.
-+ The high availability and data consistency of MySQL can't be guaranteed easily based on the traditional Master-Slave replication.
++ The high availability and data consistency of MySQL can't be guaranteed easily based on the traditional Source-Replica replication.
 
 Although building a proxy based on MySQL directly might be easy at the beginning, we still decided to chose another way, a more difficult path &mdash; to build a distributed, MySQL compatible database from scratch.
 

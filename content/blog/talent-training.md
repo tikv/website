@@ -2,6 +2,7 @@
 title: Distributed Systems Training in Rust and Go
 date: 2019-06-20
 author: Brian Anderson, Senior Database Engineer for TiKV
+tags: ['Rust', 'Golang', 'Distributed system']
 ---
 
 On the TiKV team we love the [Rust] and [Go] programming languages. They are the
@@ -50,8 +51,8 @@ Today they are in an early state, but we would appreciate if you give them a loo
 [TiDB]: http://github.com/pingcap/tidb
 [TiKV]: https://github.com/tikv/tikv/
 [c]: https://github.com/pingcap/talent-plan
-[c-rust]: https://github.com/pingcap/talent-plan/tree/master/rust
-[c-dss]: https://github.com/pingcap/talent-plan/tree/master/dss/
+[c-rust]: https://github.com/pingcap/talent-plan/tree/master/courses/rust
+[c-dss]: https://github.com/pingcap/talent-plan/tree/master/courses/dss/
 [c-go]: https://github.com/pingcap/talent-plan/tree/master/tidb/
 [MIT 6.824]: http://nil.csail.mit.edu/6.824/2017/index.html
 [Raft]: https://raft.github.io/

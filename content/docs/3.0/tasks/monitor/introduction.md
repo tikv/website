@@ -15,11 +15,10 @@ As a time series database, Prometheus has a multi-dimensional data model and fle
 
 - Prometheus Server: to scrape and store time series data
 - Client libraries: to customize necessary metrics in the application
-- Pushgateway: to receive the data from Client Push for the Prometheus main server
 - AlertManager: for the alerting mechanism
 
 {{< figure
-    src="/img/docs/prometheus-in-tikv.png"
+    src="/img/docs/prometheus.svg"
     caption="Prometheus in TiKV"
     number="" >}}
 

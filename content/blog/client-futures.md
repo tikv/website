@@ -2,6 +2,7 @@
 title: Migrating the TiKV Rust client from futures 0.1 to 0.3
 date: 2019-08-07
 author: Nick Cameron
+tags: ['Rust']
 ---
 
 I recently migrated a small/medium-sized crate from Futures 0.1 to 0.3. It was fairly easy, but there were some tricky bits and some things that were not well documented, so I think it is worth me writing up my experience.

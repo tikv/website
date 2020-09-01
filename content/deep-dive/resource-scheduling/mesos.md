@@ -1,5 +1,6 @@
 ---
 title: Mesos
+aliases: ['/docs/deep-dive/resource-scheduling/mesos']
 menu:
     nav:
         parent: Resource scheduling
@@ -30,24 +31,25 @@ It is important to notice that Mesos itself is only a resource scheduling framew
 
 ## Components
 
-Mesos consists of a master process that manages slave daemons running on each cluster node, and frameworks that run tasks on these slaves.
+Mesos consists of a master process that manages agent daemons running on each cluster node, and frameworks that run tasks on these agents.
 
 - Mesos master
 
     The _master_ sees the global information, and is responsible for resource scheduling and logical control between different _frameworks_. The _frameworks_ need to be registered to _master_ in order to be used. It uses Zookeeper to achieve HA.
 
-- Mesos salve
+- Mesos agent
 
-    The _slave_ is responsible for reporting the resource status (idle resources, running status, etc.) on the slave node to _master_, and is responsible for isolating the local resources to perform the specific tasks assigned by master.
+    The _agent_ is responsible for reporting the resource status (idle resources, running status, etc.) on the agent node to _master_, and is responsible for isolating the local resources to perform the specific tasks assigned by master.
 
 - Frameworks
 
-    Each _framework_ consists of two components: a _scheduler_ that registers with the _master_ to be offered resources, and an _executor_ process that is launched on _slave_ nodes to run the _framework_’s tasks.
+    Each _framework_ consists of two components: a _scheduler_ that registers with the _master_ to be offered resources, and an _executor_ process that is launched on _agent_ nodes to run the _framework_’s tasks.
 
 ## Resource scheduling
+
 To support the sophisticated schedulers of today's frameworks, Mesos introduces a distributed two-level scheduling mechanism called _resource offers_.
 
-Each resource offer is a list of free resources (for example, <1Core CPU, 2GB RAM>) on multiple slaves. While the _master_ decides how many resources to offer to each framework according to an organizational policy, the frameworks’ schedulers select which of the offered resources to use. When a framework accepts offered resources, it passes Mesos a description of the tasks it wants to launch on them.
+Each resource offer is a list of free resources (for example, <1Core CPU, 2GB RAM>) on multiple agents. While the _master_ decides how many resources to offer to each framework according to an organizational policy, the frameworks’ schedulers select which of the offered resources to use. When a framework accepts offered resources, it passes Mesos a description of the tasks it wants to launch on them.
 
 {{< figure
     src="/img/deep-dive/mesos-scheduling.png"
@@ -56,10 +58,10 @@ Each resource offer is a list of free resources (for example, <1Core CPU, 2GB RA
 
 The figure shows an example of how resource scheduling works:
 
-1. Slave 1 reports to the master that it has 4 CPUs and 4 GB of memory free. The master then invokes the allocation policy module, which tells it that framework 1 should be offered all available resources.
-2. The master sends a resource offer describing what is available on slave 1 to framework 1.
-3. The framework’s scheduler replies to the master with information about two tasks to run on the slave, using <2 CPUs, 1 GB RAM> for the first task, and <1 CPUs, 2 GB RAM> for the second task.
-4. Finally, the master sends the tasks to the slave, which allocates appropriate resources to the framework’s executor, which in turn launches the two tasks (depicted with dotted-line borders in the figure). Because 1 CPU and 1 GB of RAM are still unallocated, the allocation module may now offer them to framework 2.
+1. Agent 1 reports to the master that it has 4 CPUs and 4 GB of memory free. The master then invokes the allocation policy module, which tells it that framework 1 should be offered all available resources.
+2. The master sends a resource offer describing what is available on agent 1 to framework 1.
+3. The framework’s scheduler replies to the master with information about two tasks to run on the agent, using <2 CPUs, 1 GB RAM> for the first task, and <1 CPUs, 2 GB RAM> for the second task.
+4. Finally, the master sends the tasks to the agent, which allocates appropriate resources to the framework’s executor, which in turn launches the two tasks (depicted with dotted-line borders in the figure). Because 1 CPU and 1 GB of RAM are still unallocated, the allocation module may now offer them to framework 2.
 
 To maintain a thin interface and enable frameworks to evolve independently, Mesos does not require frameworks to specify their resource requirements or constraints. Instead, Mesos gives frameworks the ability to reject offers. A framework can reject resources that do not satisfy its constraints in order to wait for ones that do. Thus, the rejection mechanism enables frameworks to support arbitrarily complex resource constraints while keeping Mesos simple and scalable.
 

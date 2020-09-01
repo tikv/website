@@ -1,5 +1,6 @@
 ---
 title: Byzantine Failure
+aliases: ['/docs/deep-dive/consensus-algorithm/byzantine-failure']
 menu:
     nav:
         parent: Consensus algorithm

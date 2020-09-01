@@ -8,11 +8,11 @@ disableKinds: ["taxonomy", "taxonomyTerm"]
 menu:
     nav:
     - name: Community
-      url: /contribute
+      url: /community/community/
     - name: Contribute
       parent: Community
       weight: 1
-      url: /contribute
+      url: /community/contribute/
     - name: Chat
       url: /chat
       parent: Community
@@ -34,9 +34,10 @@ params:
     favicon: "favicon.png"
     googleAnalyticsId: "UA-130734531-1"
     versions:
-        latest: "3.0"
+        latest: "4.0"
         all:
-        - "3.1-beta"
+        - "dev"
+        - "4.0"
         - "3.0"
     description:
         brief: "A distributed transactional key-value database"

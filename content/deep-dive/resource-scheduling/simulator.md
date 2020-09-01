@@ -1,5 +1,6 @@
 ---
 title: Simulator
+aliases: ['/docs/deep-dive/resource-scheduling/simulator']
 menu:
     nav:
         parent: Resource scheduling
