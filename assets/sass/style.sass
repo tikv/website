@@ -51,7 +51,7 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
     margin-bottom: 2rem
 
 .is-cncf-logo
-  +logo(30, 50)
+  +logo(40, 50)
   margin: 2.5rem 0 0 0
 
 .is-footer-image
@@ -165,9 +165,24 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
  
 .is-home-page
   .hero
-    p a
+    p
       font-weight: bold
       color: $dark !important
+
+  .notification
+    margin: 6rem 0
+    
+    p
+      font-weight: bold
+
+    a.is-link
+      font-weight: bold
+      color: #2E2FFF !important
+      text-decoration: none !important
+
+      &:hover
+        text-decoration: underline !important
+
 
     .buttons
       margin-top: 2.5rem
