@@ -5,7 +5,7 @@ author: The TiKV Authors
 tags: ['Release', 'Announcement']
 ---
 
-We are excited to announce the general availability of TiKV 4.0! We're so glad and proud to have seen more than 1000 adopters use TiKV in production scenarios across multiple industries worldwide. Thanks to all users who have given us feedback, bug reports, and pull requests contributions over the past year. We’ve applied the lessons learned from these deployments to bring new features and better security to support users’ growing needs.
+We are excited to announce the general availability of TiKV 4.0! We're so glad and proud to have seen almost 1000 adopters use TiKV in production scenarios across multiple industries worldwide. Thanks to all users who have given us feedback, bug reports, and pull requests contributions over the past year. We’ve applied the lessons learned from these deployments to bring new features and better security to support users’ growing needs.
 
 # New Features
 
@@ -17,7 +17,7 @@ With follower read, TiKV uses a series of load balancing mechanisms to offload r
 
 *   **Titan**
 
-Titan is a RocksDB plugin for key-value separation. Compatible with all RocksDB features used by TiKV, it reduces write amplification by separating large values from the log-structured merge tree (LSM tree) and storing them independently. It improves range query performance and reduces its impact on write performance. Titan has previously been available as en experimental feature, and has reached general availability in TiKV 4.0. 
+Titan is a RocksDB plugin for key-value separation. Compatible with all RocksDB features used by TiKV, it reduces write amplification by separating large values from the log-structured merge tree (LSM tree) and storing them independently. It improves range query performance and reduces its impact on write performance. Titan has previously been available as an experimental feature, and has reached general availability in TiKV 4.0.
 
 *   **Unified thread pool**
 
