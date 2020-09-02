@@ -6,20 +6,14 @@
 {{ $cncfLogo  := site.Params.logos.cncf | relURL }}
 {{ $features  := site.Data.features }}
 <section class="hero is-fullheight-with-navbar is-light">
-  <div class="hero-body">
+  <div class="hero-body home-page">
     <div class="container has-text-centered">
       <img class="is-home-logo" src="{{ $logo }}" alt="Main TiKV logo">
 
       <br />
 
       <p class="title is-size-1-desktop is-size-3-touch is-spaced">
-        <span class="has-text-weight-bold">
-          {{ site.Title }}
-        </span>
-        
-        <span class="has-text-primary has-text-weight-bold">:</span>
-
-        <span class="has-text-grey has-text-weight-light">
+        <span>
           {{ $shortDesc }}
         </span>
       </p>
@@ -28,19 +22,13 @@
         {{ $longDesc }}
       </p>
 
-      <!-- <br />
-
-      <div class="notification has-background-white is-radiusless">
-        <p class="title is-size-3 is-size-4-mobile has-text-weight-light">
-          TiKV is now a <a href="https://cncf.io" target="_blank">Cloud Native Computing Foundation</a> incubating project! 🎉🍾
+      <div class="notification is-radiusless">
+        <p class="title is-size-3 is-size-4-mobile">
+          We are a <a href="https://cncf.io" target="_blank" class="is-link">Cloud Native Computing Foundation</a> graduated project. 🎉
         </p>
 
-        <p class="is-size-5 is-size-6-mobile">
-          As of May 21, 2019, TiKV has moved out of the CNCF sandbox and on to the next level. We'd like to thank the TiKV community for all of their support.
-        </p>
-
-        <img class="is-cncf-logo" src="{{ $cncfLogo }}">
-      </div> -->
+        <img class="is-cncf-logo" src="{{ $cncfLogo }}" alt="Cloud Native Computing Foundation logo">
+      </div>
     </div>
   </div>
 </section>
