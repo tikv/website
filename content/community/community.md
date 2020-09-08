@@ -13,6 +13,7 @@ The TiKV community is organized into special interest groups (SIGs). More inform
 * [Engine](/community/sig-engine/)
 * [Raft](/community/sig-raft/)
 * [Transaction](/community/sig-transaction/)
+* [Scheduling](/community/sig-scheduling/)
 
 ## Communications
 
