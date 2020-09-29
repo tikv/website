@@ -66,7 +66,6 @@ You can review the changelogs here:
 We’d like to welcome the following new contributors to TiKV and thank them for their work!
 
 *   [@wangggong](https://github.com/wangggong)
-
 *   [@Xuanwo](https://github.com/Xuanwo)
 
 If you'd like to get involved, we'd love to help you get started. You might be interested in tackling one of [these issues](https://github.com/tikv/tikv/issues?q=is%3Aopen+is%3Aissue+label%3Adifficulty%2Feasy). If you don't know how to begin, please leave a comment and somebody will help you out. We're also very keen for people to contribute to documentation, tests, optimizations, benchmarks, refactoring, or other useful things.
