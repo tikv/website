@@ -17,7 +17,7 @@ To celebrate TiKV’s CNCF graduation, we have made limited edition SWAGs for ou
 
 [@nrc](https://github.com/nrc) initiated Transaction SIG’s [Documentation quest](https://tikv.org/blog/docs-quest/)! Join the quest if you want to learn about distributed transactions in a fun and effective way!
 
-We have two projects selected by CNCF CommunityBridge projects for Q3-Q4, as listed below. We have received several resumes and coding tasks sent by mentee candidates. The official confirmation on candidates selection will be released by CommunityBridge on September 21. Stay tuned.
+We have two projects selected by CNCF CommunityBridge projects for Q3-Q4, as listed below. We have received several resumes and coding tasks sent by mentee candidates. The official confirmation on candidates selection will be released by CommunityBridge on October 5. Stay tuned.
 
 *   [Support ENUM / SET push down for TiKV Coprocessor](https://github.com/tikv/tikv/issues/8605)
 *   [Support rbac for data accessing in TiKV](https://github.com/tikv/tikv/issues/8621)
