@@ -79,7 +79,6 @@ Before deployment, make sure the following requirements are satisfied:
 
         ```shell
         kubectl create ns tikv-operator
-        helm install --namespace tikv-operator tikv-operator pingcap/tikv-operator --version v0.1.0
         ```
 
     3. Install TiKV Operator:
@@ -120,7 +119,7 @@ Before deployment, make sure the following requirements are satisfied:
 3. Check the progress with the following command:
 
     ```shell
-    kubect get pods -o wide
+    kubectl get pods -o wide
     ```
 
 If the network connection to the Docker Hub is slow, you can try this example which uses images hosted in Alibaba Cloud:
