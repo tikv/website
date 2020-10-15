@@ -158,4 +158,4 @@ The result displays the store count and detailed information regarding each stor
 
 ## What's next?
 
-If you want to try the Go client, see [Try Two Types of APIs](../../reference/clients/go/).
+If you want to try the Go client, see [Try Two Types of APIs](../../../reference/clients/go/).
