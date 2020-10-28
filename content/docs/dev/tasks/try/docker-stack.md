@@ -17,12 +17,19 @@ In order to get a functioning TiKV service you will need to start a TiKV service
 
 Communication between TiKV, PD, and any services which use TiKV is done via gRPC. We provide clients for [several languages](../../reference/clients/introduction/), and this guide will briefly show you how to use the Rust client.
 
-Using Docker, you'll create pair of persistent services `tikv` and `pd` and learn to manage them easily. Then you'll write a simple Rust client application and run it from your local host. Finally, you'll learn how to quicky teardown and bring up the services, and review some basic limitations of this configuration.
+Using Docker, you'll create pair of persistent services `tikv` and `pd` and learn to manage them easily. Then you'll write a simple Rust client application and run it from your local host. Finally, you'll learn how to quickly teardown and bring up the services, and review some basic limitations of this configuration.
 
-![Architecture](../../../../img/docs/getting-started-docker.svg)
+![Architecture](/img/docs/getting-started-docker.svg)
+
+{{< figure
+    src="/img/docs/getting-started-docker.svg"
+    caption="Docker Stack"
+    alt="Docker Stack diagram"
+    width="70"
+    number="1" >}}
 
 {{< warning >}}
-In a production deployment there would be **at least** three TiKV services and three PD services spread among 6 machines. Most deployments also include kernel tuning, sysctl tuning, robust systemd services, firewalls, monitoring with prometheus, grafana dashboards, log collection, and more. Even still, to be sure of your resilience and security, consider consulting our [maintainers](https://github.com/tikv/tikv/blob/master/MAINTAINERS.md).
+In a production deployment there would be **at least** three TiKV services and three PD services spread among 6 machines. Most deployments also include kernel tuning, sysctl tuning, robust systemd services, firewalls, monitoring with Prometheus, Grafana dashboards, log collection, and more. Even still, to be sure of your resilience and security, consider consulting our [maintainers](https://github.com/tikv/tikv/blob/master/MAINTAINERS.md).
 
 If you are interested in deploying for production we suggest investigating the [deploy](../../deploy/introduction) guides.
 {{< /warning >}}
