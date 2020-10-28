@@ -19,8 +19,6 @@ Communication between TiKV, PD, and any services which use TiKV is done via gRPC
 
 Using Docker, you'll create pair of persistent services `tikv` and `pd` and learn to manage them easily. Then you'll write a simple Rust client application and run it from your local host. Finally, you'll learn how to quickly teardown and bring up the services, and review some basic limitations of this configuration.
 
-![Architecture](/img/docs/getting-started-docker.svg)
-
 {{< figure
     src="/img/docs/getting-started-docker.svg"
     caption="Docker Stack"

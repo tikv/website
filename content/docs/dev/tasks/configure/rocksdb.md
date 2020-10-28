@@ -32,7 +32,7 @@ RocksDB can be configured on a per-column-family basis. Here's an example:
 max-background-jobs = 8
 ```
 
-### RocksDB configuration options
+## RocksDB configuration options
 
 <!-- {{< config "rocksdb" >}} -->
 
