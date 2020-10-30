@@ -2,7 +2,7 @@
 title: Prerequisites
 description: Prerequisites for deploying TiKV
 menu:
-    "3.0":
+    "dev":
         parent: Deploy
         weight: 1
 ---
