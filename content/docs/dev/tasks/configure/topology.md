@@ -25,6 +25,7 @@ In order for PD to get the topology of the cluster, TiKV reports the topological
     [server]
     labels = "zone=<zone>,rack=<rack>,host=<host>"
     ```
+
 ## PD understands the TiKV topology
 
 After getting the topology of the TiKV cluster, PD also needs to know the hierarchical relationship of the topology. You can configure it through the PD configuration or `pd-ctl`:

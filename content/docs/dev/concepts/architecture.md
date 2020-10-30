@@ -47,7 +47,6 @@ The architecture of each TiKV instance is illustrated in **Figure 2** below:
     width="60"
     number="2" >}}
 
-
 ## Placement driver (PD) {#placement-driver}
 
 The TiKV placement driver is the cluster manager of TiKV, which periodically checks replication constraints to balance load and data automatically across nodes and regions in a process called **auto-sharding**.

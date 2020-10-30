@@ -23,11 +23,11 @@ It's often necessary to use TLS in situations where TiKV is being deployed or ac
 
 Before you get started, review your infrastructure. Your organization may already use something like the [Kubernetes certificates API](https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/) to issue certificates. You will need the following for your deployment:
 
--  A **Certificate Authority** (CA) certificate
--  Individual unique **certificates** and **keys** for each TiKV or PD service
--  One or many **certificates** and **keys** for TiKV clients depending on your needs.
+- A **Certificate Authority** (CA) certificate
+- Individual unique **certificates** and **keys** for each TiKV or PD service
+- One or many **certificates** and **keys** for TiKV clients depending on your needs.
 
- If you have these, you can skip the optional section below. 
+ If you have these, you can skip the optional section below.
 
 If your organization doesn't yet have a public key infrastructure (PKI), you can create a simple Certificate Authority to issue certificates for the services in your deployment. The instructions below show you how to do this in a few quick steps:
 
