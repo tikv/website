@@ -49,7 +49,6 @@ If you find Titan does not help or is causing read or other performance issues, 
 Make sure you have already enabled Titan.
     {{< /info >}}
 
-2. Wait until the number of blob files reduced to 0. Alternatively, you can do this 
-quicky via `tikv-ctl compact-cluster`.
+2. Wait until the number of blob files reduces to 0. Alternatively, you can do this quickly via `tikv-ctl compact-cluster`.
 
 3. In the TiKV configuration file, specify `rocksdb.titan.enabled=false`, and restart TiKV.

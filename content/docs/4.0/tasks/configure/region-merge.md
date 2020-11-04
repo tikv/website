@@ -9,7 +9,6 @@ menu:
 
 TiKV replicates a segment of data in Regions via the Raft state machine. As data writes increase, a Region Split happens when the size of the region or the number of keys has reached a threshold. Conversely, if the size of the Region and the amount of keys shrinks because of data deletion, we can use Region Merge to merge adjacent regions that are smaller. This relieves some stress on Raftstore.
 
-
 ## Merge process
 
 Region Merge is initiated by the Placement Driver (PD). The steps are:

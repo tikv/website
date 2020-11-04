@@ -1,6 +1,6 @@
 ---
 title: Limit Config
-description: Learn how to configure scheduling rate limit on stores
+description: Learn how to configure scheduling rate limit on stores.
 menu:
     "4.0":
         parent: Configure
@@ -16,7 +16,7 @@ In TiKV, PD generates different scheduling operators based on the information ga
 PD provides the following two methods to configure scheduling rate limits on stores:
 
 - Configure the rate limit using **`store-balance-rate`**.
-    
+
     {{< info >}}
 The modification only takes effect on stores added after this configuration change, and will be applied to all stores in the cluster after you restart TiKV. If you want this change to work immediately on all stores or some individual stores before the change without restarting, combine this configuration with the `pd-ctl` tool method below. See [Sample usages](#sample-usages) for more details.
     {{< /info >}}
@@ -31,16 +31,14 @@ The modification only takes effect on stores added after this configuration chan
     » config set store-balance-rate 20
     ```
 
-
 - Use the `pd-ctl` tool to view or modify the upper limit of the scheduling rate. The commands are:
 
     {{< info >}}
 This method is not persistent, and the configuration will revert after restarting TiKV.
     {{< /info >}}
 
-
     - **`stores show limit`**
-        
+
         Example:
 
         ```bash
@@ -56,7 +54,7 @@ This method is not persistent, and the configuration will revert after restartin
             # ...
         }
         ```
-    
+
     - **`stores set limit <rate>`**
 
         Example:
@@ -65,7 +63,7 @@ This method is not persistent, and the configuration will revert after restartin
         # Set the upper limit of scheduling rate for all stores to be 20 scheduling tasks per minute.
         » stores set limit 20
         ```
-    
+
     - **`store limit <store_id> <rate>`**
 
         Example:
@@ -87,14 +85,13 @@ See [PD Control](../../reference/tools/pd-ctl/) for more detailed description of
     ```
 
 - The following example modifies the rate limit for all stores to 20 and applies immediately. After restart, the configuration becomes invalid, and the rate limit for all stores specified by `store-balance-rate` takes over.
-    
+
     ```bash
      » stores set limit 20
     ```
-    
+
 - The following example modifies the rate limit for store 2 to 20 and applies immediately. After restart, the configuration becomes invalid, and the rate limit for store 2 becomes the value specified by  `store-balance-rate`.
 
     ```bash
     » store limit 2 20
     ```
-
