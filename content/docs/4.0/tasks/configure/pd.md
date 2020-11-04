@@ -7,7 +7,7 @@ menu:
         weight: 8
 ---
 
-[PD](../../../concepts/architecture#placement-driver) (Placement Driver) is the cluster manager of TiKV. This document describes how to configure PD parameters that are not included in command-line parameters. See the [default PD configuration file](https://github.com/tikv/pd/blob/master/conf/config.toml).
+[PD](../../../concepts/architecture#placement-driver) (Placement Driver) is the cluster manager of TiKV. This document describes how to configure PD parameters that are not included in command-line parameters. See the [default PD configuration file](https://github.com/tikv/pd/blob/release-4.0/conf/config.toml).
 
 ### `lease`
 
