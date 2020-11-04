@@ -1,6 +1,6 @@
 ---
 title: Limit Config
-description: Learn how to configure scheduling rate limit on stores
+description: Learn how to configure scheduling rate limit on stores.
 menu:
     "dev":
         parent: Configure

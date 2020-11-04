@@ -4,7 +4,7 @@ description: Learn how to enable Titan in TiKV.
 menu:
     "dev":
         parent: Configure
-        weight: 7
+        weight: 8
 ---
 
 Titan is a plugin of RocksDB developed by PingCAP to provide key-value separation. The goal of Titan is to reduce write amplification of RocksDB when using large values.
@@ -35,6 +35,24 @@ To enable Titan in TiKV, in the TiKV configuration file, specify:
 enabled = true
 ```
 
+More Titan configuration parameters are as follows:
+
+### `dirname`
+
++ The directory in which the Titan Blob file is stored
++ Default value: `titandb`
+
+### `disable-gc`
+
++ Determines whether to disable Garbage Collection (GC) that Titan performs to Blob files
++ Default value: `false`
+
+### `max-background-gc`
+
++ The maximum number of GC threads in Titan
++ Default value: `1`
++ Minimum value: `1`
+
 ## How to fall back to RocksDB
 
 If you find Titan does not help or is causing read or other performance issues, you can take the following steps to fall back to RocksDB:
@@ -49,7 +67,6 @@ If you find Titan does not help or is causing read or other performance issues, 
 Make sure you have already enabled Titan.
     {{< /info >}}
 
-2. Wait until the number of blob files reduced to 0. Alternatively, you can do this 
-quicky via `tikv-ctl compact-cluster`.
+2. Wait until the number of blob files reduced to 0. Alternatively, you can do this quickly via `tikv-ctl compact-cluster`.
 
 3. In the TiKV configuration file, specify `rocksdb.titan.enabled=false`, and restart TiKV.

@@ -1,6 +1,6 @@
 ---
 title: Security Config
-description: Keeping your TiKV deployment secure
+description: Keeping your TiKV deployment secure.
 menu:
     "dev":
         parent: Configure
