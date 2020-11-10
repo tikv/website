@@ -40,6 +40,12 @@ max-background-jobs = 8
 + Default value: `8`
 + Minimum value: `1`
 
+### `max-background-flushes`
+
++ The maximum number of concurrent background memtable flush jobs
++ Default value: `2`
++ Minimum value: `1`
+
 ### `max-sub-compactions`
 
 + The number of sub-compaction operations performed concurrently in RocksDB
@@ -168,8 +174,8 @@ max-background-jobs = 8
 
 ### `info-log-roll-time`
 
-+ The time interval at which Info logs are truncated. If the value is `0`, logs are not truncated.
-+ Default value: `0`
++ The time interval at which Info logs are truncated. If the value is `0s`, logs are not truncated.
++ Default value: `0s`
 
 ### `info-log-keep-log-file-num`
 
