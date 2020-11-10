@@ -23,5 +23,6 @@ There are several guides that you can use to inform your configuration:
 * [**Storage**](../storage): Tweak storage configuration parameters.
 * [**gRPC**](../grpc): Tweak gRPC configuration parameters.
 * [**Coprocessor**](../coprocessor): Tweak Coprocessor configuration parameters.
+* [**Synchronous Replication**](../synchronous-replication): Configure synchronous replication in dual data centers.
 
 You can find an exhaustive list of all parameters, as well as what they do, in the documented [**full configuration template**](https://github.com/tikv/tikv/blob/master/etc/config-template.toml).

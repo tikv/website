@@ -12,8 +12,8 @@ This document describes the configuration parameters related to gRPC.
 ### `grpc-compression-type`
 
 + The compression algorithm for gRPC messages
-+ Optional values: `none`, `deflate`, `gzip`
-+ Default value: `none`
++ Optional values: `"none"`, `"deflate"`, `"gzip"`
++ Default value: `"none"`
 
 ### `grpc-concurrency`
 
@@ -27,6 +27,12 @@ This document describes the configuration parameters related to gRPC.
 + Default value: `1024`
 + Minimum value: `1`
 
+### `grpc-memory-pool-quota`
+
++ Limit the memory size that can be used by gRPC
++ Default: `"32G"`
++ Limit the memory in case OOM is observed. Note that limit the usage can lead to potential stall
+
 ### `server.grpc-raft-conn-num`
 
 + The maximum number of links among TiKV nodes for Raft communication
@@ -36,18 +42,18 @@ This document describes the configuration parameters related to gRPC.
 ### `server.grpc-stream-initial-window-size`
 
 + The window size of the gRPC stream
-+ Default: 2MB
++ Default: `"2MB"`
 + Unit: KB|MB|GB
-+ Minimum value: `1KB`
++ Minimum value: `"1KB"`
 
 ### `server.grpc-keepalive-time`
 
 + The time interval at which that gRPC sends `keepalive` Ping messages
-+ Default: `10s`
-+ Minimum value: `1s`
++ Default: `"10s"`
++ Minimum value: `"1s"`
 
 ### `server.grpc-keepalive-timeout`
 
 + Disables the timeout for gRPC streams
-+ Default: `3s`
-+ Minimum value: `1s`
++ Default: `"3s"`
++ Minimum value: `"1s"`

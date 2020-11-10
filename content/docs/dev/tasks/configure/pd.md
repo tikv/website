@@ -18,12 +18,12 @@ menu:
 ### `tso-save-interval`
 
 + The interval for PD to allocate TSOs for persistent storage in etcd
-+ Default value: `3` seconds
++ Default value: `"3s"`
 
 ### `initial-cluster-state`
 
 + The initial state of the cluster
-+ Default value: `new`
++ Default value: `"new"`
 
 ### `enable-prevote`
 
@@ -54,12 +54,12 @@ menu:
 ### `tick-interval`
 
 + The tick period of etcd Raft
-+ Default value: `100ms`
++ Default value: `"100ms"`
 
 ### `election-interval`
 
 + The timeout for the etcd leader election
-+ Default value: `3s`
++ Default value: `"3s"`
 
 ### `use-region-storage`
 
@@ -92,7 +92,7 @@ Configuration items related to log
 ### `format`
 
 + The log format, which can be specified as "text", "json", or "console"
-+ Default value: `text`
++ Default value: `"text"`
 
 ### `disable-timestamp`
 
@@ -129,7 +129,7 @@ Configuration items related to monitoring
 ### `interval`
 
 + The interval at which monitoring metric data is pushed to Prometheus
-+ Default value: `15s`
++ Default value: `"15s"`
 
 ## `schedule`
 
@@ -148,7 +148,7 @@ Configuration items related to scheduling
 ### `patrol-region-interval`
 
 + Controls the running frequency at which `replicaChecker` checks the health state of a Region. The smaller this value is, the faster `replicaChecker` runs. Normally, you do not need to adjust this parameter.
-+ Default value: `100ms`
++ Default value: `"100ms"`
 
 ### `split-merge-interval`
 
@@ -168,7 +168,7 @@ Configuration items related to scheduling
 ### `max-store-down-time`
 
 + The downtime after which PD judges that the disconnected store can not be recovered. When PD fails to receive the heartbeat from a store after the specified period of time, it adds replicas at other nodes.
-+ Default value: `30m`
++ Default value: `"30m"`
 
 ### `leader-schedule-limit`
 
