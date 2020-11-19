@@ -12,7 +12,7 @@ Learn to try, deploy, configure, monitor, and scale TiKV as you adopt the servic
 
 It's not always desirable to deploy a full production cluster of TiKV. If you just want to take TiKV for a spin, or get familiar with how it works, you may find yourself wanting to run TiKV locally.
 
-In the [**try**](../try/introduction) section you'll find out how to get started. [**Try TiKV**](../try/) teaches you how to get a copy of TiKV running on your machine with Docker. Then you'll connect and talk to the TiKV cluster using our [Rust client](../../reference/clients/rust).
+In the [**try**](../try/introduction) section you'll find out how to get started. [**Try TiKV**](../try/introduction) teaches you how to get a copy of TiKV running on your machine with Docker. Then you'll connect and talk to the TiKV cluster using our [Rust client](../../reference/clients/rust).
 
 ## [Deploy](../deploy/introduction)
 
