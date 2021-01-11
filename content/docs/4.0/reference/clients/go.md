@@ -22,7 +22,7 @@ To use the Raw Key-Value API in applications developed in the Go language, take 
     ```bash
     export GO111MODULE=on
     go mod init rawkv-demo
-    go get github.com/pingcap/tidb@master
+    go get github.com/pingcap/tidb@kv-only-4.0
     ```
 
 2. Import the dependency packages.
@@ -135,9 +135,9 @@ RawKVClient is a client of the TiKV server and only supports the GET/PUT/DELETE/
     build rawkv-demo: cannot load github.com/pingcap/pd/pd-client: cannot find module providing package github.com/pingcap/pd/pd-client
     ```
 
-    You can run `GO111MODULE=on go get -u github.com/pingcap/tidb@master` to fix it.
+    You can run `GO111MODULE=on go get -u github.com/pingcap/tidb@kv-only-4.0` to fix it.
 
-- If you got this error when you run `go get -u github.com/pingcap/tidb@master`:
+- If you got this error when you run `go get -u github.com/pingcap/tidb@kv-only-4.0`:
 
     ```
     go: github.com/golang/lint@v0.0.0-20190409202823-959b441ac422: parsing go.mod: unexpected module path "golang.org/x/lint"
@@ -168,7 +168,7 @@ To use the Transactional Key-Value API in applications developed by golang, take
     ```bash
     export GO111MODULE=on
     go mod init txnkv-demo
-    go get github.com/pingcap/tidb@master
+    go get github.com/pingcap/tidb@kv-only-4.0
     ```
 
 2. Import the dependency packages.
@@ -179,10 +179,10 @@ To use the Transactional Key-Value API in applications developed by golang, take
         "fmt"
         "os"
 
-        "github.com/juju/errors"
+        "github.com/pingcap/errors"
+        "github.com/pingcap/parser/terror"
         "github.com/pingcap/tidb/kv"
         "github.com/pingcap/tidb/store/tikv"
-        "github.com/pingcap/parser/terror"
 
         goctx "golang.org/x/net/context"
     )
@@ -220,10 +220,10 @@ import (
     "fmt"
     "os"
 
-    "github.com/juju/errors"
+    "github.com/pingcap/errors"
+    "github.com/pingcap/parser/terror"
     "github.com/pingcap/tidb/kv"
     "github.com/pingcap/tidb/store/tikv"
-    "github.com/pingcap/tidb/terror"
 
     goctx "golang.org/x/net/context"
 )
