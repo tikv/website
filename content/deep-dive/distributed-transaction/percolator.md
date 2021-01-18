@@ -27,7 +27,7 @@ Percolator is a multi-version storage, and a data item's version is represented 
 
 For example,
 
-| key | v:data | v:lock | v"write |
+| key | v:data | v:lock | v:write |
 |-----|--------|--------|---------|
 |k1   |14:"value2"<br/>12:<br/>10:"value1"|14:primary<br/>12:<br/>10:|14:<br/>12:data@10<br/>10:|
 
