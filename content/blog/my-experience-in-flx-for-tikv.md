@@ -50,7 +50,7 @@ In this section, I’ll briefly introduce TiKV Coprocessor and then explain why 
 
 [TiDB server](https://github.com/pingcap/tidb) is a stateless SQL layer that processes users’ SQL queries, accesses data in the storage layer, and returns the corresponding results to the application. [TiKV server](https://github.com/pingcap/tikv) is TiDB’s underlying storage engine.
 
-{{< figure src="/img/blog/lfx-2020/TiDB-architecture.png" caption=TiDB architecture"" number="" >}}
+{{< figure src="/img/blog/lfx-2020/TiDB-architecture.png" caption="TiDB architecture" number="" >}}
 
 We can construct this model to show how TiDB and TiKV interact with each other:
 
@@ -58,7 +58,7 @@ We can construct this model to show how TiDB and TiKV interact with each other:
 2. TiDB queries TiKV to get the underlying data.
 3. TiDB performs calculations on the data and returns the results to App.
 
-{{< figure src="/img/blog/lfx-2020/TiDB-TiKV-interaction-model.png" caption=TiDB and TiKV interaction model"" number="" >}}
+{{< figure src="/img/blog/lfx-2020/TiDB-TiKV-interaction-model.png" caption="TiDB and TiKV interaction model" number="" >}}
 
 The model has these problems:
 
