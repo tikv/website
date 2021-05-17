@@ -29,7 +29,7 @@ As described in the above figure, when [TiDB] receives a SQL query from the clie
 
 1. [TiDB] receives a new SQL from the client.
 2. [TiDB] prepares the processing plans for this request, meanwhile [TiDB] gets a timestamp from [PD] as the `start_ts` of this transaction.
-3. [TiDB] tries to get the information schema (metadata of the table) from TiKV.
+3. [TiDB] tries to get the information schema (metadata of the table) from [PD] .
 4. [TiDB] prepares Regions for each related key according to the information schema and the SQL query. Then [TiDB] gets information for the related Regions from [PD].
 5. [TiDB] groups the related keys by Region.
 6. [TiDB] dispatches the tasks to the related TiKV concurrently.
@@ -52,7 +52,7 @@ Now we can do `count` and sum the result from the above three Regions.
     caption="Coprocessor diagram"
     number="2" >}}
 
-### Exectors
+### Executors
 
 Now we know [TiDB] splits a read task by Regions, but how does TiKV know what are its tasks to handle?
 Here [TiDB] will send a Directed Acyclic Graph (DAG) to TiKV with each node as an executor.
