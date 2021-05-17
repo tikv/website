@@ -249,12 +249,6 @@ cargo new tikv-example
 cd tikv-example
 ```
 
-{{< warning >}}
-You will need to use a `nightly` toolchain that supports the `async`/`await` feature in order to use the TiKV client in the guide below. This is expected to become stable in Rust 1.38.0.
-
-For now, please `echo 'nightly-2019-08-25' > ./rust-toolchain` in the project directory.
-{{< /warning >}}
-
 Next, you'll need to add the TiKV client as a dependency in the `Cargo.toml` file:
 
 ```toml
@@ -304,7 +298,7 @@ Now, because the client needs to be part of the same network (`tikv`) as the PD 
 FROM ubuntu:latest
 # Systemwide setup
 RUN apt update
-RUN apt install --yes build-essential protobuf-compiler curl cmake golang
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install --yes build-essential protobuf-compiler curl cmake golang libssl-dev
 
 # Create the non-root user.
 RUN useradd builder -m -b /
@@ -312,12 +306,11 @@ USER builder
 RUN mkdir -p ~/build/src
 
 # Install Rust
-COPY rust-toolchain /builder/build/
-RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain `cat /builder/build/rust-toolchain` -y
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/builder/.cargo/bin:${PATH}"
 
 # Fetch, then prebuild all deps
-COPY Cargo.toml rust-toolchain /builder/build/
+COPY Cargo.toml /builder/build/
 RUN echo "fn main() {}" > /builder/build/src/main.rs
 WORKDIR /builder/build
 RUN cargo fetch
