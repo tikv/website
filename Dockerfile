@@ -1,6 +1,6 @@
 FROM alpine:latest
 RUN apk update
-RUN apk add hugo yarn make
+RUN apk add hugo yarn make git
 
 RUN adduser builder -D
 USER builder
