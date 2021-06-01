@@ -74,10 +74,9 @@ This package requires Python 3.5+.
 
 2. Try `RAW KV` API
 
-Write test code
+Save the following python script to file `test_raw.py`.
 
-```bash
-echo '
+```python
 from tikv_client import RawClient
 
 client = RawClient.connect("127.0.0.1:2379")
@@ -97,10 +96,9 @@ print(client.batch_get([b"k1", b"k3"]))
 
 # scan
 print(client.scan(b"k1", end=b"k5", limit=10, include_start=True, include_end=True))
-' > test_txn.py
 ```
 
-Run test script
+Run the test script
 
 ```bash
 python3 test_raw.py
@@ -112,10 +110,9 @@ b'Hello'
 
 3. Try `TXN KV` API
 
-Write test code
+Save the following python script to file `test_txn.py`.
 
-```bash
-echo '
+```python
 from tikv_client import TransactionClient
 
 client = TransactionClient.connect("127.0.0.1:2379")
@@ -139,10 +136,9 @@ print(snapshot.batch_get([b"k1", b"k3"]))
 
 # scan
 print(snapshot.scan(b"k1", end=b"k5", limit=10, include_start=True, include_end=True))
-' > test_txn.py
 ```
 
-Run test script
+Run the test script
 
 ```bash
 python3 test_txn.py
@@ -165,10 +161,9 @@ curl -o slf4j-api.jar https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.16/
 
 3. Try `RAW KV` API
 
-Write test code
+Save the following script to file `test_raw.java`.
 
-```bash
-echo '
+```java
 import java.util.*;
 import org.tikv.common.TiConfiguration;
 import org.tikv.common.TiSession;
@@ -197,10 +192,9 @@ System.out.println(client.batchGet(new ArrayList<ByteString>() {{
 
 // scan
 System.out.println(client.scan(ByteString.copyFromUtf8("k1"), ByteString.copyFromUtf8("k6"), 10));
-' > test_raw.java
 ```
 
-Run test script
+Run the test script
 
 ```bash
 jshell --class-path tikv-client-java.jar:slf4j-api.jar --startup test_raw.java
