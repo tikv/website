@@ -154,7 +154,7 @@ b'Hello'
 
 ### Java
 
-1. Dowload jars
+1. Download jars
 
 ```bash
 curl -o tikv-client-java.jar https://download.pingcap.org/tikv-client-java-3.1.0-SNAPSHOT.jar
