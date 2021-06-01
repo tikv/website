@@ -37,18 +37,35 @@ source .bash_profile
 ```
 
 Confirm whether TiUP is installed:
+
 ```bash
 tiup
 ```
 
 3. If TiUP is already installed, update the TiUP playground component to the latest version:
+
 ```bash
 tiup update --self && tiup update playground
 ```
 
 4. Use TiUP playground to start a local TiKV cluster
+
+Show TiUP version:
+
+```bash
+tiup -v
+```
+
+version >= 1.5.0:
+
 ```bash
 tiup playground --mode tikv-slim
+```
+
+version < 1.5.0:
+
+```bash
+tiup playground
 ```
 
 5. Press `Ctrl + C` to stop the local TiKV cluster
