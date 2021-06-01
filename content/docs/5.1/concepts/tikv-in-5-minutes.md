@@ -7,6 +7,11 @@ menu:
         weight: 1
 ---
 
+This page guides you through the quickest way to get started with TiKV, which includes:
+- setting up a local TiKV cluster with the default options,
+- monitoring the TiKV cluster,
+- writing data to and reading data from the TiKV cluster.
+
 ## Prerequisites
 
 Ensure that you are using MacOS or Linux.
