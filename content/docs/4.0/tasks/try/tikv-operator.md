@@ -81,7 +81,6 @@ Before deployment, make sure the following requirements are satisfied:
 
     ```shell
     kubectl create ns tikv-operator
-    helm install --namespace tikv-operator tikv-operator pingcap/tikv-operator --version v0.1.0
     ```
 
     c. Install TiKV Operator:
