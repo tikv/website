@@ -37,12 +37,13 @@ params:
         latest: "4.0"
         all:
         - "dev"
+        - "5.1"
         - "4.0"
         - "3.0"
     description:
         brief: "A distributed transactional key-value database"
         long: "Based on the design of [Google Spanner](https://ai.google/research/pubs/pub39966) and [HBase](https://hbase.apache.org), but simpler to manage and without dependencies on any distributed filesystem"
-    fonts: 
+    fonts:
         sansserif: "Titillium Web"
         monospace: "Inconsolata"
     logos:
