@@ -21,9 +21,9 @@ Oftentimes I hear from other students that it's hard to get started with open-so
 You might not be familiar with all technologies being used in a project or you don't feel you are proficient enough with the main programming language of the project.
 But fear not: don't block yourself by finding unnecessary excuses, just start!
 Contributing to open-source projects is the *perfect* opportunity to learn new technologies and get better at programming because you'll receive valuable feedback that you will not find easily elsewhere.
-Start small by reporting bugs or other issues. If you are up for a challenge, ask the maintainers if you could fix a certain issue with their help.
+Start small by reporting bugs or other issues. If you are up for a challenge, ask the project maintainers if you could fix a certain issue with their help.
 Then create your first PR, get feedback, refine your code, and eventually your code will get merged!
-You will feel great, and maybe you'll pick up perhaps next time you'll pick a slightly bigger issue.
+You will feel great, and perhaps next time you'll pick a slightly bigger issue.
 After all, it's a fun journey and not a one-stop drive-through.
 
 Overall, the LFX Mentorship Program is a perfect opportunity to get started with open-source software development.
@@ -42,18 +42,18 @@ I was immediately hooked when I read the tweet, because:
 
 
 
-Be aware that, while you have to submit application documents like your CV and a cover letter via the LFX website, some individual projects might have their own, additional application process.
-In the end, the project maintainers decide on who is accepted, so make sure to fulfill the required criteria.
+Be aware that, while you have to submit application documents like your CV and a cover letter via the LFX website, some individual projects might have their own additional application process.
+In the end, the project mentors decide on who is accepted, so make sure to fulfill the required criteria.
 
 
 # The Task
 
-My task during the duration of the program was to implement a "pluggable coprocessor for TiKV".
+My task of the program was to implement a "pluggable coprocessor for TiKV".
 When I applied for the project, I didn't quite know what a "pluggable coprocessor" would look like.
 
 But first of all: What is TiKV?
 
-According to [their GitHub repo](https://mentorship.lfx.linuxfoundation.org/#projects), "TiKV is an open-source, distributed, and transactional key-value database" developed by PingCAP.
+According to [their GitHub repo](https://mentorship.lfx.linuxfoundation.org/#projects), "TiKV is an open-source, distributed, and transactional key-value database" developed by [PingCAP](https://pingcap.com/).
 It is written in Rust and was originally created to serve as the storage layer for a fully-fledged database system called [TiDB](https://github.com/pingcap/tidb).
 
 TiKV is a graduate project of the [Cloud Native Computing Foundation](https://www.cncf.io/) (CNCF).
@@ -87,8 +87,8 @@ How does this look like?
 You first develop a "coprocessor" that follows a certain interface for the database.
 The coprocessor has direct data access (so you have to be careful not to mess things up).
 Then you deploy the "coprocessor plugin" to the database.
-After it has been activated, you can send requests to the coprocessor, the coprocessor processes the request and returns the desired result.
-But because we are dealing with a *distributed* database, you only get results from individual nodes; so you might need to merge them.
+After it has been activated, you can send requests to the coprocessor; the coprocessor processes the request and returns the desired result.
+But you only get results from individual nodes because we are dealing with a *distributed* database; thus, you might need to merge them.
 
 For example, you could develop a machine learning coprocessor that can perform distributed training directly in the database.
 This gives you a huge speedup!
@@ -108,16 +108,16 @@ It was possible to choose which task I wanted to complete (only one was necessar
 However, because the problems were small and quite fun, I did some more.
 This certainly helped for my application as well.
 
-The maintainers did choose the challenges very carefully because all of them were highly relevant for the LFX project later on.
+The mentors did choose the challenges very carefully because all of them were highly relevant for the LFX project later on.
 The tasks were actual issues from the TiKV repository and the pull requests were actually merged upstream and deployed into production.
 So that was already the first meaningful impact and the program hadn't even started!
 
 I also had to join the [TiKV Slack](https://slack.tidb.io/invite?team=tikv-wg&channel=general).
-The maintainers created a specific channel where applicants could ask for help:
+The mentors created a specific channel where applicants could ask for help:
 How to setup the development environment, how everything works, and so on...
 The people were very helpful and responded quickly.
 
-A few days after the application deadline I got an informal private message via Slack that the maintainers decided to accept me.
+A few days after the application deadline I got an informal private message via Slack that the mentors decided to accept me.
 Of course I was super happy about this! 🎉
 
 At the very beginning, I had a welcome call with my mentors where we talked about the outline and scope of the project.
@@ -126,7 +126,7 @@ This worked exceptionally well for my mentors and me; and as far as I can tell, 
 
 During the first week, we created a shared document where we wrote down the individual tasks in more detail based on the [corresponding RFC for the new coprocessor](https://github.com/andylokandy/rfcs/blob/plugin/text/2021-02-24-coprocessor-plugin.md).
 I also created a [roadmap issue](https://github.com/tikv/tikv/issues/9747) on GitHub where we could easily keep track of the tasks that have already been finished and the tasks that are still open.
-As you can see in the roadmap issue, the project involved opening many PRs, each of them was carefully reviewed.
+As you can see in the roadmap issue, the project involved opening many PRs; each of them was carefully reviewed.
 
 Overall, I learned quite a lot about dynamic library loading, improved my programming skills with Rust, and deepened my knowledge about databases and distributed systems.
 All thanks to my inspiring and helpful mentors [Andy Lok](https://github.com/andylokandy) and [Alex Chi](https://github.com/skyzh)!
