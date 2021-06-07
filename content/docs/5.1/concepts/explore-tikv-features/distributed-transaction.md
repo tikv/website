@@ -11,51 +11,13 @@ This chapter walks you through a simple demonstration of how TiKV's distributed 
 
 ## Prerequisites
 
-1. Install TiUP by executing the following command:
+Please start a TiKV Cluster and install tikv-client python package according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
 
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://tiup-mirrors.pingcap.com/install.sh | sh
-```
+{{< warning >}}
+TiKV Java Client's Transaction API is not released, so Python Client example is used here.
+{{< /warning >}}
 
-2. If TiUP is already installed, update the TiUP playground component to the latest version:
-
-```bash
-tiup update --self && tiup update playground
-```
-
-3. Install `tikv-client` python package
-
-```bash
-pip3 install -i https://test.pypi.org/simple/ tikv-client
-```
-
-{{< info >}}
-This package requires Python 3.5+.
-{{< /info >}}
-
-## Step 1: Start TiKV Cluster
-
-For the purpose of this tutorial, you need only one TiKV node, so use the `tiup playground` command.
-
-Show TiUP version:
-
-```bash
-tiup -v
-```
-
-version >= 1.5.0:
-
-```bash
-tiup playground --mode tikv-slim
-```
-
-version < 1.5.0:
-
-```bash
-tiup playground
-```
-
-## Step 2: Test snapshot isolation
+## Step 1: Test snapshot isolation
 
 Transaction isolation is one of the foundations of database transaction processing. Isolation is one of the four key properties of a transaction (commonly referred as ACID).
 
@@ -115,7 +77,7 @@ python3 test_snapshot_isolation.py
 
 As we can see, `snapshot1` cannot read the data before and after `txn2` is commited, which means `snapshot1` can see a consistent snapshot of the database.
 
-## Step 3: Try optimistic transaction model
+## Step 2: Try optimistic transaction model
 
 TiKV supports distributed transactions using either pessimistic or optimistic transaction models.
 
@@ -163,7 +125,7 @@ Exception: KeyError WriteConflict
 
 As we can see, with optimistic transactions conflicting changes are detected when the transaction commits.
 
-## Step 4: Try pessimistic transaction model
+## Step 3: Try pessimistic transaction model
 
 In the optimistic transaction model, transactions might fail to be committed because of write–write conflict in heavy contention scenarios. In the case that concurrent transactions frequently modify the same rows (a conflict), pessimistic transactions may perform better than optimistic transactions.
 

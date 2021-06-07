@@ -7,50 +7,32 @@ menu:
         weight: 4
 ---
 
-This page walks you through a simple demonstration of how to use TiKV's `compare-and-swap`.
+This page walks you through a simple demonstration of performing compare-and-swap (CAS) in TiKV.
 
-In RawKV, `compare-and-swap (CAS)` is an atomic instruction used in multi-threading to achieve synchronization. It compares the `current_value` of a `key` with a given value and, only if they are the same, modifies the contents of that `key` to a new given value. This is done as a single atomic operation. The atomicity guarantees that the new value is calculated based on up-to-date information; if the value had been updated by another thread in the meantime, the write would fail.
+In RawKV, compare-and-swap (CAS) is an atomic instruction used in multithreading to achieve synchronization, which is the atomic equivalent of:
+
+```
+if get(key) == old_value {
+	put(key, new_value);
+	return true;
+}
+return false;
+```
+
+The atomicity guarantees that the new value is calculated based on up-to-date information; if the value had been updated by another thread in the meantime, the write would fail.
 
 ## Prerequisites
 
-1. Install TiUP by executing the following command:
+Please start a TiKV Cluster according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
 
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://tiup-mirrors.pingcap.com/install.sh | sh
-```
+{{< warning >}}
+CAS in TiKV Java Client is not released, so Rust Client example is used here.
+{{< /warning >}}
 
-2. If TiUP is already installed, update the TiUP playground component to the latest version:
-
-```bash
-tiup update --self && tiup update playground
-```
-
-3. Install Rust
+## Step 1: Install Rust
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
-
-## Step 1: Start TiKV Cluster
-
-For the purpose of this tutorial, you need only one TiKV node, so use the `tiup playground` command.
-
-Show TiUP version:
-
-```bash
-tiup -v
-```
-
-version >= 1.5.0:
-
-```bash
-tiup playground --mode tikv-slim
-```
-
-version < 1.5.0:
-
-```bash
-tiup playground
 ```
 
 ## Step 2: Create a rust project

@@ -11,27 +11,7 @@ This page walks you through a simple demonstration of how to use TTL on RawKV.
 
 ## Prerequisites
 
-1. Install TiUP by executing the following command:
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://tiup-mirrors.pingcap.com/install.sh | sh
-```
-
-2. If TiUP is already installed, update the TiUP playground component to the latest version:
-
-```bash
-tiup update --self && tiup update playground
-```
-
-3. Download jars
-
-```bash
-curl -o tikv-client-java.jar https://download.pingcap.org/tikv-client-java-3.1.0-SNAPSHOT.jar
-curl -o slf4j-api.jar https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.16/slf4j-api-1.7.16.jar
-```
-
-4. Install `jshell` (include in JDK >= 9)
-
+Please install TiUP, jshell and download tikv-client jars according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
 
 ## Step 1. Config TiKV to enable TTL
 
