@@ -8,17 +8,6 @@ menu:
 ---
 As an open source distributed key-value database, TiKV can be deployed in the Intel architecture server, ARM architecture server, and major virtualization environments and runs well. TiKV supports most of the major hardware networks and Linux operating systems.
 
-Typical deployments of TiKV include a number of components:
-
-* 3+ TiKV nodes
-* 3+ Placement Driver (PD) nodes
-* 1 Monitoring node
-* 1 or more client application
-
-{{< info >}}
-TiKV is deployed alongside a [Placement Driver](https://github.com/pingcap/pd/) (PD) cluster. PD is the cluster manager of TiKV, which periodically checks replication constraints to balance load and data automatically.
-{{< /info >}}
-
 ## Linux OS version requirements
 
 |    Linux OS Platform     |          Version          |
