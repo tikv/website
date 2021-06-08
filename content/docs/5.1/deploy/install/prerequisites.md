@@ -6,7 +6,8 @@ menu:
         parent: Install TiKV
         weight: 1
 ---
-As an open source distributed key-value database, TiKV can be deployed in the Intel architecture server, ARM architecture server, and major virtualization environments and runs well. TiKV supports most of the major hardware networks and Linux operating systems.
+
+TiKV can be deployed in the Intel architecture server, ARM architecture server, and major virtualization environments and runs well. TiKV supports most of the major hardware networks and Linux operating systems.
 
 ## Linux OS version requirements
 
@@ -43,7 +44,7 @@ It is required that you [deploy TiUP on the control machine](../production#step-
 
 ## Server recommendations
 
-You can deploy and run TiKV on the 64-bit generic hardware server platform in the Intel x86-64 architecture or on the hardware server platform in the ARM architecture. The requirements and recommendations about server hardware configuration (ignoring the resources occupied by the operating system itself) for development, test, and production environments are as follows:
+You can deploy and run TiKV on the 64-bit generic hardware server platform in the Intel x86-64 architecture or on the hardware server platform in the ARM architecture. The recommendations about server hardware configuration (ignoring the resources occupied by the operating system itself) for development, test, and production environments are as follows:
 
 ### Development and test environments
 
@@ -73,13 +74,13 @@ You can deploy and run TiKV on the 64-bit generic hardware server platform in th
 
 ## Network requirements
 
-TiKV requires the following network port configuration to run. Based on the TiKV deployment in actual environments, the administrator can open relevant ports in the network side and host side.
+TiKV uses the following network ports, and their default port numbers are listed below. Based on the actual environments, you can change the port number in the configuration.
 
 |     Component     | Default Port | Description                                                                             |
 |:-----------------:|:------------:|:--------------------------------------------------------------------------------------- |
 |       TiKV        |    20160     | the TiKV communication port                                                             |
-|       TiKV        |    20180     | the communication port to report TiKV status                                            |
-|        PD         |     2379     | the client port, for communication with clients                                         |
+|       TiKV        |    20180     | the port for fetching statistics, used by Prometheus                                    |
+|        PD         |     2379     | the client port, entrance for the clients to connect TiKV cluster                       | 
 |        PD         |     2380     | the inter-node communication port within the PD cluster                                 |
 |    Prometheus     |     9090     | the communication port for the Prometheus service                                       |
 |   Node_exporter   |     9100     | the communication port to report the system information of every TiKV cluster node      |

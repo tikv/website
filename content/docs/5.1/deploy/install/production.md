@@ -9,7 +9,7 @@ menu:
 
 This guide describes how to install and deploy TiKV for production environment.
 
-[TiUP](https://github.com/pingcap/tiup) is a cluster operation and maintenance tool. TiUP provides [TiUP cluster](https://github.com/pingcap/tiup/tree/master/components/cluster), a cluster management component written in Golang. By using TiUP cluster, you can easily perform daily operations, including deploying, starting, stopping, destroying, scaling, and upgrading a TiKV cluster, and manage cluster parameters.
+[TiUP](https://github.com/pingcap/tiup) is a cluster operation and maintenance tool. TiUP provides [TiUP cluster](https://github.com/pingcap/tiup/tree/master/components/cluster), a cluster management component written in Golang. By using TiUP cluster, you can easily do daily operations, including deploying, starting, stopping, destroying, scaling, and upgrading a TiKV cluster, and manage cluster parameters.
 
 ## Step 1: Install TiUP on the control machine
 

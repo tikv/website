@@ -7,7 +7,7 @@ menu:
         weight: 3
 ---
 
-After a TiKV cluster is deployed, you need to check whether the cluster runs normally. This document introduces how to check the cluster status using TiUP commands and Grafana, and how to connect to the TiKV cluster to perform simple `put` and `get` operations.
+After a TiKV cluster is deployed, you need to check whether the cluster is up and running. This document introduces how to check the cluster status using TiUP and Grafana, and how to connect to the TiKV cluster using a TiKV client to do simple `put` and `get` operations.
 
 ## Check the TiKV cluster status
 
@@ -29,9 +29,9 @@ Expected output: If the `Status` information of each node is `Up`, the cluster r
 
 2. To check the TiKV port status and load monitoring information, click **Overview**.
 
-## Connect to TiKV and perform simple operations
+## Connect to TiKV and do simple operations
 
-This section describes how to connect to the TiKV cluster to perform simple `put` and `get` operations.
+This section describes how to connect to the TiKV cluster to do simple `put` and `get` operations.
 
 1. Download jars
 
