@@ -9,7 +9,7 @@ menu:
 
 This document describes the alert rules for different components in a TiKV cluster, including the rule descriptions and solutions of the alert items in TiKV, PD, Node_exporter and Blackbox_exporter.
 
-According to the severity level, alert rules are divided into three categories (from high to low): emergency-level, critical-level, and warning-level. This division of severity levels applies to all alert items of each component below.
+Alert rules are divided into three categories according to the severity level (from high to low): emergency-level, critical-level, and warning-level. This division of severity levels applies to all alert items of each component below.
 
 | Severity level  | Description                                                                                                                                                                            |
 |:--------------- |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

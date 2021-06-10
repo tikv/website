@@ -11,7 +11,7 @@ The TiKV monitoring framework adopts two open-source projects: [Prometheus](http
 
 ## About Prometheus in TiKV
 
-As a time series database, Prometheus has a multi-dimensional data model and flexible query language. Prometheus consists of multiple components. Currently, TiKV uses the following components:
+Prometheus is a time-series database and has a multi-dimensional data model and flexible query language. Prometheus consists of multiple components. Currently, TiKV uses the following components:
 
 - Prometheus Server: to scrape and store time series data
 - Client libraries: to customize necessary metrics in the application
