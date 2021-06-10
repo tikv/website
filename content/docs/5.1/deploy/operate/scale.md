@@ -23,19 +23,13 @@ For example, assume that the topology of the cluster is as follows:
 | 10.0.1.6 | TiKV    |
 | 10.0.1.7 | TiKV    |
 
-## Scale out a TiKV cluster
+## Scale out a TiKV node
 
 If you want to add a TiKV node to the `10.0.1.8` host, take the following steps.
 
-{{< info >}}
-You can take similar steps to add the PD node.
-{{< /info >}}
-
 1. Configure the scale-out topology:
 
-    Put the following content in the `scale-out.yaml` file:
-
-    Here is a TiKV configuration file template:
+    Put the following content in the `scale-out-tikv.yaml` file:
 
     ```yaml
     tikv_servers:
@@ -48,25 +42,12 @@ You can take similar steps to add the PD node.
         log_dir: /data/deploy/install/log/tikv-20160
     ```
 
-    Here is a PD configuration file template:
-
-    ```yaml
-    pd_servers:
-    - host: 10.0.1.9
-        ssh_port: 22
-        client_port: 2379
-        peer_port: 2380
-        deploy_dir: /data/deploy/install/deploy/pd-2379
-        data_dir: /data/deploy/install/data/pd-2379
-        log_dir: /data/deploy/install/log/pd-2379
-    ```
-
-    To view the configuration of the current cluster, run `tiup cluster edit-config <cluster-name>`. Because the parameter configuration of `global` and `server_configs` is inherited by `scale-out.yaml` and thus also takes effect in `scale-out.yaml`.
+    To view the configuration of the current cluster, run `tiup cluster edit-config <cluster-name>`. Because the parameter configuration of `global` and `server_configs` is inherited by `scale-out-tikv.yaml` and thus also takes effect in `scale-out-tikv.yaml`.
 
 2. Run the scale-out command:
 
     ```shell
-    tiup cluster scale-out <cluster-name> scale-out.yaml
+    tiup cluster scale-out <cluster-name> scale-out-tikv.yaml
     ```
 
     If you see the `Scaled cluster <cluster-name> out successfully`, the scale-out operation is successfully completed.
@@ -92,7 +73,58 @@ After the scale-out, the cluster topology is as follows:
 | 10.0.1.7 | TiKV    |
 | 10.0.1.8 | TiKV    |
 
-## Scale in a PD/TiKV cluster
+## Scale out a PD node
+
+If you want to add a PD node to the `10.0.1.9` host, take the following steps.
+
+1. Configure the scale-out topology:
+
+    Put the following content in the `scale-out-pd.yaml` file:
+
+    ```yaml
+    pd_servers:
+    - host: 10.0.1.9
+        ssh_port: 22
+        client_port: 2379
+        peer_port: 2380
+        deploy_dir: /data/deploy/install/deploy/pd-2379
+        data_dir: /data/deploy/install/data/pd-2379
+        log_dir: /data/deploy/install/log/pd-2379
+    ```
+
+    To view the configuration of the current cluster, run `tiup cluster edit-config <cluster-name>`. Because the parameter configuration of `global` and `server_configs` is inherited by `scale-out-pd.yaml` and thus also takes effect in `scale-out-pd.yaml`.
+
+2. Run the scale-out command:
+
+    ```shell
+    tiup cluster scale-out <cluster-name> scale-out-pd.yaml
+    ```
+
+    If you see the `Scaled cluster <cluster-name> out successfully`, the scale-out operation is successfully completed.
+
+3. Check the cluster status:
+
+    ```shell
+    tiup cluster display <cluster-name>
+    ```
+
+    Access the monitoring platform at <http://10.0.1.1:3000> using your browser to monitor the status of the cluster and the new node.
+
+After the scale-out, the cluster topology is as follows:
+
+| Host IP  | Service |
+|:-------- |:------- |
+| 10.0.1.1 | Monitor |
+| 10.0.1.2 | PD      |
+| 10.0.1.3 | PD      |
+| 10.0.1.4 | PD      |
+| 10.0.1.5 | TiKV    |
+| 10.0.1.6 | TiKV    |
+| 10.0.1.7 | TiKV    |
+| 10.0.1.8 | TiKV    |
+| 10.0.1.9 | PD      |
+
+## Scale in a TiKV cluster
 
 If you want to remove a TiKV node from the `10.0.1.5` host, take the following steps.
 
@@ -139,3 +171,4 @@ After the scale-in, the current topology is as follows:
 | 10.0.1.6 | TiKV    |
 | 10.0.1.7 | TiKV    |
 | 10.0.1.8 | TiKV    |
+| 10.0.1.9 | PD      |
