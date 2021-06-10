@@ -13,7 +13,7 @@ This document describes how to scale the TiKV and PD using TiUP.
 
 To view the current cluster name list, run `tiup cluster list`.
 
-For example, if the original topology of the cluster is as follows:
+For example, assume that the topology of the cluster is as follows:
 
 | Host IP  | Service |
 |:-------- |:------- |

@@ -55,12 +55,12 @@ You can start only some of the components by adding the `-R` or `-N` parameters 
     ```
 
 {{< info >}}
-If you start the specified component by using the `-R` or `-N` parameters, make sure the starting order is correct. For example, start the PD component before the TiKV component. Otherwise, the start might fail.
+If you start the components with `-R` or `-N` parameters, make sure the order of components is correct. For example, start the PD component before the TiKV component. Otherwise, the start might fail.
 {{< /info >}}
 
 ## View the cluster status
 
-After starting the cluster, check the status of each component to ensure that they work normally. TiUP provides the `display` command, so you do not have to log in to every machine to view the component status.
+After starting the cluster, check the status of each component to ensure that they are up and running. TiUP provides a `display` command to do so, and you don't have to log in to every machine to view the component status.
 
 ```shell
 tiup cluster display ${cluster-name}
