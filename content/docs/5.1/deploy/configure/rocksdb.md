@@ -12,7 +12,7 @@ TiKV uses [RocksDB](https://rocksdb.org/) internally to store Raft logs and key-
 TiKV creates two RocksDB instances on each Node:
 
 * A `rocksdb` instance that stores key-value data.
-* A `raftdb` that stores Raft logs.
+* A `raftdb` that stores Raft logs and has a single column family called `raftdb.defaultcf`.
 
 The `rocksdb` instance has three column families:
 

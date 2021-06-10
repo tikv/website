@@ -24,7 +24,9 @@ Titan store values separately from the LSM-tree during flush and compaction. The
 
 ## How to enable Titan
 
+{{< warning >}}
 As Titan has not reached ultimate maturity to be applied in production, it is disabled in TiKV by default. Before enabling it, make sure you understand the warning above and you have evaluated your scenarios and needs.
+{{< /warning >}}
 
 To enable Titan in TiKV, set in the TiKV configuration file:
 

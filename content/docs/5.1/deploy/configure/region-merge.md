@@ -23,7 +23,6 @@ The Region Merge process is initiated by the PD. The steps are:
 
 You can use `pd-ctl` or the PD configuration file to configure Region Merge.
 
-
 Region Merge is enabled by default. To disable Region Merge, set the following parameters to a zero:
 
 - `max-merge-region-size`

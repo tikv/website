@@ -1,5 +1,5 @@
 ---
-title: Topology Lable 
+title: Topology Lable
 description: Learn how to configure topology labels.
 menu:
     "5.1":
@@ -24,11 +24,15 @@ Labels are hierarchical, for example, `zone > rack > host`. You can declare it i
     ```toml
     pd-ctl >> config set location-labels zone,rack,host
     ```
+    {{< warning >}}
+The number of machines must be no less than the `max-replicas`.
+    {{< /warning >}}
+
 You can find all the replication configuration options [here](../pd-configuration-file/#replication).
 
 ## Declare the labels for each TiKV
 
-Assume that the topology has three layers: `zone > rack > host`. You can set a label for each layer by command line or configuration file, then TiKV will report its label to PD:
+Assume that the topology has three layers: `zone > rack > host`. You can set a label for each layer by command line parameter or configuration file, then TiKV will report its label to PD:
 
 - Command line parameter:
 
@@ -91,5 +95,3 @@ Now PD will schedule replicas of the same `Region` to different data zones.
 
 - If one data zone goes down, the TiKV cluster will still be highly available.
 - If the data zone cannot recover within a period of time, PD will remove the replica from this data zone.
-
-PD optimizes the failure tolerance base on the topology labels. The number of machines must be no less than the `max-replicas`.
