@@ -20,9 +20,9 @@ This document describes the following common operations when you operate and mai
 
 ## View the cluster list
 
-You can manage multiple TiKV clusters using the TiUP cluster component. When a TiKV cluster is deployed, the cluster appears in the TiUP cluster list.
+You can manage multiple TiKV clusters with the TiUP cluster component.
 
-To view the list, run the following command:
+To view all the deployed TiKV clusters, run the following command:
 
 ```shell
 tiup cluster list

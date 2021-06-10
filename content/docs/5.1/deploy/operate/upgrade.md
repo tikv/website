@@ -41,7 +41,7 @@ Skip this step if one of the following situations applies:
 + After the upgrade, you want to use v5.0's default parameter values for the unmodified configuration items.
 {{< /info >}}
 
-1. Enter the `vi` editing mode to edit the topology file:
+1. Edit the topology file:
 
     ```bash
     tiup cluster edit-config <cluster-name>
@@ -49,7 +49,7 @@ Skip this step if one of the following situations applies:
 
 2. Refer to the format of [topology](https://github.com/pingcap/tiup/blob/release-1.4/embed/templates/examples/topology.example.yaml) configuration template and fill the parameters you want to modify in the `server_configs` section of the topology file.
 
-3. After the modification, enter <kbd>:</kbd> + <kbd>w</kbd> + <kbd>q</kbd> to save the change and exit the editing mode. Enter <kbd>Y</kbd> to confirm the change.
+3. Save the changes and exit the editing mode.
 
 ## Perform a rolling upgrade to the TiKV cluster
 

@@ -11,8 +11,6 @@ The capacity of a TiKV cluster can be increased or decreased without interruptin
 
 This document describes how to scale the TiKV and PD using TiUP.
 
-To view the current cluster name list, run `tiup cluster list`.
-
 For example, assume that the topology of the cluster is as follows:
 
 | Host IP  | Service |
@@ -35,11 +33,7 @@ You can take similar steps to add the PD node.
 
 1. Configure the scale-out topology:
 
-    Add the scale-out topology configuration in the `scale-out.yaml` file:
-
-    ```bash
-    vi scale-out.yaml
-    ```
+    Put the following content in the `scale-out.yaml` file:
 
     Here is a TiKV configuration file template:
 
