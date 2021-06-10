@@ -1,5 +1,5 @@
 ---
-title: Limit
+title: Scheduling Limit
 description: Learn how to configure scheduling rate limit on stores.
 menu:
     "5.1":
@@ -7,89 +7,70 @@ menu:
         weight: 7
 ---
 
-This section describes how to configure scheduling rate limit, specifically, at the store level.
+This section describes how to configure the scheduling rate limit at the store level.
 
-In TiKV, PD generates different scheduling operators based on the information gathered from TiKV and scheduling strategies. The operators are then sent to TiKV to perform scheduling on Regions. You can use `*-schedule-limit` to set speed limits on different operators, but this may cause performance bottlenecks in certain scenarios because these parameters function globally on the entire cluster. Rate limit at the store level allows you to control scheduling more flexibly with more refined granularities.
+TiKV balance regions by the command sent by PD. The commands are called scheduling operators. PD makes scheduling operators based on the information gathered from TiKV and scheduling configurations.
 
-## How to configure scheduling rate limits on stores
+`*-schedule-limit` in `pd-ctl` is usually used to set limits of the total number of various operators, but it may cause performance bottlenecks because it applies to the entire cluster. In this section, we will learn how to configure the rate limit at the store level.
 
-PD provides the following two methods to configure scheduling rate limits on stores:
+## Configure scheduling rate limits on stores
 
-- Configure the rate limit using [store-balance-rate](../pd-configuration-file/#store-balance-rate).
+PD provides two methods to configure scheduling rate limits on stores, listed below:
 
-    {{< info >}}
-The modification only takes effect on stores added after this configuration change, and will be applied to all stores in the cluster after you restart TiKV. If you want this change to work immediately on all stores or some individual stores before the change without restarting, combine this configuration with the `pd-ctl` tool method below. See [Sample usages](#sample-usages) for more details.
-    {{< /info >}}
-
-    `store-balance-rate` specifies the maximum number of scheduling tasks allowed for each store per minute. The scheduling steps include adding peers or learners. Set this parameter in the PD configuration file. The default value is 15. This configuration is persistent.
-
-    Use the `pd-ctl` tool to modify `store-balance-rate` and make it persistent.
-
-    Example:
-
-    ```bash
-    » config set store-balance-rate 20
-    ```
-
-- Use the `pd-ctl` tool to view or modify the upper limit of the scheduling rate. The commands are:
+1. Permanently set scheduling rate limits by [store-balance-rate](../pd-configuration-file/#store-balance-rate) in `pd-ctl`.
 
     {{< info >}}
-This method is not persistent, and the configuration will revert after restarting TiKV.
+The configuration change only applies to the stores started afterward, thus will be applied to all stores in the cluster only if you restart all TiKV. If you want to apply this change immediately, see the [workaround](#workaround) below.
     {{< /info >}}
 
-    - **`stores show limit`**
+    `store-balance-rate` specifies the maximum number of scheduling tasks allowed for each store per minute. The scheduling step includes adding peers or learners.
 
-        Example:
+      ```bash
+      » config set store-balance-rate 20
+      ```
 
-        ```bash
-        # If store-balance-rate is set to 15, the corresponding rate for all stores should be 15.
-        » stores show limit
-        {
-            "4": {
-                "rate": 15
-            },
-            "5": {
-                "rate": 15
-            },
-            # ...
-        }
-        ```
+2. Temporarily set scheduling rate limits by `limit` in `pd-ctl`.
+
+    {{< info >}}
+The scheduling rate limit set by this method will be lost after restarting TiKV, and then the value previously set by method 1 will be used.
+    {{< /info >}}
 
     - **`stores set limit <rate>`**
 
-        Example:
-
         ```bash
-        # Set the upper limit of scheduling rate for all stores to be 20 scheduling tasks per minute.
+        # Set the maximum number of scheduling operators per minute to be 20. Apply to all stores.
         » stores set limit 20
         ```
 
     - **`store limit <store_id> <rate>`**
 
-        Example:
-
         ```bash
-        # Set the upper limit of scheduling speed for store 2 to be 10 scheduling tasks per minute.
+        # Set the maximum number of scheduling operators per minute to be 20. Apply to store 2.
         » store limit 2 10
         ```
 
-## Sample usages
+## Read current scheduling rate limits on stores
 
-- The following example modifies the rate limit to 20 and applies immediately to all stores. The configuration is still valid after restart.
+  - **`store show limit`**
+
+    ```bash
+    » stores show limit
+    {
+        "4": {
+            "rate": 15
+        },
+        "5": {
+            "rate": 15
+        },
+        # ...
+    }
+    ```
+
+## Workaround
+
+- Combining method 1 and method 2, permanently modify the rate limit to 20 and applies immediately.
 
     ```bash
     » config set store-balance-rate 20
     » stores set limit 20
-    ```
-
-- The following example modifies the rate limit for all stores to 20 and applies immediately. After restart, the configuration becomes invalid, and the rate limit for all stores specified by `store-balance-rate` takes over.
-
-    ```bash
-     » stores set limit 20
-    ```
-
-- The following example modifies the rate limit for store 2 to 20 and applies immediately. After restart, the configuration becomes invalid, and the rate limit for store 2 becomes the value specified by  `store-balance-rate`.
-
-    ```bash
-    » store limit 2 20
     ```

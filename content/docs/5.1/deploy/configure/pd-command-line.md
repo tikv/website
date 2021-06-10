@@ -1,6 +1,6 @@
 ---
-title: PD Parameters
-description: Learn some configuration flags of PD
+title: PD Command Line Parameters
+description: Learn configuration flags of PD
 menu:
     "5.1":
         parent: Configure TiKV

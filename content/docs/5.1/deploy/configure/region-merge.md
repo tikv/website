@@ -7,33 +7,32 @@ menu:
         weight: 7
 ---
 
-TiKV replicates a segment of data in Regions via the Raft state machine. As data writes increase, a Region Split happens when the size of the region or the number of keys has reached a threshold. Conversely, if the size of the Region and the amount of keys shrinks because of data deletion, we can use Region Merge to merge adjacent regions that are smaller. This relieves some stress on Raftstore.
+TiKV shards continuous ranges of keys into Regions, and replicates Regions via the Raft protocol. When data size increases until reaching a threshold, a Region will be split into multiple. Conversely, if the size of the Region shrinks due to data deletion, two adjacent Regions can be merged into one.
 
-## Merge process
+## Region Merge
 
-Region Merge is initiated by the Placement Driver (PD). The steps are:
+The Region Merge process is initiated by the PD. The steps are:
 
-1. PD polls the meta information of Regions constantly.
+1. PD polls the Regions' status by the interval.
 
-2. If the region size is less than `max-merge-region-size` and the number of keys the region includes is less than `max-merge-region-keys`, PD performs Region Merge on the region with the smaller one of the two adjacent Regions.
+2. Ensure all replicas of the two Regions to be merged must be stored on the same set of TiKV(s).
 
-**Note:**
-
-- All replicas of the two Regions to be merged must locate on the same set of TiKVs (It is ensured by PD scheduler).
-- Newly split Regions won't be merged within the period of time specified by `split-merge-interval`.
-- Region Merge won't happen within the period of time specified by `split-merge-interval` after PD starts or restarts.
-- Region Merge won't happen for two Regions that belong to different tables if `namespace-classifier = table` (default).
+2. If the two adjacent regions' sizes are both less than `max-merge-region-size` and the numbers of keys within the regions are both less than `max-merge-region-keys`, PD will start the Region Merge process that merges the bigger region into the smaller region.
 
 ## Configure Region Merge
 
-Region Merge is enabled by default. You can use `pd-ctl` or the PD configuration file to configure Region Merge.
+You can use `pd-ctl` or the PD configuration file to configure Region Merge.
 
-To enable Region Merge, set the following parameters to a non-zero value:
+
+Region Merge is enabled by default. To disable Region Merge, set the following parameters to a zero:
 
 - `max-merge-region-size`
 - `max-merge-region-keys`
 - `merge-schedule-limit`
 
-You can use `split-merge-interval` to control the interval between the `split` and `merge` operations.
+{{< info >}}
+- Newly split Regions won't be merged within the period of time specified by `split-merge-interval`.
+- Region Merge won't happen within the period of time specified by `split-merge-interval` after PD starts or restarts.
+{{< /info >}}
 
-You can find all the schedule configuration options [here](../pd-configuration-file/#schedule).
+You can find all other configuration options for scheduling [here](../pd-configuration-file/#schedule).

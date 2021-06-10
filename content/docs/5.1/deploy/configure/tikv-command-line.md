@@ -1,5 +1,5 @@
 ---
-title: TiKV Parameters
+title: TiKV Command Line Parameters
 description: Learn some configuration flags of TiKV
 menu:
     "5.1":
@@ -7,10 +7,10 @@ menu:
         weight: 3
 ---
 
-TiKV supports some readable unit conversions for command line parameters.
+TiKV supports readable units in command line parameters.
 
-- File size (based on byte): KB, MB, GB, TB, PB (or lowercase)
-- Time (based on ms): ms, s, m, h
+- File size (default bytes, case-insensitive): KB, MB, GB, TB, PB
+- Time (default ms): ms, s, m, h
 
 ## `-A, --addr`
 

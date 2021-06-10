@@ -1,15 +1,15 @@
 ---
 title: Security
-description: Keeping your TiKV deployment secure
+description: Keeping your TiKV secure
 menu:
     "5.1":
         parent: Configure TiKV
         weight: 5
 ---
 
-This page discusses how to use [Transport Layer Security](#transport-layer-security-tls) to encrypt connections between TiKV nodes.
+This section discusses how to use `Transport Layer Security (TLS)` to encrypt connections between TiKV nodes.
 
-## Transport Layer Security (TLS)
+## Transport Layer Security
 
 Transport Layer Security is an standard protocol for protecting networking communications from tampering or inspection. TiKV uses OpenSSL, an industry standard, to implement it's TLS encryption.
 
@@ -82,7 +82,7 @@ ca.key  client.key  pd1.key  pd2.key  pd3.key  tikv1.key  tikv2.key  tikv3.key
 
 ### Configure the TiKV Server Certificates
 
-Specify the TLS options for TiKV certificate with the configuration file options:
+Set the certificate in TiKV configuration file:
 
 ```toml
 # Using empty strings here means disabling secure connections.
@@ -98,13 +98,13 @@ key-path = "/path/to/tikv-server-key.pem"
 cert-allowed-cn = ["tikv-server", "pd-server"]
 ```
 
-You'll also need to **change the connection URL to `https://`**.
+You'll also need to **change the connection URL to `https://`** instead of plain `ip:port`.
 
 You can find all the TiKV TLS configuration options [here](../tikv-configuration-file/#security).
 
 ### Configure the PD Certificates
 
-Specify the TLS options for PD certificate with the configuration file options:
+Set the certificate in PD configuration file:
 
 ```toml
 [security]
@@ -119,13 +119,13 @@ key-path = "/path/to/pd-server-key.pem"
 cert-allowed-cn = ["tikv-server", "pd-server"]
 ```
 
-You'll also need to **change the connection URL to `https://`**.
+You'll also need to **change the connection URL to `https://`** instead of plain `ip:port`.
 
 You can find all the PD TLS configuration options [here](../pd-configuration-file/#security).
 
 ### Configure the Client
 
-When connecting your TiKV Client, you'll need to specify the TLS options. In this example, we build a configuration for the [Rust Client](https://github.com/tikv/client-rust):
+You need to set TLS options for TiKV Client in order to connect to the TiKV. Taking [Rust Client](https://github.com/tikv/client-rust) as example, TLS option is set like this:
 
 ```rust
 let config = Config::new(/* ... */).with_security(
@@ -138,7 +138,7 @@ let config = Config::new(/* ... */).with_security(
 );
 ```
 
-You'll also need to **change the connection URL to `https://`**.
+You'll also need to **change the connection URL to `https://`** instead of plain `ip:port`.
 
 {{< warning >}}
 Currently TiKV Java Client does not support TLS.
@@ -146,7 +146,7 @@ Currently TiKV Java Client does not support TLS.
 
 ### Connecting with `tikv-ctl` and `pd-ctl`
 
-When using `pd-ctl` and `tikv-ctl` the relevant options will need to be specified:
+When using `pd-ctl` and `tikv-ctl` the relevant options will need to be set:
 
 ```bash
 pd-ctl                                    \

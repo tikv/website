@@ -1,53 +1,49 @@
 ---
-title: Topology
-description: Learn how to configure labels.
+title: Topology Lable 
+description: Learn how to configure topology labels.
 menu:
     "5.1":
         parent: Configure TiKV
         weight: 6
 ---
 
-TiKV uses labels to label its location information and PD schedulers according to the topology of the cluster, to maximize TiKV's capability of disaster recovery. This document describes how to configure labels.
+TiKV uses topology labels (aka label) to declare its location information. PD scheduler uses the labels to optimize TiKV's failure tolerance capability. This document describes how to configure the labels.
 
-## TiKV reports the topological information
+## Declare the label hierarchy in PD
 
-In order for PD to get the topology of the cluster, TiKV reports the topological information to PD according to the startup parameter or configuration of TiKV. Assume that the topology has three structures: zone > rack > host, use labels to specify the following information for each TiKV:
+Labels are hierarchical, for example, `zone > rack > host`. You can declare it in the PD configuration file or `pd-ctl`:
 
-- Startup parameter:
-
-    ```bash
-    tikv-server --labels zone=<zone>,rack=<rack>,host=<host>
-    ```
-
-- Configuration:
-
-    ```toml
-    [server]
-    labels = "zone=<zone>,rack=<rack>,host=<host>"
-    ```
-## PD understands the TiKV topology
-
-After getting the topology of the TiKV cluster, PD also needs to know the hierarchical relationship of the topology. You can configure it through the PD configuration or `pd-ctl`:
-
-- PD configuration:
-
+- PD configuration file:
     ```toml
     [replication]
     max-replicas = 3
     location-labels = ["zone", "rack", "host"]
     ```
-
-- PD controller:
+- pd-ctl:
 
     ```toml
     pd-ctl >> config set location-labels zone,rack,host
     ```
-
 You can find all the replication configuration options [here](../pd-configuration-file/#replication).
 
-To make PD understand that the labels represents the TiKV topology, keep `location-labels` corresponding to the TiKV `labels` name. See the following example.
+## Declare the labels for each TiKV
 
-### Example
+Assume that the topology has three layers: `zone > rack > host`. You can set a label for each layer by command line or configuration file, then TiKV will report its label to PD:
+
+- Command line parameter:
+
+    ```bash
+    tikv-server --labels zone=<zone>,rack=<rack>,host=<host>
+    ```
+
+- TiKV configuration file:
+
+    ```toml
+    [server]
+    labels = "zone=<zone>,rack=<rack>,host=<host>"
+    ```
+
+## Example
 
 PD makes optimal scheduling according to the topological information. You just need to care about what kind of topology can achieve the desired effect.
 
@@ -91,9 +87,9 @@ $ pd-ctl
 >> config set location-labels zone,rack,host
 ```
 
-Now the cluster can work well. 16 TiKV instances are distributed across 4 data zones, 8 racks and 16 machines. In this case, PD schedules different replicas of each datum to different data zones.
+Now PD will schedule replicas of the same `Region` to different data zones.
 
-- If one of the data zones goes down, the high availability of the TiKV cluster is not affected.
+- If one data zone goes down, the TiKV cluster will still be highly available.
 - If the data zone cannot recover within a period of time, PD will remove the replica from this data zone.
 
-PD maximizes the disaster recovery of the cluster according to the current topology. Therefore, if you want to reach a certain level of disaster recovery, deploy many machines in different sites according to the topology. The number of machines must be more than the number of `max-replicas`.
+PD optimizes the failure tolerance base on the topology labels. The number of machines must be no less than the `max-replicas`.

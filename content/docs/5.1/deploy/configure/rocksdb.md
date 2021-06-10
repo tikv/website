@@ -1,35 +1,32 @@
 ---
 title: RocksDB
-description: Learn how to configure namespace in TiKV.
+description: Learn how to configure RocksDB engine in TiKV.
 menu:
     "5.1":
         parent: Configure TiKV
         weight: 8
 ---
 
-TiKV uses [RocksDB](https://rocksdb.org/) as its underlying storage engine for storing both Raft logs and KV (key-value) pairs.
-
-{{< info >}}
-RocksDB was chosen for TiKV because it provides a highly customizable persistent key-value store that can be tuned to run in a variety of production environments, including pure memory, Flash, hard disks, or HDFS, it supports various compression algorithms, and it provides solid tools for production support and debugging.
-{{< /info >}}
+TiKV uses [RocksDB](https://rocksdb.org/) internally to store Raft logs and key-value pairs.
 
 TiKV creates two RocksDB instances on each Node:
 
-* A `rocksdb` instance that stores most TiKV data
-* A `raftdb` that stores Raft logs and has a single column family called `raftdb.defaultcf`
+* A `rocksdb` instance that stores key-value data.
+* A `raftdb` that stores Raft logs.
 
 The `rocksdb` instance has three column families:
 
 Column family | Purpose
 :-------------|:-------
 `rocksdb.defaultcf` | Stores actual KV pairs for TiKV
-`rocksdb.writecf` | Stores commit information in the MVCC model
+`rocksdb.lockcf` | Stores transaction lock
+`rocksdb.writecf` | Stores transactions' commit and rollback record
 
-RocksDB can be configured on a per-column-family basis. Here's an example:
+RocksDB can be configured on each column family. Here's an example:
 
 ```toml
-[rocksdb]
-max-background-jobs = 8
+[rocksdb.writecf]
+whole-key-filtering = false
 ```
 
 You can find all the RocksDB configuration options [here](../tikv-configuration-file/#rocksdb).

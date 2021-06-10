@@ -11,12 +11,12 @@ TiKV features a large number of configuration parameters you can use to tweak Ti
 
 There are several guides that you can use to inform your configuration:
 
-- [PD Parameters](../pd-command-line): Learn some configuration flags of PD.
+- [PD Command Line Parameters](../pd-command-line): Learn configuration flags of PD.
 - [PD Config](../pd-configuration-file): Learn the PD configuration file.
-- [TiKV Parameters](../tikv-command-line): Learn some configuration flags of TiKV.
+- [TiKV Command Line Parameters](../tikv-command-line): Learn configuration flags of TiKV.
 - [TiKV Config](../tikv-configuration-file): Learn the TiKV configuration file.
 - [Security](../security): Use TLS security and review security procedures.
-- [Topology](../topology): Use location awareness to improve resiliency and performance.
+- [Topology Lable](../topology): Use location awareness to improve resiliency and performance.
 - [Limit](../limit): Learn how to configure scheduling rate limit on stores.
 - [Region Merge](../region-merge): Tweak region merging.
 - [RocksDB](../rocksdb): Tweak RocksDB configuration parameters.
