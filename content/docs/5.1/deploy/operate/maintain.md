@@ -30,15 +30,17 @@ tiup cluster list
 
 ## Start the cluster
 
-The components in the TiKV cluster are started in the following order (The monitoring component is also started):
-
-**PD -> TiKV**
-
 To start the cluster, run the following command:
 
 ```shell
 tiup cluster start ${cluster-name}
 ```
+
+{{< info >}}
+The components in the TiKV cluster are started by TiUP in the following order:
+
+**PD -> TiKV -> Prometheus -> Grafana -> Node Exporter -> Blackbox Exporter**
+{{< /info >}}
 
 You can start only some of the components by adding the `-R` or `-N` parameters in the command. For example:
 
@@ -133,15 +135,17 @@ tiup cluster rename ${cluster-name} ${new-name}
 
 ## Stop the cluster
 
-The components in the TiKV cluster are stopped in the following order (The monitoring component is also stopped):
-
-**TiKV -> PD**
-
 To stop the cluster, run the following command:
 
 ```shell
 tiup cluster stop ${cluster-name}
 ```
+
+{{< info >}}
+The components in the TiKV cluster are stopped by TiUP in the following order:
+
+**Grafana -> Prometheus -> TiKV -> PD -> Node Exporter -> Blackbox Exporter**
+{{< /info >}}
 
 Similar to the `start` command, the `stop` command supports stopping some of the components by adding the `-R` or `-N` parameters. For example:
 
