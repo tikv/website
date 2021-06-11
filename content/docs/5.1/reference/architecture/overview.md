@@ -12,7 +12,7 @@ This page discusses the core concepts and architecture behind TiKV, including:
 * The [APIs](#apis) that applications can use to interact with TiKV
 * The basic [system architecture](#system) underlying TiKV
 * The anatomy of each [instance](#instance) in a TiKV installation
-* The role of core system components, including the [Placement Driver](#placement-driver), [Store](#store), [Region](#region), and [Node](#node)
+* TiKV's terminology including [Placement Driver](#placement-driver), [Store](#store), [Region](#region), and [Node](#node)
 * TiKV's [transaction model](#transactions)
 * The role of the [Raft consensus algorithm](#raft) in TiKV
 * The [origins](#origins) of TiKV
@@ -21,10 +21,10 @@ This page discusses the core concepts and architecture behind TiKV, including:
 
 TiKV provides two APIs that you can use to interact with it:
 
-| API           | Description                                                                           | Atomicity     | Use when...                                                                                                                |
-|:------------- |:------------------------------------------------------------------------------------- |:------------- |:-------------------------------------------------------------------------------------------------------------------------- |
-| Raw           | A lower-level key-value API for interacting directly with individual key-value pairs. | Single key    | Your application requires low latency instead of distributed transactions or multi-version concurrency control (MVCC). | 
-| Transactional | A higher-level key-value API that provides ACID semantics                             | Multiple keys | Your application requires distributed transactions and/or MVCC.                                                            |
+| API           | Description                                                                           | Atomicity     | Use when...                                                                                                            |
+|:------------- |:------------------------------------------------------------------------------------- |:------------- |:---------------------------------------------------------------------------------------------------------------------- |
+| Raw           | A lower-level key-value API for interacting directly with individual key-value pairs. | Single key    | Your application requires low latency instead of distributed transactions or multi-version concurrency control (MVCC). |
+| Transactional | A higher-level key-value API that provides ACID semantics                             | Multiple keys | Your application requires distributed transactions and/or MVCC.                                                        |
 
 ## System architecture {#system}
 
