@@ -7,12 +7,17 @@ menu:
         weight: 2
 ---
 
-TiKV features a large number of configuration parameters you can use to tweak TiKV's behavior. When getting started with TiKV, it's usually safe to start with the defaults.
+Though it's recommended to start with the default configurations when getting started with TiKV, TiKV features a large number of configuration parameters to tweak its behavior, which enables users to config the cluster to fit for the special application requirement.
 
-There are several guides that you can use to inform your configuration:
+The following topics describes how to config different TiKV components:
+
+PD
 
 - [PD Command Line Parameters](../pd-command-line): Learn configuration flags of PD.
 - [PD Config](../pd-configuration-file): Learn the PD configuration file.
+
+TiKV
+
 - [TiKV Command Line Parameters](../tikv-command-line): Learn configuration flags of TiKV.
 - [TiKV Config](../tikv-configuration-file): Learn the TiKV configuration file.
 - [Security](../security): Use TLS security and review security procedures.
