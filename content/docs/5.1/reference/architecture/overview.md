@@ -53,11 +53,15 @@ The TiKV placement driver is the cluster manager of TiKV, which periodically and
 
 ## Store
 
-The **Store** is a TiKV instance.  A Store stores multiple peers. There is a [RocksDB](https://rocksdb.org) database within each **Store** and it stores data into the local disk.
+A **Store** refers to the storage node in the TiKV cluster (an instance of tikv-server). Each store has a corresponding TiKV instance.
 
 ## Region
 
 TiKV shards continuous ranges of keys into **Regions**, and replicates **Regions** via the Raft protocol. When data size increases until reaching a threshold, a Region will be split into multiple. Conversely, if the size of the Region shrinks due to data deletion, two adjacent Regions can be merged into one.
+
+## Peer
+
+A replica of a Region is called a peer. Multiple peers of the same Region replicate data via the Raft consensus algorithm, so peers are also members of a Raft instance.
 
 ## Node
 
