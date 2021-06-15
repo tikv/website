@@ -21,12 +21,12 @@ This page discusses the core concepts and architecture behind TiKV, including:
 
 TiKV provides two APIs that you can use to interact with it:
 
-| API           | Description                                                                           | Atomicity     | Use when...                                                                                                            |
-|:------------- |:------------------------------------------------------------------------------------- |:------------- |:---------------------------------------------------------------------------------------------------------------------- |
-| Raw           | A lower-level key-value API for interacting directly with individual key-value pairs. | Single key    | Your application requires low latency instead of distributed transactions or multi-version concurrency control (MVCC). |
-| Transactional | A higher-level key-value API that provides ACID semantics                             | Multiple keys | Your application requires distributed transactions and/or MVCC.                                                        |
+| API           | Description                                                                           | Atomicity     | Use when...                                                                   |
+|:------------- |:------------------------------------------------------------------------------------- |:------------- |:----------------------------------------------------------------------------- |
+| Raw           | A lower-level key-value API for interacting directly with individual key-value pairs. | Single key    | Your application requires low latency and doesn't use multi-key transactions. |
+| Transactional | A higher-level key-value API that provides snapshot isolation transaction.            | Multiple keys | Your application requires distributed transactions.                           |
 
-## System architecture {#system}
+## System architecture
 
 The overall architecture of TiKV is illustrated below:
 
@@ -36,7 +36,7 @@ The overall architecture of TiKV is illustrated below:
     alt="TiKV architecture diagram"
     width="70" >}}
 
-## TiKV instance {#instance}
+## TiKV instance
 
 The architecture of each TiKV instance is illustrated below:
 
@@ -47,37 +47,34 @@ The architecture of each TiKV instance is illustrated below:
     width="60" >}}
 
 
-## Placement driver (PD) {#placement-driver}
+## Placement driver (PD)
 
-The TiKV placement driver is the cluster manager of TiKV, which periodically checks replication constraints to balance load and data automatically across nodes and regions in a process called **auto-sharding**.
+The TiKV placement driver is the cluster manager of TiKV, which periodically and automatically balances workload and data storage across nodes by moving Regions. This process is called **auto-sharding**.
 
 ## Store
 
-There is a [RocksDB](https://rocksdb.org) database within each **Store** and it stores data into the local disk.
+The **Store** is a TiKV instance.  A Store stores multiple peers. There is a [RocksDB](https://rocksdb.org) database within each **Store** and it stores data into the local disk.
 
 ## Region
 
-**Region** is the basic unit of key-value data movement. Each Region is replicated to multiple Nodes. These multiple replicas form a Raft group.
+TiKV shards continuous ranges of keys into **Regions**, and replicates **Regions** via the Raft protocol. When data size increases until reaching a threshold, a Region will be split into multiple. Conversely, if the size of the Region shrinks due to data deletion, two adjacent Regions can be merged into one.
 
 ## Node
 
-A TiKV **Node** is just a physical node in the cluster, which could be a virtual machine, a container, etc. Within each Node, there are one or more stores. The data in each Store is split across multiple regions. Data is distributed across Regions using the Raft algorithm.
+A TiKV **Store** is a physical node in the cluster, which could be a virtual machine, a container, etc. Within each Node, there can be one or more stores.
 
-When a Node starts, the metadata for the Node, Store, and Region is recorded into the Placement Driver. The status of each Region and Store is regularly reported to the PD.
+The status for the Node, Store, and Region will be regularly reported to the Placement Driver.
 
-## Transaction model {#transactions}
+## Transaction
 
-TiKV's transaction model is similar to that of Google's [Percolator](https://ai.google/research/pubs/pub36726), a system built for processing updates to large data sets. Percolator uses an incremental update model in place of a batch-based model.
+TiKV provides transactions that allow you to read and write across any keys with **Snapshot Isolation** regardless of the physical placement of the Region. TiKV also provides the pessimistic transactions that are semantically analogous to `SELECT ... FOR UPDATE` in SQL.
 
-TiKV's transaction model provides:
-
-* **Snapshot isolation** with lock, with semantics analogous to `SELECT ... FOR UPDATE` in SQL
-* Externally consistent reads and writes in distributed transactions
+The underlying transaction model is similar to Google's [Percolator](https://ai.google/research/pubs/pub36726), a system built for processing updates to large data sets.
 
 ## Raft
 
 Data is distributed across TiKV instances via the [Raft consensus algorithm](https://raft.github.io/), which is based on the so-called [Raft paper](https://raft.github.io/raft.pdf) ("In Search of an Understandable Consensus Algorithm") from [Diego Ongaro](https://ongardie.net/diego/) and [John Ousterhout](https://web.stanford.edu/~ouster/cgi-bin/home.php).
 
-## The origins of TiKV {#origins}
+## The origins of TiKV
 
 TiKV was originally created by [PingCAP](https://pingcap.com) to complement [TiDB](https://github.com/pingcap/tidb), a distributed [HTAP](https://en.wikipedia.org/wiki/Hybrid_transactional/analytical_processing_(HTAP)) database compatible with the [MySQL protocol](https://dev.mysql.com/doc/dev/mysql-server/latest/PAGE_PROTOCOL.html).
