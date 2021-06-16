@@ -53,7 +53,7 @@ The TiKV placement driver is the cluster manager of TiKV, which periodically and
 
 ## Store
 
-A **Store** refers to the storage node in the TiKV cluster (an instance of tikv-server). Each store has a corresponding TiKV instance.
+A **Store** is an instance of tikv-server.
 
 ## Region
 
@@ -61,11 +61,11 @@ TiKV shards continuous ranges of keys into **Regions**, and replicates **Regions
 
 ## Peer
 
-A replica of a Region is called a peer. Multiple peers of the same Region replicate data via the Raft consensus algorithm, so peers are also members of a Raft instance.
+A replica of a Region is called a peer. Multiple peers of the same Region replicate data via the Raft consensus algorithm.
 
 ## Node
 
-A TiKV **Store** is a physical node in the cluster, which could be a virtual machine, a container, etc. Within each Node, there can be one or more stores.
+A TiKV **Node** is a physical node in the cluster, which could be a virtual machine, a container, etc. Within each Node, there can be one or more stores.
 
 The status for the Node, Store, and Region will be regularly reported to the Placement Driver.
 
