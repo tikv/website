@@ -81,4 +81,4 @@ Data is distributed across TiKV instances via the [Raft consensus algorithm](htt
 
 ## The origins of TiKV
 
-TiKV was originally created by [PingCAP](https://pingcap.com) to complement [TiDB](https://github.com/pingcap/tidb), a distributed [HTAP](https://en.wikipedia.org/wiki/Hybrid_transactional/analytical_processing_(HTAP)) database compatible with the [MySQL protocol](https://dev.mysql.com/doc/dev/mysql-server/latest/PAGE_PROTOCOL.html).
+TiKV was originally created by [PingCAP](https://pingcap.com) as the storage layer of [TiDB](https://github.com/pingcap/tidb), a distributed [HTAP](https://en.wikipedia.org/wiki/Hybrid_transactional/analytical_processing_(HTAP)) database compatible with the [MySQL protocol](https://dev.mysql.com/doc/dev/mysql-server/latest/PAGE_PROTOCOL.html).

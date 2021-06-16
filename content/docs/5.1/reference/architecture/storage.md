@@ -18,7 +18,7 @@ The first thing to decide for a data storage system is the data storage model, t
 
 ## Local storage (RocksDB)
 
-For any persistent storage engine, data is eventually saved on disk, and TiKV is no exception. TiKV does not write data directly on the disk, but stores data in RocksDB, which is responsible for the data storage. The reason is that it costs a lot to develop a standalone storage engine, especially a high-performance standalone engine that requires careful optimization.
+For any persistent storage engine, data is eventually saved on disk, and TiKV is no exception. TiKV stores data in RocksDB, which is responsible for data storage on the disk.
 
 RocksDB is an excellent standalone storage engine open-sourced by Facebook. This engine can meet various requirements of TiKV for a single engine. Here, you can simply consider RocksDB as a single persistent Key-Value Map.
 

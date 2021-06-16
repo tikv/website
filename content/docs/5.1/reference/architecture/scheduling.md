@@ -11,7 +11,7 @@ The Placement Driver ([PD](https://github.com/tikv/pd)) works as the manager in 
 
 ## Scheduling situations
 
-In TiKV, data is organized as Regions, which are replicated on several stores. In all replicas, a leader is responsible for reading and writing, and followers are responsible for replicating Raft logs from the leader.
+In TiKV, data is organized as Regions, which are replicated on several stores. In all replicas of a Region, a leader is elected to responsible for the reading and writing traffics on the Region while followers are responsible for replicating Raft logs from the leader.
 
 Now consider about the following situations:
 
