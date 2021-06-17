@@ -82,7 +82,7 @@ On another terminal session, we will use [go-ycsb](https://github.com/pingcap/go
 3. On the **playground-overview** dashboard, note the matrices in **region** panel in **TiKV** tab. It shows that the Regions count is the same on all three nodes. This indicates that:
    *  There are this many "ranges" of data in the cluster. These are the small workload that we use `go-ycsb` injected.
    * Each region has been replicated 3 times (according to the TiKV default).
-   * For each region, each replica is stored on different nodes.
+   * For each region, each replica is stored on different stores.
 
 {{< figure
     src="/img/docs/region-count.png"
