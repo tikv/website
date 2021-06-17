@@ -13,7 +13,6 @@ To run the site locally, you'll need to install [Yarn](https://yarnpkg.com) and 
 You can then host the development server for the site with:
 
 ```bash
-yarn install
 make serve
 ```
 
