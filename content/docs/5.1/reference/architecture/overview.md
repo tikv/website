@@ -53,7 +53,7 @@ The TiKV placement driver is the cluster manager of TiKV, which periodically and
 
 ## Store
 
-A **Store** is an instance of tikv-server.
+A **Store** is an instance of a TiKV server in which multiple peers are stored.
 
 ## Region
 
