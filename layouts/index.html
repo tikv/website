@@ -1,43 +1,57 @@
 {{ define "main" }}
 {{ $shortDesc := site.Params.description.brief | markdownify }}
-{{ $longDesc  := site.Params.description.long | markdownify }}
-{{ $buttons   := site.Params.home.buttons }}
-{{ $logo      := site.Params.logos.color | relURL }}
-{{ $cncfLogo  := site.Params.logos.cncf | relURL }}
-{{ $features  := site.Data.features }}
-<section class="hero is-fullheight-with-navbar is-light">
-  <div class="hero-body home-page">
-    <div class="container has-text-centered">
+{{ $longDesc := site.Params.description.long | markdownify }}
+{{ $buttons := site.Params.home.buttons }}
+{{ $logo := site.Params.logos.white | relURL }}
+{{ $cncfLogo := site.Params.logos.cncf | relURL }}
+{{ $features := site.Data.features }}
+{{ $users := site.Data.users }}
+{{ $getStarted := site.Data.getStarted }}
+<section class="section homepage-hero hero">
+  <div class="her-body">
+    <div class="container has-text-left has-text-centered-mobile">
       <img class="is-home-logo" src="{{ $logo }}" alt="Main TiKV logo">
-
-      <br />
-
-      <p class="title is-size-1-desktop is-size-3-touch is-spaced">
+      <p class="title is-size-3-desktop is-spaced is-size-5-mobile">
         <span>
           {{ $shortDesc }}
         </span>
       </p>
+      <a href="/" class="button is-size-6-mobile">Get Started</a>
+    </div>
+  </div>
+</section>
 
-      <p class="subtitle is-size-3 is-size-4-tablet is-size-5-mobile">
-        {{ $longDesc }}
-      </p>
-
-      <div class="notification is-radiusless">
-        <p class="title is-size-3 is-size-4-mobile">
-          We are a <a href="https://cncf.io" target="_blank" class="is-link">Cloud Native Computing Foundation</a> graduated project. 🎉
-        </p>
-
-        <img class="is-cncf-logo" src="{{ $cncfLogo }}" alt="Cloud Native Computing Foundation logo">
+<section class="section homepage-intro">
+  <div class="container">
+    <p class="desc">TiKV provides both raw key-value APIs (RawKV) and transactional APIs (TxnKV) with ACID compliance.
+    </p>
+    <p class="desc">TiKV is often used in the following scenarios</p>
+    <div class="columns">
+      <div class="column scenarios">
+        <div class="scenario">as an online serving store for a recommendation system</div>
+        <div class="scenario">as an online serving module of <a href="https://www.featurestore.org/" target="_blank">a feature store</a></div>
+        <div class="scenario">as a key-value store, e.g. store metadata for an object storage system</div>
+        <div class="scenario content">as a storage layer for a database, e.g.
+          <ul>
+            <li><a href="https://github.com/pingcap/tidb" target="_blank">TiDB</a>: a distributed MySQL protocol compatible NewSQL Database</li>
+            <li><a href="https://github.com/zhihu/zetta" target="_blank">Zetta</a>: a distributed HBase protocol compatible NoSQL Database</li>
+            <li><a href="https://github.com/yongman/tidis" target="_blank">Tidis</a>: a distributed Redis protocol compatible NoSQL Database</li>
+          </ul>
+        </div>
+      </div>
+      <div class="column">
+        <img src="/img/homepage/tikv-architecture.png" alt="tikv architecture" />
       </div>
     </div>
   </div>
 </section>
 
-<section class="section has-background-primary">
+<section class="section homepage-why-tikv">
   <div class="container">
-    <div class="columns">
+    <h2 class="title section-title has-text-centered">Why TiKV</h2>
+    <div class="columns is-multiline">
       {{ range where $features "featured" true }}
-      <div class="column">
+      <div class="column is-one-third">
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
@@ -46,7 +60,7 @@
             {{ with .icon }}
             <div class="card-header-icon">
               <span class="icon has-text-primary">
-                <i class="fas {{ . }}" aria-hidden="true"></i>
+                <img src="{{ . }}" alt="header icon"/>
               </span>
             </div>
             {{ end }}
@@ -65,15 +79,59 @@
   </div>
 </section>
 
-<!--
-<section class="section">
-  <div class="container has-text-centered">
+<section class="section homepage-tikv-users has-text-centered">
+  <div class="container">
+    <h2 class="title section-title">Who are using TiKV</h2>
+    <div class="columns is-multiline is-mobile">
+      {{ range $users }}
+      <div class="column is-one-quarter-tablet is-half-mobile">
+
+        <img src="{{ .logo }}" alt="tikv user logo"/>
+      </div>
+      {{ end }}
+    </div>
+
+    <a class="button" href="/">Case Studies</a>
+
     <p class="title is-size-4 is-size-5-mobile">
-     TiKV is a <a>Cloud Native Computing Foundation</a> incubating project
+      TiKV is a <span>Cloud Native Computing Foundation</span> graduate project
     </p>
 
-    <img class="image is-cncf-logo" src="{{ $cncfLogo }}" alt="Cloud Native Computing Foundation logo">
+    <img class="image is-cncf-logo" src="{{ $cncfLogo }}" alt="Cloud Native Computing Foundation logo" />
   </div>
 </section>
--->
+
+<section class="section homepage-get-started">
+  <div class="container">
+    <h2 class="title section-title has-text-centered">Get started with TiKV</h2>
+    <div class="columns">
+      {{ range $getStarted }}
+      <div class="column">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              {{ .title }}
+            </p>
+            {{ with .icon }}
+            <div class="card-header-icon">
+              <span class="icon has-text-primary">
+                <img src="{{ . }}" alt="header icon"/>
+              </span>
+            </div>
+            {{ end }}
+          </header>
+          <div class="card-content">
+            {{ range $idx, $doc := .docs }}
+            <p>
+              <a href="{{ $doc.link }}">{{ $doc.name }}</a>
+            </p>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
 {{ end }}

@@ -10,6 +10,7 @@ $twitter-blue: #1da1f3
 // TiKV variables
 $tikv-red: #ed1a3b
 $tikv-blue: #353558
+$light-blue: #3D3FEA
 
 @import "bulma/sass/utilities/initial-variables"
 @import "bulma/sass/utilities/functions"
@@ -18,10 +19,10 @@ $tikv-blue: #353558
 $red: $tikv-red
 $blue: $tikv-blue
 $primary: $red
-$secondary: $blue
+$secondary: #0D0F2C
 $link: $red
 $danger: $orange
-$navbar-burger-color: $blue
+$btn-blue-color: $light-blue
 $family-sans-serif: "Titillium Web", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif
 $family-monospace: "Inconsolata", monosapce
 $notification-padding: 1rem 1rem
@@ -29,6 +30,16 @@ $navbar-dropdown-radius: none
 $navbar-dropdown-boxed-shadow: none
 $navbar-dropdown-arrow: $primary !important
 $base-width: 112px
+
+// customize font-size
+$P1: 16px
+$H0: 32px
+$H3: 20px
+$H4: 18px
+$LH: 1.75
+
+// customize color
+$M2: #F7F8F9
 
 @import "bulma/sass/utilities/derived-variables"
 
@@ -41,19 +52,27 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
   width: $times * $base-width
 
 .is-home-logo
-  +logo(2)
+  +logo(1.8)
+
   +tablet
     margin-bottom: 1.5rem
 
   +touch
     margin-bottom: 2rem
 
+  +mobile
+    +logo(1.5)
+
 .is-cncf-logo
-  +logo(4)
-  margin: 1.5rem 0 0 0
+  +logo(3)
+  margin: 3rem auto
 
 .is-footer-image
   +logo(1)
+  margin: 1rem auto 1rem 0
+
+  +mobile
+    margin: 1rem auto
 
 =branded-button($bgColor)
   border: none
@@ -63,20 +82,117 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
   &:hover
     background-color: darken($bgColor, 5%)
 
+@mixin is-customized-card()
+  height: 100%
+  box-shadow: none
+  border-radius: 10px
+
+  .card-header
+    padding: 2rem
+    font-size: $H3
+    box-shadow: none
+
+    .card-header-title
+      padding: 0
+
+    .card-header-icon
+      padding: 0
+
+  .card-content
+    padding: 0 2rem 2rem
+
 .docs-content
   padding-bottom: 8rem
 
-.home-page
+.section-title
+  margin-bottom: 3rem !important
+  font-size: $H0
+
+.homepage-hero
+  background: url('/img/homepage/hero-bg.svg') no-repeat
+  background-size: cover
+  background-position: center
+
+  +mobile
+    padding: 4rem 1.5rem !important
+
   .title
-    font-size: 1.875rem !important
+    width: 70%
+    font-size: 36px
+    color: #ffffff
+    line-height: 1.7
+
+    +mobile
+      margin-top: 1rem
+      width: 100%
+      font-weight: bold
+
+  .button
+    margin-top: 2rem
+    font-size: $H3
     font-weight: bold
-    color: #30323e
+    color: #113F9C
+    border-radius: 10px
 
-  .subtitle
-    font-size: 1.25rem !important
-    color: #606060 !important
-    font-weight: normal !important
+.homepage-intro
+  .desc
+    font-size: $P1
+    line-height: 2
 
+  .columns
+    align-items: center
+
+  .scenario
+    margin: 1rem 0
+    padding: 1rem
+    background-color: $M2
+
+    a
+      color: $light-blue
+
+      &:hover
+        text-decoration: underline
+
+.homepage-why-tikv
+  background-color: $M2
+
+  .card
+    @include is-customized-card
+
+.homepage-tikv-users
+  span
+    color: #76C5D5
+
+  .button
+    margin: 4rem
+    color: #ffffff
+    border: none
+    background-color: $btn-blue-color
+
+.homepage-get-started
+  background-color: $M2
+
+  .card
+    @include is-customized-card
+
+    .card-header
+      padding: 1rem 2rem
+      background-color: $light-blue
+      border-radius: 10px 10px 0 0
+
+      .card-header-title
+        color: #ffffff
+
+    .card-content
+      padding-top: 1.5rem
+      line-height: 2
+
+    a
+      color: #2C2C2C
+
+      &:hover
+        color: $light-blue
+        text-decoration: underline
 
 .toc
   padding: 1rem 0 3rem 2rem
@@ -92,7 +208,7 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
     list-style: none !important
     ul
       margin-left: .5rem
-    
+
     li > a
       margin-left: 1.4rem
 
@@ -142,6 +258,20 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
       margin-bottom: 1rem
 
 .footer
+  hr
+    margin: 1rem 0
+    height: 1px
+    background-color: #00AEEF
+
+  .align-item-centered
+    align-items: flex-end
+
+    +mobile
+      text-align: center
+
+  li
+    padding: 6px 0
+
   &.is-dark
     background-color: $secondary
 
@@ -151,6 +281,8 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
 
       &:hover
         color: $grey-light
+
+
 
 // Ensures sticky footer glued to the bottom of the page
 .page
@@ -163,20 +295,51 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
 
 .is-navbar-version
   margin-left: 1rem
-  background-color: $success
+  background-color: $light-blue
   color: white
-  border: 1px solid $success
+  border: 1px solid $light-blue
   padding: .25rem .5rem
-  border-radius: $radius-small
+  border-radius: 5px
 
+  & + .navbar-dropdown
+    display: block
+    position: absolute
+    top: 100%
+    background: white
+
+.has-dropdown
+  .navbar-dropdown
+    display: none
+
+    &.is-active
+      display: block !important
+
+.is-hoverable
+  .navbar-link::after
+    display: none
+
+    +mobile
+      display: block
+
+.navbar-link
+  color: #2C2C2C
+  font-weight: bold
+
+  &:hover
+    color: $light-blue
+
+.navbar-dropdown
+  border-top: none
 .section
+  padding: 4rem 1.5rem 6rem
+
   &.is-black
     background-color: $black
- 
+
 .is-home-page
   .notification
     margin: 4rem 0
-    
+
     p
       font-weight: bold
       font-size: 1.5rem !important
@@ -187,7 +350,6 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
 
       &:hover
         text-decoration: underline !important
-
 
     .buttons
       margin-top: 2.5rem

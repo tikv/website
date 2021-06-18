@@ -1,33 +1,24 @@
-- name: Geo-replication
-  description: TiKV uses the [Raft](https://raft.github.io/) consensus algorithm and the [Placement Driver](/docs/3.0/concepts/architecture#placement-driver) to support geo-replication.
-  icon: fa-globe
+- name: Low and stable latency
+  description: Designed for latency sensitive services with  RawKV’s average response time less than xx ms (P99=xx ms), and TxnKV’s average response time below xx ms (P99=xx ms).
+  icon: img/homepage/low-latency.svg
   featured: true
-- name: Horizontal scalability
-  description: With the [Placement Driver](/docs/3.0/concepts/architecture#placement-driver) and carefully designed Raft groups, TiKV excels in horizontal scalability and can easily scale to 100+ terabytes of data.
-  icon: fa-ruler-horizontal
+- name: High scalability
+  description: With the Placement Driver and carefully designed Raft groups, TiKV excels in horizontal scalability and can easily scale to 100+ terabytes of data. Scale-out your TiKV cluster to fit the data size growth without any impact on the application.
+  icon: img/homepage/high-scalability.svg
+  featured: true
+- name: Easy to use
+  description: Run one command to deploy a TiKV cluster which has everything you need for production environments. Easily scale-out or scale-in the cluster with TiUP or TiKV operator.
+  icon: img/homepage/easy-to-use.svg
+  featured: true
+- name: Easy to maintain
+  description: TiKV is based on the design of Google Spanner and HBase, but simpler to manage without dependencies on any distributed file system.
+  icon: img/homepage/easy-to-maintain.svg
   featured: true
 - name: Consistent distributed transactions
-  description: Similar to Google's [Spanner](https://ai.google/research/pubs/pub39966), TiKV supports externally consistent distributed transactions.
-  icon: fa-align-center
+  description: Similar to Google’s Spanner, TiKV (TxnKV mode) supports externally consistent distributed transactions.
+  icon: img/homepage/consistent-distributed-transactions.svg
   featured: true
-- name: Coprocessor support
-  description: Similar to [Hbase](https://hbase.apache.org), TiKV implements a coprocessor framework to support distributed computing.
-  icon: fa-microchip
+- name: Adjustable consistency
+  description: By choosing from RawKV and TxnKV modes, users can make compromises between consistency and performance.
+  icon: img/homepage/adjustable-consistency.svg
   featured: true
-- name: Automatic sharding
-  description: TiKV shards your data into regions without manual intervention, reducing maintenance burden.
-  icon: fa-boxes
-- name: Region balance
-  description: TiKV supports rebalancing regions due to faults, workload, or topology needs.
-  icon: fa-balance-scale
-- name: Dynamic membership
-  description: Grow or shrink TiKV clusters dynamically, without the need for downtime.
-  icon: fa-cogs
-- name: Rolling online updates
-  description: Using supported deployment methods, safely upgrade TiKV clusters without worry.
-- name: Extensive Metric Suite
-  description: Easily integrate TiKV into your infrastructure monitoring with extensive Prometheus reporting.
-  icon: fa-eye
-- name: Flexible APIs
-  description: Use transactional or raw gRPC APIs through clients in your favorite language, or use gRPC directly.
-  icon: fa-plug

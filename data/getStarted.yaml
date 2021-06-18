@@ -1,0 +1,31 @@
+- title: Get Started
+  icon: img/homepage/get-started.svg
+  docs:
+  - name: TiKV in 5 minutes
+    link: /
+  - name: Hello, World!
+    link: /
+  - name: Explore Capabilities
+    link: /
+- title: Develop
+  icon: img/homepage/develop.svg
+  docs:
+  - name: Common Dev Tasks
+    link: /
+  - name: TiKV clients
+    link: /
+  - name: Sample Apps
+    link: /
+  - name: RawKV & TxnKV
+    link: /
+- title: Deploy
+  icon: img/homepage/deploy.svg
+  docs:
+  - name: Deployment
+    link: /
+  - name: Configure TiKV
+    link: /
+  - name: Benchmark and Performance
+    link: /
+  - name: Operate the Cluster
+    link: /

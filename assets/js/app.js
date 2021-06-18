@@ -1,21 +1,33 @@
 function navbarToggle() {
-  $(".navbar-burger").click(function() {
+  $(".navbar-burger").click(function () {
     $(".navbar-burger").toggleClass("is-active");
     $(".navbar-menu").toggleClass("is-active");
+    $(".navbar-dropdown").removeClass("is-active");
   });
 }
 
 function docsAnchors() {
   anchors.options = {
-    icon: '#'
-  }
+    icon: "#",
+  };
 
-  anchors.add('.docs-content h2, .docs-content h3, .docs-content h4');
+  anchors.add(".docs-content h2, .docs-content h3, .docs-content h4");
 }
 
-$(function() {
+$(function () {
   navbarToggle();
   docsAnchors();
 
   console.log("Welcome to the TiKV docs!");
+
+  $(".navbar-link").click(function () {
+    $(this).next().toggleClass("is-active");
+  });
+
+  $(".is-navbar-version").click(function () {
+    $(".navbar-menu").removeClass("is-active");
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+      $(this).next().toggleClass("is-active");
+    }
+  });
 });
