@@ -42,6 +42,7 @@ params:
         - "3.0"
     description:
         brief: "TiKV is a high scalable, low latency, and easy to use <br/> key-value Database."
+        briefMobile: "TiKV is a high scalable, low latency, and easy to use key-value Database."
         long: "Based on the design of [Google Spanner](https://ai.google/research/pubs/pub39966) and [HBase](https://hbase.apache.org), but simpler to manage and without dependencies on any distributed filesystem"
     fonts:
         sansserif: "Titillium Web"

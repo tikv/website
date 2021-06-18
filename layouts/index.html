@@ -1,5 +1,6 @@
 {{ define "main" }}
 {{ $shortDesc := site.Params.description.brief | markdownify }}
+{{ $shortDescMobile := site.Params.description.briefMobile | markdownify }}
 {{ $longDesc := site.Params.description.long | markdownify }}
 {{ $buttons := site.Params.home.buttons }}
 {{ $logo := site.Params.logos.white | relURL }}
@@ -12,8 +13,11 @@
     <div class="container has-text-left has-text-centered-mobile">
       <img class="is-home-logo" src="{{ $logo }}" alt="Main TiKV logo">
       <p class="title is-size-3-desktop is-spaced is-size-5-mobile">
-        <span>
+        <span class="is-hidden-mobile">
           {{ $shortDesc }}
+        </span>
+        <span class="is-hidden-tablet">
+          {{ $shortDescMobile }}
         </span>
       </p>
       <a href="/" class="button is-size-6-mobile">Get Started</a>
@@ -82,10 +86,9 @@
 <section class="section homepage-tikv-users has-text-centered">
   <div class="container">
     <h2 class="title section-title">Who are using TiKV</h2>
-    <div class="columns is-multiline is-mobile">
+    <div class="columns is-multiline">
       {{ range $users }}
-      <div class="column is-one-quarter-tablet is-half-mobile">
-
+      <div class="column">
         <img src="{{ .logo }}" alt="tikv user logo"/>
       </div>
       {{ end }}

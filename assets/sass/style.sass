@@ -126,7 +126,9 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
 
     +mobile
       margin-top: 1rem
+      padding: 1rem 0rem
       font-weight: bold
+      width: auto
 
   .button
     margin-top: 2rem
@@ -161,6 +163,13 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
     @include is-customized-card
 
 .homepage-tikv-users
+  .column
+    flex: none
+    width: 20%
+
+    +touch
+      width: 50%
+
   span
     color: #76C5D5
 
