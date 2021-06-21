@@ -21,7 +21,7 @@ The status for the Node, Store, and Region will be regularly reported to the Pla
 
 ### Placement driver (PD)
 
-The TiKV placement driver is the cluster manager of TiKV, which periodically and automatically balances workload and data storage across nodes by moving Regions. This process is called **auto-sharding**.
+The Placement Driver (PD) is the cluster manager of TiKV. It periodically records the cluster information, makes decisions to move/split/merge TiKV Regions across nodes according to the application workload and storage capacities. This process is called **scheduling**.
 
 ### Peer
 
