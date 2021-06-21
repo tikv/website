@@ -4,7 +4,7 @@ description: Understand the storage layer of a TiKV cluster.
 menu:
     "5.1":
         parent: Architecture
-        weight: 2
+        weight: 3
 ---
 
 This document introduces some design ideas and key concepts of TiKV storage.

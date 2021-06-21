@@ -4,7 +4,7 @@ description: Introduces the PD scheduling component in a TiKV cluster.
 menu:
     "5.1":
         parent: Architecture
-        weight: 3
+        weight: 4
 ---
 
 The Placement Driver ([PD](https://github.com/tikv/pd)) works as the manager in a TiKV cluster, and it also schedules Regions in the cluster. This article introduces the design and core concepts of the PD scheduling component.
