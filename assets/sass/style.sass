@@ -14,6 +14,12 @@ $light-blue: #3D3FEA
 
 @import "bulma/sass/utilities/initial-variables"
 @import "bulma/sass/utilities/functions"
+@import "bulma/sass/utilities/derived-variables"
+
+$colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
+
+@import "bulma/bulma"
+@import "bulma/sass/grid/columns"
 
 // Bulma variable overrides
 $red: $tikv-red
@@ -30,6 +36,7 @@ $navbar-dropdown-radius: none
 $navbar-dropdown-boxed-shadow: none
 $navbar-dropdown-arrow: $primary !important
 $base-width: 112px
+$column-gap: 4rem !important
 
 // customize font-size
 $P1: 16px
@@ -42,11 +49,7 @@ $LH: 1.75
 $M2: #F7F8F9
 $B3: #172D72
 
-@import "bulma/sass/utilities/derived-variables"
 
-$colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
-
-@import "bulma/bulma"
 
 =logo($times)
   margin: 0 auto
@@ -171,6 +174,7 @@ a
   .column
     flex: none
     width: 20%
+    padding: 5rem
 
     +touch
       width: 50%
