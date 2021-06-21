@@ -10,12 +10,12 @@ menu:
 This page discusses the core concepts and architecture behind TiKV, including:
 
 * The [APIs](#apis) that applications can use to interact with TiKV
-* The basic [system architecture](#system) underlying TiKV
-* The anatomy of each [instance](#instance) in a TiKV installation
-* TiKV's terminology including [Placement Driver](#placement-driver), [Store](#store), [Region](#region), and [Node](#node)
-* TiKV's [transaction model](#transactions)
+* The basic [system architecture](#system-architecture) underlying TiKV
+* The anatomy of each [instance](#tikv-instance) in a TiKV installation
+* TiKV's terminology including [Placement Driver](#placement-driver-pd), [Store](#store), [Region](#region), and [Node](#node)
+* TiKV's [transaction model](#transaction)
 * The role of the [Raft consensus algorithm](#raft) in TiKV
-* The [origins](#origins) of TiKV
+* The [origins](#the-origins-of-tikv) of TiKV
 
 ## APIs
 
