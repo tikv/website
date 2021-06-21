@@ -67,7 +67,7 @@ let result = client.scan("k1".to_owned().."k5".to_owned(), limit).await?;
 println!("{:?}", result);
 ```
 
-These functions also have batch variants (`batch_put`, `batch_get`, `batch_delete` and `batch_scan`), which offer considerably reduced network overhead and can result in dramatic performance increases under certain workloads.
+These functions also have batch variants (`batch_put`, `batch_get`, `batch_delete` and `batch_scan`), which offer considerably reduced network overhead and can result in dramatic performance improvements under certain workloads.
 
 You can find all the functions that `RawClient` supports [here](https://github.com/tikv/client-rust#raw-requests).
 
@@ -135,6 +135,6 @@ if all_is_good {
 }
 ```
 
-These functions also have batch variants (`batch_put`, `batch_get`, `batch_delete` and `batch_scan`), which offer considerably reduced network overhead and can result in dramatic performance increases under certain workloads.
+These functions also have batch variants (`batch_put`, `batch_get`, `batch_delete` and `batch_scan`), which offer considerably reduced network overhead and can result in dramatic performance improvements under certain workloads.
 
 You can find all the functions that `TransactionClient` supports [here](https://github.com/tikv/client-rust#transactional-requests).
