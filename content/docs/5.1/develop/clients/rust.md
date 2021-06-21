@@ -47,7 +47,7 @@ assert_eq!(result, ());
 
 // get
 let result = client.get(key.to_owned()).await?;
-assert_eq!(result.unwrap(), value.clone().as_bytes());
+assert_eq!(result.unwrap(), value.as_bytes());
 
 // delete
 let result = client.delete(key.to_owned()).await?;
@@ -97,7 +97,7 @@ txn.commit().await?;
 let mut txn = txn_client.begin_optimistic().await?;
 let result = txn.get(key.to_owned()).await?;
 txn.commit().await?;
-assert_eq!(result.unwrap(), value.clone().as_bytes());
+assert_eq!(result.unwrap(), value.as_bytes());
 
 // delete
 let mut txn = txn_client.begin_optimistic().await?;
