@@ -70,9 +70,7 @@ On another terminal session, we will use [go-ycsb](https://github.com/pingcap/go
 
 ## Step 3. Verify replication
 
-{{< info >}}
 To understand replication in TiKV, it's important to review a few concepts from the [architecture](https://github.com/tikv/tikv#tikv-software-stack).
-{{< /info >}}
 | Concept    |                                                                                                           Description                                                                                                            |
 | ---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | **Region** | TiKV could seem like a giant sorted map of key-value pairs. The region is the basic unit of key-value data movement. Each region is a range of keys and replicated to multiple Nodes. These multiple replicas form a Raft group. |
