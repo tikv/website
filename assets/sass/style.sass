@@ -36,7 +36,6 @@ $navbar-dropdown-radius: none
 $navbar-dropdown-boxed-shadow: none
 $navbar-dropdown-arrow: $primary !important
 $base-width: 112px
-$column-gap: 4rem !important
 
 // customize font-size
 $P1: 16px
@@ -171,6 +170,12 @@ a
     @include is-customized-card
 
 .homepage-tikv-users
+  .columns.is-variable
+    --columnGap: 4rem
+
+    +mobile
+      --columnGap: 3rem
+
   .column
     flex: none
     width: 20%
