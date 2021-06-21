@@ -79,7 +79,7 @@ To understand replication in TiKV, it's important to review a few concepts from 
 1. Open the Grafana at [http://localhost:3000](http://localhost:3000) (printed from `tiup-playground`) and log in with username `admin` and password `admin`.
 
 2. On the **playground-overview** dashboard, note the matrices in **region** panel in **TiKV** tab. It shows that the Regions count is the same on all three nodes. This indicates that:
-   *  There are this many "ranges" of data in the cluster. These are the small workload that we use `go-ycsb` injected.
+   *  There is only one region. These are the small workload that we use `go-ycsb` injected.
    * Each region has 3 replicas (according to the default configuration).
    * For each region, each replica is stored in different stores.
 
@@ -134,7 +134,7 @@ Go to Grafana page mentioned above. You will find some regions are split and reb
     number="1" >}}
 
 
-## Last step. Stop and delete the cluster.
+## Step 7. Stop and delete the cluster.
 
 1. Back to the terminal session that you just started the TiKV cluster and press `ctrl-c` and wait for the cluster to stop.
 2. You can destroy the cluster by:
