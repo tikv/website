@@ -1,21 +1,24 @@
-serve:
+yarn: 
+	yarn
+
+serve: yarn
 	hugo server \
 		--buildDrafts \
 		--buildFuture \
 		--disableFastRender \
 		--bind 0.0.0.0
 
-serve-production:
+serve-production: yarn
 	hugo server \
 		--disableFastRender \
 		--buildFuture \
 		--bind 0.0.0.0
 
-production-build:
+production-build: yarn
 	hugo --minify \
 		--buildFuture
 
-preview-build:
+preview-build: yarn
 	hugo \
 		--buildDrafts \
 		--buildFuture \
