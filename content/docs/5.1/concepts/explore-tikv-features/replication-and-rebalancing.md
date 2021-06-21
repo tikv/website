@@ -70,19 +70,20 @@ On another terminal session, we will use [go-ycsb](https://github.com/pingcap/go
 
 ## Step 3. Verify replication
 
-1. To understand replication in TiKV, it's important to review a few concepts from the [architecture](https://github.com/tikv/tikv#tikv-software-stack).
+{{< info >}}
+To understand replication in TiKV, it's important to review a few concepts from the [architecture](https://github.com/tikv/tikv#tikv-software-stack).
+{{< /info >}}
+| Concept    |                                                                                                           Description                                                                                                            |
+| ---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| **Region** | TiKV could seem like a giant sorted map of key-value pairs. The region is the basic unit of key-value data movement. Each region is a range of keys and replicated to multiple Nodes. These multiple replicas form a Raft group. |
+| **Peer**   |                             TiKV replicates each region (3 times by default) and stores each replica on a different peer. In the same node, it could contains multiple peers of  different regions.                              |
 
-| Concept     |                                                                                                           Description                                                                                                            |
-| ----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| **Region**  | TiKV could seem like a giant sorted map of key-value pairs. The region is the basic unit of key-value data movement. Each region is a range of keys and replicated to multiple Nodes. These multiple replicas form a Raft group. |
-| **Replica** |                                                                  TiKV replicates each region (3 times by default) and stores each replica on a different node.                                                                   |
+1. With those concepts in mind, open the Grafana at [http://localhost:3000](http://localhost:3000) (printed from `tiup-playground`) and log in with `admin` whose password is the same as username.
 
-2. With those concepts in mind, open the Grafana at [http://localhost:3000](http://localhost:3000) (printed from `tiup-playground`) and log in with `admin` whose password is the same as username.
-
-3. On the **playground-overview** dashboard, note the matrices in **region** panel in **TiKV** tab. It shows that the Regions count is the same on all three nodes. This indicates that:
+2. On the **playground-overview** dashboard, note the matrices in **region** panel in **TiKV** tab. It shows that the Regions count is the same on all three nodes. This indicates that:
    *  There are this many "ranges" of data in the cluster. These are the small workload that we use `go-ycsb` injected.
-   * Each region has been replicated 3 times (according to the TiKV default).
-   * For each region, each replica is stored on different stores.
+   * Each region has 3 replicas (according to the default configuration).
+   * For each region, each replica is stored in different stores.
 
 {{< figure
     src="/img/docs/region-count.png"
@@ -91,7 +92,7 @@ On another terminal session, we will use [go-ycsb](https://github.com/pingcap/go
 
 ## Step 4. Write more data
 
-In this section, we will launch a larger workload, then scales the 3-node local cluster to a 5-node cluster and check the load of TiKV cluster will be **rebalanced** as expected.
+In this section, we will launch a larger workload, then scales the 3-node local cluster to a 5-node cluster and check the load of the TiKV cluster will be **rebalanced** as expected.
 
 1. With a new terminal session, and launch a larger workload with `go-ycsb`.
     For example, on a machine with 16 virtual cores, you can launch a workload in the following way:
