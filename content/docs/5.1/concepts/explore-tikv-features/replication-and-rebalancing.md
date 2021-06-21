@@ -79,7 +79,7 @@ To understand replication in TiKV, it's important to review a few concepts from 
 1. Open the Grafana at [http://localhost:3000](http://localhost:3000) (printed from `tiup-playground`) and log in with username `admin` and password `admin`.
 
 2. On the **playground-overview** dashboard, note the matrices in **region** panel in **TiKV** tab. It shows that the Regions count is the same on all three nodes. This indicates that:
-   *  There is only one region. These are the small workload that we use `go-ycsb` injected.
+   *  There is only one region.It contains the data imported by `go-ycsb`.
    * Each region has 3 replicas (according to the default configuration).
    * For each region, each replica is stored in different stores.
 
