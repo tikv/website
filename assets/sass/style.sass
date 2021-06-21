@@ -40,6 +40,7 @@ $LH: 1.75
 
 // customize color
 $M2: #F7F8F9
+$B3: #172D72
 
 @import "bulma/sass/utilities/derived-variables"
 
@@ -100,6 +101,10 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
 
   .card-content
     padding: 0 2rem 2rem
+
+
+a
+  color: $light-blue
 
 .docs-content
   padding-bottom: 8rem
@@ -203,6 +208,9 @@ $colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
       &:hover
         color: $light-blue
         text-decoration: underline
+
+.hero.is-primary
+    background-color: $B3
 
 .toc
   padding: 1rem 0 3rem 2rem
