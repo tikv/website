@@ -218,9 +218,16 @@ a
   li
     font-size: 1.1rem
 
-    a.is-active
-      color: $tikv-blue
-      font-weight: 700
+    a
+      color: #000
+
+      &.is-active
+        color: $light-blue
+        font-weight: 700
+
+      &:hover
+        color: $light-blue
+
 
   ul
     list-style: none !important
