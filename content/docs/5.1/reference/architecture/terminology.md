@@ -1,51 +1,39 @@
 ---
-title: Glossary
-description: Glossaries about TiKV.
+title: Terminologies
+description: TiKV and PD terminologies.
 menu:
     "5.1":
-        parent: Reference
-        weight: 10
+        parent: Architecture
+        weight: 4
 ---
 
-
-
-## N
-
-### Node
+## Node
 
 A TiKV **Node** is a physical node in the cluster, which could be a virtual machine, a container, etc. Within each Node, there can be one or more stores.
 
 The status for the Node, Store, and Region will be regularly reported to the Placement Driver.
 
-## P
-
-### Placement driver (PD)
+## Placement driver (PD)
 
 The Placement Driver (PD) is the cluster manager of TiKV. It periodically records the cluster information, makes decisions to move/split/merge TiKV Regions across nodes according to the application workload and storage capacities. This process is called **scheduling**.
 
-### Peer
+## Peer
 
 A replica of a Region is called a peer. Multiple peers of the same Region replicate data via the Raft consensus algorithm.
 
-## R
-
-### Raft
+## Raft
 
 Data is distributed across TiKV instances via the [Raft consensus algorithm](https://raft.github.io/), which is based on the so-called [Raft paper](https://raft.github.io/raft.pdf) ("In Search of an Understandable Consensus Algorithm") from [Diego Ongaro](https://ongardie.net/diego/) and [John Ousterhout](https://web.stanford.edu/~ouster/cgi-bin/home.php).
 
-### Region
+## Region
 
 TiKV shards continuous ranges of keys into **Regions**, and replicates **Regions** via the Raft protocol. When data size increases until reaching a threshold, a Region will be split into multiple. Conversely, if the size of the Region shrinks due to data deletion, two adjacent Regions can be merged into one.
 
-## S
-
-### Store
+## Store
 
 A **Store** is an instance of a TiKV server in which multiple peers are stored.
 
-## T
-
-### Transaction
+## Transaction
 
 TiKV provides transactions that allow you to read and write across any keys with **Snapshot Isolation** regardless of the physical placement of the Region. TiKV also provides the pessimistic transactions that are semantically analogous to `SELECT ... FOR UPDATE` in SQL.
 

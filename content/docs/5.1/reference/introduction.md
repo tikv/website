@@ -9,4 +9,3 @@ menu:
 This section includes technical details about TiKV:
 
 - [TiKV Architecture](../architecture/introduction/)
-- [Glossary](../glossary)

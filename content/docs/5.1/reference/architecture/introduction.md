@@ -12,3 +12,4 @@ This section introduces how TiKV works and how it was built:
 - [Overview](../overview):  Architecture behind TiKV.
 - [Storage](../storage): Understand the storage layer of a TiKV cluster.
 - [Scheduling](../scheduling): Introduces the PD scheduling component in a TiKV cluster.
+- [Terminology](../terminology): TiKV and PD terminologies.
