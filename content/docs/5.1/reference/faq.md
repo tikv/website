@@ -11,14 +11,6 @@ menu:
 
 TiKV is a distributed Key-Value database that features in geo-replication, horizontal scalability, consistent distributed transactions and coprocessor support.
 
-## How do TiDB and TiKV work together? What is the relationship between the two?
-
-TiDB works as the SQL layer and TiKV works as the Key-Value layer. TiDB provides TiKV the SQL enablement and turns TiKV into a NewSQL database. TiDB and TiKV work together to be as scalable as a NoSQL database while maintains the ACID transactions of a relational database.
-
-## Why do you have separate layers?
-
-Inspired by Google F1 and Spanner, TiDB and TiKV adopt a highly-layered architecture. This architecture supports pluggable storage drivers and engines, which powers you to customize your database solutions based on your own business requirements. Meanwhile, this architecture makes it easy to debug, update, tune, and maintain. You won’t have to go through the whole system just to find and fix a bug in one module.
-
 ## How do I run TiKV?
 
 For further information, see [TiKV in 5 Minutes](../../concepts/tikv-in-5-minutes/) for deploying a TiKV testing cluster, or [Install TiKV](../../deploy/install/install/) for deploying TiKV in production.
