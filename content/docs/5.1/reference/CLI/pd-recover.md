@@ -7,7 +7,10 @@ menu:
         weight: 3
 ---
 
-PD Recover is a disaster recovery tool of PD, used to recover the PD cluster which cannot start or provide services normally.
+PD Recover is a disaster recovery tool of PD, used to recover the PD cluster from disaster, e.g.
+
+- PD cannot start
+- PD losts its data because of disk failure.
 
 ## Compile from source code
 
@@ -33,6 +36,13 @@ Download the following installation package where PD Recover binary locates.
 ## Quick Start
 
 This section describes how to use PD Recover to recover a PD cluster.
+
+To recover a PD cluster, only two necessary parameters are required:
+
+1. Cluster ID
+2. Allocated ID
+
+Other information like region, store, peer will be reported from TiKV automatically after PD cluster is recovered.
 
 ### Get cluster ID
 
