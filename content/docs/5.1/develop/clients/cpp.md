@@ -1,6 +1,6 @@
 ---
 title: C++ Client
-description: Interact with TiKV using C.
+description: Interact with TiKV using C++.
 menu:
     "5.1":
         parent: TiKV Clients
