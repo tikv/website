@@ -21,7 +21,7 @@ To start, open the `pom.xml` of your project, and add the `tikv-client-java` as 
 <dependency>
   <groupId>org.tikv</groupId>
   <artifactId>tikv-client-java</artifactId>
-  <version>${latest_version}</version>
+  <version>3.2.0-SNAPSHOT</version>
 </dependency>
 ```
 
