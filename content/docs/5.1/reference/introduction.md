@@ -9,3 +9,6 @@ menu:
 This section includes technical details about TiKV:
 
 - [TiKV Architecture](../architecture/introduction/)
+- [Query Layers](../query-layers/)
+- [TiUP](../tiup/)
+- [FAQs](../faq/)
