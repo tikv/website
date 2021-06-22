@@ -9,9 +9,9 @@ menu:
 
 This guide introduces how to interact with TiKV using [Java Client](https://github.com/tikv/client-java).
 
-{{< warning >}}
+{{< info >}}
 TiKV Java Client is developed and released using Java8. The minimum supported version of TiKV is 2.0.0.
-{{< /warning >}}
+{{< /info >}}
 
 ## Add the dependency
 
@@ -72,7 +72,6 @@ for(Kvrpcpb.KvPair pair : list) {
   System.out.println(pair);
 }
 ```
-
 
 These functions also have batch variants (`batchPut`, `batchGet`, `batchDelete` and `batchScan`), which offer considerably reduced network overhead and can result in dramatic performance increases under certain workloads.
 

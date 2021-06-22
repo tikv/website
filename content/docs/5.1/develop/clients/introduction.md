@@ -15,7 +15,7 @@ TiKV offers two APIs that you can interact with:
 | Transactional | A higher-level key-value API that provides ACID semantics.                            | Multiple keys | Your application requires distributed transactions.                              |
 
 {{< warning >}}
-It is **not recommended or supported** to use both the raw and transactional APIs on the same keyspace.
+It is **not supported** to use both the raw and transactional APIs on the same keyspace.
 {{< /warning >}}
 
 TiKV has clients for a number of languages:
@@ -23,7 +23,7 @@ TiKV has clients for a number of languages:
 | Clients                    | RawKV API         | TxnKV API         | Supported TiKV Version |
 | -------------------------- | ----------------- | ----------------- | ---------------------- |
 | [Java Client](../java)     | Stable            | Under development | >= 2.0.0               |
-| [Go Client](../go)         | Unstable          | Unstable          | >= 5.0.0               |
+| [Go Client V2](../go)      | Unstable          | Unstable          | >= 5.0.0               |
 | [Rust Client](../rust)     | Stable            | Stable            | >= 5.0.0               |
 | [Python Client](../python) | Unstable          | Unstable          | >= 5.0.0               |
 | [C Client](../c)           | Unstable          | Unstable          | >= 5.0.0               |
