@@ -27,11 +27,11 @@ TiKV Clients interact with PD and TiKV through gRPC.
 
 ## TiKV Cluster
 
-TiKV stores data in RocksDB, which is a persistent key-value store for fast storage environment. This [article](/deep-dive/key-value-engine/rocksdb/) explains why RocksDB is selected.
+TiKV stores data in RocksDB, which is a persistent and fast key-value store. This [article](/deep-dive/key-value-engine/rocksdb/) explains why RocksDB is selected.
 
-TiKV replicates data to multiple machines via [Raft](/deep-dive/consensus-algorithm/raft/) in case of machine failure. Data is written through the interface of Raft instead of to RocksDB. With the implementation of Raft, TiKV becomes a distributed Key-Value storage. Even with a few machine failures, TiKV can automatically complete replicas by virtue of the native Raft protocol, which does not impact the application.
+With the [Raft](/deep-dive/consensus-algorithm/raft/) consensus algorithm, TiKV replicates data to multiple machines, ensures data consistency, and tolerates machine failures. Data is written through the interface of Raft instead of to RocksDB. With the implementation of Raft, TiKV becomes a distributed Key-Value storage, which can automatically recover the lost replicas in case of machine failures, keep the application unaffected.
 
-Based on the Raft layer, TiKV provides two APIs that clients can use to interact with it:
+Based on the Raft layer, TiKV provides two APIs that clients can interact with:
 
 | API           | Description                                                                           | Atomicity     | Use when...                                                                   |
 |:------------- |:------------------------------------------------------------------------------------- |:------------- |:----------------------------------------------------------------------------- |
