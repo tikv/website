@@ -1,5 +1,5 @@
 - name: Low and stable latency
-  description: Designed for latency sensitive services with  RawKV’s average response time less than xx ms (P99=xx ms), and TxnKV’s average response time below xx ms (P99=xx ms).
+  description: RawKV’s average response time less than xx ms (P99=xx ms), and TxnKV’s average response time less than xx ms (P99=xx ms).
   icon: img/homepage/low-latency.svg
   featured: true
 - name: High scalability
@@ -7,7 +7,7 @@
   icon: img/homepage/high-scalability.svg
   featured: true
 - name: Easy to use
-  description: Run one command to deploy a TiKV cluster which has everything you need for production environments. Easily scale-out or scale-in the cluster with TiUP or TiKV operator.
+  description: Run a single command to deploy a TiKV cluster with everything you need for production environments. Easily scale out or scale in the cluster with TiUP or TiKV operator.
   icon: img/homepage/easy-to-use.svg
   featured: true
 - name: Easy to maintain
@@ -19,6 +19,6 @@
   icon: img/homepage/consistent-distributed-transactions.svg
   featured: true
 - name: Adjustable consistency
-  description: By choosing from RawKV and TxnKV modes, users can make compromises between consistency and performance.
+  description: In RawKV and TxnKV modes, you can customize the balance between consistency and performance.
   icon: img/homepage/adjustable-consistency.svg
   featured: true
