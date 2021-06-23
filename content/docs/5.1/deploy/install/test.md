@@ -46,13 +46,13 @@ This chapter describes how to deploy a TiKV cluster using TiUP Playground.
     tiup -v
     ```
 
-    version >= 1.5.0:
+    version >= 1.5.2:
 
     ```bash
     tiup playground --mode tikv-slim
     ```
 
-    version < 1.5.0:
+    version < 1.5.2:
 
     ```bash
     tiup playground
