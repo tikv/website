@@ -28,21 +28,28 @@
   <div class="container">
     <p class="desc">TiKV provides both raw key-value APIs (RawKV) and transactional APIs (TxnKV) with ACID compliance.
     </p>
+
     <p class="desc">TiKV is an ideal choice in the following scenarios</p>
+
     <div class="columns">
-      <div class="column scenarios">
-        <div class="scenario">As an online serving module of a recommendation system or <a href="https://www.featurestore.org/" target="_blank">a feature store</a></div>
+      <div class="column scenarios is-7">
+        <div class="scenario">As an online serving module of a recommendation system or <a
+            href="https://www.featurestore.org/" target="_blank">a feature store</a></div>
         <div class="scenario">As a key-value store, e.g. store metadata for an object storage system</div>
         <div class="scenario content">As a storage layer for a database, e.g.
           <ul>
-            <li><a href="https://github.com/pingcap/tidb" target="_blank">TiDB</a>: a distributed MySQL protocol compatible NewSQL Database</li>
-            <li><a href="https://github.com/zhihu/zetta" target="_blank">Zetta</a>: a distributed HBase protocol compatible NoSQL Database</li>
-            <li><a href="https://github.com/yongman/tidis" target="_blank">Tidis</a>: a distributed Redis protocol compatible NoSQL Database</li>
+            <li><a href="https://github.com/pingcap/tidb" target="_blank">TiDB</a>: a distributed MySQL protocol
+              compatible NewSQL Database</li>
+            <li><a href="https://github.com/zhihu/zetta" target="_blank">Zetta</a>: a distributed HBase protocol
+              compatible NoSQL Database</li>
+            <li><a href="https://github.com/yongman/tidis" target="_blank">Tidis</a>: a distributed Redis protocol
+              compatible NoSQL Database</li>
           </ul>
         </div>
       </div>
-      <div class="column">
+      <div class="column is-5">
         <img src="/img/homepage/tikv-architecture.svg" alt="tikv architecture" />
+
       </div>
     </div>
   </div>
@@ -62,7 +69,7 @@
             {{ with .icon }}
             <div class="card-header-icon">
               <span class="icon has-text-primary">
-                <img src="{{ . }}" alt="header icon"/>
+                <img src="{{ . }}" alt="header icon" />
               </span>
             </div>
             {{ end }}
@@ -87,7 +94,7 @@
     <div class="columns is-multiline is-mobile is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen">
       {{ range $users }}
       <div class="column">
-        <img src="{{ .logo }}" alt="tikv user logo"/>
+        <img src="{{ .logo }}" alt="tikv user logo" />
       </div>
       {{ end }}
     </div>
@@ -116,7 +123,7 @@
             {{ with .icon }}
             <div class="card-header-icon">
               <span class="icon has-text-primary">
-                <img src="{{ . }}" alt="header icon"/>
+                <img src="{{ . }}" alt="header icon" />
               </span>
             </div>
             {{ end }}
