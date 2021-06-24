@@ -9,7 +9,7 @@ menu:
 
 This document walks you through how to use RawKV’s `CAS (Compare And Swap)` API.
 
-In RawKV, compare-and-swap (CAS) is an atomic instruction used in multithreading to achieve synchronization, which is the atomic equivalent of:
+In RawKV, compare-and-swap (CAS) is an atomic operation used to avoid data racing in concurrent write requests, which is atomically equivalent to:
 
 ```
 if get(key) == old_value {

@@ -1,13 +1,13 @@
 ---
-title: Put Get Delete
-description: How to use RawKV's basic operations such as Put, Get, and Delete.
+title: Get, Put and Delete
+description: How to use RawKV's basic operations such as Get, Put and Delete.
 menu:
     "5.1":
         parent: RawKV
         weight: 1
 ---
 
-This document walks you through how to use RawKV's basic operations such as `Put`, `Get` and `Delete`.
+This document walks you through how to use RawKV's basic operations such as `Get`, `Put` and `Delete`.
 
 ## Java
 
@@ -35,7 +35,7 @@ To connect to TiKV, a PD address `127.0.0.1:2379` is passed to `TiConfiguration`
 A comma is used to separate multiple PD addresses, e.g. `127.0.0.1:2379,127.0.0.2:2379,127.0.0.3:2379`.
 {{< /info >}}
 
-Using a connected `org.tikv.raw.RawKVClient`, you can perform actions such as `Put`, `Get` and `Delete`.
+Using a connected `org.tikv.raw.RawKVClient`, you can perform actions such as `Get`, `Put` and `Delete`.
 
 ```java
 TiConfiguration conf = TiConfiguration.createRawDefault("127.0.0.1:2379");
