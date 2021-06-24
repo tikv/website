@@ -21,6 +21,10 @@ return false;
 
 The atomicity guarantees that the new value is calculated based on up-to-date information; if the value had been updated by another thread in the meantime, the write would fail.
 
+{{< warning >}}
+CAS can normally prevent problems from concurrent access, but suffers from [ABA problem](https://en.wikipedia.org/wiki/ABA_problem). 
+{{</ warning >}}
+
 ## Java
 
 The following example shows a simple example of how to use the `CAS` API in java.
