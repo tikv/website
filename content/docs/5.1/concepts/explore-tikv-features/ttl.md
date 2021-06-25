@@ -13,7 +13,7 @@ This page walks you through a simple demonstration of how to use TTL on RawKV.
 
 Please install TiUP, jshell and download tikv-client jars according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
 
-## Step 1. Config TiKV to enable TTL
+## Step 1: Config TiKV to enable TTL
 
 TTL is disabled by default. Create a file `tikv.yaml` using the following content to enable TTL.
 
@@ -32,13 +32,13 @@ Show TiUP version:
 tiup -v
 ```
 
-version >= 1.5.0:
+version >= 1.5.2:
 
 ```bash
 tiup playground --mode tikv-slim  --kv.config tikv.yaml
 ```
 
-version < 1.5.0:
+version < 1.5.2:
 
 ```bash
 tiup playground --kv.config tikv.yaml
