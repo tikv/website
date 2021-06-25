@@ -28,28 +28,29 @@
   <div class="container">
     <div class="columns">
       <div class="column scenarios is-7">
-        <p class="desc">TiKV provides both raw key-value APIs (RawKV) and transactional APIs (TxnKV) with ACID
-          compliance.
-        </p>
+        <p class="desc">TiKV provides both raw and ACID-compliant transactional key-value API, which is widely used in
+          online serving services, like the metadata storage system for object storage service, the storage system for
+          recommendation systems, the online feature store, etc.</p>
 
-        <p class="desc">TiKV is an ideal choice in the following scenarios</p>
+        <p class="desc">TiKV is also widely used as the storage layer for database management systems, for example:</p>
         <div class="scenario">As an online serving module of a recommendation system or <a
             href="https://www.featurestore.org/" target="_blank">a feature store</a></div>
         <div class="scenario">As a key-value store, e.g. store metadata for an object storage system</div>
         <div class="scenario content">As a storage layer for a database, e.g.
           <ul>
-            <li><a href="https://github.com/pingcap/tidb" target="_blank">TiDB</a>: a distributed MySQL protocol
-              compatible NewSQL Database</li>
-            <li><a href="https://github.com/zhihu/zetta" target="_blank">Zetta</a>: a distributed HBase protocol
-              compatible NoSQL Database</li>
-            <li><a href="https://github.com/yongman/tidis" target="_blank">Tidis</a>: a distributed Redis protocol
-              compatible NoSQL Database</li>
+            <li><a href="https://github.com/pingcap/tidb" target="_blank">TiDB</a>: An open-source MySQL compatible
+              NewSQL database that supports Hybrid Transactional and Analytical Processing (HTAP) workloads.</li>
+            <li><a href="https://github.com/zhihu/zetta" target="_blank">Zetta</a>: An open-source NoSQL database that
+              supports Transaction and Cloud Spanner like API.</li>
+            <li><a href="https://github.com/yongman/tidis" target="_blank">Tidis</a>: a Distributed NoSQL database,
+              providing a Redis protocol API (string, list, hash, set, sorted set), written in Go.</li>
+            <li><a href="https://github.com/distributedio/titan" target="_blank">Titan</a>: A distributed implementation
+              of Redis compatible layer based on TiKV.</li>
           </ul>
         </div>
       </div>
       <div class="column is-5">
         <img src="/img/homepage/tikv-architecture.svg" alt="tikv architecture" />
-
       </div>
     </div>
   </div>
