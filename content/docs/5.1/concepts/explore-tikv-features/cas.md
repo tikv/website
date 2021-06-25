@@ -23,104 +23,71 @@ The atomicity guarantees that the new value is calculated based on up-to-date in
 
 ## Prerequisites
 
-Please start a TiKV Cluster according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
+Please install TiUP, jshell, download tikv-client jars and start a TiKV Cluster according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
+
+## Step 1: Write the code to test CAS
+
+Let's write an example to verify that CAS works.
+
+Save the following script to file `test_raw_cas.java`.
+
+```java
+import java.util.Optional;
+import org.tikv.common.TiConfiguration;
+import org.tikv.common.TiSession;
+import org.tikv.raw.RawKVClient;
+import org.tikv.shade.com.google.protobuf.ByteString;
+
+TiConfiguration conf = TiConfiguration.createRawDefault("127.0.0.1:2379");
+// enable AtomicForCAS when using RawKVClient.compareAndSet or RawKVClient.putIfAbsent
+conf.setEnableAtomicForCAS(true);
+TiSession session = TiSession.create(conf);
+RawKVClient client = session.createRawClient();
+
+ByteString key = ByteString.copyFromUtf8("Hello");
+ByteString value = ByteString.copyFromUtf8("CAS");
+ByteString newValue = ByteString.copyFromUtf8("NewValue");
+
+// put
+client.put(key, value);
+System.out.println("put key=" + key.toStringUtf8() + " value=" + value.toStringUtf8());
+
+// get
+Optional<ByteString> result = client.get(key);
+assert(result.isPresent());
+assert("CAS".equals(result.get().toStringUtf8()));
+System.out.println("get key=" + key.toStringUtf8() + " result=" + result.get().toStringUtf8());
+
+// cas
+client.compareAndSet(key, Optional.of(value), newValue);
+System.out.println("cas key=" + key.toStringUtf8() + " value=" + value.toStringUtf8() + " newValue=" + newValue.toStringUtf8());
+
+// get
+result = client.get(key);
+assert(result.isPresent());
+assert("NewValue".equals(result.get().toStringUtf8()));
+System.out.println("get key=" + key.toStringUtf8() + " result=" + result.get().toStringUtf8());
+
+// close
+client.close();
+session.close();
+```
+
+## Step 2: Run the code
+
+```bash
+jshell --class-path tikv-client-java.jar:slf4j-api.jar --startup test_raw_cas.java
+
+put key=Hello value=CAS
+get key=Hello result=CAS
+cas key=Hello value=CAS newValue=NewValue
+get key=Hello result=NewValue
+```
+
+As we can see, after calling `compareAndSet` the value `CAS` is replaced by `newValue`.
 
 {{< warning >}}
-CAS in TiKV Java Client is not released, so Rust Client example is used here.
-{{< /warning >}}
-
-## Step 1: Install Rust
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
-
-## Step 2: Create a rust project
-
-Use `cargo` to create a rust project:
-
-```bash
-cargo new hello-tikv
-cd hello-tikv
-```
-
-## Step 3: Add dependency
-
-Append the following content to file `Cargo.toml`.
-
-```toml
-tikv-client = "0.1.0"
-tokio = { version = "1.5.0", features = ["full"] }
-```
-
-## Step 4: Write test code
-
-Save the following code to file `src/main.rs`.
-
-```rust
-use tikv_client::RawClient;
-
-#[tokio::main]
-use tikv_client::RawClient;
-
-#[tokio::main]
-async fn main() {
-    let client = RawClient::new(vec!["127.0.0.1:2379"])
-        .await
-        .unwrap()
-        .with_atomic_for_cas();
-
-    let key = "key".to_owned();
-    let value = "value".to_owned();
-    let new_value = "newValue".to_owned();
-
-    // call put(key, value)
-    client.put(key.to_owned(), value.to_owned()).await.unwrap();
-    println!("put key={}, value={}", key, value);
-
-    // call get(key) returns value
-    let res = client.get(key.to_owned()).await.unwrap().unwrap();
-    println!("get key={} returnedValue={:?}", key, res);
-    assert_eq!(res, value.clone().as_bytes());
-
-    // call compare_and_swap(key, value, new_value) returns (value, true)
-    // If the value retrived is equal to `current_value`, `new_value` is written.
-    // A tuple is returned if successful: the previous value and whether the value is swapped
-    let res = client
-        .compare_and_swap(
-            key.to_owned(),
-            Some(value.to_owned()).map(|v| v.into()),
-            new_value.to_owned(),
-        )
-        .await
-        .unwrap();
-    println!(
-        "compare_and_swap key={} oldValue={} newValue={} returnedValue={:?}",
-        key, value, new_value, res
-    );
-
-    // call get(key) returns new_value
-    let res = client.get(key.to_owned()).await.unwrap().unwrap();
-    println!("get key={} returnedValue={:?}", key, res);
-    assert_eq!(res, new_value.clone().as_bytes());
-}
-```
-
-## Step 5: Run the code
-
-```bash
-cargo run
-
-put key=key, value=value
-get key=key returnedValue Some([118, 97, 108, 117, 101])
-compare_and_swap key=key oldValue=value newValue=newValue returnedValue=(Some([118, 97, 108, 117, 101]), true)
-get key=key returnedValue=Some([110, 101, 119, 86, 97, 108, 117, 101])
-```
-
-As we can see, after calling `compare_and_swap` the `value` is replaced by `newValue`.
-
-{{< warning >}}
-Users must set `with_atomic_for_cas` to ensure linearizability of `compare_and_swap` when used together with `put`, `delete`, `batch_put`, or `batch_delete`.
+Users must set `conf.setEnableAtomicForCAS(true)` to ensure linearizability of `compare_and_swap` when used together with `put`, `delete`, `batch_put`, or `batch_delete`.
 
 To guarantee the atomicity of CAS, write operations like `put` or `delete` in atomic mode are more expensive.
 {{< /warning >}}
