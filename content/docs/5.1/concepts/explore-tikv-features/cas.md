@@ -39,6 +39,8 @@ import org.tikv.raw.RawKVClient;
 import org.tikv.shade.com.google.protobuf.ByteString;
 
 TiConfiguration conf = TiConfiguration.createRawDefault("127.0.0.1:2379");
+// enable AtomicForCAS when using RawKVClient.compareAndSet or RawKVClient.putIfAbsent
+conf.setEnableAtomicForCAS(true);
 TiSession session = TiSession.create(conf);
 RawKVClient client = session.createRawClient();
 
@@ -84,11 +86,8 @@ get key=Hello result=NewValue
 
 As we can see, after calling `compareAndSet` the value `CAS` is replaced by `newValue`.
 
-<!--
-TODO: wait java implementation
 {{< warning >}}
-Users must set `with_atomic_for_cas` to ensure linearizability of `compare_and_swap` when used together with `put`, `delete`, `batch_put`, or `batch_delete`.
+Users must set `conf.setEnableAtomicForCAS(true)` to ensure linearizability of `compare_and_swap` when used together with `put`, `delete`, `batch_put`, or `batch_delete`.
 
 To guarantee the atomicity of CAS, write operations like `put` or `delete` in atomic mode are more expensive.
 {{< /warning >}}
--->
