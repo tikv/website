@@ -80,6 +80,8 @@ import org.tikv.raw.RawKVClient;
 import org.tikv.shade.com.google.protobuf.ByteString;
 
 TiConfiguration conf = TiConfiguration.createRawDefault("127.0.0.1:2379");
+// enable AtomicForCAS when using RawKVClient.compareAndSet or RawKVClient.putIfAbsent
+conf.setEnableAtomicForCAS(true);
 TiSession session = TiSession.create(conf);
 RawKVClient client = session.createRawClient();
 
