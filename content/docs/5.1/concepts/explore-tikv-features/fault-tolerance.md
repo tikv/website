@@ -7,7 +7,7 @@ menu:
         weight: 2
 ---
 
-This page walks you through a simple demonstration of how TiKV remains available during and recovers after, failure.
+This page walks you through a simple demonstration of how TiKV recovers from failures and continues to provide services during failures.
 
 1. Starting a 6-node local cluster.
 2. Run a sample workload via [go-ycsb](https://github.com/pingcap/go-ycsb), terminate a node to simulate a failure, and see how the cluster continues uninterrupted.
