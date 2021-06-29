@@ -9,7 +9,7 @@ menu:
 
 This page walks you through a simple demonstration of how TiKV remains available during and recovers after, failure.
 
-1. Starting with a 6-node local cluster with the default 3-way replication.
+1. Starting a 6-node local cluster.
 2. Run a sample workload via [go-ycsb](https://github.com/pingcap/go-ycsb), terminate a node to simulate a failure, and see how the cluster continues uninterrupted.
 3. Leave that node offline for long enough to watch the cluster repair itself by re-replicating missing data to other nodes.
 4. Prepare the cluster for 2 simultaneous node failures by increasing to 5-way replication, then take two nodes offline at the same time, and again see how the cluster continues uninterrupted.
@@ -18,8 +18,7 @@ This page walks you through a simple demonstration of how TiKV remains available
 ## Prerequisites
 
 1. Install [TiUP](https://github.com/pingcap/tiup) version **v1.5.2** or above as described in [TiKV in 5 Minutes](../../tikv-in-5-minutes)
-2. Clone and compile tool [go-ycsb](https://github.com/pingcap/go-ycsb)
-3. Install [client-py](https://github.com/tikv/client-py) to interact with the TiKV cluster.
+2. Install [client-py](https://github.com/tikv/client-py) to interact with the TiKV cluster.
 
 
 ## Step 1. Start a 6-node cluster
@@ -32,7 +31,7 @@ tiup playground --mode tikv-slim --kv 6
 
 This command will give you a hint about components' addresses. It will be used in the following steps.
 
-```txt
+```
 Playground Bootstrapping...
 Start pd instance
 Start tikv instance
@@ -55,26 +54,33 @@ Each region contains 3 replicas according to the default configuration.
 On another terminal session, use [go-ycsb](https://github.com/pingcap/go-ycsb) to launch a workload.
 
 1. Clone the `go-ycsb` from GitHub.
+
     ```sh
     git clone https://github.com/pingcap/go-ycsb.git
     ```
+
 2. Build the application from the source.
+
     ```sh
     make
     ```
+
 3. Load a workload using `go-ycsb` with **10000** keys.
+
     ```sh
     ./bin/go-ycsb load tikv -P workloads/workloada -p tikv.pd="127.0.0.1:2379" -p tikv.type="raw" -p recordcount=1000000
     ```
+
     This command will output the following content:
-    ```txt
+
+    ```
     Run finished, takes 11.722575701s
     INSERT - Takes(s): 11.7, Count: 10000, OPS: 855.2, Avg(us): 18690, Min(us): 11262, Max(us): 61304, 99th(us): 36000, 99.9th(us): 58000, 99.99th(us): 62000
-
     ```
 ## Step 3. Verify the data importing.
 
 Within python3.5+ REPL environment, you can scan all the keys that just inserted by `go-ycsb` and assert the count of them is `recordcount` in the `go-ycsb` command above.
+
 ```python
 >>> from tikv_client import RawClient
 >>> client = RawClient.connect("127.0.0.1:2379")
@@ -95,7 +101,7 @@ Go to the source directory of `go-ycsb`, use the following command to run the `w
 
 You'll see per-operation statistics print to standard output every second.
 
-```txt
+```
 ...
 READ   - Takes(s): 10.0, Count: 7948, OPS: 796.2, Avg(us): 395, Min(us): 72, Max(us): 20545, 99th(us): 2000, 99.9th(us): 19000, 99.99th(us): 21000
 UPDATE - Takes(s): 10.0, Count: 7945, OPS: 796.8, Avg(us): 19690, Min(us): 11589, Max(us): 40429, 99th(us): 34000, 99.9th(us): 41000, 99.99th(us): 41000
@@ -130,7 +136,7 @@ This workload above will run several minutes, you will have enough time to simul
 
 ## Step 6. Simulate a single node failure
 
-To understand fault tolerance in TiKV, it's important to review a few concepts from the [architecture](https://github.com/tikv/tikv#tikv-software-stack).
+To understand fault tolerance in TiKV, it's important to review a few concepts from the [architecture](https://tikv.org/docs/5.1/reference/architecture/overview).
 | Concept        |                                                   Description                                                    |
 | -------------- | :--------------------------------------------------------------------------------------------------------------: |
 | **Raft Group** |                  Each replica of a region is called Peer. All of such peers form a raft group.                   |
@@ -143,6 +149,7 @@ Notice that all read/write operations are handled by the leader of the region gr
 1. Go to Grafana dashboard **playground-overview**, the leader distribution is in panel **leader** in row **TiKV**.
 
 2. In the example, the local process that open port `20180` hold only one leader in the cluster. Use the following command to stop the process.
+
     ```sh
     kill -STOP $(lsof -i:20180 | grep tikv | head -n1 | awk '{print $2}')
     ```
@@ -171,10 +178,13 @@ At this point, the cluster has recovered. In the example above, we stop the lead
 While using `tiup ctl`, an explicit version of the component is needed. In this example, it's v5.1.0.
 {{< /info >}}
 1. Increase replicas to the cluster:
+
     ```sh
     tiup ctl:v5.1.0 pd config set max-replicas 5
     ```
+
 2. Stop 2 non-leader nodes simultaneously. In this example, we stop the processes that hold port `20181` and `20182` whose PID is `1009934` and `109941`.
+
    ```sh
    kill -STOP 1009934
    kill -STOP 1009941
@@ -190,6 +200,7 @@ While using `tiup ctl`, an explicit version of the component is needed. In this 
     number="1" >}}
 
 2. To verify this further, we could use `client-py` to read/write some data to prove our cluster is still available.
+
     ```python
     >>> from tikv_client import RawClient
     >>> client = RawClient.connect("127.0.0.1:2379")
@@ -203,6 +214,7 @@ While using `tiup ctl`, an explicit version of the component is needed. In this 
 
 1. Back to the terminal session that you just started the TiKV cluster and press `ctrl-c` and wait for the cluster to stop.
 2. You can destroy the cluster by:
+
     ```sh
     tiup clean --all
     ```
