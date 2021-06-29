@@ -1,6 +1,6 @@
 ---
-title: Fault tolerance and recovery
-description: Fault tolerance, recovery
+title: Fault Tolerance and Recovery
+description: Learn how TiKV recovers from failures
 menu:
     "5.1":
         parent: Features
@@ -17,18 +17,21 @@ This page walks you through a simple demonstration of how TiKV remains available
 
 ## Prerequisites
 
-1. Installed [TiUP](https://github.com/pingcap/tiup) version **v1.5.2** or above as described in [TiKV in 5 Minutes](../../tikv-in-5-minutes) for cluster deployment
-2. Clone and compile tool [go-ycsb](https://github.com/pingcap/go-ycsb) in local for launch a workload
+1. Install [TiUP](https://github.com/pingcap/tiup) version **v1.5.2** or above as described in [TiKV in 5 Minutes](../../tikv-in-5-minutes)
+2. Clone and compile tool [go-ycsb](https://github.com/pingcap/go-ycsb)
 3. Install [client-py](https://github.com/tikv/client-py) to interact with the TiKV cluster.
 
 
 ## Step 1. Start a 6-node cluster
 
-With a new terminal session, use `tiup playground` command to launch a 6-node local cluster.
+Use `tiup playground` command to launch a 6-node local cluster.
+
 ```sh
 tiup playground --mode tikv-slim --kv 6
 ```
-This command will give you a hint about components' addresses. It will be used in the following steps:
+
+This command will give you a hint about components' addresses. It will be used in the following steps.
+
 ```txt
 Playground Bootstrapping...
 Start pd instance
@@ -43,7 +46,9 @@ To view the Prometheus: http://127.0.0.1:44549
 To view the Grafana: http://127.0.0.1:3000
 ```
 
-**By now, each region in this cluster will have 3 replicas according to the default configuration.**
+{{< info >}}
+Each region contains 3 replicas according to the default configuration.
+{{< /info >}}
 
 ## Step 2. Write data
 
@@ -88,7 +93,7 @@ Go to the source directory of `go-ycsb`, use the following command to run the `w
 ./bin/go-ycsb run tikv -P workloads/workloada -p tikv.pd="127.0.0.1:2379" -p tikv.type="raw" -p tikv.conncount=16 -p threadcount=16 -p recordcount=10000 -p operationcount=1000000
 ```
 
-you'll see per-operation statistics print to standard output every second.
+You'll see per-operation statistics print to standard output every second.
 
 ```txt
 ...
@@ -99,7 +104,9 @@ UPDATE - Takes(s): 20.0, Count: 15799, OPS: 791.1, Avg(us): 19834, Min(us): 1050
 ...
 ```
 
-Normally, this workload above will run several minutes, you will have enough time to check and manipulate the cluster.
+{{ <info> }}
+This workload above will run several minutes, you will have enough time to simulate a node failure described as follows.
+{{ </info> }}
 
 ## Step 5. Check the workload
 
@@ -142,7 +149,7 @@ Notice that all read/write operations are handled by the leader of the region gr
 
 ## Step 7. Check load continuity and cluster health
 
-1. Check the leader distribution again, you will find the leader is moving another store.
+1. Check the leader distribution again, you will find the leader is moving to another store.
 
 {{< figure
     src="/img/docs/fault-tolerance-leader-recover.png"
@@ -158,7 +165,7 @@ Notice that all read/write operations are handled by the leader of the region gr
 
 ## Step 8. Prepare for two simultaneous node failures
 
-At this point, the cluster has recovered and is ready to handle another failure. In the example above, we stop the leader of the cluster which result in 5 stores are alive. Then, a new leader is presented after a while. We are going to increase the region replicas of TiKV to 5, stop 2 non-leader nodes simultaneously and check the cluster status.
+At this point, the cluster has recovered. In the example above, we stop the leader of the cluster which result in 5 stores are alive. Then, a new leader is presented after a while. We are going to increase the region replicas of TiKV to 5, stop 2 non-leader nodes simultaneously and check the cluster status.
 
 {{< info >}}
 While using `tiup ctl`, an explicit version of the component is needed. In this example, it's v5.1.0.
