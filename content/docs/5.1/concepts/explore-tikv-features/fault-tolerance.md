@@ -110,9 +110,9 @@ UPDATE - Takes(s): 20.0, Count: 15799, OPS: 791.1, Avg(us): 19834, Min(us): 1050
 ...
 ```
 
-{{ <info> }}
+{{< info >}}
 This workload above will run several minutes, you will have enough time to simulate a node failure described as follows.
-{{ </info> }}
+{{< /info >}}
 
 ## Step 5. Check the workload
 
