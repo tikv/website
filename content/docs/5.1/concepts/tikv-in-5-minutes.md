@@ -44,8 +44,6 @@ This quick-start tutorial is only for test environments. For production environm
         tiup
         ```
 
-    <!-- Explain the results -->
-
 3. If TiUP is already installed, update the TiUP Playground component to the latest version:
 
     ```bash
