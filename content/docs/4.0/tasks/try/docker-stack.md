@@ -271,7 +271,7 @@ use tikv_client::{Config, RawClient, Error};
 #[tokio::main]
 async fn main() -> Result<(), Error> {
     let config = Config::new(vec!["http://pd.tikv:2379"]);
-    let client = RawClient::new(config)?;
+    let client = RawClient::new(config).await?;
     let key = "TiKV".as_bytes().to_owned();
     let value = "Works!".as_bytes().to_owned();
 
