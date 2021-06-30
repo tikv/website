@@ -1,43 +1,66 @@
 {{ define "main" }}
 {{ $shortDesc := site.Params.description.brief | markdownify }}
-{{ $longDesc  := site.Params.description.long | markdownify }}
-{{ $buttons   := site.Params.home.buttons }}
-{{ $logo      := site.Params.logos.color | relURL }}
-{{ $cncfLogo  := site.Params.logos.cncf | relURL }}
-{{ $features  := site.Data.features }}
-<section class="hero is-fullheight-with-navbar is-light">
-  <div class="hero-body home-page">
-    <div class="container has-text-centered">
+{{ $shortDescMobile := site.Params.description.briefMobile | markdownify }}
+{{ $longDesc := site.Params.description.long | markdownify }}
+{{ $logo := site.Params.logos.white | relURL }}
+{{ $cncfLogo := site.Params.logos.cncf | relURL }}
+{{ $features := site.Data.features }}
+{{ $users := site.Data.users }}
+{{ $getStarted := site.Data.getStarted }}
+<section class="section homepage-hero hero">
+  <div class="her-body">
+    <div class="container has-text-left has-text-centered-mobile">
       <img class="is-home-logo" src="{{ $logo }}" alt="Main TiKV logo">
-
-      <br />
-
-      <p class="title is-size-1-desktop is-size-3-touch is-spaced">
-        <span>
+      <p class="title is-size-3-desktop is-spaced is-size-5-mobile">
+        <span class="is-hidden-mobile">
           {{ $shortDesc }}
         </span>
+        <span class="is-hidden-tablet">
+          {{ $shortDescMobile }}
+        </span>
       </p>
+      <a href="/docs/5.1/concepts/overview/" class="button is-size-6-mobile">Get Started</a>
+    </div>
+  </div>
+</section>
 
-      <p class="subtitle is-size-3 is-size-4-tablet is-size-5-mobile">
-        {{ $longDesc }}
-      </p>
+<section class="section homepage-intro">
+  <div class="container">
+    <div class="columns">
+      <div class="column scenarios is-7">
+        <p class="desc">TiKV provides both raw and ACID-compliant transactional key-value API, which is widely used in
+          online serving services, such as the metadata storage system for object storage service, the storage system
+          for
+          recommendation systems, the <a href="https://www.featurestore.org/" target="_blank">online feature store</a>,
+          etc.</p>
 
-      <div class="notification is-radiusless">
-        <p class="title is-size-3 is-size-4-mobile">
-          We are a <a href="https://cncf.io" target="_blank" class="is-link">Cloud Native Computing Foundation</a> graduated project. 🎉
-        </p>
-
-        <img class="is-cncf-logo" src="{{ $cncfLogo }}" alt="Cloud Native Computing Foundation logo">
+        <div class="scenario content">TiKV is also widely used as the storage layer for database management systems, for
+          example:
+          <ul>
+            <li><a href="https://github.com/pingcap/tidb" target="_blank">TiDB</a>: An open-source MySQL compatible
+              NewSQL database that supports Hybrid Transactional and Analytical Processing (HTAP) workloads.</li>
+            <li><a href="https://github.com/zhihu/zetta" target="_blank">Zetta</a>: An open-source NoSQL database that
+              supports Transaction and Cloud Spanner like API.</li>
+            <li><a href="https://github.com/yongman/tidis" target="_blank">Tidis</a>: a Distributed NoSQL database,
+              providing a Redis protocol API (string, list, hash, set, sorted set), written in Go.</li>
+            <li><a href="https://github.com/distributedio/titan" target="_blank">Titan</a>: A distributed implementation
+              of Redis compatible layer based on TiKV.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="column is-5">
+        <img src="/img/homepage/tikv-architecture.svg" alt="tikv architecture" />
       </div>
     </div>
   </div>
 </section>
 
-<section class="section has-background-primary">
+<section class="section homepage-why-tikv">
   <div class="container">
-    <div class="columns">
+    <h2 class="title section-title has-text-centered">Why TiKV</h2>
+    <div class="columns is-multiline">
       {{ range where $features "featured" true }}
-      <div class="column">
+      <div class="column is-one-third">
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
@@ -46,7 +69,7 @@
             {{ with .icon }}
             <div class="card-header-icon">
               <span class="icon has-text-primary">
-                <i class="fas {{ . }}" aria-hidden="true"></i>
+                <img src="{{ . }}" alt="header icon" />
               </span>
             </div>
             {{ end }}
@@ -65,15 +88,58 @@
   </div>
 </section>
 
-<!--
-<section class="section">
-  <div class="container has-text-centered">
+<section class="section homepage-tikv-users has-text-centered">
+  <div class="container">
+    <h2 class="title section-title">Who are using TiKV</h2>
+    <div class="columns is-multiline is-mobile is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen">
+      {{ range $users }}
+      <div class="column">
+        <img src="{{ .logo }}" alt="tikv user logo" />
+      </div>
+      {{ end }}
+    </div>
+
+    <a class="button" href="/">Case Studies</a>
+
     <p class="title is-size-4 is-size-5-mobile">
-     TiKV is a <a>Cloud Native Computing Foundation</a> incubating project
+      TiKV is a <a href="https://www.cncf.io/" target="_blank">Cloud Native Computing Foundation</a> graduate project
     </p>
 
-    <img class="image is-cncf-logo" src="{{ $cncfLogo }}" alt="Cloud Native Computing Foundation logo">
+    <img class="image is-cncf-logo" src="{{ $cncfLogo }}" alt="Cloud Native Computing Foundation logo" />
   </div>
 </section>
--->
+
+<section class="section homepage-get-started">
+  <div class="container">
+    <h2 class="title section-title has-text-centered">Get started with TiKV</h2>
+    <div class="columns">
+      {{ range $getStarted }}
+      <div class="column">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              {{ .title }}
+            </p>
+            {{ with .icon }}
+            <div class="card-header-icon">
+              <span class="icon has-text-primary">
+                <img src="{{ . }}" alt="header icon" />
+              </span>
+            </div>
+            {{ end }}
+          </header>
+          <div class="card-content">
+            {{ range $idx, $doc := .docs }}
+            <p>
+              <a href="{{ $doc.link }}">{{ $doc.name }}</a>
+            </p>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
 {{ end }}
