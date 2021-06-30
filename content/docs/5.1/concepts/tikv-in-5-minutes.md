@@ -12,7 +12,7 @@ This tutorial provides you a quick way to get started with TiKV. You are guided 
 - [Set up a local TiKV cluster with the default options](#set-up-a-local-tikv-cluster-with-the-default-options)
 - [Monitor the TiKV cluster](#monitor-the-cluster)
 - [Write data to and read data from the TiKV cluster](#write-data-to-and-read-data-from-the-tikv-cluster)
-- [Stop and deleted a TiKV cluster](#stop-and-delete-the-tikv-cluster)
+- [Stop and deleted a TiKV cluster](#stop-and-delete-the-tikv-cluster) 
 
 ## Prerequisites
 
