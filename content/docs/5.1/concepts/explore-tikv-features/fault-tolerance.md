@@ -12,7 +12,7 @@ This page walks you through a simple demonstration of how TiKV recovers from fai
 1. Starting a 6-node local cluster.
 2. Run a sample workload via [go-ycsb](https://github.com/pingcap/go-ycsb), terminate a node to simulate a failure, and see how the cluster continues uninterrupted.
 3. Leave that node offline for long enough to watch the cluster repair itself by re-replicating missing data to other nodes.
-4. Prepare the cluster for 2 simultaneous node failures by increasing to 5-way replication, then take two nodes offline at the same time, and again see how the cluster continues uninterrupted.
+4. Increase to 5-way replication, then simultaneously take two nodes offline, and again see how the cluster continues uninterrupted.
 
 
 ## Prerequisites
