@@ -56,13 +56,13 @@ This quick-start tutorial is only for test environments. For production environm
     tiup -v
     ```
 
-    - If your TiUP version is v1.5.0 or later, execute the following command to start a local TiKV cluster:
+    - If your TiUP version is v1.5.2 or later, execute the following command to start a local TiKV cluster:
 
         ```bash
         tiup playground --mode tikv-slim
         ```
 
-    - If your TiUP version is earlier than v1.5.0, execute the following command to start a local TiKV cluster:
+    - If your TiUP version is earlier than v1.5.2, execute the following command to start a local TiKV cluster:
 
         ```bash
         tiup playground
@@ -82,7 +82,7 @@ After the TiKV cluster is started using TiUP Playground, you might need to monit
 
 ## Write data to and read data from the TiKV cluster
 
-To write to and read from the TiKV cluster, you can use either Java or Python script. In the following two examples, Java and Python are respectively used to write "Hello World!" to TiKV.
+To write to and read from the TiKV cluster, you can use either Java, Go, Rust, C or Python script. In the following two examples, Java and Python are respectively used to write "Hello World!" to TiKV.
 
 ### Use Java
 
@@ -144,7 +144,11 @@ To write to and read from the TiKV cluster, you can use either Java or Python sc
 
         ```bash
         jshell --class-path tikv-client-java.jar:slf4j-api.jar --startup test_raw.java
+        ```
 
+        The following result is output:
+
+        ```bash
         Hello
         [key: "k1"
         value: "Hello"
@@ -208,7 +212,11 @@ This package requires Python 3.5+.
 
             ```bash
             python3 test_raw.py
+            ```
 
+            The following result is output.
+
+            ```bash
             b'Hello'
             [(b'k3', b'World'), (b'k1', b'Hello')]
             [(b'k1', b'Hello'), (b'k2', b','), (b'k3', b'World'), (b'k4', b'!'), (b'k5', b'Raw KV')]
@@ -248,7 +256,11 @@ This package requires Python 3.5+.
 
             ```bash
             python3 test_txn.py
+            ```
 
+            The following result is output:
+
+            ```bash
             b'Hello'
             [(b'k3', b'World'), (b'k1', b'Hello')]
             [(b'k1', b'Hello'), (b'k2', b','), (b'k3', b'World'), (b'k4', b'!'), (b'k5', b'TXN KV')]
