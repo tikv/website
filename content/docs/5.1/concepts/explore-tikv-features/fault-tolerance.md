@@ -20,7 +20,6 @@ This page walks you through a simple demonstration of how TiKV recovers from fai
 1. Install [TiUP](https://github.com/pingcap/tiup) version **v1.5.2** or above as described in [TiKV in 5 Minutes](../../tikv-in-5-minutes)
 2. Install [client-py](https://github.com/tikv/client-py) to interact with the TiKV cluster.
 
-
 ## Step 1. Start a 6-node cluster
 
 Use `tiup playground` command to launch a 6-node local cluster.
