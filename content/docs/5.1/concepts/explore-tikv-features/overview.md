@@ -7,10 +7,12 @@ menu:
         weight: 2
 ---
 
+TiKV offers the following key features:
+
 | Feature                                                 | Description                                                                                                                                                                                             |
 | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Replication and rebalancing](../replication-and-rebalancing)             | With the [Placement Driver](/docs/3.0/concepts/architecture#placement-driver) and carefully designed Raft groups, TiKV excels in horizontal scalability and can easily scale to 100+ terabytes of data. |
-| [Fault tolerance and auto-recovery](../fault-tolerance) | TiKV achieves fault tolerance through replicating data to multiple nodes via the Raft consensus algorithm.                                                                                              |
-| [TTL (Time to Live) on RawKV](../ttl)                   | RawKV supports TTL, which means expired Key-Value pairs will be cleared automatically.                                                                                                                  |
-| [CAS (Compare And Swap) on RawKV](../cas)               | RawKV supports compare-and-swap operation, which is an atomic instruction used in multi-threading to achieve synchronization.                                                                          | 
-| [Distributed Transaction](../distributed-dransaction)   | Similar to Google's [Spanner](https://ai.google/research/pubs/pub39966), TiKV supports externally consistent distributed transactions.                                                                  |
+| [Replication and rebalancing](../replication-and-rebalancing)             | With the [Placement Driver](/docs/3.0/concepts/architecture#placement-driver) and carefully designed Raft groups, TiKV excels in horizontal scalability and can easily scale to over 100 terabytes of data. |
+| [High fault tolerance and auto-recovery](../fault-tolerance) | TiKV applies the Raft consensus algorithm to replicate data to multiple nodes, thus achieving fault tolerance.                                                                                              |
+| [TTL (Time to Live) on RawKV](../ttl)                   | RawKV supports TTL to automatically clear expired Key-Value pairs.                                                                                                                  |
+| [CAS (Compare And Swap) on RawKV](../cas)               | RawKV supports the compare-and-swap operation to achieve synchronization in multi-threading.                                                                          |
+| [Distributed Transaction](../distributed-dransaction)   | Similar to [Google Spanner](https://ai.google/research/pubs/pub39966), TiKV supports externally consistent distributed transactions.                                                                  |
