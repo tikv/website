@@ -24,19 +24,19 @@ Make sure that you have installed [TiUP](https://github.com/pingcap/tiup) as des
 
 You can execute the `tiup-playground` command to start a 3-node local cluster.
 
-Show TiUP version:
+Before you do that, check your TiUP version using the following command:
 
 ```bash
 tiup -v
 ```
 
-If TiUP version is later than or equal to 1.5.2:
+If TiUP version is v1.5.2 or later, execute the following command:
 
 ```bash
 tiup playground --mode tikv-slim --kv 3
 ```
 
-If TiUP version is earlier than1.5.2:
+If TiUP version is earlier than v1.5.2, execute the following command:
 
 ```bash
 tiup playground --kv 3
@@ -48,7 +48,7 @@ After you execute the command, the output is as follows:
 Starting component `playground`: /home/pingcap/.tiup/components/playground/v1.5.0/tiup-playground --mode tikv-slim --kv 3
 Using the version v5.0.2 for version constraint "".
 
-If you want to use a TiDB version other than v5.0.2, cancel and retry using the following arguments:
+If you want to use a TiDB version other than v5.0.2, cancel and retry with the following arguments:
 
     Specify version manually:   tiup playground <version>
     Specify version range:      tiup playground ^5
@@ -83,7 +83,7 @@ On another terminal session, you can use [go-ycsb](https://github.com/pingcap/go
 3. Load a small workload using `go-ycsb`.
 
     ```shell
-    # By default, this workload will insert 1000 records into TiKV
+    # By default, this workload will insert 1000 records into TiKV.
     ./bin/go-ycsb load tikv -P workloads/workloada -p tikv.pd="127.0.0.1:2379" -p tikv.type="raw"
     ```
 
@@ -93,7 +93,7 @@ To understand the replication in TiKV, it is important to review several concept
 | Concept    |                                                                                                           Description                                                                                                            |
 | ---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | **Region** | TiKV is like a giant sorted map of key-value pairs. The Region is the basic unit of key-value data movement. Each Region is a range of keys and is replicated to multiple Nodes. These multiple replicas form a Raft group. |
-| **Peer**   |                             TiKV replicates each Region (3 times by default) and stores each replica on a different peer. In the same node, it contains multiple peers of different Regions.                              |
+| **Peer**   |                             TiKV replicates each Region (three times by default) and stores each replica on a different peer. In the same node, it contains multiple peers of different Regions.                              |
 
 1. Open the Grafana at [http://localhost:3000](http://localhost:3000) (printed from `tiup-playground`) and log in using username `admin` and password `admin`.
 
@@ -113,7 +113,7 @@ To understand the replication in TiKV, it is important to review several concept
 In this section, you can launch a larger workload, then scale the 3-node local cluster to a 5-node cluster and check whether the load of the TiKV cluster is **rebalanced** as expected.
 
 1. Create a new terminal session and launch a larger workload with `go-ycsb`.
-    For example, on a machine with 16 virtual cores, you can launch a workload by executing the following cpmmand:
+    For example, on a machine with 16 virtual cores, you can launch a workload by executing the following command:
 
    ```shell
    ./bin/go-ycsb load tikv -P workloads/workloada -p tikv.pd="127.0.0.1:2379" -p tikv.type="raw" -p tikv.conncount=16 -p threadcount=16 -p recordcount=1000000
