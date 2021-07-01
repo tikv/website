@@ -1,30 +1,28 @@
 ---
 title: Replication and rebalancing
-description: replication, rebalancing
+description: Learn how TiKV replicates, distributes and rebalances data.
 menu:
     "5.1":
         parent: Features
         weight: 1
 ---
 
-This page walks you through a simple demonstration of how TiKV replicates, distributes, and rebalances data. Starting with a 3-node local cluster, you'll: 
+This document walks you through a simple demonstration of how TiKV replicates, distributes and rebalances data. To start a 3-node local cluster, you need to perform the following operations:
 
-1. Write some data via [go-ycsb](https://github.com/pingcap/go-ycsb) and verify that it replicates in triplicate by default.
-2. Add two more nodes and watch how TiKV automatically rebalances replicas to efficiently use all available capacity.
+1. Write some data via [go-ycsb](https://github.com/pingcap/go-ycsb) and verify the data is replicated in triplicate by default.
+2. Add two more nodes and see how TiKV automatically rebalances replicas to efficiently use all available capacity.
 
 {{< warning >}}
-Do not apply this in production.
+Do not apply this operation in the production environment.
 {{< /warning >}}
-
 
 ## Prerequisites
 
-Make sure you have installed [TiUP](https://github.com/pingcap/tiup) as described in [TiKV in 5 Minutes](../../tikv-in-5-minutes).
-
+Make sure that you have installed [TiUP](https://github.com/pingcap/tiup) as described in [TiKV in 5 Minutes](../../tikv-in-5-minutes).
 
 ## Step 1: Start a 3-node cluster
 
-Use the `tiup-playground` to start a 3-node local cluster.
+You can execute the `tiup-playground` command to start a 3-node local cluster.
 
 Show TiUP version:
 
@@ -32,25 +30,26 @@ Show TiUP version:
 tiup -v
 ```
 
-version >= 1.5.2:
+If TiUP version is later than or equal to 1.5.2:
 
 ```bash
 tiup playground --mode tikv-slim --kv 3
 ```
 
-version < 1.5.2:
+If TiUP version is earlier than1.5.2:
 
 ```bash
 tiup playground --kv 3
 ```
 
-The command above will output the following content:
+After you execute the command, the output is as follows:
+
 ```txt
-...
 Starting component `playground`: /home/pingcap/.tiup/components/playground/v1.5.0/tiup-playground --mode tikv-slim --kv 3
 Using the version v5.0.2 for version constraint "".
 
-If you'd like to use a TiDB version other than v5.0.2, cancel and retry with the following arguments:
+If you want to use a TiDB version other than v5.0.2, cancel and retry using the following arguments:
+
     Specify version manually:   tiup playground <version>
     Specify version range:      tiup playground ^5
     The nightly version:        tiup playground nightly
@@ -67,36 +66,42 @@ To view the Grafana: http://127.0.0.1:3000
 
 ## Step 2: Write data
 
-On another terminal session, we will use [go-ycsb](https://github.com/pingcap/go-ycsb) to launch a workload.
+On another terminal session, you can use [go-ycsb](https://github.com/pingcap/go-ycsb) to launch a workload.
 
 1. Clone the `go-ycsb` from GitHub.
-    ```sh
+
+    ```shell
     git clone https://github.com/pingcap/go-ycsb.git
     ```
+
 2. Build the application from the source.
-    ```sh
+
+    ```shell
     make
     ```
-3. Load a small workload using `go-ycsb`
-    ```sh
+
+3. Load a small workload using `go-ycsb`.
+
+    ```shell
     # By default, this workload will insert 1000 records into TiKV
-    ./bin/go-ycsb load tikv -P workloads/workloada -p tikv.pd="127.0.0.1:2379" -p tikv.type="raw" 
+    ./bin/go-ycsb load tikv -P workloads/workloada -p tikv.pd="127.0.0.1:2379" -p tikv.type="raw"
     ```
 
-## Step 3: Verify replication
+## Step 3: Verify the replication
 
-To understand replication in TiKV, it's important to review a few concepts from the [architecture](https://github.com/tikv/tikv#tikv-software-stack).
+To understand the replication in TiKV, it is important to review several concepts in the [architecture](https://github.com/tikv/tikv#tikv-software-stack).
 | Concept    |                                                                                                           Description                                                                                                            |
 | ---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| **Region** | TiKV could seem like a giant sorted map of key-value pairs. The region is the basic unit of key-value data movement. Each region is a range of keys and replicated to multiple Nodes. These multiple replicas form a Raft group. |
-| **Peer**   |                             TiKV replicates each region (3 times by default) and stores each replica on a different peer. In the same node, it could contains multiple peers of  different regions.                              |
+| **Region** | TiKV is like a giant sorted map of key-value pairs. The Region is the basic unit of key-value data movement. Each Region is a range of keys and is replicated to multiple Nodes. These multiple replicas form a Raft group. |
+| **Peer**   |                             TiKV replicates each Region (3 times by default) and stores each replica on a different peer. In the same node, it contains multiple peers of different Regions.                              |
 
-1. Open the Grafana at [http://localhost:3000](http://localhost:3000) (printed from `tiup-playground`) and log in with username `admin` and password `admin`.
+1. Open the Grafana at [http://localhost:3000](http://localhost:3000) (printed from `tiup-playground`) and log in using username `admin` and password `admin`.
 
-2. On the **playground-overview** dashboard, note the matrices in **region** panel in **TiKV** tab. It shows that the Regions count is the same on all three nodes. This indicates that:
-   *  There is only one region.It contains the data imported by `go-ycsb`.
-   * Each region has 3 replicas (according to the default configuration).
-   * For each region, each replica is stored in different stores.
+2. On the **playground-overview** dashboard, note the matrices of the **Region** panel in the **TiKV** tab. You can see that the number of Regions on all three nodes is the same, which indicates the following:
+
+   * There is only one Region. It contains the data imported by `go-ycsb`.
+   * Each Region has 3 replicas (according to the default configuration).
+   * For each Region, each replica is stored in different stores.
 
 {{< figure
     src="/img/docs/region-count.png"
@@ -105,15 +110,16 @@ To understand replication in TiKV, it's important to review a few concepts from 
 
 ## Step 4: Write more data
 
-In this section, we will launch a larger workload, then scales the 3-node local cluster to a 5-node cluster and check the load of the TiKV cluster will be **rebalanced** as expected.
+In this section, you can launch a larger workload, then scale the 3-node local cluster to a 5-node cluster and check whether the load of the TiKV cluster is **rebalanced** as expected.
 
-1. With a new terminal session, and launch a larger workload with `go-ycsb`.
-    For example, on a machine with 16 virtual cores, you can launch a workload in the following way:
-   ```sh
+1. Create a new terminal session and launch a larger workload with `go-ycsb`.
+    For example, on a machine with 16 virtual cores, you can launch a workload by executing the following cpmmand:
+
+   ```shell
    ./bin/go-ycsb load tikv -P workloads/workloada -p tikv.pd="127.0.0.1:2379" -p tikv.type="raw" -p tikv.conncount=16 -p threadcount=16 -p recordcount=1000000
    ```
 
-2. Go to Grafana page mentioned above. Checking the region distribution on the TiKV cluster, it should be increasing while the data is continuously written to the cluster. Just like:
+2. Go to the Grafana page mentioned above. Check the Region distribution on the TiKV cluster and the Region continues to increase while writing data to the cluster as follows:
 
 {{< figure
     src="/img/docs/region-count-after-load-data.png"
@@ -122,12 +128,15 @@ In this section, we will launch a larger workload, then scales the 3-node local 
 
 ## Step 5: Add two more nodes
 
-1. Create another terminal session, use `tiup playground` to scale out the cluster.
-    ```sh
+1. Create another terminal session and use `tiup playground` to scale out the cluster.
+
+    ```shell
     tiup playground scale-out --kv 2
     ```
-2. You can verify the scale-out with:
-    ```sh
+
+2. Verify the scale-out cluster by executing the following commands:
+
+    ```shell
     tiup playground display
     Pid     Role  Uptime
     ---     ----  ------
@@ -141,19 +150,19 @@ In this section, we will launch a larger workload, then scales the 3-node local 
 
 ## Step 6: Verify the data rebalance
 
-Go to Grafana page mentioned above. You will find some regions are split and rebalance to the two new nodes.
+Go to the Grafana page as mentioned above. You can find some Regions are split and rebalanced to the two new nodes.
 
 {{< figure
     src="/img/docs/data-rebalance.png"
     width="80"
     number="1" >}}
 
+## Step 7: Stop and delete the cluster
 
-## Step 7: Stop and delete the cluster.
+1. Back to the terminal session where you started the TiKV cluster, press `Ctrl + C` and wait for the cluster to stop.
 
-1. Back to the terminal session that you just started the TiKV cluster and press `Ctrl + C` and wait for the cluster to stop.
+2. You can destroy the cluster by executing the following command:
 
-2. You can destroy the cluster by:
-    ```sh
+    ```shell
     tiup clean --all
     ```
