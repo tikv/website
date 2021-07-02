@@ -96,7 +96,7 @@ To understand the replication in TiKV, it is important to review several concept
 | **Region** | TiKV is like a giant sorted map of key-value pairs. The Region is the basic unit of key-value data movement. Each Region is a range of keys and is replicated to multiple Nodes. These multiple replicas form a Raft group. |
 | **Peer**   | TiKV replicates each Region (three times by default) and stores each replica on a different peer. In the same node, it contains multiple peers of different Regions.|
 
-1. Open the Grafana at [http://localhost:3000](http://localhost:3000) (printed from `tiup-playground`) and log in using username `admin` and password `admin`.
+1. Open the Grafana at [http://localhost:3000](http://localhost:3000) (printed from the `tiup-playground` command) and log in using username `admin` and password `admin`.
 
 2. On the **playground-overview** dashboard, note the matrices of the **Region** panel in the **TiKV** tab. You can see that the number of Regions on all three nodes is the same, which indicates the following:
 
@@ -129,7 +129,7 @@ In this section, you can launch a larger workload, then scale the 3-node local c
 
 ## Step 5: Add two more nodes
 
-1. Create another terminal session and use `tiup playground` to scale out the cluster.
+1. Create another terminal session and use the `tiup playground` command to scale out the cluster.
 
     ```shell
     tiup playground scale-out --kv 2
