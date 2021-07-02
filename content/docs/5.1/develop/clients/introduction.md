@@ -1,6 +1,6 @@
 ---
 title: TiKV Clients
-description: Interact with TiKV using the raw key-value API or the transactional key-value API
+description: Interact with TiKV using the raw key-value API or the transactional key-value API.
 menu:
     "5.1":
         parent: Develop
@@ -9,7 +9,7 @@ menu:
 
 TiKV offers two APIs that you can interact with:
 
-| API           | Description                                                                           | Atomicity     | Use when...                                                                      |
+| API           | Description                                                                           | Atomicity     | Usage Scenarios                                                                      |
 |:------------- |:------------------------------------------------------------------------------------- |:------------- |:-------------------------------------------------------------------------------- |
 | Raw           | A lower-level key-value API for interacting directly with individual key-value pairs. | Single key    | Your application requires low latency and doesn't need distributed transactions. |
 | Transactional | A higher-level key-value API that provides ACID semantics.                            | Multiple keys | Your application requires distributed transactions.                              |
