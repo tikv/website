@@ -82,7 +82,7 @@ After the TiKV cluster is started using TiUP Playground, you might need to monit
 
 ## Write data to and read data from the TiKV cluster
 
-To write to and read from the TiKV cluster, you can use either Java, Go, Rust, C or Python script. In the following two examples, Java and Python are respectively used to write "Hello World!" to TiKV.
+To write to and read from the TiKV cluster, you can use Java, Go, Rust, C or Python script. In the following two examples, Java and Python are respectively used to write "Hello World!" to TiKV.
 
 ### Use Java
 
