@@ -1,6 +1,6 @@
 ---
 title: Scan
-description: How to use RawKV's Scan API.
+description: Learn how to use RawKV's Scan API.
 menu:
     "5.1":
         parent: RawKV
@@ -11,14 +11,14 @@ This document walks you through how to use RawKV's `Scan` API.
 
 ## Java
 
-### Scan with limit
+### Scan with `limit`
 
-Using the `scan` API, you can scan key-value pairs from TiKV in a range (from a `startKey` to an `endKey`). 
+Using the `Scan` API, you can scan key-value pairs from TiKV in a range (from a `startKey` to an `endKey`).
 
 {{< info >}}
-`startKey` is inclusive, while `endKey` is exclusive.
+`startKey` is inclusive while `endKey` is exclusive.
 
-The argument `limit` means that the `scan` API only returns a limited number of key-value pairs. 
+The argument `limit` means that the `scan` API only returns a limited number of key-value pairs.
 {{< /info >}}
 
 ```java
@@ -53,7 +53,7 @@ session.close();
 
 ### Scan all data
 
-The `scan` API only returns a limited number of key-value pairs. How can we fetch all the data in the range from `startKey` to `endKey`? The following example gives you a simple demo.
+The `Scan` API only returns a limited number of key-value pairs. How can you fetch all the data in the range from `startKey` to `endKey`? The following example gives you a simple demo.
 
 ```java
 import java.util.List;
@@ -98,4 +98,4 @@ while(true) {
 }
 ```
 
-The code example used in this chapter can be found [here](https://github.com/marsishandsome/tikv-client-examples/blob/main/java-example/src/main/java/example/rawkv/Scan.java).
+You can find the code examples for this document [here](https://github.com/marsishandsome/tikv-client-examples/blob/main/java-example/src/main/java/example/rawkv/Scan.java).
