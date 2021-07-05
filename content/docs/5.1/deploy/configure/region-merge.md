@@ -1,5 +1,5 @@
 ---
-title: Region Merge
+title: Region Merge Config
 description: Learn how to configure Region Merge in TiKV.
 menu:
     "5.1":
