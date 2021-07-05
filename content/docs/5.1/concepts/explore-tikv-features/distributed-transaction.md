@@ -11,21 +11,22 @@ This chapter walks you through a simple demonstration of how TiKV's distributed 
 
 ## Prerequisites
 
-Please start a TiKV Cluster and install tikv-client python package according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
+Before you start, ensure that you set up a TiKV Cluster and install tikv-client python package according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
 
 {{< warning >}}
-TiKV Java Client's Transaction API is not released, so Python Client example is used here.
+TiKV Java Client's Transaction API has not been released yet, so Python Client example is used here.
 {{< /warning >}}
 
 ## Step 1: Test snapshot isolation
 
 Transaction isolation is one of the foundations of database transaction processing. Isolation is one of the four key properties of a transaction (commonly referred as ACID).
 
-TiKV implements [Snapshot Isolation (SI)](https://en.wikipedia.org/wiki/Snapshot_isolation) consistency, which means
-- all reads made in a transaction will see a consistent snapshot of the database (in practice it reads the last committed values that existed at the time it started)
-- the transaction itself will successfully commit only if no updates it has made conflict with any concurrent updates made since that snapshot
+TiKV implements [Snapshot Isolation (SI)](https://en.wikipedia.org/wiki/Snapshot_isolation) consistency, which means:
 
-Let's try the following example to test TiKV's snapshot isolation.
+- all reads made in a transaction will see a consistent snapshot of the database (in practice it reads the last committed values that existed at the time it started);
+- the transaction itself will successfully commit only if no updates it has made conflict with any concurrent updates made since that snapshot.
+
+The following example shows how to test TiKV's snapshot isolation.
 
 Save the following script to file `test_snapshot_isolation.py`.
 
@@ -75,15 +76,15 @@ python3 test_snapshot_isolation.py
 [(b'k1', b'Snapshot'), (b'k2', b'Isolation')]
 ```
 
-As we can see, `snapshot1` cannot read the data before and after `txn2` is commited, which means `snapshot1` can see a consistent snapshot of the database.
+From the above example, you can find that `snapshot1` cannot read the data before and after `txn2` is commited. This indicates that `snapshot1` can see a consistent snapshot of the database.
 
 ## Step 2: Try optimistic transaction model
 
 TiKV supports distributed transactions using either pessimistic or optimistic transaction models.
 
-TiKV uses the optimistic transaction model by default. With optimistic transactions, conflicting changes are detected as part of a transaction commit. This helps improve the performance when concurrent transactions are infrequently modifying the same rows, because the process of acquiring row locks can be skipped.
+TiKV uses the optimistic transaction model by default. With optimistic transactions, conflicting changes are detected as part of a transaction commit. This helps improve the performance when concurrent transactions infrequently modify the same rows, because the process of acquiring row locks can be skipped.
 
-Let's try the following example to test TiKV with optimistic transaction model.
+The following example shows how to test TiKV with optimistic transaction model.
 
 Save the following script to file `test_optimistic.py`.
 
@@ -123,13 +124,13 @@ python3 test_optimistic.py
 Exception: KeyError WriteConflict
 ```
 
-As we can see, with optimistic transactions conflicting changes are detected when the transaction commits.
+From the above example, you can find that with optimistic transactions, conflicting changes are detected when the transaction commits.
 
 ## Step 3: Try pessimistic transaction model
 
 In the optimistic transaction model, transactions might fail to be committed because of write–write conflict in heavy contention scenarios. In the case that concurrent transactions frequently modify the same rows (a conflict), pessimistic transactions may perform better than optimistic transactions.
 
-Let’s try the following example to test TiKV with pessimistic transaction model.
+The following example shows how to test TiKV with pessimistic transaction model.
 
 Save the following script to file `test_pessimistic.py`.
 
@@ -168,4 +169,4 @@ python3 test_pessimistic.py
 Exception: KeyError
 ```
 
-As we can see, with pessimistic transactions conflicting changes are detected at the moment of data writing.
+From the above example, you can find that with pessimistic transactions, conflicting changes are detected at the moment of data writing.
