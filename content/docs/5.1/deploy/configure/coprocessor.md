@@ -1,5 +1,5 @@
 ---
-title: Coprocessor
+title: Coprocessor Config
 description: Learn how to configure Coprocessor in TiKV.
 menu:
     "5.1":

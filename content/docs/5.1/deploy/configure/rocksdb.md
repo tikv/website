@@ -1,5 +1,5 @@
 ---
-title: RocksDB
+title: RocksDB Config
 description: Learn how to configure RocksDB engine in TiKV.
 menu:
     "5.1":
