@@ -1,12 +1,12 @@
 ---
 title: Reference
-description: Technical details about TiKV
+description: Learn about technical details of TiKV
 menu:
     "5.1":
         weight: 3
 ---
 
-This section includes technical details about TiKV:
+This chapter includes some technical details of TiKV:
 
 - [TiKV Architecture](../architecture/introduction/)
 - [Query Layers](../query-layers/)

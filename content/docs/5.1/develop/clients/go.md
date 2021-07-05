@@ -7,8 +7,8 @@ menu:
         weight: 2
 ---
 
-TiKV client for go is still in the stage of prove-of-concept and under heavy development. You can track development at [tikv/client-go](https://github.com/tikv/client-go/) repository.
+TiKV client for go is still in the stage of proof-of-concept and under development. You can track development at [tikv/client-go](https://github.com/tikv/client-go/) repository.
 
 {{< warning >}}
-You are not suggested to use the go client for production use until it is released.
+It is not recommended that you use the go client in a production environment before it is released.
 {{< /warning >}}
