@@ -7,7 +7,7 @@ menu:
         weight: 1
 ---
 
-This tutorial provides you a quick way to get started with TiKV. You are guided to perform the following operations:
+This tutorial provides you a quick way to get started with TiKV, including the following operations:
 
 - [Set up a local TiKV cluster with the default options](#set-up-a-local-tikv-cluster-with-the-default-options)
 - [Monitor the TiKV cluster](#monitor-the-cluster)
@@ -74,15 +74,19 @@ Refer to [TiUP playground document](https://docs.pingcap.com/tidb/stable/tiup-pl
 
 ## Monitor the TiKV cluster
 
-After the TiKV cluster is started using TiUP Playground, you might need to monitor the cluster. Perform the following steps to see the needed monitoring metrics:
+After the TiKV cluster is started using TiUP Playground, to monitor the cluster metrics, perform the following steps:
 
-1. Open your browser, access [http://127.0.0.1:3000](http://127.0.0.1:3000), and login to the Grafana Dashboard. By default, the username is `admin` and the password is `admin`.
+1. Open your browser, access [http://127.0.0.1:3000](http://127.0.0.1:3000), and then log in to the Grafana Dashboard. 
+
+    By default, the username is `admin` and the password is `admin`.
 
 2. Open the `TiKV-Summary` page on the Grafana Dashboard and find the monitoring metrics of your TiKV cluster.
 
 ## Write data to and read data from the TiKV cluster
 
-To write to and read from the TiKV cluster, you can use Java, Go, Rust, C or Python script. In the following two examples, Java and Python are respectively used to write "Hello World!" to TiKV.
+To write to and read from the TiKV cluster, you can use Java, Go, Rust, C, or Python script. 
+
+The following two examples use Java and Python respectively to show how to write "Hello World!" to TiKV.
 
 ### Use Java
 
@@ -140,13 +144,13 @@ To write to and read from the TiKV cluster, you can use Java, Go, Rust, C or Pyt
         session.close();
         ```
 
-    2. Run the script above to write "Hello World!" to TiKV:
+    2. Run the `test_raw.java` script to write "Hello World!" to TiKV:
 
         ```bash
         jshell --class-path tikv-client-java.jar:slf4j-api.jar --startup test_raw.java
         ```
 
-        The following result is output:
+        The output is as follows:
 
         ```bash
         Hello
@@ -208,13 +212,13 @@ This package requires Python 3.5+.
             print(client.scan(b"k1", end=b"k5", limit=10, include_start=True, include_end=True))
             ```
 
-        2. Run the test script above to write "Hello World!" to TiKV:
+        2. Run the `test_raw.py` script to write "Hello World!" to TiKV:
 
             ```bash
             python3 test_raw.py
             ```
 
-            The following result is output.
+            The output is as follows:
 
             ```bash
             b'Hello'
@@ -252,13 +256,13 @@ This package requires Python 3.5+.
             print(snapshot.scan(b"k1", end=b"k5", limit=10, include_start=True, include_end=True))
             ```
 
-        2. Run the test script to write "Hello World!" to TiKV:
+        2. Run the `test_txn.py` script to write "Hello World!" to TiKV:
 
             ```bash
             python3 test_txn.py
             ```
 
-            The following result is output:
+            The output is as follows:
 
             ```bash
             b'Hello'
@@ -268,7 +272,9 @@ This package requires Python 3.5+.
 
 ## Stop and delete the TiKV cluster
 
-1. To stop the TiKV cluster, back to the terminal session in which you have started the TiKV cluster. Press <kbd>Ctrl</kbd> + <kbd>C</kbd> and wait for the cluster to stop.
+If you do not need the local TiKV cluster anymore, you can stop and delete it.
+
+1. To stop the TiKV cluster, get back to the terminal session in which you have started the TiKV cluster. Press <kbd>Ctrl</kbd> + <kbd>C</kbd> and wait for the cluster to stop.
 
 2. After the cluster is stopped, to delete the cluster, execute the following command:
 
