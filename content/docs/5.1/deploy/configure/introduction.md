@@ -7,9 +7,9 @@ menu:
         weight: 2
 ---
 
-Though it's recommended to start with the default configurations when getting started with TiKV, TiKV features a large number of configuration parameters to tweak its behavior, which enables users to config the cluster to fit for the special application requirement.
+It's recommended to get started with TiKV with default configurations, however, TiKV features a large number of configuration parameters to tweak its behavior, allowing you to configure the cluster to suit the special application requirements.
 
-The following topics describes how to config different TiKV components:
+The following guides provide you ways to configure different TiKV components:
 
 PD
 
@@ -26,7 +26,7 @@ TiKV
 - [Region Merge](../region-merge): Tweak region merging.
 - [RocksDB](../rocksdb): Tweak RocksDB configuration parameters.
 - [Raftstore](../raftstore): Learn how to configure Raftstore in TiKV.
-- [Titan](../titan): Enable titan to improve performance with large values.
+- [Titan](../titan): Enable Titan to improve performance with large values.
 - [Storage](../storage): Learn how to configure storage in TiKV.
 - [gRPC](../grpc): Learn how to configure gRPC in TiKV.
 - [Coprocessor](../coprocessor): Learn how to configure Coprocessor in TiKV.
