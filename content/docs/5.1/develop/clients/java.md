@@ -7,7 +7,7 @@ menu:
         weight: 1
 ---
 
-This guide introduces how to interact with TiKV using [Java Client](https://github.com/tikv/client-java).
+This document guides you through how to use [Java Client](https://github.com/tikv/client-java) in TiKV.
 
 {{< info >}}
 TiKV Java Client is developed and released using Java8. The minimum supported version of TiKV is 2.0.0.
@@ -25,9 +25,9 @@ To start, open the `pom.xml` of your project, and add the `tikv-client-java` as 
 </dependency>
 ```
 
-## Raw key-value API
+## Try the Raw key-value API
 
-Using a connected `org.tikv.raw.RawKVClient`, you can perform actions such as `put`, `get`, `delete` and `scan`:
+Using a connected `org.tikv.raw.RawKVClient`, you can perform actions such as `put`, `get`, `delete`, and `scan`:
 
 ```java
 import com.google.protobuf.ByteString;
@@ -73,9 +73,9 @@ for(Kvrpcpb.KvPair pair : list) {
 }
 ```
 
-These functions also have batch variants (`batchPut`, `batchGet`, `batchDelete` and `batchScan`), which offer considerably reduced network overhead and can result in dramatic performance increases under certain workloads.
+These functions also have batch variants (`batchPut`, `batchGet`, `batchDelete`, and `batchScan`), which considerably reduce network overhead and increase performance under certain workloads.
 
-You can find all the functions that `RawKVClient` supports [here](https://github.com/tikv/client-java/blob/master/src/main/java/org/tikv/raw/RawKVClient.java).
+You can find all the functions `RawKVClient` supports [here](https://github.com/tikv/client-java/blob/master/src/main/java/org/tikv/raw/RawKVClient.java).
 
 ## Transactional key-value API
 
