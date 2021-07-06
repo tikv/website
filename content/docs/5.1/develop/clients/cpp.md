@@ -7,10 +7,10 @@ menu:
         weight: 5
 ---
 
-TiKV client for C++ is built on top of [TiKV Client in Rust](https://github.com/tikv/client-rust) via [cxx](https://github.com/dtolnay/cxx).
-
-This client is still in the stage of prove-of-concept and under heavy development. You can track development at [tikv/client-cpp](https://github.com/tikv/client-cpp/) repository.
-
 {{< warning >}}
-You are not suggested to use the C++ client for production use until it is released.
+Currently, the TiKV client for C++ is not released yet.
 {{< /warning >}}
+
+The TiKV client in C++ is built on top of [TiKV client in Rust](https://github.com/tikv/client-rust) using [cxx](https://github.com/dtolnay/cxx).
+
+This C++ client is still in the stage of prove-of-concept and under heavy development. You can track the development progress at the [tikv/client-cpp](https://github.com/tikv/client-cpp/) repository.
