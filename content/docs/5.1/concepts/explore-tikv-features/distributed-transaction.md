@@ -17,7 +17,7 @@ Before you start, ensure that you set up a TiKV Cluster and install tikv-client 
 TiKV Java Client's Transaction API has not been released yet, so Python Client example is used here.
 {{< /warning >}}
 
-## Step 1: Test snapshot isolation
+## Test snapshot isolation
 
 Transaction isolation is one of the foundations of database transaction processing. Isolation is one of the four key properties of a transaction (commonly referred as ACID).
 
@@ -78,7 +78,7 @@ python3 test_snapshot_isolation.py
 
 From the above example, you can find that `snapshot1` cannot read the data before and after `txn2` is commited. This indicates that `snapshot1` can see a consistent snapshot of the database.
 
-## Step 2: Try optimistic transaction model
+## Try optimistic transaction model
 
 TiKV supports distributed transactions using either pessimistic or optimistic transaction models.
 
@@ -126,7 +126,7 @@ Exception: KeyError WriteConflict
 
 From the above example, you can find that with optimistic transactions, conflicting changes are detected when the transaction commits.
 
-## Step 3: Try pessimistic transaction model
+## Try pessimistic transaction model
 
 In the optimistic transaction model, transactions might fail to be committed because of write–write conflict in heavy contention scenarios. In the case that concurrent transactions frequently modify the same rows (a conflict), pessimistic transactions may perform better than optimistic transactions.
 

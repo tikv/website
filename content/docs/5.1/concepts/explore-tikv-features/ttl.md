@@ -11,11 +11,11 @@ This page walks you through a simple demonstration of how to use TTL on RawKV.
 
 ## Prerequisites
 
-Please install TiUP, jshell and download tikv-client jars according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
+Before you start, ensure that you install TiUP, jshell and download tikv-client jars according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
 
 ## Step 1: Config TiKV to enable TTL
 
-TTL is disabled by default. Create a file `tikv.yaml` using the following content to enable TTL.
+TTL is disabled by default. You need to create a file `tikv.yaml` using the following statement to enable TTL.
 
 ```yaml
 [storage]
@@ -24,7 +24,7 @@ enable-ttl = true
 
 ## Step 2: Start TiKV Cluster
 
-For the purpose of this tutorial, you need only one TiKV node, so use the `tiup playground` command.
+For this tutorial, you only need one TiKV node, so use the `tiup playground` command.
 
 Show TiUP version:
 
@@ -46,7 +46,7 @@ tiup playground --kv.config tikv.yaml
 
 ## Step 3: Write the code to test TTL
 
-Let's write an example to verify that TTL works.
+The following example shows how to verify the TTL works.
 
 Save the following script to file `test_raw_ttl.java`.
 
@@ -101,4 +101,4 @@ value: "v2"
 ]
 ```
 
-As we can see, `k1` is automatically deleted after it's TTL is expired.
+After running the above code, you can find that `k1` is automatically deleted when its TTL is expired.
