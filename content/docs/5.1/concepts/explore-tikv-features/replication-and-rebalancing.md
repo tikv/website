@@ -1,15 +1,15 @@
 ---
 title: Replication and rebalancing
-description: Learn how TiKV replicates, distributes and rebalances data.
+description: Learn how TiKV replicates, distributes, and rebalances data.
 menu:
     "5.1":
         parent: Features
         weight: 1
 ---
 
-This document walks you through a simple demonstration of how TiKV replicates, distributes and rebalances data. To start a 3-node local cluster, you need to perform the following operations:
+This document walks you through a simple demonstration of how TiKV replicates, distributes, and rebalances data. To start a 3-node local cluster, you need to perform the following operations:
 
-1. Write some data via [go-ycsb](https://github.com/pingcap/go-ycsb) and verify the data is replicated in triplicate by default.
+1. Write some data via [go-ycsb](https://github.com/pingcap/go-ycsb), and then verify whether the data is replicated in triplicate by default.
 2. Add two more nodes and see how TiKV automatically rebalances replicas to efficiently use all available capacity.
 
 {{< warning >}}
@@ -22,25 +22,25 @@ Make sure that you have installed [TiUP](https://github.com/pingcap/tiup) as des
 
 ## Step 1: Start a 3-node cluster
 
-You can execute the `tiup-playground` command to start a 3-node local cluster.
+1. Check your TiUP version. Execute the following command:
 
-Before you do that, check your TiUP version using the following command:
+    ```bash
+    tiup -v
+    ```
 
-```bash
-tiup -v
-```
+2. Depending on the TiUP version, execute the `tiup-playground` command to start a 3-node local cluster.
 
-If TiUP version is v1.5.2 or later, execute the following command:
+    If TiUP version is v1.5.2 or later, execute the following command:
 
-```bash
-tiup playground --mode tikv-slim --kv 3
-```
+    ```bash
+    tiup playground --mode tikv-slim --kv 3
+    ```
 
-If TiUP version is earlier than v1.5.2, execute the following command:
+    If TiUP version is earlier than v1.5.2, execute the following command:
 
-```bash
-tiup playground --kv 3
-```
+    ```bash
+    tiup playground --kv 3
+    ```
 
 After you execute the command, the output is as follows:
 
@@ -93,12 +93,12 @@ To understand the replication in TiKV, it is important to review several concept
 
 | Concept    |  Description              |
 | -------------------------------- |------------------------------------------------|
-| **Region** | TiKV is like a giant sorted map of key-value pairs. The Region is the basic unit of key-value data movement. Each Region is a range of keys and is replicated to multiple Nodes. These multiple replicas form a Raft group. |
+| **Region** | TiKV can be taken as a giant sorted map of key-value pairs. The Region is the basic unit of key-value data movement. Each Region is a range of keys and is replicated to multiple Nodes. These multiple replicas form a Raft group. |
 | **Peer**   | TiKV replicates each Region (three times by default) and stores each replica on a different peer. In the same node, it contains multiple peers of different Regions.|
 
-1. Open the Grafana at [http://localhost:3000](http://localhost:3000) (printed from the `tiup-playground` command) and log in using username `admin` and password `admin`.
+1. Open the Grafana at [http://localhost:3000](http://localhost:3000) (printed from the `tiup-playground` command), and then log in to Grafana using username `admin` and password `admin`.
 
-2. On the **playground-overview** dashboard, note the matrices of the **Region** panel in the **TiKV** tab. You can see that the number of Regions on all three nodes is the same, which indicates the following:
+2. On the **playground-overview** dashboard, check the matrices on the **Region** panel in the **TiKV** tab. You can see that the numbers of Regions on all three nodes are the same, which indicates the following:
 
    * There is only one Region. It contains the data imported by `go-ycsb`.
    * Each Region has 3 replicas (according to the default configuration).
@@ -111,9 +111,9 @@ To understand the replication in TiKV, it is important to review several concept
 
 ## Step 4: Write more data
 
-In this section, you can launch a larger workload, then scale the 3-node local cluster to a 5-node cluster and check whether the load of the TiKV cluster is **rebalanced** as expected.
+In this section, you can launch a larger workload, scale the 3-node local cluster to a 5-node cluster, and then check whether the load of the TiKV cluster is **rebalanced** as expected.
 
-1. Create a new terminal session and launch a larger workload with `go-ycsb`.
+1. Start a new terminal session and launch a larger workload with `go-ycsb`.
     For example, on a machine with 16 virtual cores, you can launch a workload by executing the following command:
 
    ```shell
@@ -129,7 +129,7 @@ In this section, you can launch a larger workload, then scale the 3-node local c
 
 ## Step 5: Add two more nodes
 
-1. Create another terminal session and use the `tiup playground` command to scale out the cluster.
+1. Start another terminal session and use the `tiup playground` command to scale out the cluster.
 
     ```shell
     tiup playground scale-out --kv 2
@@ -139,6 +139,11 @@ In this section, you can launch a larger workload, then scale the 3-node local c
 
     ```shell
     tiup playground display
+    ```
+
+    The output is as follows:
+
+    ```
     Pid     Role  Uptime
     ---     ----  ------
     282731  pd    4h1m23.792495134s
@@ -160,9 +165,11 @@ Go to the Grafana page as mentioned above. You can find some Regions are split a
 
 ## Step 7: Stop and delete the cluster
 
-1. Back to the terminal session where you started the TiKV cluster, press `Ctrl + C` and wait for the cluster to stop.
+If you do not need the local TiKV cluster anymore, you can stop and delete it.
 
-2. You can destroy the cluster by executing the following command:
+1. To stop the TiKV cluster, get back to the terminal session in which you have started the TiKV cluster. Press <kbd>Ctrl</kbd> + <kbd>C</kbd> and wait for the cluster to stop.
+
+2. After the cluster is stopped, to delete the cluster, execute the following command:
 
     ```shell
     tiup clean --all
