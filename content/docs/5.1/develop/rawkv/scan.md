@@ -98,4 +98,4 @@ while(true) {
 }
 ```
 
-You can find the code examples for this document [here](https://github.com/marsishandsome/tikv-client-examples/blob/main/java-example/src/main/java/example/rawkv/Scan.java).
+The example code above is available [here](https://github.com/marsishandsome/tikv-client-examples/blob/main/java-example/src/main/java/example/rawkv/Scan.java).

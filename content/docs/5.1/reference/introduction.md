@@ -6,7 +6,7 @@ menu:
         weight: 3
 ---
 
-This chapter includes some technical details of TiKV:
+This chapter describes some technical details of TiKV:
 
 - [TiKV Architecture](../architecture/introduction/)
 - [Query Layers](../query-layers/)

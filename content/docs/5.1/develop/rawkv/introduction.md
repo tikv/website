@@ -14,4 +14,4 @@ TiKV supports both transactional (TxnKV) API and non-transactional (RawKV) API. 
 - [Time to Live (TTL)](../ttl)
 - [Compare And Swap (CAS)](../cas)
 
-You can find the code examples for this document [here](https://github.com/marsishandsome/tikv-client-examples).
+The example code is available [here](https://github.com/marsishandsome/tikv-client-examples).
