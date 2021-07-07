@@ -9,7 +9,7 @@ menu:
 
 This page walks you through a simple demonstration of performing compare-and-swap (CAS) in TiKV.
 
-In RawKV, compare-and-swap (CAS) is an atomic instruction to achieve synchronization in multiple threads. 
+In RawKV, compare-and-swap (CAS) is an atomic instruction to achieve synchronization between multiple threads.
 
 Performing CAS is an atomic equivalent of executing the following code:
 
@@ -21,15 +21,15 @@ if (prevValue == request.prevValue) {
 return prevValue;
 ```
 
-The atomicity guarantees that the new value is calculated based on the up-to-date information. If the value is updated by another thread in the meantime, the write would fail.
+The atomicity guarantees that the new value is calculated based on the up-to-date information. If the value is updated by another thread at the same time, the write would fail.
 
 ## Prerequisites
 
-Install TiUP, jshell, download tikv-client JAR files，and start a TiKV cluster according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
+Make sure that you have installed TiUP, jshell, download tikv-client JAR files，and start a TiKV cluster according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
 
 ## Verify CAS
 
-If you want to verify whether CAS works, take the following steps.
+To verify whether CAS works, take the following steps.
 
 ### Step 1: Write the code to test CAS
 
@@ -96,7 +96,7 @@ As in the example output, after calling `compareAndSet`, the value `CAS` is repl
 
 {{< warning >}}
 
-- To ensure the linearizability of `CAS` when used together with `put`, `delete`, `batch_put`, or `batch_delete`, you must set `conf.setEnableAtomicForCAS(true)`.
+- To ensure the linearizability of `CAS` when it is used together with `put`, `delete`, `batch_put`, or `batch_delete`, you must set `conf.setEnableAtomicForCAS(true)`.
 
-- To guarantee the atomicity of CAS, write operations like `put` or `delete` in atomic mode are more expensive.
+- To guarantee the atomicity of CAS, write operations such as `put` or `delete` in atomic mode takes more resources.
 {{< /warning >}}
