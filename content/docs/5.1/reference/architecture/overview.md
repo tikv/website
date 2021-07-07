@@ -20,8 +20,8 @@ The overall architecture of TiKV is as follows:
 
 A TiKV cluster consists of the following components:
 
-- [A TiKV cluster](./#tikv-cluster) to store key-value pair data
-- [A Placement Driver (PD) cluster](./#pd-cluster) to work as the manager of a TiKV cluster
+- [A TiKV cluster](./#tikv-cluster) storing key-value pair data
+- [A Placement Driver (PD) cluster](./#pd-cluster) working as the manager of a TiKV cluster
 
 TiKV clients interact with PD and TiKV through gRPC.
 
