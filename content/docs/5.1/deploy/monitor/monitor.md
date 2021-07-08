@@ -9,8 +9,8 @@ menu:
 
 This section introduces how to monitor a TiKV cluster.
 
-- [Monitoring Framework](../framework)
-- [Monitoring API](../api)
+- [Monitor Framework](../framework)
+- [Monitor API](../api)
 - [Deploy Monitoring Services](../deploy)
 - [Export Grafana Shapshots](../grafana)
 - [Key Metrics](../key-metrics)
