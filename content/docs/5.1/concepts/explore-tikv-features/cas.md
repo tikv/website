@@ -98,5 +98,5 @@ As in the example output, after calling `compareAndSet`, the value `CAS` is repl
 
 - To ensure the linearizability of `CAS` when it is used together with `put`, `delete`, `batch_put`, or `batch_delete`, you must set `conf.setEnableAtomicForCAS(true)`.
 
-- To guarantee the atomicity of CAS, write operations such as `put` or `delete` in atomic mode takes more resources.
+- To guarantee the atomicity of CAS, write operations such as `put` or `delete` in atomic mode take more resources.
 {{< /warning >}}
