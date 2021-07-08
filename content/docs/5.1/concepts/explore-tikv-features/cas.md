@@ -9,7 +9,9 @@ menu:
 
 This page walks you through a simple demonstration of performing compare-and-swap (CAS) in TiKV.
 
-In RawKV, compare-and-swap (CAS) is an atomic instruction used in multithreading to achieve synchronization, which is the atomic equivalent of:
+In RawKV, compare-and-swap (CAS) is an atomic instruction to achieve synchronization between multiple threads.
+
+Performing CAS is an atomic equivalent of executing the following code:
 
 ```
 prevValue = get(key);
@@ -19,17 +21,19 @@ if (prevValue == request.prevValue) {
 return prevValue;
 ```
 
-The atomicity guarantees that the new value is calculated based on up-to-date information; if the value had been updated by another thread in the meantime, the write would fail.
+The atomicity guarantees that the new value is calculated based on the up-to-date information. If the value is updated by another thread at the same time, the write would fail.
 
 ## Prerequisites
 
-Please install TiUP, jshell, download tikv-client jars and start a TiKV Cluster according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
+Make sure that you have installed TiUP, jshell, download tikv-client JAR files，and start a TiKV cluster according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
 
-## Step 1: Write the code to test CAS
+## Verify CAS
 
-Let's write an example to verify that CAS works.
+To verify whether CAS works, take the following steps.
 
-Save the following script to file `test_raw_cas.java`.
+### Step 1: Write the code to test CAS
+
+Save the following script to the `test_raw_cas.java` file.
 
 ```java
 import java.util.Optional;
@@ -73,21 +77,26 @@ client.close();
 session.close();
 ```
 
-## Step 2: Run the code
+### Step 2: Run the code
 
 ```bash
 jshell --class-path tikv-client-java.jar:slf4j-api.jar --startup test_raw_cas.java
+```
 
+The example output is as follows:
+
+```bash
 put key=Hello value=CAS
 get key=Hello result=CAS
 cas key=Hello value=CAS newValue=NewValue
 get key=Hello result=NewValue
 ```
 
-As we can see, after calling `compareAndSet` the value `CAS` is replaced by `newValue`.
+As in the example output, after calling `compareAndSet`, the value `CAS` is replaced by `newValue`.
 
 {{< warning >}}
-Users must set `conf.setEnableAtomicForCAS(true)` to ensure linearizability of `CAS` when used together with `put`, `delete`, `batch_put`, or `batch_delete`.
 
-To guarantee the atomicity of CAS, write operations like `put` or `delete` in atomic mode are more expensive.
+- To ensure the linearizability of `CAS` when it is used together with `put`, `delete`, `batch_put`, or `batch_delete`, you must set `conf.setEnableAtomicForCAS(true)`.
+
+- To guarantee the atomicity of CAS, write operations such as `put` or `delete` in atomic mode takes more resources.
 {{< /warning >}}
