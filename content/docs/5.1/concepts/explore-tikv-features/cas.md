@@ -29,7 +29,7 @@ Make sure that you have installed TiUP, jshell, download tikv-client JAR filesï¼
 
 ## Verify CAS
 
-To verify whether CAS works, take the following steps.
+To verify whether CAS works, take the following steps. 
 
 ### Step 1: Write the code to test CAS
 
