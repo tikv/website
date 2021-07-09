@@ -11,17 +11,17 @@ This chapter walks you through a simple demonstration of how TiKV's distributed 
 
 ## Prerequisites
 
-Before you start, ensure that you set up a TiKV Cluster and install tikv-client python package according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
+Before you start, ensure that you have set up a TiKV cluster and install the `tikv-client` Python package according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
 
 {{< warning >}}
-TiKV Java Client's Transaction API has not been released yet, so Python Client example is used here.
+TiKV Java client's Transaction API has not been released yet, so the Python client is used in this example.
 {{< /warning >}}
 
 ## Test snapshot isolation
 
 Transaction isolation is one of the foundations of database transaction processing. Isolation is one of the four key properties of a transaction (commonly referred as ACID).
 
-TiKV implements [Snapshot Isolation (SI)](https://en.wikipedia.org/wiki/Snapshot_isolation) consistency, which means:
+TiKV implements [Snapshot Isolation (SI)](https://en.wikipedia.org/wiki/Snapshot_isolation) consistency, which means that:
 
 - all reads made in a transaction will see a consistent snapshot of the database (in practice it reads the last committed values that existed at the time it started);
 - the transaction itself will successfully commit only if no updates it has made conflict with any concurrent updates made since that snapshot.
@@ -128,7 +128,7 @@ From the above example, you can find that with optimistic transactions, conflict
 
 ## Try pessimistic transaction model
 
-In the optimistic transaction model, transactions might fail to be committed because of write–write conflict in heavy contention scenarios. In the case that concurrent transactions frequently modify the same rows (a conflict), pessimistic transactions may perform better than optimistic transactions.
+In the optimistic transaction model, transactions might fail to be committed because of write–write conflict in heavy contention scenarios. In the case that concurrent transactions frequently modify the same rows (a conflict), pessimistic transactions might perform better than optimistic transactions.
 
 The following example shows how to test TiKV with pessimistic transaction model.
 

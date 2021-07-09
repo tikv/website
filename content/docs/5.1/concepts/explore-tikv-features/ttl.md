@@ -11,11 +11,11 @@ This page walks you through a simple demonstration of how to use TTL on RawKV.
 
 ## Prerequisites
 
-Before you start, ensure that you install TiUP, jshell and download tikv-client jars according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
+Before you start, ensure that you have installed TiUP and jshell, and have downloaded the `tikv-client` JARS file according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
 
 ## Step 1: Config TiKV to enable TTL
 
-TTL is disabled by default. You need to create a file `tikv.yaml` using the following statement to enable TTL.
+TTL is disabled by default. You need to create a file `tikv.yaml` using the following configuration to enable TTL.
 
 ```yaml
 [storage]
@@ -24,7 +24,7 @@ enable-ttl = true
 
 ## Step 2: Start TiKV Cluster
 
-For this tutorial, you only need one TiKV node, so use the `tiup playground` command.
+For this tutorial, only one TiKV node is needed, so the `tiup playground` command is used.
 
 Show TiUP version:
 
