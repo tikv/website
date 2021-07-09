@@ -10,7 +10,7 @@ menu:
 This page walks you through a simple demonstration of how TiKV recovers from failures and continues to provide services during failures.
 
 1. Start a 6-node local cluster.
-2. Run a sample workload via [go-ycsb](https://github.com/pingcap/go-ycsb), terminate a node to simulate a failure, and see how the cluster continues uninterrupted.
+2. Run a sample workload via [go-ycsb](https://github.com/pingcap/go-ycsb), then kill a node to simulate a failure, and see how the cluster seamlessly continues.
 3. Leave that node offline for long enough to watch the cluster repair itself by re-replicating missing data to other nodes.
 4. Increase to 5-way replication, then simultaneously take two nodes offline, and again see how the cluster continues uninterrupted.
 
@@ -135,7 +135,8 @@ This workload above will run several minutes, you will have enough time to simul
 
 ## Step 6. Simulate a single node failure
 
-To understand fault tolerance in TiKV, it's important to review a few concepts from the [architecture](https://tikv.org/docs/5.1/reference/architecture/overview).
+To understand fault tolerance in TiKV, it's important to review a few concepts from the [architecture](https://tikv.org/docs/5.1/reference/architecture/overview/#system-architecture).
+
 | Concept        |                                                   Description                                                    |
 | -------------- | :--------------------------------------------------------------------------------------------------------------: |
 | **Raft Group** |                  Each replica of a region is called Peer. All of such peers form a raft group.                   |
