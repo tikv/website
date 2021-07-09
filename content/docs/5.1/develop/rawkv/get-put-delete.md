@@ -13,7 +13,7 @@ This document walks you through how to use RawKV's basic operations such as `Get
 
 ### Import
 
-First of all, you need to import all necessary packages in the example.
+First, import all necessary packages as shown in the example.
 
 ```java
 import java.util.Optional;
@@ -23,7 +23,7 @@ import org.tikv.common.TiSession;
 import org.tikv.raw.RawKVClient;
 ```
 
-Here, `com.google.protobuf.ByteString` is used as the type of Key and Value.
+In the example above, `com.google.protobuf.ByteString` is used as the type of Key and Value.
 
 To avoid conflict, `com.google.protobuf.ByteString` is shaded to `org.tikv.shade.com.google.protobuf.ByteString`, and is included in the client package.
 
@@ -32,7 +32,7 @@ To avoid conflict, `com.google.protobuf.ByteString` is shaded to `org.tikv.shade
 To connect to TiKV, a PD address `127.0.0.1:2379` is passed to `TiConfiguration`.
 
 {{< info >}}
-A comma is used to separate multiple PD addresses, e.g. `127.0.0.1:2379,127.0.0.2:2379,127.0.0.3:2379`.
+A comma is used to separate multiple PD addresses. For example, `127.0.0.1:2379,127.0.0.2:2379,127.0.0.3:2379`.
 {{< /info >}}
 
 Using the connected `org.tikv.raw.RawKVClient`, you can perform actions such as `Get`, `Put`, and `Delete`.
