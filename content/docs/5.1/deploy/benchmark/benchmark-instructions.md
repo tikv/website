@@ -13,7 +13,7 @@ TiKV delivers predictable throughput and latency at all scales on commodity hard
 
 1. Prepare 1 node for the YCSB benchmark worker, 1 node for PD, 3 nodes for TiKV.
 
-Here is the recommended hardware configuration of the cluster:
+Here is the recommended hardware configuration:
 
 | **Component** | **CPU**          | **Memory**     | **Storage**     | **Network** | **Instance**                    |
 | ------------- | ---------------- | -------------- | --------------- | ----------- | ------------------------------- |
@@ -93,16 +93,37 @@ tiup cluster display [cluster-name]
 
 ## Step 3. Run a YCSB workload
 
-YCSB has six kinds of workloads whose main difference are the portion of different operations. All six workloads have a data set which is similar. Workloads D and E insert records during the test run. Thus, to keep the database size consistent, we recommend the following sequence:
-1. Load the database, using workload A's parameter file (workloads/workloada) and the "-load" switch to the client.
-2. Run workload A (using workloads/workloada and "-t") for a variety of throughputs.
-3. Run workload B (using workloads/workloadb and "-t") for a variety of throughputs.
-4. Run workload C (using workloads/workloadc and "-t") for a variety of throughputs.
-5. Run workload F (using workloads/workloadf and "-t") for a variety of throughputs.
-6. Run workload D (using workloads/workloadd and "-t") for a variety of throughputs. This workload inserts records, increasing the size of the database.
+YCSB has six kinds of workloads whose main difference are the portion of different operations:
+
+1. Workload A: Update heavy workload
+2. Workload B: Read mostly workload
+3. Workload C: Read only
+4. Workload D: Read latest workload
+5. Workload E: Short ranges
+6. Workload F: Read-modify-write 
+
+All six workloads have a data set which is **similar**. Workloads D and E insert records during the test run. Thus, to keep the database size consistent, we recommend the following sequence:
+
+1. Load the database, using workload A's parameter file (workloads/workloada) .
+
+    ```sh
+    go-ycsb load -P workloads/workloada -p ... 
+    ```
+
+2. Run workload A (using workloads/workloada) for a variety of throughputs.
+
+    ```sh
+    go-ycsb run -P workloads/workloada -p ... 
+    ```
+
+3. Run workload B (using workloads/workloadb) for a variety of throughputs.
+4. Run workload C (using workloads/workloadc) for a variety of throughputs.
+5. Run workload F (using workloads/workloadf) for a variety of throughputs.
+6. Run workload D (using workloads/workloadd) for a variety of throughputs. This workload inserts records, increasing the size of the database.
 7. Delete the data in the database.
-8. Reload the database, using workload E's parameter file (workloads/workloade) and the "-load switch to the client.
-9. Run workload E (using workloads/workloade and "-t") for a variety of throughputs. This workload inserts records, increasing the size of the database.
+   > You need to destroy the cluster via `tiup cluster destroy [cluster-name]`, and delete the data directory of cluster. Otherwise, the remaining data of the cluster may impact the results of the following workload.
+8. Reload the database, using workload E's parameter file (workloads/workloade).
+9.  Run workload E (using workloads/workloade) for a variety of throughputs. This workload inserts records, increasing the size of the database.
 
 {{< info >}}
 If you trying to use more clients to benchmark, check [Running a Workload in Parallel](https://github.com/brianfrankcooper/YCSB/wiki/Running-a-Workload-in-Parallel).
@@ -145,8 +166,18 @@ UPDATE - Takes(s): 265.0, Count: 5001641, OPS: 18877.1, Avg(us): 5416, Min(us): 
 If it report errors like `batch commands send error:EOF`, it relates to this [issue](https://github.com/pingcap/go-ycsb/issues/145).
 {{< /warning >}}
 
+## Step 5. Find the bottleneck.
 
-## Step 5. Clean up
+There are two way the find the bottleneck of the TiKV cluster. 
+
+1. Increasing the threadcount of the client.
+      * You can increase the `threadcount` to the number of virtual cores of the machine. In some circumstances, it could reach the bottleneck of the TiKV cluster.
+2. Increasing the count of benchmark clients.
+      * You can deploy more benchmark clients to increase the requests towards the TiKV cluster. Mutiple `go-ycsb` from different nodes could be launched simultaneously. And then you can summarise the result of these nodes.
+
+Repeat the 2 steps above, the bottleneck of the TiKV cluster is reached while the QPS you inspect from the TiKV cluster's Grafana page is no longer increasing. 
+
+## Step 6. Clean up
 
 You can destroy the cluster by:
 
