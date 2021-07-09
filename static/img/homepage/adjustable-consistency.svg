@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36.071" height="47.819" viewBox="0 0 36.071 47.819">
+  <g id="组_5160" data-name="组 5160" transform="translate(-1439 -1903.59)">
+    <g id="connection-arw-l" transform="translate(1433 1903)">
+      <g id="组_5118" data-name="组 5118">
+        <circle id="椭圆_561" data-name="椭圆 561" cx="4" cy="4" r="4" transform="translate(7 4)" fill="none" stroke="#3d3fea" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+        <g id="组_5117" data-name="组 5117">
+          <g id="组_5116" data-name="组 5116">
+            <line id="直线_290" data-name="直线 290" y2="2" transform="translate(11 13)" fill="none" stroke="#3d3fea" stroke-linejoin="round" stroke-width="2"/>
+            <path id="路径_11995" data-name="路径 11995" d="M11,18.992V29.2A11.8,11.8,0,0,0,22.8,41H24" fill="none" stroke="#3d3fea" stroke-linejoin="round" stroke-width="2" stroke-dasharray="3.992 3.992"/>
+            <line id="直线_291" data-name="直线 291" x2="2" transform="translate(26 41)" fill="none" stroke="#3d3fea" stroke-linejoin="round" stroke-width="2"/>
+          </g>
+        </g>
+        <path id="路径_11996" data-name="路径 11996" d="M22,35l7.071,6L22,47" fill="none" stroke="#3d3fea" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+        <circle id="椭圆_562" data-name="椭圆 562" cx="4" cy="4" r="4" transform="translate(33.071 37)" fill="none" stroke="#3d3fea" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+        <path id="路径_11997" data-name="路径 11997" d="M37.071,36V19.8A11.8,11.8,0,0,0,25.275,8h-5.2" fill="none" stroke="#3d3fea" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+        <path id="路径_11998" data-name="路径 11998" d="M26.071,14,19,8l7.071-6" fill="none" stroke="#3d3fea" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+      </g>
+    </g>
+  </g>
+</svg>

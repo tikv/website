@@ -1,5 +1,5 @@
 ---
-title: Storage
+title: Storage Config
 description: Learn how to configure storage in TiKV.
 menu:
     "5.1":

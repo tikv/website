@@ -1,0 +1,27 @@
+- title: Get Started
+  icon: img/homepage/get-started.svg
+  docs:
+  - name: TiKV in 5 minutes
+    link: /docs/5.1/concepts/tikv-in-5-minutes/
+  - name: Explore Capabilities
+    link: /docs/5.1/concepts/explore-tikv-features/overview/
+- title: Develop
+  icon: img/homepage/develop.svg
+  docs:
+  - name: Common Dev Tasks
+    link: /docs/5.1/develop/develop/
+  - name: TiKV clients
+    link: /docs/5.1/develop/clients/introduction/
+  - name: RawKV
+    link: /docs/5.1/develop/rawkv/introduction/
+- title: Deploy
+  icon: img/homepage/deploy.svg
+  docs:
+  - name: Install TiKV
+    link: /docs/5.1/deploy/install/install/
+  - name: Configure TiKV
+    link: /docs/5.1/deploy/configure/introduction/
+  - name: Benchmark and Performance
+    link: /docs/5.1/deploy/benchmark/benchmark/
+  - name: Operate TiKV Cluster
+    link: /docs/5.1/deploy/operate/operate/

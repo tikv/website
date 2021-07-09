@@ -4,7 +4,7 @@ description: Interact with TiKV using the raw key-value API or the transactional
 menu:
     "5.1":
         parent: Develop
-        weight: 2
+        weight: 1
 ---
 
 TiKV offers two APIs that you can interact with:

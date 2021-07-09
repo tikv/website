@@ -19,14 +19,29 @@ Do not apply this in production.
 
 ## Prerequisites
 
-Make sure you have installed [TiUP](https://github.com/pingcap/tiup) version **v1.5.2** or above as described in [TiKV in 5 Minutes](../../tikv-in-5-minutes).
+Make sure you have installed [TiUP](https://github.com/pingcap/tiup) as described in [TiKV in 5 Minutes](../../tikv-in-5-minutes).
 
 
-## Step 1. Start a 3-node cluster
+## Step 1: Start a 3-node cluster
 
 Use the `tiup-playground` to start a 3-node local cluster.
-```sh
+
+Show TiUP version:
+
+```bash
+tiup -v
+```
+
+version >= 1.5.2:
+
+```bash
 tiup playground --mode tikv-slim --kv 3
+```
+
+version < 1.5.2:
+
+```bash
+tiup playground --kv 3
 ```
 
 The command above will output the following content:
@@ -50,7 +65,7 @@ To view the Prometheus: http://127.0.0.1:33703
 To view the Grafana: http://127.0.0.1:3000
 ```
 
-## Step 2. Write data
+## Step 2: Write data
 
 On another terminal session, we will use [go-ycsb](https://github.com/pingcap/go-ycsb) to launch a workload.
 
@@ -68,11 +83,12 @@ On another terminal session, we will use [go-ycsb](https://github.com/pingcap/go
     ./bin/go-ycsb load tikv -P workloads/workloada -p tikv.pd="127.0.0.1:2379" -p tikv.type="raw" 
     ```
 
-## Step 3. Verify replication
+## Step 3: Verify replication
 
 To understand replication in TiKV, it's important to review a few concepts from the [architecture](https://github.com/tikv/tikv#tikv-software-stack).
-| Concept    |                                                                                                           Description                                                                                                            |
-| ---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+
+| Concept  | Description |
+| -------- | -------- |
 | **Region** | TiKV could seem like a giant sorted map of key-value pairs. The region is the basic unit of key-value data movement. Each region is a range of keys and replicated to multiple Nodes. These multiple replicas form a Raft group. |
 | **Peer**   |                             TiKV replicates each region (3 times by default) and stores each replica on a different peer. In the same node, it could contains multiple peers of  different regions.                              |
 
@@ -88,7 +104,7 @@ To understand replication in TiKV, it's important to review a few concepts from 
     width="80"
     number="1" >}}
 
-## Step 4. Write more data
+## Step 4: Write more data
 
 In this section, we will launch a larger workload, then scales the 3-node local cluster to a 5-node cluster and check the load of the TiKV cluster will be **rebalanced** as expected.
 
@@ -105,7 +121,7 @@ In this section, we will launch a larger workload, then scales the 3-node local 
     width="80"
     number="1" >}}
 
-## Step 5. Add two more nodes
+## Step 5: Add two more nodes
 
 1. Create another terminal session, use `tiup playground` to scale out the cluster.
     ```sh
@@ -124,7 +140,7 @@ In this section, we will launch a larger workload, then scales the 3-node local 
     308243  tikv  9m50.537477856s
     ```
 
-## Step 6. Verify the data rebalance
+## Step 6: Verify the data rebalance
 
 Go to Grafana page mentioned above. You will find some regions are split and rebalance to the two new nodes.
 
@@ -134,9 +150,10 @@ Go to Grafana page mentioned above. You will find some regions are split and reb
     number="1" >}}
 
 
-## Step 7. Stop and delete the cluster.
+## Step 7: Stop and delete the cluster.
 
-1. Back to the terminal session that you just started the TiKV cluster and press `ctrl-c` and wait for the cluster to stop.
+1. Back to the terminal session that you just started the TiKV cluster and press `Ctrl + C` and wait for the cluster to stop.
+
 2. You can destroy the cluster by:
     ```sh
     tiup clean --all
