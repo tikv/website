@@ -20,12 +20,12 @@ The overall architecture of TiKV is as follows:
 
 A TiKV cluster consists of the following components:
 
-- [A TiKV cluster](./#tikv-cluster) storing key-value pair data
-- [A Placement Driver (PD) cluster](./#pd-cluster) working as the manager of a TiKV cluster
+- [A group of TiKV nodes](./#tikv-cluster) storing key-value pair data
+- [A Placement Driver (PD) node](./#pd-cluster) working as the manager of the TiKV cluster
 
 TiKV clients interact with PD and TiKV through gRPC.
 
-## TiKV cluster
+## TiKV
 
 TiKV stores data in RocksDB, which is a persistent and fast key-value store. To learn why TiKV selects RocksDB to store data, see [RocksDB](/deep-dive/key-value-engine/rocksdb/).
 
@@ -42,14 +42,14 @@ Based on the Raft layer, TiKV provides two APIs that clients can interact with:
 | Raw           | A lower-level key-value API to interact directly with individual key-value pairs | Single key    | Your application requires low latency and do not involve multi-key transactions. |
 | Transactional | A higher-level key-value API to provide snapshot isolation transaction           | Multiple keys | Your application requires distributed transactions.                           |
 
-## PD cluster
+## PD
 
 As the manager in a TiKV cluster, the Placement Driver ([PD](https://github.com/tikv/pd)) provides the following functions:
 
 - [Timestamp oracle](/deep-dive/distributed-transaction/timestamp-oracle/)
 
-   Timestamp oracle plays a significant role in the Percolator Transaction model. PD implements a service to hand out timestamps in the strictly increasing order, which is a property required for the correct operations of the snapshot isolation protocol.
+   Timestamp oracle plays a significant role in the Percolator transaction model. PD implements a service to hand out timestamps in the strictly increasing order, which is a property required for the correct operations of the snapshot isolation protocol.
 
-- Region Scheduler
+- Region scheduler
 
-    Data in TiKV is organized as Regions, which are replicated to several stores. Region Scheduler decides the storage location of each replica.
+    Data in TiKV is organized as Regions, which are replicated to several stores. PD, as the Region scheduler, decides the storage location of each replica.

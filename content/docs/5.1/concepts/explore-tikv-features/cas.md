@@ -25,7 +25,7 @@ The atomicity guarantees that the new value is calculated based on the up-to-dat
 
 ## Prerequisites
 
-Make sure that you have installed TiUP, jshell, download tikv-client JAR files，and start a TiKV cluster according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
+Make sure that you have installed TiUP, jshell, download tikv-client JAR files, and start a TiKV cluster according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
 
 ## Verify CAS
 

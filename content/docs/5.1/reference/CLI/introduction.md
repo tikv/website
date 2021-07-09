@@ -1,6 +1,6 @@
 ---
 title: CLI
-description: Command-line interface tools used to administrate TiKV Clusters
+description: Command-line interface tools used to administrate TiKV clusters
 menu:
     "5.1":
         parent: Reference
