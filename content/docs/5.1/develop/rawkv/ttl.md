@@ -24,7 +24,7 @@ enable-ttl = true
 
 ## Use TTL in Java client
 
-After TTL is enabled in TiKV, you can set it in Java client via the `put` API or `CAS` API. The following two examples shows how to set TTL via the `put` API and `CAS` API.
+After TTL is enabled in TiKV, you can set it in Java client via the `put` API or `CAS` API. The following two examples show how to set TTL via the `put` API and `CAS` API.
 
 ### Set TTL in the `put` API
 
