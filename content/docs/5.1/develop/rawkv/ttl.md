@@ -7,15 +7,11 @@ menu:
         weight: 4
 ---
 
-Time To Live (TTL) is ... TiKV provides the TTL support via the RawKV API. <!-- Please provide a short introduction of TTL or RawKV's TTL API. What is it? In what situations users might need to use it?  -->
-
-This document provides two examples to show you how to set TTL via the RawKV API.
+TiKV provides the Time To Live (TTL) support via the RawKV API. This document provides two examples to show you how to set TTL via the RawKV API.
 
 ## Enable TTL
 
-Before you set TTL via RawKV API, you must enable TTL in your TiKV cluster.
-
-TTL is disabled by default. To enable it, set the following TiKV configuration to `true`.
+Before you set TTL via RawKV API, you must enable TTL in your TiKV cluster. TTL is disabled by default. To enable it, set the following TiKV configuration to `true`.
 
 ```yaml
 [storage]
@@ -95,7 +91,7 @@ import org.tikv.raw.RawKVClient;
 import org.tikv.shade.com.google.protobuf.ByteString;
 
 TiConfiguration conf = TiConfiguration.createRawDefault("127.0.0.1:2379");
-// enable AtomicForCAS when using RawKVClient.compareAndSet or RawKVClient.putIfAbsent
+// Enables AtomicForCAS when using RawKVClient.compareAndSet or RawKVClient.putIfAbsent
 conf.setEnableAtomicForCAS(true);
 TiSession session = TiSession.create(conf);
 RawKVClient client = session.createRawClient();
@@ -104,27 +100,27 @@ ByteString key = ByteString.copyFromUtf8("Hello");
 ByteString value = ByteString.copyFromUtf8("CAS+TTL");
 ByteString newValue = ByteString.copyFromUtf8("NewValue");
 
-// put
+// Writes data.
 client.put(key, value);
 
-// cas with ttl = 10 seconds
+// CAS with TTL = 10 seconds
 client.compareAndSet(key, Optional.of(value), newValue, 10);
 
-// get
+// Reads data.
 Optional<ByteString> result = client.get(key);
 assert(result.isPresent());
 assert("NewValue".equals(result.get().toStringUtf8()));
 System.out.println(result.get().toStringUtf8());
 
-// sleep 10 seconds
+// Let TiKV sleep for 10 seconds.
 System.out.println("Sleep 10 seconds.");
 Thread.sleep(10000);
 
-// get
+// Reads data.
 result = client.get(key);
 assert(!result.isPresent());
 
-// close
+// Close
 client.close();
 session.close();
 ```
