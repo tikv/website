@@ -13,7 +13,7 @@ This document explains some important terminologies of TiKV and PD.
 
 A TiKV **Node** is a physical node in the cluster, which might be a virtual machine, a container, etc. Within each Node, there can be one or more stores.
 
-The status for the Node, Store, and Region is regularly reported to the Placement Driver.
+The Node, Store, and Region regularly report their status to the Placement Driver.
 
 ## Placement Driver (PD)
 

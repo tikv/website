@@ -18,7 +18,8 @@ Using the `Scan` API, you can scan key-value pairs from TiKV in a range (from a 
 {{< info >}}
 `startKey` is inclusive while `endKey` is exclusive.
 
-The argument `limit` means that the `scan` API only returns a limited number of key-value pairs.
+To configure the `Scan` API to return a limited number of key-value pairs, you can use the `limit` argument as in the following example code:
+
 {{< /info >}}
 
 ```java
@@ -53,7 +54,7 @@ session.close();
 
 ### Scan all data
 
-The `Scan` API only returns a limited number of key-value pairs. How can you fetch all the data in the range from `startKey` to `endKey`? The following example gives you a simple demo.
+The `Scan` API only returns a limited number of key-value pairs. If you want to fetch all the data in the range from `startKey` to `endKey`, refer to the following example code for a simple demo: 
 
 ```java
 import java.util.List;
@@ -98,4 +99,4 @@ while(true) {
 }
 ```
 
-The example code above is available [here](https://github.com/marsishandsome/tikv-client-examples/blob/main/java-example/src/main/java/example/rawkv/Scan.java).
+To get the example code above, click [here](https://github.com/marsishandsome/tikv-client-examples/blob/main/java-example/src/main/java/example/rawkv/Scan.java).
