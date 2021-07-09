@@ -37,9 +37,9 @@ Implementing the [Raft](/deep-dive/consensus-algorithm/raft/) consensus algorith
 
 Based on the Raft layer, TiKV provides two APIs that clients can interact with:
 
-| API           | Description                                                                           | Atomicity     | Use when...                                                                   |
+| API           | Description                                                                           | Atomicity     | Usage scenarios                                                                   |
 |:------------- |:------------------------------------------------------------------------------------- |:------------- |:----------------------------------------------------------------------------- |
-| Raw           | A lower-level key-value API to interact directly with individual key-value pairs | Single key    | Your application requires low latency and do not involve multi-key transactions. |
+| Raw           | A lower-level key-value API to interact directly with individual key-value pairs | Single key    | Your application requires low latency and does not involve multi-key transactions. |
 | Transactional | A higher-level key-value API to provide snapshot isolation transaction           | Multiple keys | Your application requires distributed transactions.                           |
 
 ## PD
