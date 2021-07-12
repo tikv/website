@@ -9,7 +9,7 @@ menu:
 
 TiKV supports both transactional (TxnKV) API  and non-transactional (RawKV) API. This chapter walks you through a few demonstrations of how to use RawKV API.
 
-- [Put Get Delete](../put-get-delete)
+- [Get Put Delete](../get-put-delete/)
 - [Scan](../scan)
 - [Time to Live (TTL)](../ttl)
 - [Compare And Swap (CAS)](../cas)
