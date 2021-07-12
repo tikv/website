@@ -12,3 +12,4 @@ This section introduces how to deploy and verify a TiKV cluster in the productio
 - [Prerequisites](../prerequisites)
 - [Production Deployment](../production)
 - [Verify Cluster Status](../verify)
+- [Test Deployment](../test)
