@@ -7,9 +7,9 @@ menu:
         weight: 2
 ---
 
-It's recommended to get started with TiKV with default configurations, however, TiKV features a large number of configuration parameters to tweak its behavior, allowing you to configure the cluster to suit the special application requirements.
+It is recommended to get started with TiKV with default configurations. However, TiKV features a large number of configuration parameters to tweak its behavior, allowing you to configure the cluster to suit your special application requirements.
 
-The following guides provide you ways to configure different TiKV components:
+The following documents guide you on how to configure different TiKV components:
 
 PD
 
