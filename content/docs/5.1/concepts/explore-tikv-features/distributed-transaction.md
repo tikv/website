@@ -11,7 +11,7 @@ This chapter walks you through a simple demonstration of how TiKV's distributed 
 
 ## Prerequisites
 
-Before you start, ensure that you have set up a TiKV cluster and install the `tikv-client` Python package according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
+Before you start, ensure that you have set up a TiKV cluster and installed the `tikv-client` Python package according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
 
 {{< warning >}}
 TiKV Java client's Transaction API has not been released yet, so the Python client is used in this example.
@@ -23,8 +23,8 @@ Transaction isolation is one of the foundations of database transaction processi
 
 TiKV implements [Snapshot Isolation (SI)](https://en.wikipedia.org/wiki/Snapshot_isolation) consistency, which means that:
 
-- all reads made in a transaction will see a consistent snapshot of the database (in practice it reads the last committed values that existed at the time it started);
-- the transaction itself will successfully commit only if no updates it has made conflict with any concurrent updates made since that snapshot.
+- all reads made in a transaction will see a consistent snapshot of the database (in practice TiKV Client reads the last committed values that exist when TiKV Client starts);
+- the transaction will successfully commit only if the updates that a transaction has made do not conflict with the concurrent updates made by other transactions since that snapshot.
 
 The following example shows how to test TiKV's snapshot isolation.
 
