@@ -7,7 +7,10 @@ menu:
         weight: 3
 ---
 
-This page walks you through a simple demonstration of how to use TTL on RawKV.
+This page walks you through a simple demonstration of how to use TTL (Time To Live) on RawKV. The reason why you use TTL is that:
+
+- If TTL is not used, the data written to TiKV will always exist in TiKV unless it is manually deleted.
+- When TTL is used, if the TTL of a key is set to 1 hour, then one hour later, the data will be automatically deleted by TiKV.
 
 ## Prerequisites
 
