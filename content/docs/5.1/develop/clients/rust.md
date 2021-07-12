@@ -19,8 +19,8 @@ Both RawKV API and TxnKV API use the following basic data types:
 
 * `Key`: Refers to a key in the store. `String` and `Vec<u8>` implement `Into<Key>`, so you can pass them directly into client functions.
 * `Value`: Refers to a value in the store, which is an alias of `Vec<u8>`.
-* `KvPair`: Refers to a pair of a `Key` and a `Value`. It provides convenient methods for conversion to and from other types.
-* `BoundRange`: used for range related requests like `scan`. It implements `From` for Rust ranges so you can pass a Rust range of keys to the request. For example, `client.delete_range(vec![]..)`.
+* `KvPair`: Refers to a key-value pair. It provides convenient methods for conversion to and from other types.
+* `BoundRange`: Used for range related requests like `scan`. It implements `From` for Rust ranges so you can pass a Rust range of keys to the request. For example: `client.delete_range(vec![]..)`.
 
 ## Add dependencies
 
@@ -33,7 +33,7 @@ tikv-client = "0.1.0"
 
 ## Raw key-value API
 
-With a connected `tikv_client::RawClient`, you can perform actions such as `put`, `get`, `delete` and `scan`:
+With a connected `tikv_client::RawClient`, you can perform actions such as `put`, `get`, `delete`, and `scan`:
 
 ```rust
 let client = RawClient::new(vec!["127.0.0.1:2379"]).await?;
@@ -82,7 +82,7 @@ let txn_client = TransactionClient::new(vec!["127.0.0.1:2379"]).await?;
 let mut txn = txn_client.begin_optimistic().await?;
 ```
 
-Then it can send commands such as `get`, `set`, `delete`, and `scan`:
+Then you can send commands such as `get`, `set`, `delete`, and `scan`:
 
 ```rust
 let key = "Hello".to_owned();
