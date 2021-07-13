@@ -73,7 +73,7 @@ for(Kvrpcpb.KvPair pair : list) {
 }
 ```
 
-These functions also have batch variants (`batchPut`, `batchGet`, `batchDelete`, and `batchScan`), which considerably reduce network overhead and increase performance under certain workloads.
+These functions also have batch variants (`batchPut`, `batchGet`, `batchDelete`, and `batchScan`) which considerably reduce network overhead and increase performance under certain workloads.
 
 You can find all functions supported by `RawKVClient` [in this JAVA file](https://github.com/tikv/client-java/blob/master/src/main/java/org/tikv/raw/RawKVClient.java).
 
