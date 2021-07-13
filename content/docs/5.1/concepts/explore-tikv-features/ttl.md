@@ -7,7 +7,10 @@ menu:
         weight: 3
 ---
 
-This page walks you through a simple demonstration of how to use TTL on RawKV.
+This page walks you through a simple demonstration of how to use TTL (Time To Live) on RawKV. TTL is a data clearing mechanism that automatically deletes data after a specified period of time. For example:
+
+- If TTL is not used, the data written to TiKV will always exist in TiKV unless it is manually deleted.
+- If TTL is used and the TTL time of a key is set to one hour, the data of the key will be automatically deleted by TiKV after one hour.
 
 ## Prerequisites
 
