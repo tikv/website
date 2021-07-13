@@ -11,7 +11,7 @@ This document walks you through how to use RawKV's basic operations such as `Get
 
 ## Java
 
-### Import
+### Import packages
 
 First, import all necessary packages as shown in the example.
 
@@ -43,7 +43,7 @@ TiSession session = TiSession.create(conf);
 RawKVClient client = session.createRawClient();
 ```
 
-### Put
+### Write data to TiKV
 
 Using the `put` API, you can write a key-value pair to TiKV.
 
@@ -53,7 +53,7 @@ ByteString value = ByteString.copyFromUtf8("RawKV");
 client.put(key, value);
 ```
 
-### Get
+### Read data from TiKV
 
 Using the `get` API, you can get the value of a key from TiKV. If the key does not exist, `result.isPresent()` will be false.
 
@@ -63,7 +63,7 @@ assert(result.isPresent());
 assert("RawKV".equals(result.get().toStringUtf8()));
 ```
 
-### Delete
+### Delete data from TiKV
 
 Using the `delete` API, you can delete a key-value pair from TiKV.
 
@@ -73,7 +73,7 @@ result = client.get(key);
 assert(!result.isPresent());
 ```
 
-### Close
+### Close working instances
 
 Finally, do not forget to close the `client` and `session` instance.
 
