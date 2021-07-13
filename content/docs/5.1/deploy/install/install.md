@@ -7,7 +7,7 @@ menu:
         weight: 1
 ---
 
-This section introduces how to deploy and verify a TiKV cluster.
+This section introduces how to deploy and verify a TiKV cluster in the production environment.
 
 - [Prerequisites](../prerequisites)
 - [Production Deployment](../production)
