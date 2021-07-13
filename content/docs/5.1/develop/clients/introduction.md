@@ -24,6 +24,6 @@ TiKV has clients for a number of languages:
 | -------------------------- | ----------------- | ----------------- | ---------------------- |
 | [Java Client](../java)     | Stable            | Under development | >= 2.0.0               |
 | [Go Client V2](../go)      | Unstable          | Unstable          | >= 5.0.0               |
-| [Rust Client](../rust)     | Stable            | Stable            | >= 5.0.0               |
+| [Rust Client](../rust)     | Unstable          | Unstable          | >= 5.0.0               |
 | [Python Client](../python) | Unstable          | Unstable          | >= 5.0.0               |
-| [C Client](../c)           | Unstable          | Unstable          | >= 5.0.0               |
+| [C++ Client](../cpp)       | Unstable          | Unstable          | >= 5.0.0               |
