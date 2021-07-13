@@ -9,7 +9,7 @@ menu:
 
 TiKV client for python is built on top of [TiKV Client in Rust](https://github.com/tikv/client-rust) via CFFI and [PyO3 Python binding](https://github.com/PyO3/pyo3).
 
-This client is still in the stage of prove-of-concept and under heavy development. You can track development at [tikv/client-py](https://github.com/tikv/client-py/) repository.
+The Python client is still in the stage of proof-of-concept and under development. You can track the development at [tikv/client-py](https://github.com/tikv/client-py/) repository.
 
 {{< warning >}}
 You should not use the Python client for production use until it is released.

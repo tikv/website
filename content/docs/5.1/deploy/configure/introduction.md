@@ -7,9 +7,9 @@ menu:
         weight: 2
 ---
 
-Though it's recommended to start with the default configurations when getting started with TiKV, TiKV features a large number of configuration parameters to tweak its behavior, which enables users to config the cluster to fit for the special application requirement.
+Although you are recommended to get started with TiKV using the default configuration, TiKV provides many configuration parameters to tweak its behavior, which allows you to configure the cluster to suit your special application requirements.
 
-The following topics describes how to config different TiKV components:
+The following list of documents guide you on how to configure different TiKV components:
 
 PD
 
@@ -23,10 +23,10 @@ TiKV
 - [Security](../security): Use TLS security and review security procedures.
 - [Topology Lable](../topology): Use location awareness to improve resiliency and performance.
 - [Limit](../limit): Learn how to configure scheduling rate limit on stores.
-- [Region Merge](../region-merge): Tweak region merging.
+- [Region Merge](../region-merge): Tweak Region merging.
 - [RocksDB](../rocksdb): Tweak RocksDB configuration parameters.
 - [Raftstore](../raftstore): Learn how to configure Raftstore in TiKV.
-- [Titan](../titan): Enable titan to improve performance with large values.
+- [Titan](../titan): Enable Titan to improve performance with large values.
 - [Storage](../storage): Learn how to configure storage in TiKV.
 - [gRPC](../grpc): Learn how to configure gRPC in TiKV.
 - [Coprocessor](../coprocessor): Learn how to configure Coprocessor in TiKV.
