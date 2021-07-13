@@ -1,19 +1,21 @@
 ---
 title: Terminologies
-description: TiKV and PD terminologies.
+description: Explain TiKV and PD terminologies.
 menu:
     "5.1":
         parent: Architecture
         weight: 4
 ---
 
+This document explains some important terminologies of TiKV and PD.
+
 ## Node
 
-A TiKV **Node** is a physical node in the cluster, which could be a virtual machine, a container, etc. Within each Node, there can be one or more stores.
+A TiKV **Node** is a physical node in the cluster, which might be a virtual machine, a container, etc. Within each Node, there can be one or more stores.
 
-The status for the Node, Store, and Region will be regularly reported to the Placement Driver.
+The Node, Store, and Region regularly report their status to the Placement Driver.
 
-## Placement driver (PD)
+## Placement Driver (PD)
 
 The Placement Driver (PD) is the cluster manager of TiKV. It periodically records the cluster information, makes decisions to move/split/merge TiKV Regions across nodes according to the application workload and storage capacities. This process is called **scheduling**.
 
@@ -23,11 +25,11 @@ A replica of a Region is called a peer. Multiple peers of the same Region replic
 
 ## Raft
 
-Data is distributed across TiKV instances via the [Raft consensus algorithm](https://raft.github.io/), which is based on the so-called [Raft paper](https://raft.github.io/raft.pdf) ("In Search of an Understandable Consensus Algorithm") from [Diego Ongaro](https://ongardie.net/diego/) and [John Ousterhout](https://web.stanford.edu/~ouster/cgi-bin/home.php).
+Data is distributed across TiKV instances via the [Raft consensus algorithm](https://raft.github.io/), which is based on the [Raft paper](https://raft.github.io/raft.pdf) ("In Search of an Understandable Consensus Algorithm") from [Diego Ongaro](https://ongardie.net/diego/) and [John Ousterhout](https://web.stanford.edu/~ouster/cgi-bin/home.php).
 
 ## Region
 
-TiKV shards continuous ranges of keys into **Regions**, and replicates **Regions** via the Raft protocol. When data size increases until reaching a threshold, a Region will be split into multiple. Conversely, if the size of the Region shrinks due to data deletion, two adjacent Regions can be merged into one.
+TiKV shards continuous ranges of keys into **Regions**, and replicates **Regions** via the Raft protocol. When data size increases until a threshold is reached, a Region will be split into multiple ones. Conversely, if the size of the Region shrinks due to data deletion, two adjacent Regions can be merged into one.
 
 ## Store
 
@@ -35,6 +37,6 @@ A **Store** is an instance of a TiKV server in which multiple peers are stored.
 
 ## Transaction
 
-TiKV provides transactions that allow you to read and write across any keys with **Snapshot Isolation** regardless of the physical placement of the Region. TiKV also provides the pessimistic transactions that are semantically analogous to `SELECT ... FOR UPDATE` in SQL.
+TiKV provides transactions that allow you to read and write across any keys with **Snapshot Isolation** regardless of the physical placement of the Region. TiKV also provides the pessimistic transactions that are semantically similar to `SELECT ... FOR UPDATE` in SQL.
 
 The underlying transaction model is similar to Google's [Percolator](https://ai.google/research/pubs/pub36726), a system built for processing updates to large data sets.
