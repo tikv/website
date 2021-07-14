@@ -16,10 +16,10 @@ We recommend continuing learning about TiKV using the following resources:
     - Monitor a TiKV cluster: [Monitor and Alert](../../deploy/monitor/monitor/)
     - Maintain and operate a TiKV cluster: [Operate TiKV Cluster](../../deploy/operate/operate/)
     - Administrate TiKV Cluster with CLI Tools: [CLI](../../reference/cli/introduction/)
-- As an application developer
-    - Learn how to interact with a TiKV cluster using TiKV clients: [TiKV clients](../../develop/clients/introduction/)
-    - Learn how to interact with TiKV using RawKV API: [RawKV](../../develop/rawkv/introduction/)
-    - Learn the architecture of TiKV: [Architecture](../../reference/architecture/introduction/)
-- Want to become a contributor
-    - Learn how to be a TiKV Contributor: [Contribute](/community/contribute/)
-    - Learn the internal of TiKV: [Deep Dive](/deep-dive/introduction/)
+- As an application developer, learn
+    - How to interact with a TiKV cluster using TiKV clients: [TiKV clients](../../develop/clients/introduction/)
+    - How to interact with TiKV using RawKV API: [RawKV](../../develop/rawkv/introduction/)
+    - The architecture of TiKV: [Architecture](../../reference/architecture/introduction/)
+- Want to become a contributor, learn
+    -  How to be a TiKV Contributor: [Contribute](/community/contribute/)
+    -  The internal of TiKV: [Deep Dive](/deep-dive/introduction/)
