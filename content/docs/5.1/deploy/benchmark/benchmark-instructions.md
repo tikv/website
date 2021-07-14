@@ -56,7 +56,7 @@ You can install [TiUP](https://github.com/pingcap/tiup) as described in [TiKV in
 
 ## Step 2. Deploy a cluster
 
-1. We could use the following topology to deploy our benchmark cluster via `tiup cluster`. **For more information, see [Production Deployment](../../install/production)**
+1. We could use the following topology to deploy our benchmark cluster via `tiup cluster`. **For more information, see [Production Deployment](../../install/production)**. Save the content below as `topology.yaml`:
 ```yaml
 global:
   user: "tikv"
@@ -76,7 +76,7 @@ grafana_servers:
   - host: 10.0.1.6
 ```
 
-2. Save the content above as `topology.yaml`:
+2. Deploy the cluster:
 ```sh
 tiup cluster deploy [cluster-name] [cluster-version] topology.yaml
 ```
@@ -99,8 +99,11 @@ YCSB has six kinds of workloads whose main difference are the portion of differe
 2. Workload B: Read mostly workload
 3. Workload C: Read only
 4. Workload D: Read latest workload
+    > In this workload, new records are inserted, and the most recently inserted records are the most popular. Application example: user status updates; people want to read the latest.
 5. Workload E: Short ranges
+    > In this workload, short ranges of records are queried, instead of individual records. Application example: threaded conversations, where each scan is for the posts in a given thread (assumed to be clustered by thread id).
 6. Workload F: Read-modify-write 
+    > In this workload, the client will read a record, modify it, and write back the changes.
 
 All six workloads have a data set which is **similar**. Workloads D and E insert records during the test run. Thus, to keep the database size consistent, we recommend the following sequence:
 
@@ -166,9 +169,9 @@ UPDATE - Takes(s): 265.0, Count: 5001641, OPS: 18877.1, Avg(us): 5416, Min(us): 
 If it report errors like `batch commands send error:EOF`, it relates to this [issue](https://github.com/pingcap/go-ycsb/issues/145).
 {{< /warning >}}
 
-## Step 5. Find the bottleneck.
+## Step 5. Find the maximum throughput.
 
-There are two way the find the bottleneck of the TiKV cluster. 
+There are two way the find the maximal throughput of the TiKV cluster. 
 
 1. Increasing the threadcount of the client.
       * You can increase the `threadcount` to the number of virtual cores of the machine. In some circumstances, it could reach the bottleneck of the TiKV cluster.
