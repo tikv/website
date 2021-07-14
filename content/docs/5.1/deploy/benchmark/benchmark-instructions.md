@@ -125,8 +125,8 @@ All six workloads have a data set which is **similar**. Workloads D and E insert
 6. Run workload D (using workloads/workloadd) for a variety of throughputs. This workload inserts records, increasing the size of the database.
 7. Delete the data in the database.
    > You need to destroy the cluster via `tiup cluster destroy [cluster-name]`, and delete the data directory of cluster. Otherwise, the remaining data of the cluster may impact the results of the following workload.
-8. Reload the database, using workload E's parameter file (workloads/workloade).
-9.  Run workload E (using workloads/workloade) for a variety of throughputs. This workload inserts records, increasing the size of the database.
+8. Start a new tikv cluster, load a new data set using workload E's parameter file (workloads/workloade).
+9. Run workload E (using workloads/workloade) for a variety of throughputs. This workload inserts records, increasing the size of the database.
 
 {{< info >}}
 If you trying to use more clients to benchmark, check [Running a Workload in Parallel](https://github.com/brianfrankcooper/YCSB/wiki/Running-a-Workload-in-Parallel).
