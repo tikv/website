@@ -178,7 +178,7 @@ There are two way the find the maximal throughput of the TiKV cluster.
 2. Increasing the count of benchmark clients.
       * You can deploy more benchmark clients to increase the requests towards the TiKV cluster. Mutiple `go-ycsb` from different nodes could be launched simultaneously. And then you can summarise the result of these nodes.
 
-Repeat the 2 steps above, the bottleneck of the TiKV cluster is reached while the QPS you inspect from the TiKV cluster's Grafana page is no longer increasing. 
+Repeat the 2 steps above, the bottleneck of the TiKV cluster is reached while the QPS showed in the TiKV cluster's Grafana page is no longer increasing. 
 
 ## Step 6. Clean up
 
