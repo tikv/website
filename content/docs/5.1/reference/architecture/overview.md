@@ -42,6 +42,11 @@ Based on the Raft layer, TiKV provides two APIs that clients can interact with:
 | Raw           | A lower-level key-value API to interact directly with individual key-value pairs | Single key    | Your application requires low latency and does not involve multi-key transactions. |
 | Transactional | A higher-level key-value API to provide snapshot isolation transaction           | Multiple keys | Your application requires distributed transactions.                           |
 
+| Concept        |                                                   Description                                                    |
+| -------------- | :--------------------------------------------------------------------------------------------------------------: |
+| **Raft Group** |                  Each replica of a region is called Peer. All of such peers form a raft group.                   |
+| **Leader**     | In every raft group, there is a unique role called leader, are responsible for read/write requests from clients. |
+
 ## PD
 
 As the manager in a TiKV cluster, the Placement Driver ([PD](https://github.com/tikv/pd)) provides the following functions:
