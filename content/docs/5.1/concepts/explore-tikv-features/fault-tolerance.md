@@ -1,34 +1,40 @@
 ---
 title: Fault Tolerance and Recovery
-description: Learn how TiKV recovers from failures
+description: Learn how TiKV recovers from failures.
 menu:
     "5.1":
         parent: Features
         weight: 2
 ---
 
-This page walks you through a simple demonstration of how TiKV recovers from failures and continues to provide services during failures.
+This document walks you through a demonstration of how TiKV recovers from failures and continues providing services when some nodes fail.
 
-1. Start a 6-node local cluster.
-2. Run a sample workload via [go-ycsb](https://github.com/pingcap/go-ycsb), then kill a node to simulate a failure, and see how the cluster seamlessly continues.
-3. Leave that node offline for long enough to watch the cluster repair itself by re-replicating missing data to other nodes.
-4. Increase to 5-way replication, then simultaneously take two nodes offline, and again see how the cluster continues uninterrupted.
+The demonstration consists of two experiments: a single-node failure simulation, where one node is taken offline, and then a two-node failure, where two TiKV nodes are simultaneously taken offline. In both failures, the cluster repairs itself by re-replicating missing data to other nodes, and you can see how the cluster continues running uninterrupted.
 
+The process is as follows:
 
-## Prerequisites
+1. [Prepare a TiKV cluster for test](#prepare-a-tikv-cluster-for-test).
+2. [Run a workload against TiKV](#run-a-workload-against-tikv).
+3. [Experiment 1: Simulate a single-node failure](#experiment-1-simulate-a-single-node-failure).
+4. [Experiment 2: Simulate two simultaneous node failures](#experiment-2-simulate-two-simultaneous-node-failures).
+5. [Clean up the test cluster](#clean-up-the-test-cluster).
 
-1. Install [TiUP](https://github.com/pingcap/tiup) version **v1.5.2** or above as described in [TiKV in 5 Minutes](../../tikv-in-5-minutes)
-2. Install [client-py](https://github.com/tikv/client-py) to interact with the TiKV cluster.
+## Prepare a TiKV cluster for test
 
-## Step 1. Start a 6-node cluster
+Before the process of failure simulation begins, the following requirements are already met:
 
-Use `tiup playground` command to launch a 6-node local cluster.
++ [TiUP](https://github.com/pingcap/tiup) is installed (v1.5.2 or later) as described in [TiKV in 5 Minutes](../../tikv-in-5-minutes).
++ [client-py](https://github.com/tikv/client-py) is installed. It is used to interact with the TiKV cluster.
 
-```sh
+### Step 1. Start a six-node cluster
+
+Use the `tiup playground` command to start a six-node local TiKV cluster:
+
+```shell
 tiup playground --mode tikv-slim --kv 6
 ```
 
-This command will give you a hint about components' addresses. It will be used in the following steps.
+From the output of this command, you will see the components' addresses. These addresses will be used in the following steps.
 
 ```
 Playground Bootstrapping...
@@ -45,40 +51,41 @@ To view the Grafana: http://127.0.0.1:3000
 ```
 
 {{< info >}}
-Each region contains 3 replicas according to the default configuration.
+Each Region has three replicas according to the default configuration.
 {{< /info >}}
 
-## Step 2. Write data
+### Step 2. Import data to TiKV
 
-On another terminal session, use [go-ycsb](https://github.com/pingcap/go-ycsb) to launch a workload.
+On another terminal session, use [go-ycsb](https://github.com/pingcap/go-ycsb) to launch a workload of writing data to the TiKV cluster.
 
-1. Clone the `go-ycsb` from GitHub.
+1. Clone `go-ycsb` from GitHub.
 
-    ```sh
+    ```shell
     git clone https://github.com/pingcap/go-ycsb.git
     ```
 
 2. Build the application from the source.
 
-    ```sh
+    ```shell
     make
     ```
 
-3. Load a workload using `go-ycsb` with **10000** keys.
+3. Load a workload using `go-ycsb` with **10000** keys into the TiKV cluster.
 
-    ```sh
+    ```shell
     ./bin/go-ycsb load tikv -P workloads/workloada -p tikv.pd="127.0.0.1:2379" -p tikv.type="raw" -p recordcount=1000000
     ```
 
-    This command will output the following content:
+    The command above will output the following result:
 
     ```
     Run finished, takes 11.722575701s
     INSERT - Takes(s): 11.7, Count: 10000, OPS: 855.2, Avg(us): 18690, Min(us): 11262, Max(us): 61304, 99th(us): 36000, 99.9th(us): 58000, 99.99th(us): 62000
     ```
-## Step 3. Verify the data importing.
 
-Within python3.5+ REPL environment, you can scan all the keys that just inserted by `go-ycsb` and assert the count of them is `recordcount` in the `go-ycsb` command above.
+### Step 3: Verify the data import
+
+Using the Python 3.5+ REPL environment, you can scan all the keys that just are inserted by `go-ycsb` and verify that the key count matches the `recordcount` in the `go-ycsb` command in the previous step.
 
 ```python
 >>> from tikv_client import RawClient
@@ -87,18 +94,21 @@ Within python3.5+ REPL environment, you can scan all the keys that just inserted
 10000
 ```
 
-The evaluation of the last expression should be **10000**, as the `recordcount` specified in the `go-ycsb` command.
+The evaluation of the last expression should be **10000**, as the `recordcount` has specified in the `go-ycsb` command.
 
+## Run a workload against TiKV
 
-## Step 4. Run a sample workload.
+### Step 1. Run a sample workload
 
-Go to the source directory of `go-ycsb`, use the following command to run the `workloada` from YCSB benchmark, simulating multiple client connections, each performing mixed 50% read and 50% write operations.
+Enter the source directory of `go-ycsb` and use the following command to run the `workloada` from the YCSB benchmark.
 
-```sh
+`workloada` simulates multiple client connections and performs a mix of reads (50%) and writes per connection.
+
+```shell
 ./bin/go-ycsb run tikv -P workloads/workloada -p tikv.pd="127.0.0.1:2379" -p tikv.type="raw" -p tikv.conncount=16 -p threadcount=16 -p recordcount=10000 -p operationcount=1000000
 ```
 
-You'll see per-operation statistics print to standard output every second.
+You will see per-operation statistics printed to the standard output every second.
 
 ```
 ...
@@ -110,96 +120,96 @@ UPDATE - Takes(s): 20.0, Count: 15799, OPS: 791.1, Avg(us): 19834, Min(us): 1050
 ```
 
 {{< info >}}
-This workload above will run several minutes, you will have enough time to simulate a node failure described as follows.
+This workload above runs for several minutes. You will have enough time to simulate a node failure described as follows.
 {{< /info >}}
 
-## Step 5. Check the workload
+### Step 2. Check the workload on Grafana dashboard
 
-1. Go to the [Grafana](https://grafana.com) page at [http://127.0.0.1:3000](http://127.0.0.1:3000)
+1. Open the [Grafana](https://grafana.com) dashboard by accessing [`http://127.0.0.1:3000`](http://127.0.0.1:3000) in your browser.
 
-2. Login with default username `admin` and password `admin`
+2. Log into the dashboard using the default username `admin` and password `admin`.
 
-3. Go to dashboard **playground-tikv-summary**, the OPS information is in panel **gRPC message count** in row **gRPC**.
+3. Enter the dashboard **playground-tikv-summary**, and the OPS information is in the panel **gRPC message count** in the row **gRPC**.
 
-{{< figure
-    src="/img/docs/check-ops.png"
-    width="80"
-    number="1" >}}
+    {{< figure
+        src="/img/docs/check-ops.png"
+        width="80"
+        number="1" >}}
 
-4. By default, TiKV replicates all data 3 times and balances it across all stores. To see this balance, go to page **playground-overview** and check the region count across all nodes. In this example, we load a small amount of data, thus only one region is presented:
+4. By default, TiKV replicates all data three times and balances the load across all stores. To see this balancing process, enter the page **playground-overview** and check the Region count across all nodes. In this example, a small amount of data is loaded. Thus only one Region is shown:
 
-{{< figure
-    src="/img/docs/fault-tolerance-region-count.png"
-    width="80"
-    number="1" >}}
+    {{< figure
+        src="/img/docs/fault-tolerance-region-count.png"
+        width="80"
+        number="1" >}}
 
-## Step 6. Simulate a single node failure
+## Experiment 1: Simulate a single-node failure
 
-To understand fault tolerance in TiKV, it's important to review a few concepts from the [architecture](https://tikv.org/docs/5.1/reference/architecture/overview/#system-architecture).
+### Step 1: Stop the target process
 
-| Concept        |                                                   Description                                                    |
-| -------------- | :--------------------------------------------------------------------------------------------------------------: |
-| **Raft Group** |                  Each replica of a region is called Peer. All of such peers form a raft group.                   |
-| **Leader**     | In every raft group, there is a unique role called leader, are responsible for read/write requests from clients. |
+In TiKV, all read/write operations are handled by the leader of the Region group. See [architecture](https://tikv.org/docs/5.1/reference/architecture/overview/#system-architecture) for details.
 
+In this example, the only one leader in the cluster is stopped. Then the load continuity and cluster health are checked.
 
-Notice that all read/write operations are handled by the leader of the region group, we are going to stop the only one leader in the cluster, and check the load continuity and cluster health.
+1. Enter the Grafana dashboard **playground-overview**. The leader distribution is shown in the panel **leader** in row **TiKV**.
 
+2. In this example, the local process that opens the port `20180` holds only one leader in the cluster. Execute the following command to stop this process.
 
-1. Go to Grafana dashboard **playground-overview**, the leader distribution is in panel **leader** in row **TiKV**.
-
-2. In the example, the local process that open port `20180` hold only one leader in the cluster. Use the following command to stop the process.
-
-    ```sh
+    ```shell
     kill -STOP $(lsof -i:20180 | grep tikv | head -n1 | awk '{print $2}')
     ```
 
-## Step 7. Check load continuity and cluster health
+## Step 2. Check the load continuity and cluster health on Grafana dashboard
 
-1. Check the leader distribution again, you will find the leader is moving to another store.
+1. Check the leader distribution on the dashboard again. The monitoring metric shows that the leader is moved to another store.
 
-{{< figure
-    src="/img/docs/fault-tolerance-leader-recover.png"
-    width="80"
-    number="1" >}}
+    {{< figure
+        src="/img/docs/fault-tolerance-leader-recover.png"
+        width="80"
+        number="1" >}}
 
-2. Check the gRPC OPS, you will find there is a small duration that the TiKV is unavailable because the leader was down. However, the workload is back online as soon as the [election](https://raft.github.io/raft.pdf) is completed.
+2. Check the gRPC OPS. The monitoring metric shows that there is a short duration in which the TiKV instance is unavailable because the leader is down. However, the workload is back online as soon as the leader [election](https://raft.github.io/raft.pdf) is completed.
 
-{{< figure
-    src="/img/docs/fault-tolerance-ops.png"
-    width="80"
-    number="1" >}}
+    {{< figure
+        src="/img/docs/fault-tolerance-ops.png"
+        width="80"
+        number="1" >}}
 
-## Step 8. Prepare for two simultaneous node failures
+## Experiment 2: Simulate two simultaneous node failures
 
-At this point, the cluster has recovered. In the example above, we stop the leader of the cluster which result in 5 stores are alive. Then, a new leader is presented after a while. We are going to increase the region replicas of TiKV to 5, stop 2 non-leader nodes simultaneously and check the cluster status.
+### Step 1: Stop the target processes
+
+In the above single-node failure simulation, the TiKV cluster has recovered. The leader of the cluster has been stopped, so there are five stores alive. Then, a new leader is elected after a while.
+
+Experiment 2 will increase the Region replicas of TiKV to five, stop two non-leader nodes simultaneously, and check the cluster status.
 
 {{< info >}}
-While using `tiup ctl`, an explicit version of the component is needed. In this example, it's v5.1.0.
+The component version should be explicitly specified in the `tiup ctl` command. In the following example, the component version is v5.1.0.
 {{< /info >}}
-1. Increase replicas to the cluster:
 
-    ```sh
+1. Increase the replicas of the cluster to five:
+
+    ```shell
     tiup ctl:v5.1.0 pd config set max-replicas 5
     ```
 
-2. Stop 2 non-leader nodes simultaneously. In this example, we stop the processes that hold port `20181` and `20182` whose PID is `1009934` and `109941`.
+2. Stop two non-leader nodes simultaneously. In this example, the processes that hold the ports `20181` and `20182` are stopped. The process IDs (PIDs) are `1009934` and `109941`.
 
-   ```sh
+   ```shell
    kill -STOP 1009934
    kill -STOP 1009941
    ```
 
-## Step 9. Check load continuity and cluster health
+## Step 2: Check the load continuity and cluster health on Grafana dashboard
 
-1. Like before, go to the Grafana and follow **playground-tikv-summary** -> **gRPC** -> **gRPC message count**. You will find there is no impact on our workload continuity because the leader is still alive.
+1. Similar to [Step 2. Check the load continuity and cluster health on Grafana dashboard](#step-2-check-the-load-continuity-and-cluster-health-on-grafana-dashboard) in the single-node failure simulation, enter the Grafana dashboard and follow **playground-tikv-summary** -> **gRPC** -> **gRPC message count**. The metrics show that the workload continuity is not impacted because the leader is still alive.
 
-{{< figure
-    src="/img/docs/fault-tolerance-workload.png"
-    width="80"
-    number="1" >}}
+    {{< figure
+        src="/img/docs/fault-tolerance-workload.png"
+        width="80"
+        number="1" >}}
 
-2. To verify this further, we could use `client-py` to read/write some data to prove our cluster is still available.
+2. To further verify the load continuity and cluster health, `client-py` is used to read and write some data to prove that the cluster is still available.
 
     ```python
     >>> from tikv_client import RawClient
@@ -210,11 +220,14 @@ While using `tiup ctl`, an explicit version of the component is needed. In this 
     >>> len(client.scan_keys(None, None, 10240))
     10001
     ```
-## Step 10. Clean up
 
-1. Back to the terminal session that you just started the TiKV cluster and press `ctrl-c` and wait for the cluster to stop.
-2. You can destroy the cluster by:
+## Clean up the test cluster
 
-    ```sh
+After experiment 2 is finished, you might need to clean up the test cluster. To do that, take the following steps:
+
+1. Go back to the terminal session that you have just started the TiKV cluster and press <kbd>ctrl</kbd>> + <kbd>c</kbd> and wait for the cluster to stop.
+2. After the cluster is stopped, destroy the cluster using the following command:
+
+    ```shell
     tiup clean --all
     ```
