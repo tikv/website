@@ -6,7 +6,7 @@ menu:
         weight: 1
 ---
 
-**TiKV** is a highly scalable, low latency, and easy to use key-value database that delivers single-digit millisecond performance at any scale.
+**TiKV** is a highly scalable, low latency, and easy to use key-value database that delivers <10ms performance at any scale.
 
 TiKV is intended to fill the role of a unifying distributed storage layer. TiKV excels at working with **data in the large** by supporting petabyte scale deployments spanning trillions of rows.
 
