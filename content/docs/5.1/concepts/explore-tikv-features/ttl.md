@@ -7,15 +7,18 @@ menu:
         weight: 3
 ---
 
-This page walks you through a simple demonstration of how to use TTL on RawKV.
+This page walks you through a simple demonstration of how to use TTL (Time To Live) on RawKV. TTL is a data clearing mechanism that automatically deletes data after a specified period of time. For example:
+
+- If TTL is not used, the data written to TiKV will always exist in TiKV unless it is manually deleted.
+- If TTL is used and the TTL time of a key is set to one hour, the data of the key will be automatically deleted by TiKV after one hour.
 
 ## Prerequisites
 
-Please install TiUP, jshell and download tikv-client jars according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
+Before you start, ensure that you have installed TiUP and jshell, and have downloaded the `tikv-client` JARS file according to [TiKV in 5 Minutes](../../tikv-in-5-minutes).
 
 ## Step 1: Config TiKV to enable TTL
 
-TTL is disabled by default. Create a file `tikv.yaml` using the following content to enable TTL.
+TTL is disabled by default. You need to create a file `tikv.yaml` using the following configuration to enable TTL.
 
 ```yaml
 [storage]
@@ -24,7 +27,7 @@ enable-ttl = true
 
 ## Step 2: Start TiKV Cluster
 
-For the purpose of this tutorial, you need only one TiKV node, so use the `tiup playground` command.
+For this tutorial, only one TiKV node is needed, so the `tiup playground` command is used.
 
 Show TiUP version:
 
@@ -46,7 +49,7 @@ tiup playground --kv.config tikv.yaml
 
 ## Step 3: Write the code to test TTL
 
-Let's write an example to verify that TTL works.
+The following example shows how to verify the TTL works.
 
 Save the following script to file `test_raw_ttl.java`.
 
@@ -101,4 +104,4 @@ value: "v2"
 ]
 ```
 
-As we can see, `k1` is automatically deleted after it's TTL is expired.
+After running the above code, you can find that `k1` is automatically deleted when its TTL is expired.

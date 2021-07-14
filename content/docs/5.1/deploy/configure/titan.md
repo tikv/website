@@ -1,5 +1,5 @@
 ---
-title: RocksDB Titan
+title: RocksDB Titan Config
 description: Learn how to enable Titan in TiKV.
 menu:
     "5.1":

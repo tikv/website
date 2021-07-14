@@ -13,18 +13,18 @@ This guide introduces how to interact with TiKV using [Rust Client](https://gith
 The minimum supported version of Rust is 1.40. The minimum supported version of TiKV is 5.0.0.
 {{< /warning >}}
 
-## Basic Types
+## Basic data types
 
-Both RawKV API and TxnKV API use a few basic types:
+Both RawKV API and TxnKV API use the following basic data types:
 
-* `Key`: a key in the store. `String` and `Vec<u8>` implement `Into<Key>`, so you can pass them directly into client functions.
-* `Value`: a value in the store; just an alias of `Vec<u8>`.
-* `KvPair`: a pair of a `Key` and a `Value`. It provides convenience methods for conversion to and from other types.
-* `BoundRange`: used for range related requests like `scan`. It implements `From` for Rust ranges so you can pass a Rust range of keys to the request, e.g., `client.delete_range(vec![]..)`.
+* `Key`: Refers to a key in the store. `String` and `Vec<u8>` implement `Into<Key>`, so you can pass them directly into client functions.
+* `Value`: Refers to a value in the store, which is an alias of `Vec<u8>`.
+* `KvPair`: Refers to a key-value pair. It provides convenient methods for conversion to and from other types.
+* `BoundRange`: Used for range related requests like `scan`. It implements `From` for Rust ranges so you can pass a Rust range of keys to the request. For example: `client.delete_range(vec![]..)`.
 
-## Add the dependency
+## Add dependencies
 
-To start, open the `Cargo.toml` of your project, and add the `tikv-client` as dependencies.
+Before you start, you need to add the `tikv-client` as a dependency in the `Cargo.toml` file of your project.
 
 ```toml
 [dependencies]
@@ -33,7 +33,7 @@ tikv-client = "0.1.0"
 
 ## Raw key-value API
 
-Using a connected `tikv_client::RawClient`, you can perform actions such as `put`, `get`, `delete` and `scan`:
+With a connected `tikv_client::RawClient`, you can perform actions such as `put`, `get`, `delete`, and `scan`:
 
 ```rust
 let client = RawClient::new(vec!["127.0.0.1:2379"]).await?;
@@ -67,13 +67,13 @@ let result = client.scan("k1".to_owned().."k5".to_owned(), limit).await?;
 println!("{:?}", result);
 ```
 
-These functions also have batch variants (`batch_put`, `batch_get`, `batch_delete` and `batch_scan`), which offer considerably reduced network overhead and can result in dramatic performance improvements under certain workloads.
+These functions also have batch variants (`batch_put`, `batch_get`, `batch_delete` and `batch_scan`), which help to considerably reduce network overhead and greatly improve performance under certain workloads.
 
-You can find all the functions that `RawClient` supports [here](https://github.com/tikv/client-rust#raw-requests).
+You can find all the functions that `RawClient` supports in the [Raw requests table](https://github.com/tikv/client-rust#raw-requests).
 
 ## Transactional key-value API
 
-Using a connected `tikv_client::TransactionClient` you can then begin a transaction:
+With a connected `tikv_client::TransactionClient`, you can begin a transaction:
 
 ```rust
 use tikv_client::TransactionClient;
@@ -82,7 +82,7 @@ let txn_client = TransactionClient::new(vec!["127.0.0.1:2379"]).await?;
 let mut txn = txn_client.begin_optimistic().await?;
 ```
 
-Then it's possible to send commands like `get`, `set`, `delete`, and `scan`:
+Then you can send commands such as `get`, `set`, `delete`, and `scan`:
 
 ```rust
 let key = "Hello".to_owned();
@@ -125,7 +125,7 @@ result.for_each(|pair| println!("{:?}", pair));
 txn2.commit().await?;
 ```
 
-Commit these changes when you're ready, or roll back if you prefer to abort the operation:
+You can commit these changes when you are ready, or roll back if you prefer to abort the operation:
 
 ```rust
 if all_is_good {
@@ -135,6 +135,6 @@ if all_is_good {
 }
 ```
 
-These functions also have batch variants (`batch_put`, `batch_get`, `batch_delete` and `batch_scan`), which offer considerably reduced network overhead and can result in dramatic performance improvements under certain workloads.
+These functions also have batch variants (`batch_put`, `batch_get`, `batch_delete` and `batch_scan`), which help to considerably reduce network overhead and greatly improve performance under certain workloads.
 
-You can find all the functions that `TransactionClient` supports [here](https://github.com/tikv/client-rust#transactional-requests).
+You can find all the functions that `TransactionClient` supports in the [Transactional requests table](https://github.com/tikv/client-rust#transactional-requests).

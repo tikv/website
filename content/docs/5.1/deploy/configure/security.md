@@ -1,5 +1,5 @@
 ---
-title: Security
+title: Security Config
 description: Keeping your TiKV secure
 menu:
     "5.1":
