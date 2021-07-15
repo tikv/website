@@ -1,5 +1,5 @@
 ---
-title: Scheduling Limit
+title: Scheduling Limit Config
 description: Learn how to configure scheduling rate limit on stores.
 menu:
     "5.1":

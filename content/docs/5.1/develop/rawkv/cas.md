@@ -19,15 +19,15 @@ if (prevValue == request.prevValue) {
 return prevValue;
 ```
 
-The atomicity guarantees that the new value is calculated based on up-to-date information; if the value had been updated by another thread in the meantime, the write would fail.
+The atomicity guarantees that the new value is calculated based on up-to-date information. If the value had been updated by another thread at the same time, the write would fail.
 
 {{< warning >}}
-CAS can normally prevent problems from concurrent access, but suffers from [ABA problem](https://en.wikipedia.org/wiki/ABA_problem). 
+Normally, CAS can prevent problems from the concurrent access, but suffers from the [ABA problem](https://en.wikipedia.org/wiki/ABA_problem).
 {{</ warning >}}
 
 ## Java
 
-The following example shows a simple example of how to use the `CAS` API in java.
+The following example shows how to use `CAS` API in Java.
 
 ```java
 import java.util.Optional;
@@ -70,7 +70,7 @@ session.close();
 ```
 
 {{< warning >}}
-Users must set `conf.setEnableAtomicForCAS(true)` to ensure linearizability of `CAS` when used together with `put`, `delete`, `batch_put`, or `batch_delete`.
+You must set `conf.setEnableAtomicForCAS(true)` to ensure linearizability of `CAS` when using with `put`, `delete`, `batch_put`, or `batch_delete`.
 
 To guarantee the atomicity of CAS, write operations like `put` or `delete` in atomic mode are more expensive.
 {{< /warning >}}

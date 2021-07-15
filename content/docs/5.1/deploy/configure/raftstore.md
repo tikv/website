@@ -1,5 +1,5 @@
 ---
-title: Raftstore
+title: Raftstore Config
 description: Learn how to configure Raftstore in TiKV.
 menu:
     "5.1":

@@ -1,5 +1,5 @@
 {{ $year      := now.Year }}
-{{ $logo      := site.Params.logos.white | relURL }}
+{{ $logo      := site.Params.logos.colorLogoWhiteFont | relURL }}
 {{ $docs      := where site.Pages "Section" "docs" }}
 {{ $latest    := site.Params.versions.latest }}
 {{ $blogPosts := where site.RegularPages "Section" "blog" }}
@@ -7,24 +7,14 @@
 {{ $currentVersion := default $latest (trim (index (findRE "\\/(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)(-\\w*)?\\/|dev\\/" .Permalink) 0) "/") }}
 <footer class="footer is-dark">
   <div class="container">
-    <div class="columns">
-      <div class="column">
-        <img class="image is-footer-image" src="{{ $logo }}" alt="TiKV footer logo">
-        <br>
-        <p class="has-text-weight-bold has-text-white">
-          TiKV is an Apache 2.0 licensed open source distributed transactional key-value store.
-        </p>
-        <br>
-        <img class="image is-footer-image" src="/img/logos/stacked/white/cncf-stacked-white.svg" alt="CNCF footer logo">
-      </div>
-
-      <div class="column">
-        <h5 class="is-size-5 has-text-weight-bold has-text-white">
+    <div class="columns is-variable is-8-desktop is-multiline is-mobile">
+      <div class="column is-one-quarter-desktop is-half-mobile">
+        <h5 class="has-text-weight-bold has-text-white">
           Docs
-        </h4>
-        
-        <hr class="hr has-background-primary is-hidden-touch">
-        
+        </h5>
+
+        <hr class="hr">
+
         <ul>
           {{ range (index .Site.Menus $currentVersion) }}
             <li>
@@ -36,19 +26,19 @@
         </ul>
       </div>
 
-      
+
       {{ range .Site.Menus.nav }}
-        <div class="column">
-          <h5 class="is-size-5 has-text-weight-bold has-text-white">
+        <div class="column is-one-quarter-desktop is-half-mobile">
+          <h5 class="has-text-weight-bold has-text-white">
             <a href="{{ .URL }}">
               {{ .Name }}
             </a>
-          </h4>
+          </h5>
 
-          <hr class="hr has-background-primary is-hidden-touch">
+          <hr class="hr">
 
           {{ if .HasChildren }}
-            <ul class="is-hidden-touch">
+            <ul>
               {{ range .Children }}
                 <li>
                   <a href="{{ .URL }}">
@@ -62,12 +52,12 @@
       {{ end }}
 
       {{ if gt (len $blogPosts) 0 }}
-      <div class="column">
-        <h5 class="is-size-5 has-text-weight-bold has-text-white">
+      <div class="column is-one-quarter-desktop is-half-mobile">
+        <h5 class="has-text-weight-bold has-text-white">
           Blog
-        </h4>
+        </h5>
 
-        <hr class="hr has-background-primary is-hidden-touch">
+        <hr class="hr">
 
         <ul>
           {{ range first 5 $blogPosts }}
@@ -89,12 +79,24 @@
       {{ end }}
     </div> <!-- columns -->
 
-    <br /><br />
+    <div class="columns is-variable is-8-desktop align-item-centered">
+      <div class="column">
+        <img class="image is-footer-image" src="{{ $logo }}" alt="TiKV footer logo">
+        <p class="has-text-white">
+          TiKV is an Apache 2.0 licensed open source distributed transactional key-value store.
+        </p>
+      </div>
 
-    <div class="has-text-centered">
-      <span class="is-size-5 is-size-6-mobile has-text-grey-light">
-        &copy; {{ $year }} TiKV Authors
-      </span>
-    </div>
+      <div class="column">
+        <img class="image is-footer-image" src="/img/logos/stacked/white/cncf-stacked-white.svg" alt="CNCF footer logo">
+      </div>
+      <div class="column"></div>
+
+      <div class="column">
+        <span class="is-size-6-mobile has-text-grey-light">
+          &copy; {{ $year }} TiKV Authors
+        </span>
+      </div>
+     </div>
   </div> <!-- container -->
 </footer>

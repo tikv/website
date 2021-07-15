@@ -1,19 +1,19 @@
 ---
-title: Get, Put and Delete
-description: How to use RawKV's basic operations such as Get, Put and Delete.
+title: Get, Put, and Delete
+description: How to use RawKV's basic operations such as Get, Put, and Delete.
 menu:
     "5.1":
         parent: RawKV
         weight: 1
 ---
 
-This document walks you through how to use RawKV's basic operations such as `Get`, `Put` and `Delete`.
+This document walks you through how to use RawKV's basic operations such as `Get`, `Put`, and `Delete`.
 
 ## Java
 
-### Step 1: import 
+### Import packages
 
-First of all, import all the packages used in the example.
+First, import all necessary packages as shown in the example.
 
 ```java
 import java.util.Optional;
@@ -23,19 +23,19 @@ import org.tikv.common.TiSession;
 import org.tikv.raw.RawKVClient;
 ```
 
-`com.google.protobuf.ByteString` is used as the type of Key and Value. 
+In the example above, `com.google.protobuf.ByteString` is used as the type of Key and Value.
 
-To avoid conflict, `com.google.protobuf.ByteString` is shaded to `org.tikv.shade.com.google.protobuf.ByteString` and is included in the client package.
+To avoid conflict, `com.google.protobuf.ByteString` is shaded to `org.tikv.shade.com.google.protobuf.ByteString`, and is included in the client package.
 
-### Step 2: create RawKVClient
+### Create RawKVClient
 
-To connect to TiKV, a PD address `127.0.0.1:2379` is passed to `TiConfiguration`. 
+To connect to TiKV, a PD address `127.0.0.1:2379` is passed to `TiConfiguration`.
 
 {{< info >}}
-A comma is used to separate multiple PD addresses, e.g. `127.0.0.1:2379,127.0.0.2:2379,127.0.0.3:2379`.
+A comma is used to separate multiple PD addresses. For example, `127.0.0.1:2379,127.0.0.2:2379,127.0.0.3:2379`.
 {{< /info >}}
 
-Using a connected `org.tikv.raw.RawKVClient`, you can perform actions such as `Get`, `Put` and `Delete`.
+Using the connected `org.tikv.raw.RawKVClient`, you can perform actions such as `Get`, `Put`, and `Delete`.
 
 ```java
 TiConfiguration conf = TiConfiguration.createRawDefault("127.0.0.1:2379");
@@ -43,7 +43,7 @@ TiSession session = TiSession.create(conf);
 RawKVClient client = session.createRawClient();
 ```
 
-### Step 3: put
+### Write data to TiKV
 
 Using the `put` API, you can write a key-value pair to TiKV.
 
@@ -53,7 +53,7 @@ ByteString value = ByteString.copyFromUtf8("RawKV");
 client.put(key, value);
 ```
 
-### Step 4: get
+### Read data from TiKV
 
 Using the `get` API, you can get the value of a key from TiKV. If the key does not exist, `result.isPresent()` will be false.
 
@@ -63,9 +63,9 @@ assert(result.isPresent());
 assert("RawKV".equals(result.get().toStringUtf8()));
 ```
 
-### Step 5: delete
+### Delete data from TiKV
 
-Using the `delete` API, you can delete a key-value pair from TiKV. 
+Using the `delete` API, you can delete a key-value pair from TiKV.
 
 ```java
 client.delete(key);
@@ -73,9 +73,9 @@ result = client.get(key);
 assert(!result.isPresent());
 ```
 
-### Step 6: close
+### Close working instances
 
-Finally do not forget to close the `client` and `session` instance.
+Finally, do not forget to close the `client` and `session` instance.
 
 ```java
 client.close();
