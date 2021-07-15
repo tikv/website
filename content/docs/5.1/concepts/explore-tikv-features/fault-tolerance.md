@@ -56,7 +56,7 @@ Each Region has three replicas according to the default configuration.
 
 ### Step 2. Import data to TiKV
 
-On another terminal session, use [go-ycsb](https://github.com/pingcap/go-ycsb) to launch a workload of writing data to the TiKV cluster.
+Start a new terminal session, and use [go-ycsb](https://github.com/pingcap/go-ycsb) to launch a workload of writing data to the TiKV cluster.
 
 1. Clone `go-ycsb` from GitHub.
 
