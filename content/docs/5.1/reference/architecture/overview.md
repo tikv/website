@@ -45,7 +45,7 @@ Based on the Raft layer, TiKV provides two APIs that clients can interact with:
 | Concept        |                                                   Description                                                    |
 | -------------- | :--------------------------------------------------------------------------------------------------------------: |
 | **Raft Group** |                  Each replica of a region is called Peer. All of such peers form a raft group.                   |
-| **Leader**     | In every raft group, there is a unique role called leader, are responsible for read/write requests from clients. |
+| **Leader**     | In every raft group, there is a unique role called leader, who is responsible for processing read or write requests from clients. |
 
 ## PD
 

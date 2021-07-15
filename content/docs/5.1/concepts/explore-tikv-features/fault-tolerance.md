@@ -76,7 +76,7 @@ Start a new terminal session, and use [go-ycsb](https://github.com/pingcap/go-yc
     ./bin/go-ycsb load tikv -P workloads/workloada -p tikv.pd="127.0.0.1:2379" -p tikv.type="raw" -p recordcount=1000000
     ```
 
-    The command above will output the following result:
+    The expected output is as follows:
 
     ```
     Run finished, takes 11.722575701s
@@ -159,7 +159,7 @@ In this example, the only one leader in the cluster is stopped. Then the load co
     kill -STOP $(lsof -i:20180 | grep tikv | head -n1 | awk '{print $2}')
     ```
 
-## Step 2. Check the load continuity and cluster health on Grafana dashboard
+### Step 2. Check the load continuity and cluster health on Grafana dashboard
 
 1. Check the leader distribution on the dashboard again. The monitoring metric shows that the leader is moved to another store.
 
@@ -200,7 +200,7 @@ The component version should be explicitly specified in the `tiup ctl` command. 
    kill -STOP 1009941
    ```
 
-## Step 2: Check the load continuity and cluster health on Grafana dashboard
+### Step 2: Check the load continuity and cluster health on Grafana dashboard
 
 1. Similar to [Step 2. Check the load continuity and cluster health on Grafana dashboard](#step-2-check-the-load-continuity-and-cluster-health-on-grafana-dashboard) in the single-node failure simulation, enter the Grafana dashboard and follow **playground-tikv-summary** -> **gRPC** -> **gRPC message count**. The metrics show that the workload continuity is not impacted because the leader is still alive.
 
@@ -225,7 +225,7 @@ The component version should be explicitly specified in the `tiup ctl` command. 
 
 After experiment 2 is finished, you might need to clean up the test cluster. To do that, take the following steps:
 
-1. Go back to the terminal session that you have just started the TiKV cluster and press <kbd>ctrl</kbd>> + <kbd>c</kbd> and wait for the cluster to stop.
+1. Go back to the terminal session that you have just started the TiKV cluster and press <kbd>ctrl</kbd> + <kbd>c</kbd> and wait for the cluster to stop.
 2. After the cluster is stopped, destroy the cluster using the following command:
 
     ```sh
