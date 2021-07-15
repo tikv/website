@@ -104,7 +104,7 @@ Enter the source directory of `go-ycsb` and use the following command to run the
 
 `workloada` simulates multiple client connections and performs a mix of reads (50%) and writes (50%) per connection.
 
-```shell
+```sh
 ./bin/go-ycsb run tikv -P workloads/workloada -p tikv.pd="127.0.0.1:2379" -p tikv.type="raw" -p tikv.conncount=16 -p threadcount=16 -p recordcount=10000 -p operationcount=1000000
 ```
 
