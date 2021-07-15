@@ -7,7 +7,7 @@ menu:
         weight: 2
 ---
 
-This document walks you through a demonstration of how TiKV recovers from failures and continues providing services when some nodes fail.
+This document walks you through a demonstration of how TiKV recovers from failures and continues providing services when some nodes fail. You can follow the steps of this demonstration and perform operations on your own. In this way, you will have a hands-on experience of the fault tolerance feature of TiKV.
 
 The demonstration consists of two experiments: a single-node failure simulation, where one node is taken offline, and then a two-node failure, where two TiKV nodes are simultaneously taken offline. In both failures, the cluster repairs itself by re-replicating missing data to other nodes, and you can see how the cluster continues running uninterrupted.
 
@@ -85,7 +85,7 @@ Start a new terminal session, and use [go-ycsb](https://github.com/pingcap/go-yc
 
 ### Step 3: Verify the data import
 
-In this demonstration, the Python 3.5+ REPL environment is used to scan all the keys that just are inserted by `go-ycsb`, and to verify that the key count matches the `recordcount` in the `go-ycsb` command in the previous step.
+Use the client-py tool to verify the data imported in the last step. Note that the Python 3.5+ REPL environment is required for such verification. It is expected that the key count in the output matches the `recordcount` in the `go-ycsb` command in the previous step.
 
 ```python
 >>> from tikv_client import RawClient
