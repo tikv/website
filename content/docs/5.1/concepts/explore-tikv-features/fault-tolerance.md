@@ -85,7 +85,7 @@ Start a new terminal session, and use [go-ycsb](https://github.com/pingcap/go-yc
 
 ### Step 3: Verify the data import
 
-Using the Python 3.5+ REPL environment, you can scan all the keys that just are inserted by `go-ycsb` and verify that the key count matches the `recordcount` in the `go-ycsb` command in the previous step.
+In this demonstration, the Python 3.5+ REPL environment is used to scan all the keys that just are inserted by `go-ycsb`, and to verify that the key count matches the `recordcount` in the `go-ycsb` command in the previous step.
 
 ```python
 >>> from tikv_client import RawClient
