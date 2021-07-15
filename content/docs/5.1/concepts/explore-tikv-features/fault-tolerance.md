@@ -34,7 +34,7 @@ Use the `tiup playground` command to start a six-node local TiKV cluster:
 tiup playground --mode tikv-slim --kv 6
 ```
 
-From the output of this command, you will see the components' addresses. These addresses will be used in the following steps.
+The output of this command will show the components' addresses. These addresses will be used in the following steps.
 
 ```
 Playground Bootstrapping...
@@ -108,7 +108,7 @@ Enter the source directory of `go-ycsb` and use the following command to run the
 ./bin/go-ycsb run tikv -P workloads/workloada -p tikv.pd="127.0.0.1:2379" -p tikv.type="raw" -p tikv.conncount=16 -p threadcount=16 -p recordcount=10000 -p operationcount=1000000
 ```
 
-You will see per-operation statistics printed to the standard output every second.
+Per-operation statistics are printed to the standard output every second.
 
 ```
 ...
@@ -120,7 +120,7 @@ UPDATE - Takes(s): 20.0, Count: 15799, OPS: 791.1, Avg(us): 19834, Min(us): 1050
 ```
 
 {{< info >}}
-This workload above runs for several minutes. You will have enough time to simulate a node failure described as follows.
+This workload above runs for several minutes, which is enough time to simulate a node failure described as follows.
 {{< /info >}}
 
 ### Step 2. Check the workload on Grafana dashboard
