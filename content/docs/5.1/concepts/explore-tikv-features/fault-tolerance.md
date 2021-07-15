@@ -30,7 +30,7 @@ Before the process of failure simulation begins, the following requirements are 
 
 Use the `tiup playground` command to start a six-node local TiKV cluster:
 
-```shell
+```sh
 tiup playground --mode tikv-slim --kv 6
 ```
 
@@ -60,19 +60,19 @@ On another terminal session, use [go-ycsb](https://github.com/pingcap/go-ycsb) t
 
 1. Clone `go-ycsb` from GitHub.
 
-    ```shell
+    ```sh
     git clone https://github.com/pingcap/go-ycsb.git
     ```
 
 2. Build the application from the source.
 
-    ```shell
+    ```sh
     make
     ```
 
 3. Load a workload using `go-ycsb` with **10000** keys into the TiKV cluster.
 
-    ```shell
+    ```sh
     ./bin/go-ycsb load tikv -P workloads/workloada -p tikv.pd="127.0.0.1:2379" -p tikv.type="raw" -p recordcount=1000000
     ```
 
@@ -102,7 +102,7 @@ The evaluation of the last expression should be **10000**, as the `recordcount` 
 
 Enter the source directory of `go-ycsb` and use the following command to run the `workloada` from the YCSB benchmark.
 
-`workloada` simulates multiple client connections and performs a mix of reads (50%) and writes per connection.
+`workloada` simulates multiple client connections and performs a mix of reads (50%) and writes (50%) per connection.
 
 ```shell
 ./bin/go-ycsb run tikv -P workloads/workloada -p tikv.pd="127.0.0.1:2379" -p tikv.type="raw" -p tikv.conncount=16 -p threadcount=16 -p recordcount=10000 -p operationcount=1000000
@@ -155,7 +155,7 @@ In this example, the only one leader in the cluster is stopped. Then the load co
 
 2. In this example, the local process that opens the port `20180` holds only one leader in the cluster. Execute the following command to stop this process.
 
-    ```shell
+    ```sh
     kill -STOP $(lsof -i:20180 | grep tikv | head -n1 | awk '{print $2}')
     ```
 
@@ -189,13 +189,13 @@ The component version should be explicitly specified in the `tiup ctl` command. 
 
 1. Increase the replicas of the cluster to five:
 
-    ```shell
+    ```sh
     tiup ctl:v5.1.0 pd config set max-replicas 5
     ```
 
 2. Stop two non-leader nodes simultaneously. In this example, the processes that hold the ports `20181` and `20182` are stopped. The process IDs (PIDs) are `1009934` and `109941`.
 
-   ```shell
+   ```sh
    kill -STOP 1009934
    kill -STOP 1009941
    ```
@@ -228,6 +228,6 @@ After experiment 2 is finished, you might need to clean up the test cluster. To 
 1. Go back to the terminal session that you have just started the TiKV cluster and press <kbd>ctrl</kbd>> + <kbd>c</kbd> and wait for the cluster to stop.
 2. After the cluster is stopped, destroy the cluster using the following command:
 
-    ```shell
+    ```sh
     tiup clean --all
     ```
