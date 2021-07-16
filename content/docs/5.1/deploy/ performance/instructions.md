@@ -1,10 +1,10 @@
 ---
-title: Benchmark
+title: Benchmark Instructions
 description: How to make a benchmark over a TiKV cluster
 menu:
     "5.1":
-        parent: Deploy
-        weight: 3
+        parent: Performance
+        weight: 6
 ---
 
 TiKV delivers predictable throughput and latency at all scales on commodity hardware. This page provides an step-by-step tutorial about industry-standard benchmarks [YCSB](https://github.com/brianfrankcooper/YCSB) on TiKV.
