@@ -7,7 +7,7 @@ menu:
         weight: 5
 ---
 
-TiKV delivers predictable throughput and latency at all scales on requiring hardware. This document provides an overview of the performance profiles you can expect, based on PingCAP's testing using industry-standard benchmarks [YCSB](https://github.com/brianfrankcooper/YCSB)
+TiKV delivers predictable throughput and latency at all scales on requiring hardware. This document provides an overview of the performance profiles you can expect, based on PingCAP's testing using industry-standard benchmarks [YCSB](https://github.com/brianfrankcooper/YCSB)'s go version [GO YCSB](https://github.com/pingcap/go-ycsb).
 
 For instructions to reproduce the TPC-C results listed here, see [Benchmark Instructions](./instructions.md). If you fail to achieve similar results, there is likely a problem in either the hardware, workload, or test design.
 
@@ -50,7 +50,7 @@ TiKV fits to latency-sensitive service, we could achieve <10ms average latency e
     src="/img/docs/avg-latency.svg"
     caption="YCSB latency"
     width="1000"
-    number="1" >}}
+    number="2" >}}
 
 For the 99th percentile latency, see [Figure 3](https://docs.google.com/spreadsheets/d/e/2PACX-1vTIx695jjL3qYN1iR4xC3N8qh0B1qsHOALSBqf1B469b0DIZwVdzZMcSbBOOtAIo31hAdW0x_EXjmgq/pubchart?oid=6574505&format=interactive)
 
@@ -58,7 +58,7 @@ For the 99th percentile latency, see [Figure 3](https://docs.google.com/spreadsh
     src="/img/docs/99-latency.svg"
     caption="YCSB 99th percentile latency"
     width="1000"
-    number="1" >}}
+    number="3" >}}
 
 ## Performance limitations
 
