@@ -3,7 +3,7 @@ title: Benchmark Instructions
 description: How to make a benchmark over a TiKV cluster
 menu:
     "5.1":
-        parent: Performance
+        parent: Benchmark and Performance
         weight: 6
 ---
 
