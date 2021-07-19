@@ -19,7 +19,6 @@ TiKV | {{ .Title }}
       
       <div class="column is-three-quarters">
         <div class="content is-medium docs-content">
-          {{ partial "admonition.html" (dict "type" "info" "icon" "fa-info-circle" "text" ("We are currently refactoring our documentation. Please excuse any problems you may find and report them [here](https://github.com/tikv/website)." | markdownify)) }}
           {{ partial "docs/version-warning.html" . }}
           {{ partial "math.html" . }}
           
