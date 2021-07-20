@@ -23,7 +23,7 @@ A TiKV cluster consists of the following components:
 - A group of TiKV nodes: store key-value pair data
 - A group of Placement Driver (PD) nodes: work as the manager of the TiKV cluster
 
-TiKV clients let you connect to a TiKV cluster and use either a transactional or raw (simple get/put style without transactional consistency guarantees) API to access and update your data. TiKV clients interact with PD and TiKV through gRPC.
+TiKV clients let you connect to a TiKV cluster and use raw (simple get/put) API or transaction (with transactional consistency guarantees) API to access and update your data. TiKV clients interact with PD and TiKV through gRPC.
 
 {{< figure
     src="/img/basic-architecture.png"
