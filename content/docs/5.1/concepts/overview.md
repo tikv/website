@@ -6,32 +6,32 @@ menu:
         weight: 1
 ---
 
-**TiKV** is a highly scalable, low latency, and easy to use key-value database that delivers <10ms performance at any scale.
+**TiKV** is a highly scalable, low latency, and easy to use key-value database that delivers performance less than 10 ms at any scale.
 
-TiKV is intended to fill the role of a unifying distributed storage layer. TiKV excels at working with **data in the large** by supporting petabyte scale deployments spanning trillions of rows.
+TiKV is intended to fill the role of a unified distributed storage layer. TiKV excels at working with **large-scale data** by supporting petabyte-scale deployments spanning trillions of rows.
 
 As a graduate project of the [Cloud Native Computing Foundation](https://www.cncf.io/), TiKV is originally created by [PingCAP](https://pingcap.com/en) to complement [TiDB](https://github.com/pingcap/tidb).
 
 {{< info >}}
-The **Ti** in TiKV stands for **titanium**. Titanium has the highest strength-to-density ratio of any metallic element and is named after the Titans of Greek mythology.
+The **Ti** in TiKV stands for **titanium**. Titanium has the highest strength-to-density ratio than any other metallic elements and is named after the Titans of Greek mythology.
 {{< /info >}}
 
 ## Architecture
 
 A TiKV cluster consists of the following components:
 
-- A group of TiKV nodes: storing key-value pair data
-- A Placement Driver (PD) node: working as the manager of the TiKV cluster
+- A group of TiKV nodes: store key-value pair data
+- A group of Placement Driver (PD) nodes: work as the manager of the TiKV cluster
 
 TiKV clients interact with PD and TiKV through gRPC.
 
 {{< figure
     src="/img/basic-architecture.png"
     alt="TiKV architecture diagram"
-    caption="The architecture of TiKV"
+    caption="Architecture of TiKV"
     width="70" >}}
 
-You can read more in the [Core concepts and architecture behind TiKV](../../reference/architecture/overview/) documentation.
+For more information about the architecture, see [Core concepts and architecture behind TiKV](../../reference/architecture/overview/).
 
 ## What's Next
 

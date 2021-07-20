@@ -10,17 +10,17 @@ Learn how to use TiKV Clients for different languages.
 
 ## [TiKV Clients](../clients/introduction/)
 
-TiKV has clients for a number of languages:
+TiKV provides the following clients developed in different programming languages:
 
 - [Java Client](../clients/java)'s RawKV API is ready for production.
-- [Go Client](../clients/go) is still in the stage of prove-of-concept and under heavy development. 
-- [Rust Client](../clients/rust) is still in the stage of prove-of-concept and under heavy development.
-- [Python Client](../clients/python) is still in the stage of prove-of-concept and under heavy development.
-- [C++ Client](../clients/cpp) is still in the stage of prove-of-concept and under heavy development.
+- [Go Client](../clients/go) is still in the proof-of-concept stage and under development.
+- [Rust Client](../clients/rust) is still in the proof-of-concept stage and under development.
+- [Python Client](../clients/python) is still in the proof-of-concept stage and under development.
+- [C++ Client](../clients/cpp) is still in the proof-of-concept stage and under development.
 
 ## RawKV and TxnKV
 
-TiKV supports both transactional (TxnKV) API and non-transactional (RawKV) API. 
+TiKV provides both transactional (TxnKV) API and non-transactional (RawKV) API.
 
 Learn how to use [RawKV API](../rawkv/introduction/):
 

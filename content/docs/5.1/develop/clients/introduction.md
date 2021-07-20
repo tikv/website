@@ -18,7 +18,7 @@ TiKV offers two APIs that you can interact with:
 It is **not supported** to use both the raw and transactional APIs on the same keyspace.
 {{< /warning >}}
 
-TiKV has clients for a number of languages:
+TiKV provides the following clients developed in different programming languages:
 
 | Clients                    | RawKV API         | TxnKV API         | Supported TiKV Version |
 | -------------------------- | ----------------- | ----------------- | ---------------------- |
