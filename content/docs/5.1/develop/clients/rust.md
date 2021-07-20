@@ -7,6 +7,12 @@ menu:
         weight: 3
 ---
 
+TiKV Rust Client is still in the proof-of-concept stage and under development. You can track the development at [tikv/client-rust](https://github.com/tikv/client-rust/) repository.
+
+{{< warning >}}
+Before TiKV Rust Client is officially released, it is not recommended to be used in a production environment.
+{{< /warning >}}
+
 This guide introduces how to interact with TiKV using [Rust Client](https://github.com/tikv/client-rust).
 
 {{< warning >}}
