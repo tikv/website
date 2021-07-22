@@ -1,6 +1,6 @@
 ---
 title: Benchmark Instructions
-description: How to make a benchmark over a TiKV cluster
+description: How to do a benchmark over a TiKV cluster
 menu:
     "5.1":
         parent: Benchmark and Performance
