@@ -32,7 +32,7 @@ In addition, a 12-pod cluster is deployed to simulate a large workload. Each pod
 
 ## Benchmark results
 
-The results show that **A 3-node TiKV cluster achieves at most 200,000 OPS within 10 ms latency in a 10M records and 10M operations YCSB workload.**.
+The results show that **A 3-node TiKV cluster achieves at most 200,000 OPS within 10 ms latency in a 10M records and 10M operations YCSB workload**.
 
 TiKV achieves this performance in [linearizability](https://en.wikipedia.org/wiki/Linearizability), a strong correctness condition, which constrains what outputs are possible when an object is accessed by multiple processes concurrently.
 
