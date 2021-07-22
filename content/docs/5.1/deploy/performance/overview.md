@@ -14,7 +14,7 @@ To learn how to reproduce the benchmark results in this document, see [Benchmark
 
 ## Baseline
 
-The TiKV performance in this document is evaluated using [GO YCSB](https://github.com/pingcap/go-ycsb)， which is the Go version of the industry-standard [Yahoo! Cloud Serving Benchmark (YCSB)](https://github.com/brianfrankcooper/YCSB).
+The TiKV performance in this document is evaluated using [GO YCSB](https://github.com/pingcap/go-ycsb), which is the Go version of the industry-standard [Yahoo! Cloud Serving Benchmark (YCSB)](https://github.com/brianfrankcooper/YCSB).
 
 The goal of the YCSB project is to develop a framework and common set of workloads for evaluating the performance of different key-value and cloud serving stores. For more information about how YCSB is measured, see [Core Workload](https://github.com/brianfrankcooper/YCSB/wiki/Core-Workloads).
 
