@@ -15,12 +15,12 @@ TiKV delivers predictable throughput and latency at all scales on commodity hard
 
     The following table shows the recommended hardware configuration:
 
-    | **Component** | **CPU**          | **Memory**     | **Storage**     | **Network** | **Instance**                    |
-    | ------------- | ---------------- | -------------- | --------------- | ----------- | ------------------------------- |
-    | YSCB worker   | 8 cores or above | 8 GB or above  | No requirement | Gigabit LAN | 1                               |
-    | PD            | 4 cores or above | 8 GB or above  | SAS, 200 GB+    | Gigabit LAN | 1                               |
-    | Monitor       | 4 cores or above | 8 GB or above  | SAS, 200 GB or above    | Gigabit LAN | 1 (can be the same as PD nodes) |
-    | TiKV          | 8 cores or above | 32 GB or above | SSD, 200 GB or above    | Gigabit LAN | 3                               |
+    | **Component** | **CPU**          | **Memory**     | **Storage**          | **Network** | **Instance**                    |
+    | ------------- | ---------------- | -------------- | -------------------- | ----------- | ------------------------------- |
+    | YSCB worker   | 8 cores or above | 8 GB or above  | No requirement       | Gigabit LAN | 1                               |
+    | PD            | 4 cores or above | 8 GB or above  | SAS, 200 GB+         | Gigabit LAN | 1                               |
+    | Monitor       | 4 cores or above | 8 GB or above  | SAS, 200 GB or above | Gigabit LAN | 1 (can be the same as PD nodes) |
+    | TiKV          | 8 cores or above | 32 GB or above | SSD, 200 GB or above | Gigabit LAN | 3                               |
 
     {{< info >}}
     It is recommended to use local SSDs as the store volume for the instances. Local SSDs are low-latency disks attached to each node and can maximize performance. It is not recommended to use the network-attached block storage. It is recommended to deploy TiKV on NVMe SSDs to maximize its capacity.
@@ -30,23 +30,23 @@ TiKV delivers predictable throughput and latency at all scales on commodity hard
 
     For the control node, the following requirements must be met:
 
-    | Package |    Version     | Note             |
-    | :------ | :------------: | :------------------ |
-    | sshpass | 1.06 or later  | For remote control      |
+    | Package |    Version     | Note                   |
+    | :------ | :------------: | :--------------------- |
+    | sshpass | 1.06 or later  | For remote control     |
     | TiUP    | 0.6.2 or later | To deploy TiKV cluster |
 
     For the component node, the following requirements must be met:
 
-    | Package |     Version     |          Note           |
-    | :------ | :-------------: | :------------------------: |
-    | sshpass |  1.06 or later  |      For remote control       |
+    | Package |     Version     |              Note              |
+    | :------ | :-------------: | :----------------------------: |
+    | sshpass |  1.06 or later  |       For remote control       |
     | numa    | 2.0.12 or later | The memory allocation strategy |
-    | tar     | No requirement |           For unzipping             |
+    | tar     | No requirement  |         For unzipping          |
 
     For the YCSB node:
 
-    | Package                                       |     Version     |  Note  |
-    | :-------------------------------------------- | :-------------: | :-------: |
+    | Package                                       |    Version     |     Note      |
+    | :-------------------------------------------- | :------------: | :-----------: |
     | [go-ycsb](https://github.com/pingcap/go-ycsb) | No requirement | For benchmark |
 
     {{< info >}}
@@ -96,7 +96,7 @@ TiKV delivers predictable throughput and latency at all scales on commodity hard
 
 ## Step 3. Run a YCSB workload
 
-YCSB has 6 types of workloads. The main differences among each type are the portion of different operations:
+YCSB has 6 types of workloads. The main differences among each type are the portion of different operations. This section introduces the types of core workloads and the recommended sequence for running the workloads. Most of the content in this section comes from [Core Workloads](https://github.com/brianfrankcooper/YCSB/wiki/Core-Workloads)?
 
 1. Workload A: `Update heavy workload`
 2. Workload B: `Read mostly workload`
