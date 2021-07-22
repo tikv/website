@@ -1,5 +1,5 @@
 ---
-title: Benchmark Instruction
+title: Benchmark Instructions
 description: Learn how to perform a benchmark test on a TiKV cluster.
 menu:
     "5.1":
