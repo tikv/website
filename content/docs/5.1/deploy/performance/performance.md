@@ -7,7 +7,7 @@ menu:
         weight: 4
 ---
 
-This section introduces an overview of TiKV benchmark performance and the instructions to do a benchmark.
+This section introduces an overview of TiKV performance and the instructions to do a benchmark.
 
 - [Performance Overview](../overview)
 - [Benchmark Instructions](../instructions)

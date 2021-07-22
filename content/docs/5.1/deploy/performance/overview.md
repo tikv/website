@@ -1,6 +1,6 @@
 ---
 title: Performance Overview
-description: An overview of TiKV benchmark performance
+description: An overview of TiKV performance
 menu:
     "5.1":
         parent: Benchmark and Performance
