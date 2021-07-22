@@ -96,7 +96,9 @@ TiKV delivers predictable throughput and latency at all scales on commodity hard
 
 ## Step 3. Run a YCSB workload
 
-YCSB has 6 types of workloads. The main differences among each type are the portion of different operations. This section introduces the types of core workloads and the recommended sequence for running the workloads. Most of the content in this section comes from [Core Workloads](https://github.com/brianfrankcooper/YCSB/wiki/Core-Workloads)?
+This section introduces the types of core workloads and the recommended sequence for running the workloads. Most of the content in this section comes from [Core Workloads](https://github.com/brianfrankcooper/YCSB/wiki/Core-Workloads).
+
+YCSB has 6 types of workloads. The main differences among each type are the portion of different operations.
 
 1. Workload A: `Update heavy workload`
 2. Workload B: `Read mostly workload`
