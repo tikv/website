@@ -2,12 +2,21 @@
 {{ if not $imgSrcSet }}
 {{ errorf "You must set either an id or an src in the figure at content/%s" $.Page.File.Path }}
 {{ end }}
-{{ $src   := cond (isset .Params "id") (printf "https://www.lucidchart.com/publicSegments/view/%s/image.png" (index .Params "id")) (index .Params "src" | relURL) }}
-{{ $num   := index .Params "number" }}
-<figure>
+{{ $src := cond (isset .Params "id") (printf "https://www.lucidchart.com/publicSegments/view/%s/image.png" (index .Params "id")) (index .Params "src" | relURL) }}
+{{ $num := index .Params "number" }}
+{{ $isIframe := index .Params "isIframe" }}
+
+<figure class="{{ if $isIframe }}iframe-figure{{ end }}">
+  {{ if $isIframe }}
+  <div class="iframe-container">
+    <iframe seamless frameborder="0" src="{{ $src }}"></iframe>
+  </div>
+  {{ else }}
   <a target="_blank" href="{{ $src }}">
-    <img src="{{ $src }}"{{ with (index .Params "alt") }} alt="{{ . }}"{{ end }}>
+    <img src="{{ $src }}" {{ with (index .Params "alt" ) }} alt="{{ . }}" {{ end }}>
   </a>
+  {{ end }}
+
   {{ with (index .Params "caption") }}
   <figcaption class="is-size-3 is-size-4-mobile">
     {{ with $num }}Figure {{ . }}. {{ end }}{{ . | markdownify }}

@@ -7,7 +7,7 @@ menu:
         weight: 5
 ---
 
- 
+
 TiKV can deliver predictable throughput and latency at all scales on requiring hardware. This document provides an overview of TiKV benchmark performance on throughput and latency.
 
 To learn how to reproduce the benchmark results in this document, see [Benchmark Instructions](./instructions.md). If you do not achieve similar results, check whether your hardware, workload, and test design meet the requirements in this document.
@@ -41,28 +41,31 @@ TiKV achieves this performance in [linearizability](https://en.wikipedia.org/wik
 On a 3-node cluster of configuration listed above, TiKV can achieve 212,000 point get read per second on the YCSB workloadc and 43,200 update per second on the YCSB workloada. With different concurrencies, the throughput changes are shown in [Figure 1](https://docs.google.com/spreadsheets/d/e/2PACX-1vTIx695jjL3qYN1iR4xC3N8qh0B1qsHOALSBqf1B469b0DIZwVdzZMcSbBOOtAIo31hAdW0x_EXjmgq/pubchart?oid=1044850259&format=interactive).
 
 {{< figure
-    src="/img/docs/ycsb-throughput.svg"
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIx695jjL3qYN1iR4xC3N8qh0B1qsHOALSBqf1B469b0DIZwVdzZMcSbBOOtAIo31hAdW0x_EXjmgq/pubchart?oid=1044850259&format=interactive"
     caption="YCSB throughput"
     width="1000"
-    number="1" >}}
+    number="1"
+    isIframe=true >}}
 
 ### Latency
 
 TiKV is suitable for delay-sensitive services. Even at a high pressure throughput, the average latency is less than 10 ms, as shown in [Figure 2](https://docs.google.com/spreadsheets/d/e/2PACX-1vTIx695jjL3qYN1iR4xC3N8qh0B1qsHOALSBqf1B469b0DIZwVdzZMcSbBOOtAIo31hAdW0x_EXjmgq/pubchart?oid=334435174&format=interactive).
 
 {{< figure
-    src="/img/docs/avg-latency.svg"
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIx695jjL3qYN1iR4xC3N8qh0B1qsHOALSBqf1B469b0DIZwVdzZMcSbBOOtAIo31hAdW0x_EXjmgq/pubchart?oid=334435174&format=interactive"
     caption="YCSB latency"
     width="1000"
-    number="2" >}}
+    number="2"
+    isIframe=true >}}
 
 For the 99th percentile latency, see [Figure 3](https://docs.google.com/spreadsheets/d/e/2PACX-1vTIx695jjL3qYN1iR4xC3N8qh0B1qsHOALSBqf1B469b0DIZwVdzZMcSbBOOtAIo31hAdW0x_EXjmgq/pubchart?oid=6574505&format=interactive).
 
 {{< figure
-    src="/img/docs/99-latency.svg"
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIx695jjL3qYN1iR4xC3N8qh0B1qsHOALSBqf1B469b0DIZwVdzZMcSbBOOtAIo31hAdW0x_EXjmgq/pubchart?oid=6574505&format=interactive"
     caption="YCSB 99th percentile latency"
     width="1000"
-    number="3" >}}
+    number="3"
+    isIframe=true >}}
 
 ## Performance limitations
 
