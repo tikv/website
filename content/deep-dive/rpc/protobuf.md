@@ -37,7 +37,7 @@ The fields are numbered to support backwards compatibility and field renaming.
 This makes it possible to evolve your application's communication in a
 compatible way.
 
-## Why Probobufs
+## Why Protobufs
 
 Protobufs are simply much faster and more efficient than things like JSON.
 Additionally, protobufs can generate all the required code for your desired
