@@ -10,7 +10,7 @@ menu:
  
 TiKV can deliver predictable throughput and latency at all scales on requiring hardware. This document provides an overview of TiKV benchmark performance on throughput and latency.
 
-To learn how to reproduce the benchmark results in this document, see [Benchmark Instructions](./instructions.md). If you do not achieve similar results, check whether your hardware, workload, and test design meet the requirements in this document.
+To learn how to reproduce the benchmark results in this document, see [Benchmark Instructions](../instructions). If you do not achieve similar results, check whether your hardware, workload, and test design meet the requirements in this document.
 
 ## Baseline
 

@@ -23,7 +23,7 @@ TiKV delivers predictable throughput and latency at all scales on commodity hard
     | TiKV          | 8 cores or above | 32 GB or above | SSD, 200 GB or above | Gigabit LAN | 3                               |
 
     {{< info >}}
-    It is recommended to use local SSDs as the store volume for the instances. Local SSDs are low-latency disks attached to each node and can maximize performance. It is not recommended to use the network-attached block storage. It is recommended to deploy TiKV on NVMe SSDs to maximize its capacity.
+It is recommended to use local SSDs as the store volume for the instances. Local SSDs are low-latency disks attached to each node and can maximize performance. It is not recommended to use the network-attached block storage. It is recommended to deploy TiKV on NVMe SSDs to maximize its capacity.
     {{< /info >}}
 
 2. Prepare services for the control node and component nodes.
@@ -50,7 +50,7 @@ TiKV delivers predictable throughput and latency at all scales on commodity hard
     | [go-ycsb](https://github.com/pingcap/go-ycsb) | No requirement | For benchmark |
 
     {{< info >}}
-    You can install [TiUP](https://github.com/pingcap/tiup) as described in [TiKV in 5 Minutes](../../tikv-in-5-minutes).
+You can install [TiUP](https://github.com/pingcap/tiup) as described in [TiKV in 5 Minutes](../../tikv-in-5-minutes).
     {{< /info >}}
 
 ## Step 2. Deploy a TiKV cluster
