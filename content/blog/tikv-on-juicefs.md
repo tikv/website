@@ -38,7 +38,7 @@ This command downloads and installs the appropriate TiUP version to your system.
 
 ```shell
 
-curl --proto '=https' --tlsv1.2 -sSf [https://tiup-mirrors.pingcap.com/install.sh](https://tiup-mirrors.pingcap.com/install.sh) | sh
+curl --proto '=https' --tlsv1.2 -sSf https://tiup-mirrors.pingcap.com/install.sh | sh
 
 ```
 
@@ -83,9 +83,9 @@ After the deployment is successful, the terminal displays a message similar to t
 
 PD client endpoints: [127.0.0.1:2379]
 
-To view the Prometheus: [http://127.0.0.1:9090](http://127.0.0.1:9090/)
+To view the Prometheus: http://127.0.0.1:9090
 
-To view the Grafana:[http://127.0.0.1:3000](http://127.0.0.1:3000/)
+To view the Grafana: http://127.0.0.1:3000
 
 ```
 
@@ -102,7 +102,7 @@ Check the current system information and set temporary environment variables:
 
 ```shell
 
-JFS_LATEST_TAG=$(curl -s [https://api.github.com/repos/juicedata/juicefs/releases/latest](https://api.github.com/repos/juicedata/juicefs/releases/latest) | grep 'tag_name' | cut -d '"' -f 4 | tr -d 'v')
+JFS_LATEST_TAG=$(curl -s https://api.github.com/repos/juicedata/juicefs/releases/latest | grep 'tag_name' | cut -d '"' -f 4 | tr -d 'v')
 
 ```
 
@@ -232,7 +232,7 @@ juicefs format \
 
    --storage minio \
 
-   --bucket [http://127.0.0.1:9000/mystor](http://127.0.0.1:9000/mystor) \
+   --bucket http://127.0.0.1:9000/mystor \
 
    --access-key minioadmin \
 
