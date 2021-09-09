@@ -5,8 +5,6 @@ author: Herald Yu
 tags: ['Community', 'Cloud Native', 'Storage']
 ---
 
-{{< figure src="/img/blog/tikv-on-juicefs/tikv-on-juicefs-banner.png" caption="" number="" >}}
-
 As a cloud-native distributed storage system, [JuiceFS](https://juicefs.com/?hl=en) was designed into a plug-in structure at the beginning of its birth to ensure that new technologies can be continuously integrated into the JuiceFS ecosystem. According to your needs, you can flexibly choose two core components, the data storage engine and the metadata engine.
 
 The data storage engine is mainly object storage. It supports almost all public and private cloud object storage services, as well as KV storage, WebDAV, and local disks. The metadata engine supports databases such as Redis, MySQL, PostgreSQL, and SQLite.
