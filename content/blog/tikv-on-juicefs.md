@@ -7,7 +7,7 @@ tags: ['Community', 'Cloud Native', 'Storage']
 
 {{< figure src="/img/blog/tikv-on-juicefs/tikv-on-juicefs-banner.png" caption="" number="" >}}
 
-As a cloud-native distributed storage system, [JuiceFS](https://juicefs.com/?hl=en) was designed into a plug-in structure at the beginning of its birth to ensure that new technologies can be continuously integrated into the JuiceFS ecosystem. According to your needs, you can flexibly choose two core components, the data storage engine and the metadata engine, according to their needs.
+As a cloud-native distributed storage system, [JuiceFS](https://juicefs.com/?hl=en) was designed into a plug-in structure at the beginning of its birth to ensure that new technologies can be continuously integrated into the JuiceFS ecosystem. According to your needs, you can flexibly choose two core components, the data storage engine and the metadata engine.
 
 The data storage engine is mainly object storage. It supports almost all public and private cloud object storage services, as well as KV storage, WebDAV, and local disks. The metadata engine supports databases such as Redis, MySQL, PostgreSQL, and SQLite.
 
@@ -42,7 +42,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://tiup-mirrors.pingcap.com/install.sh
 
 ```
 
-For the settings to take effect, you can open a new terminal, or manually declare the global environment variable as follows::
+For the settings to take effect, you can open a new terminal, or manually declare the global environment variable as follows:
 
 ```shell
 
@@ -537,7 +537,7 @@ To understand the differences between TiKV and other backends, we benchmarked th
 
 The figures in the table refer to the duration (in microseconds) of each operation, so the smaller duration, the better performance. The digits in parentheses are the ratio to that of Redis-Always. 
 
-Both Redis and MySQL have only one replica in the benchmarking , while TiKV uses a three-replica distributed architecture. **Even though TiKV has three replicas, it still performs better than MySQL.** TiKV is 2~3 times slower than Redis in terms of metadata operations alone. However, when it comes to data storage, object storage latency takes large proportions, so in real-life business, the latency gap between TiKV and Redis is much smaller, and, more importantly, TiKV outperforms Redis in terms of reliability and scalability. 
+Both Redis and MySQL have only one replica in the benchmarking, while TiKV uses a three-replica distributed architecture. **Even though TiKV has three replicas, it still performs better than MySQL.** TiKV is 2~3 times slower than Redis in terms of metadata operations alone. However, when it comes to data storage, object storage latency takes large proportions, so in real-life business, the latency gap between TiKV and Redis is much smaller, and, more importantly, TiKV outperforms Redis in terms of reliability and scalability. 
 
 
 ## Summary
@@ -557,3 +557,6 @@ If you’re interested in JuiceFS, here is what you can do for the community:
 * Tell more people about JuiceFS.
 
 We sincerely welcome everyone who loves open source to join our community and make JuiceFS better together!
+
+
+*This article was originally posted on [JuiceFS' Medium site](https://juicefs.medium.com/getting-started-with-juicefs-using-tikv-database-b1a585633b1d).*
