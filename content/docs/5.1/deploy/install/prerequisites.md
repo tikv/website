@@ -54,6 +54,7 @@ You can deploy and run TiKV on the 64-bit generic hardware server platform in th
 |   TiKV    | 8 core+ | 32 GB+ | SAS, 200 GB+  | Gigabit network card |                   3                   |
 
 {{< info >}}
+
 - In the test environment, the TiKV and PD instances can be deployed on the same server.
 - For performance-related test, do not use low-performance storage and network hardware configuration, in order to guarantee the correctness of the test result.
 - For the TiKV server, it is recommended to use NVMe SSDs to ensure faster reads and writes.
@@ -67,10 +68,10 @@ You can deploy and run TiKV on the 64-bit generic hardware server platform in th
 |   TiKV    | 16 core+ | 32 GB+ |      SSD       | 10 Gigabit network card (2 preferred) |                   3                   |
 
 {{< info >}}
+
 - It is strongly recommended to use higher configuration in the production environment.
 - It is recommended to keep the size of TiKV hard disk within 2 TB if you are using PCIe SSDs or within 1.5 TB if you are using regular SSDs.
 {{< /info >}}
-
 
 ## Network requirements
 
@@ -87,7 +88,7 @@ TiKV uses the following network ports, and their default port numbers are listed
 | Blackbox_exporter |     9115     | the Blackbox_exporter communication port, used to monitor the ports in the TiKV cluster |
 |      Grafana      |     3000     | the port for the external Web monitoring service and client (Browser) access            |
 
-You can ensure your configuration is correct by creating echo servers on the ports/IPs by using `ncat` (from the `nmap` package):
+To ensure correct configuration, create echo servers on the ports/IP addresses by using `ncat` (from the `nmap` package):
 
 ```bash
 ncat -l $PORT -k -c 'xargs -n1 echo'
