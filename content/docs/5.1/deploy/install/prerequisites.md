@@ -87,13 +87,13 @@ TiKV uses the following network ports, and their default port numbers are listed
 | Blackbox_exporter |     9115     | the Blackbox_exporter communication port, used to monitor the ports in the TiKV cluster |
 |      Grafana      |     3000     | the port for the external Web monitoring service and client (Browser) access            |
 
-You can ensure your configuration is correct by creating echo servers on the ports/IPs by using `ncat` (from the `nmap` package):
+To ensure correct configuration, create echo servers on the ports/IP addresses by using `ncat` (from the `nmap` package):
 
 ```bash
 ncat -l $PORT -k -c 'xargs -n1 echo'
 ```
 
-Then from the other machines, verify that the echo server is reachable with `curl $IP:$PORT`.
+Then, from the other machines, verify that the echo server is reachable with `curl $IP:$PORT`.
 
 ## Web browser requirements
 
