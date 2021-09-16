@@ -54,6 +54,7 @@ You can deploy and run TiKV on the 64-bit generic hardware server platform in th
 |   TiKV    | 8 core+ | 32 GB+ | SAS, 200 GB+  | Gigabit network card |                   3                   |
 
 {{< info >}}
+
 - In the test environment, the TiKV and PD instances can be deployed on the same server.
 - For performance-related test, do not use low-performance storage and network hardware configuration, in order to guarantee the correctness of the test result.
 - For the TiKV server, it is recommended to use NVMe SSDs to ensure faster reads and writes.
@@ -67,10 +68,10 @@ You can deploy and run TiKV on the 64-bit generic hardware server platform in th
 |   TiKV    | 16 core+ | 32 GB+ |      SSD       | 10 Gigabit network card (2 preferred) |                   3                   |
 
 {{< info >}}
+
 - It is strongly recommended to use higher configuration in the production environment.
 - It is recommended to keep the size of TiKV hard disk within 2 TB if you are using PCIe SSDs or within 1.5 TB if you are using regular SSDs.
 {{< /info >}}
-
 
 ## Network requirements
 
