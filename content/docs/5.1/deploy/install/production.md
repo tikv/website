@@ -9,13 +9,13 @@ menu:
 
 This guide describes how to install and deploy TiKV for production environment.
 
-[TiUP](https://github.com/pingcap/tiup) is a cluster operation and maintenance tool. TiUP provides [TiUP cluster](https://github.com/pingcap/tiup/tree/master/components/cluster), a cluster management component written in Golang. By using TiUP cluster, you can easily do daily operations, including deploying, starting, stopping, destroying, scaling, and upgrading a TiKV cluster, and manage cluster parameters.
+[TiUP](https://github.com/pingcap/tiup) is a cluster operation and maintenance tool. It provides [TiUP cluster](https://github.com/pingcap/tiup/tree/master/components/cluster), a cluster management component written in Golang. By using TiUP cluster, you can easily perform daily operations, including deploying, starting, stopping, destroying, scaling, and upgrading a TiKV cluster, and managing cluster parameters.
 
 ## Step 1: Install TiUP on the control machine
 
 Log in to the control machine using a regular user account (take the `tikv` user as an example). All the following TiUP installation and cluster management operations can be performed by the `tikv` user.
 
-1. Install TiUP by executing the following command:
+1. Install TiUP:
 
     ```bash
     curl --proto '=https' --tlsv1.2 -sSf https://tiup-mirrors.pingcap.com/install.sh | sh
@@ -23,17 +23,17 @@ Log in to the control machine using a regular user account (take the `tikv` user
 
 2. Set the TiUP environment variables:
 
-    Redeclare the global environment variables:
+    1. Redeclare the global environment variables:
 
-    ```bash
-    source .bash_profile
-    ```
+       ```bash
+       source .bash_profile
+       ```
 
-    Confirm whether TiUP is installed:
+    2. Confirm whether TiUP is installed:
 
-    ```bash
-    tiup
-    ```
+       ```bash
+       tiup
+       ```
 
 3. Install the TiUP cluster component:
 
@@ -55,7 +55,7 @@ Log in to the control machine using a regular user account (take the `tikv` user
 
 ## Step 2: Initialize cluster topology file
 
-According to the intended cluster topology, you need to manually create and edit the cluster initialization configuration file.
+According to the intended cluster topology, manually create and edit the cluster initialization configuration file.
 
 To create the cluster initialization configuration file, you can create a YAML-formatted configuration file on the control machine using TiUP:
 
@@ -87,15 +87,17 @@ grafana_servers:
 ```
 
 {{< info >}}
+
 - For parameters that should be globally effective, configure these parameters of corresponding components in the `server_configs` section of the configuration file.
 - For parameters that should be effective on a specific node, configure these parameters in the `config` of this node.
 - Use `.` to indicate the subcategory of the configuration, such as `storage.scheduler-concurrency`. For more formats, see [TiUP configuration template](https://github.com/pingcap/tiup/blob/master/embed/templates/examples/topology.example.yaml).
-- For more parameter description, see [TiKV config.toml.example](https://github.com/tikv/tikv/blob/release-5.0/etc/config-template.toml), [PD config.toml.example](https://github.com/tikv/pd/blob/release-5.0/conf/config.toml) configuration.
+- For more parameter description, see [TiKV config.toml.example](https://github.com/tikv/tikv/blob/release-5.0/etc/config-template.toml) and [PD config.toml.example](https://github.com/tikv/pd/blob/release-5.0/conf/config.toml) configuration.
+
 {{< /info >}}
 
 ## Step 3: Execute the deployment command
 
-{{< info >}}
+{{< /info >}}
 You can use secret keys or interactive passwords for security authentication when you deploy TiKV using TiUP:
 
 - If you use secret keys, you can specify the path of the keys through `-i` or `--identity_file`;
@@ -108,14 +110,14 @@ In general, TiUP creates the user and group specified in the `topology.yaml` fil
 - You have used the `--skip-create-user` option in the command line to explicitly skip the step of creating the user.
 {{< /info >}}
 
-Before you execute the `deploy` command, use the `check` and `check --apply` commands to detect and automatically repair the potential risks in the cluster:
+Before executing the `deploy` command, use the `check` and `check --apply` commands to detect and automatically repair potential risks in the cluster:
 
 ```bash
 tiup cluster check ./topology.yaml --user root [-p] [-i /home/root/.ssh/gcp_rsa]
 tiup cluster check ./topology.yaml --apply --user root [-p] [-i /home/root/.ssh/gcp_rsa]
 ```
 
-Then execute the `deploy` command to deploy the TiKV cluster:
+Then, execute the `deploy` command to deploy the TiKV cluster:
 
 ```shell
 tiup cluster deploy tikv-test v5.0.1 ./topology.yaml --user root [-p] [-i /home/root/.ssh/gcp_rsa]
@@ -148,7 +150,7 @@ For example, execute the following command to check the status of the `tikv-test
 tiup cluster display tikv-test
 ```
 
-Expected output includes the instance ID, role, host, listening port, and status (because the cluster is not started yet, so the status is `Down`/`inactive`), and directory information.
+The command output should include the instance ID, role, host, listening port, and status (the status of the cluster is `Down`/`inactive` because it is not started yet), and directory information.
 
 ## Step 6: Start the TiKV cluster
 
@@ -159,8 +161,9 @@ tiup cluster start tikv-test
 If the output log includes ```Started cluster `tikv-test` successfully```, the start is successful.
 
 ## Step 7: Verify the running status of the TiKV cluster
+
 For the specific operations, see [Verify Cluster Status](../verify).
 
-{{< info >}}
-Please refer to [TiUP cluster document](https://docs.pingcap.com/tidb/stable/tiup-cluster) to find more TiUP cluster commands and usages.
+{{< /info >}}
+Refer to [TiUP cluster document](https://docs.pingcap.com/tidb/stable/tiup-cluster) to find more TiUP cluster commands and usages.
 {{< /info >}}
