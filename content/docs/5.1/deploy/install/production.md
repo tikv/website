@@ -52,7 +52,7 @@ Log in to the control machine using a regular user account (take the `tikv` user
 4. If TiUP is already installed, update the TiUP cluster component to the latest version:
 
     {{< copyable "shell-regular" >}}
-
+    
     ```bash
     tiup update --self && tiup update cluster
     ```
