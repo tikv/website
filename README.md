@@ -29,3 +29,5 @@ make docker
 ## Adding blog posts
 
 To add a new blog post, add a Markdown file to the `content/blog` folder. There's currently a `first-post.md` file in that directory that can serve as a template.
+
+test
