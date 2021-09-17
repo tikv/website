@@ -7,7 +7,7 @@ menu:
         weight: 3
 ---
 
-After a TiKV cluster is deployed, you need to check whether the cluster is up and running. This document introduces how to check the cluster status using TiUP and Grafana, and how to connect to the TiKV cluster using a TiKV client to do simple `put` and `get` operations.
+After a TiKV cluster is deployed, you need to check whether the cluster runs normally. This document introduces how to check the cluster status using TiUP commands and Grafana, and how to connect to the TiKV cluster using a TiKV client to perform the simple `put` and `get` operations.
 
 ## Check the TiKV cluster status
 
@@ -27,11 +27,11 @@ Expected output: If the `Status` information of each node is `Up`, the cluster r
 
 1. Log in to the Grafana monitoring at `${Grafana-ip}:3000`. The default username and password are both `admin`.
 
-2. To check the TiKV port status and load monitoring information, click **Overview**.
+2. Click **Overview** and check the TiKV port status and the load monitoring information.
 
-## Connect to TiKV and do simple operations
+## Connect to the TiKV cluster and perform simple operations
 
-This section describes how to connect to the TiKV cluster to do simple `put` and `get` operations.
+This section describes how to connect to the TiKV cluster using a TiKV client to perform the simple `put` and `get` operations.
 
 1. Download jars
 
@@ -42,9 +42,10 @@ This section describes how to connect to the TiKV cluster to do simple `put` and
 
 2. Install `jshell` (include in JDK >= 9)
 
-3. Try `put` and `get` RawKV API
+3. Try the `put` and `get` operations
+    
+    To connect the TiKV cluster and use the `put` and `get` RawKV API, put the below script to the file `verify_tikv.java`.
 
-    Save the following script to file `verify_tikv.java`.
 
     ```java
     import java.util.*;
