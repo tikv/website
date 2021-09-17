@@ -55,7 +55,7 @@ Log in to the control machine using a regular user account (take the `tikv` user
 
 ## Step 2: Initialize cluster topology file
 
-According to the intended cluster topology, you need to manually create and edit the cluster initialization configuration file.
+According to the intended cluster topology, manually create and edit the cluster initialization configuration file.
 
 To create the cluster initialization configuration file, you can create a YAML-formatted configuration file on the control machine using TiUP:
 
