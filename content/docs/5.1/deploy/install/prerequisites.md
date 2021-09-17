@@ -94,7 +94,7 @@ To ensure correct configuration, create echo servers on the ports/IP addresses b
 ncat -l $PORT -k -c 'xargs -n1 echo'
 ```
 
-Then from the other machines, verify that the echo server is reachable with `curl $IP:$PORT`.
+Then, from the other machines, verify that the echo server is reachable with `curl $IP:$PORT`.
 
 ## Web browser requirements
 
