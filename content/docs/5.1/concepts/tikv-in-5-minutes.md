@@ -177,11 +177,11 @@ The following two examples use Java and Python respectively to show how to write
 1. Install the `tikv-client` python package.
 
     ```bash
-    pip3 install -i https://test.pypi.org/simple/ tikv-client
+    pip3 install tikv-client
     ```
 
     {{< info >}}
-This package requires Python 3.5+.
+This package requires Python 3.6+ and pip 19+.
     {{< /info >}}
 
 2. Use either the `RAW KV` API or `TXN KV` API to write data to TiKV.
