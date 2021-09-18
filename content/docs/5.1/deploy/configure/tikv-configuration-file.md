@@ -13,7 +13,7 @@ This document only describes the parameters that are not included in command-lin
 
 ## server
 
-+ Configuration items related to the server
+Configuration parameters related to the server.
 
 ### `status-thread-pool-size`
 
@@ -109,7 +109,7 @@ This document only describes the parameters that are not included in command-lin
 
 ## readpool.unified
 
-Configuration items related to the single thread pool serving read requests. This thread pool supersedes the original storage thread pool and coprocessor thread pool since the 4.0 version.
+Configuration parameters related to the single thread pool serving read requests. This thread pool supersedes the original storage thread pool and coprocessor thread pool since the 4.0 version.
 
 ### `min-thread-count`
 
@@ -138,7 +138,7 @@ Configuration items related to the single thread pool serving read requests. Thi
 
 ## readpool.storage
 
-Configuration items related to storage thread pool.
+Configuration parameters related to storage thread pool.
 
 ### `use-unified-pool`
 
@@ -192,12 +192,12 @@ Configuration items related to storage thread pool.
 
 ## readpool.coprocessor
 
-Configuration items related to the Coprocessor thread pool.
+Configuration parameters related to the Coprocessor thread pool.
 
 ### `use-unified-pool`
 
 + Determines whether to use the unified thread pool (configured in [`readpool.unified`](#readpoolunified)) for coprocessor requests. If the value of this parameter is `false`, a separate thread pool is used, which is configured through the rest parameters in this section (`readpool.coprocessor`).
-+ Default value: If none of the parameters in this section (`readpool.coprocessor`) are set, the default value is `true`. Otherwise, the default value is `false` for the backward compatibility. Adjust the configuration items in [`readpool.unified`](#readpoolunified) before enabling this parameter.
++ Default value: If none of the parameters in this section (`readpool.coprocessor`) are set, the default value is `true`. Otherwise, the default value is `false` for the backward compatibility. Adjust the configuration parameter in [`readpool.unified`](#readpoolunified) before enabling this parameter.
 
 ### `high-concurrency`
 
@@ -246,7 +246,7 @@ Configuration items related to the Coprocessor thread pool.
 
 ## storage
 
-Configuration items related to storage
+Configuration parameters related to storage.
 
 ### `scheduler-concurrency`
 
@@ -274,8 +274,8 @@ Configuration items related to storage
 
 ### `enable-ttl`
 
-+ TTL is short for "Time to live". If this item is enabled, TiKV automatically deletes data that reaches its TTL. To set the value of TTL, you need to specify it in the requests when writing data via the client. If the TTL is not specified, it means that TiKV does not automatically delete the corresponding data.
-+ Note: The TTL feature is only available for the RawKV interface for now. You can only configure this feature when creating a new cluster because TTL uses different data formats in the storage layer. If you modify this item on an existing cluster, TiKV reports errors when it starts.
++ TTL is short for "Time to live". If this parameter is enabled, TiKV automatically deletes data that reaches its TTL. To set the value of TTL, you need to specify it in the requests when writing data via the client. If the TTL is not specified, it means that TiKV does not automatically delete the corresponding data.
++ Note: The TTL feature is only available for the RawKV interface for now. You can only configure this feature when creating a new cluster because TTL uses different data formats in the storage layer. If you modify this parameter on an existing cluster, TiKV reports errors when it starts.
 + Default value: `false`
 
 ### `ttl-check-poll-interval`
@@ -286,7 +286,7 @@ Configuration items related to storage
 
 ## storage.block-cache
 
-Configuration items related to the sharing of block cache among multiple RocksDB Column Families (CF). When these configuration items are enabled, block cache separately configured for each column family is disabled.
+Configuration parameters related to the sharing of block cache among multiple RocksDB Column Families (CF). When these configuration parameters are enabled, block cache separately configured for each column family is disabled.
 
 ### `shared`
 
@@ -301,11 +301,11 @@ Configuration items related to the sharing of block cache among multiple RocksDB
 
 ## storage.io-rate-limit
 
-Configuration items related to the I/O rate limiter.
+Configuration parameters related to I/O rate limiter.
 
 ### `max-bytes-per-sec`
 
-+ Limits the maximum I/O bytes that a server can write to or read from the disk (determined by the `mode` configuration item below) in one second. When this limit is reached, TiKV prefers throttling background operations over foreground ones. The value of this configuration item should be set to the disk's optimal I/O bandwidth, for example, the maximum I/O bandwidth specified by your cloud disk vendor. When this configuration value is set to zero, disk I/O operations are not limited.
++ Limits the maximum I/O bytes that a server can write to or read from the disk (determined by the `mode` configuration parameter below) in one second. When this limit is reached, TiKV prefers throttling background operations over foreground ones. The value of this configuration parameter should be set to the disk's optimal I/O bandwidth, for example, the maximum I/O bandwidth specified by your cloud disk vendor. When this configuration value is set to zero, disk I/O operations are not limited.
 + Default value: `"0MB"`
 
 ### `mode`
@@ -316,7 +316,7 @@ Configuration items related to the I/O rate limiter.
 
 ## raftstore
 
-Configuration items related to Raftstore
+Configuration parameters related to raftstore.
 
 ### `prevote`
 
@@ -626,7 +626,7 @@ Configuration items related to Raftstore
 
 ## Coprocessor
 
-Configuration items related to Coprocessor
+Configuration parameters related to Coprocessor.
 
 ### `split-region-on-table`
 
@@ -663,7 +663,7 @@ Configuration items related to Coprocessor
 
 ## RocksDB
 
-Configuration items related to RocksDB
+Configuration parameters related to RocksDB.
 
 ### `max-background-jobs`
 
@@ -821,7 +821,7 @@ Configuration items related to RocksDB
 
 ## rocksdb.titan
 
-Configuration items related to Titan
+Configuration parameters related to Titan.
 
 ### `enabled`
 
@@ -846,7 +846,7 @@ Configuration items related to Titan
 
 ## rocksdb.defaultcf
 
-Configuration items related to `rocksdb.defaultcf`
+Configuration parameters related to `rocksdb.defaultcf`.
 
 ### `block-size`
 
@@ -918,9 +918,9 @@ Configuration items related to `rocksdb.defaultcf`
 
 ### `bottommost-level-compression`
 
-+ Sets the compression algorithm of the bottommost layer. This configuration item overrides the `compression-per-level` setting.
++ Sets the compression algorithm of the bottommost layer. This configuration parameter overrides the `compression-per-level` setting.
 + Ever since data is written to LSM-tree, RocksDB does not directly adopt the last compression algorithm specified in the `compression-per-level` array for the bottommost layer. `bottommost-level-compression` enables the bottommost layer to use the compression algorithm of the best compression effect from the beginning.
-+ If you do not want to set the compression algorithm for the bottommost layer, set the value of this configuration item to `disable`.
++ If you do not want to set the compression algorithm for the bottommost layer, set the value of this configuration parameter to `disable`.
 + Default value: "zstd"
 
 ### `write-buffer-size`
@@ -1044,7 +1044,7 @@ Configuration items related to `rocksdb.defaultcf`
 
 ## rocksdb.defaultcf.titan
 
-Configuration items related to `rocksdb.defaultcf.titan`
+Configuration parameters related to `rocksdb.defaultcf.titan`.
 
 ### `min-blob-size`
 
@@ -1122,7 +1122,7 @@ Configuration items related to `rocksdb.defaultcf.titan`
 
 ## rocksdb.writecf
 
-Configuration items related to `rocksdb.writecf`
+Configuration parameters related to `rocksdb.writecf`.
 
 ### `block-cache-size`
 
@@ -1159,7 +1159,7 @@ Configuration items related to `rocksdb.writecf`
 
 ## rocksdb.lockcf
 
-Configuration items related to `rocksdb.lockcf`
+Configuration parameters related to `rocksdb.lockcf`.
 
 ### `block-cache-size`
 
@@ -1179,7 +1179,7 @@ Configuration items related to `rocksdb.lockcf`
 
 ## raftdb
 
-Configuration items related to `raftdb`
+Configuration parameters related to `raftdb`.
 
 ### `max-background-jobs`
 
@@ -1200,7 +1200,7 @@ Configuration items related to `raftdb`
 
 ## security
 
-Configuration items related to security
+Configuration parameters related to security.
 
 ### `ca-path`
 
@@ -1219,12 +1219,12 @@ Configuration items related to security
 
 ### `redact-info-log`
 
-+ This configuration item enables or disables log redaction. If the configuration value is set to `true`, all user data in the log will be replaced by `?`.
++ This configuration parameter enables or disables log redaction. If the configuration value is set to `true`, all user data in the log will be replaced by `?`.
 + Default value: `false`
 
 ## security.encryption
 
-Configuration items related to [encryption at rest](https://docs.pingcap.com/tidb/stable/encryption-at-rest) (TDE).
+Configuration parameters related to [encryption at rest](https://docs.pingcap.com/tidb/stable/encryption-at-rest) (TDE).
 
 ### `data-encryption-method`
 
@@ -1254,7 +1254,7 @@ Configuration items related to [encryption at rest](https://docs.pingcap.com/tid
 
 ## import
 
-Configuration items related to TiDB Lightning import and BR restore.
+Configuration parameters related to TiDB Lightning import and BR restore.
 
 ### `num-threads`
 
@@ -1270,6 +1270,8 @@ Configuration items related to TiDB Lightning import and BR restore.
 
 ## gc
 
+The configuration parameter related to gc.
+
 ### `enable-compaction-filter`
 
 + Controls whether to enable the GC in Compaction Filter feature
@@ -1277,7 +1279,7 @@ Configuration items related to TiDB Lightning import and BR restore.
 
 ## backup
 
-Configuration items related to BR backup.
+The configuration parameter related to BR backup.
 
 ### `num-threads`
 
@@ -1287,7 +1289,7 @@ Configuration items related to BR backup.
 
 ## cdc
 
-Configuration items related to TiCDC.
+Configuration parameters related to TiCDC.
 
 ### `min-ts-interval`
 
@@ -1319,5 +1321,5 @@ Configuration items related to TiCDC.
 
 ### `pipelined`
 
-- This configuration item enables the pipelined process of adding the pessimistic lock. With this feature enabled, after detecting that data can be locked, TiKV immediately notifies client to execute the subsequent requests and write the pessimistic lock asynchronously, which reduces most of the latency and significantly improves the performance of pessimistic transactions. But there is a still low probability that the asynchronous write of the pessimistic lock fails, which might cause the failure of pessimistic transaction commits.
+- This configuration parameter enables the pipelined process of adding the pessimistic lock. With this feature enabled, after detecting that data can be locked, TiKV immediately notifies client to execute the subsequent requests and write the pessimistic lock asynchronously, which reduces most of the latency and significantly improves the performance of pessimistic transactions. But there is a still low probability that the asynchronous write of the pessimistic lock fails, which might cause the failure of pessimistic transaction commits.
 - Default value: `true`
