@@ -129,7 +129,7 @@ Re-execute the `tiup cluster upgrade` command to resume the upgrade. The upgrade
 
     Find the failed upgrade operation record and keep the ID of this operation record.
 
-2. Execute the `tiup cluster replay <audit-id>` command to retry the corresponding operation. The `<audit-id>` value is the ID obtained in the previous step.:
+2. Execute the `tiup cluster replay <audit-id>` command to retry the corresponding operation. The `<audit-id>` value is the ID obtained in the previous step:
 
     ```bash
     tiup cluster replay <audit-id>
