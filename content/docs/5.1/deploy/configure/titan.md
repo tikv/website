@@ -16,19 +16,19 @@ Titan is a RocksDB plugin developed by PingCAP to separate keys and values in Ro
     caption="Titan Architecture"
     number="" >}}
 
-Titan store values separately from the LSM-tree during flush and compaction. The value in the LSM tree is the position index to the blob file of the real value. For more details on the design and implementation of Titan, please refer to [Titan: A RocksDB Plugin to Reduce Write Amplification](https://pingcap.com/blog/titan-storage-engine-design-and-implementation/).
+Titan store values separately from the LSM-tree during flush and compaction. The value in the LSM tree is the position index to the blob file of the real value. For more details on the design and implementation of Titan, see [Titan: A RocksDB Plugin to Reduce Write Amplification](https://pingcap.com/blog/titan-storage-engine-design-and-implementation/).
 
 {{< info >}}
-**Be cautious:** Even though Titan improves write performance, it enlarges data storage size and reduces range scan performance. We recommended using Titan when the average size of values is larger than 1KB.
+**Notes:** Although Titan improves write performance, it enlarges data storage size and reduces range scan performance at the same time. Therefore, it is recommended to use Titan when the average size of values is larger than 1KB.
 {{< /info >}}
 
 ## How to enable Titan
 
 {{< warning >}}
-As Titan has not reached ultimate maturity to be applied in production, it is disabled in TiKV by default. Before enabling it, make sure you understand the warning above and you have evaluated your scenarios and needs.
+As Titan has not reached ultimate maturity to be applied in production, it is disabled in TiKV by default. Before enabling it, make sure you understand the above notes and have evaluated your scenario and needs.
 {{< /warning >}}
 
-To enable Titan in TiKV, set in the TiKV configuration file:
+To enable Titan in TiKV, set the following in the TiKV configuration file:
 
 ```toml
 [rocksdb.titan]
@@ -37,11 +37,11 @@ To enable Titan in TiKV, set in the TiKV configuration file:
 enabled = true
 ```
 
-You can find all the Titan configuration options [here](../tikv-configuration-file/#rocksdbtitan).
+To see the information of all the Titan configuration parameters, see [Titan-related parameters](../tikv-configuration-file/#rocksdbtitan).
 
 ## How to fall back to RocksDB
 
-If you find Titan does not help or is causing read or other performance issues, you can take the following steps to fall back to RocksDB:
+If you find Titan does not help or causes read or other performance issues, you can take the following steps to fall back to RocksDB:
 
 1. Enter the fallback mode using `tikv-ctl`:
 
@@ -50,9 +50,9 @@ If you find Titan does not help or is causing read or other performance issues, 
    ```
 
     {{< info >}}
-Make sure you have already enabled Titan when using this command.
+When using this command, make sure you have already enabled Titan.
     {{< /info >}}
 
-2. Wait until the number of blob files reduces to 0. Also, you can accelerate it by `tikv-ctl compact-cluster`.
+2. Wait until the number of blob files reduces to 0. You can also accelerate it by `tikv-ctl compact-cluster`.
 
-3. In the TiKV configuration file, set `rocksdb.titan.enabled=false`, and then restart TiKV.
+3. Set `rocksdb.titan.enabled=false` in the TiKV configuration file, and then restart TiKV.

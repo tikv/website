@@ -11,8 +11,8 @@ TiKV uses [RocksDB](https://rocksdb.org/) internally to store Raft logs and key-
 
 TiKV creates two RocksDB instances on each Node:
 
-* A `rocksdb` instance that stores key-value data.
-* A `raftdb` that stores Raft logs and has a single column family called `raftdb.defaultcf`.
+* One `rocksdb` instance that stores key-value data.
+* One `raftdb` instance that stores Raft logs and has a single column family called `raftdb.defaultcf`.
 
 The `rocksdb` instance has three column families:
 
@@ -20,13 +20,13 @@ Column family | Purpose
 :-------------|:-------
 `rocksdb.defaultcf` | Stores actual KV pairs for TiKV
 `rocksdb.lockcf` | Stores transaction lock
-`rocksdb.writecf` | Stores transactions' commit and rollback record
+`rocksdb.writecf` | Stores transactions' commits and rollback records
 
-RocksDB can be configured on each column family. Here's an example:
+RocksDB can be configured on each column family. Here is an example:
 
 ```toml
 [rocksdb.writecf]
 whole-key-filtering = false
 ```
 
-You can find all the RocksDB configuration options [here](../tikv-configuration-file/#rocksdb).
+For more information about the RocksDB configuration parameters, see [RocksDB-related parameters](../tikv-configuration-file/#rocksdb).
