@@ -7,4 +7,4 @@ menu:
         weight: 10
 ---
 
-You can find all the configuration parameters related to Raftstore [here](../tikv-configuration-file/#raftstore).
+You can find all the configuration parameters related to [Raftstore](../tikv-configuration-file/#raftstore).
