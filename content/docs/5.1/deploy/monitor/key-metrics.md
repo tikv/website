@@ -9,9 +9,9 @@ menu:
 
 If your TiKV cluster is deployed using TiUP, the monitoring system is deployed at the same time. For more details, see [Overview of the TiKV Monitoring Framework](https://pingcap.com/docs/stable/reference/key-monitoring-metrics/overview-dashboard/).
 
-The Grafana dashboard is divided into a series of sub-dashboards which include Overview, PD, TiKV, and so on. You can use various metrics to help you diagnose the cluster.
+The Grafana dashboard is divided into a series of sub-dashboards which include Overview, PD, TiKV, and so on. You can use various metrics to diagnose the cluster.
 
-But you can also deploy your own Grafana server to monitor the TiKV cluster, especially when you are going to use TiKV without TiDB. This document provides a detailed description of key metrics so that you can monitor the Prometheus metrics you are interested in.
+At the same time, you can also deploy your Grafana server to monitor the TiKV cluster, especially when you use TiKV without TiDB. This document provides a detailed description of key metrics so that you can monitor the Prometheus metrics you are interested in.
 
 ## Key metrics description
 
@@ -19,16 +19,16 @@ To understand the key metrics, check the following table:
 
 Service | Metric Name | Description | Normal Range
 ---- | ---------------- | ---------------------------------- | --------------
-Cluster | tikv_store_size_bytes | The size of storage. The metric has a `type` label (eg: "capacity", "available"). |
+Cluster | tikv_store_size_bytes | The size of storage. The metric has a `type` label (such as "capacity", "available"). |
 gRPC | tikv_grpc_msg_duration_seconds | Bucketed histogram of gRPC server messages. The metric has a `type` label which represents the type of the server message. You can count the metric and calculate the QPS. |
 gRPC | tikv_grpc_msg_fail_total | The total number of gRPC message handling failure. The metric has a `type` label which represents gRPC message type. |
 gRPC | grpc batch size of gRPC requests | grpc batch size of gRPC requests. |
 Scheduler | tikv_scheduler_too_busy_total | The total count of too busy schedulers. The metric has a `type` label which represents the scheduler type. |
 Scheduler | tikv_scheduler_contex_total | The total number of pending commands. The scheduler receives commands from clients, executes them against the MVCC layer storage engine. |
-Scheduler | tikv_scheduler_stage_total | Total number of commands on each stage. The metric has two labels: `type` and `stage`. `stage` represents the stage of executed commands like "read_finish", "async_snapshot_err", "snapshot", etc. |
+Scheduler | tikv_scheduler_stage_total | Total number of commands on each stage. The metric has two labels: `type` and `stage`. `stage` represents the stage of executed commands like "read_finish", "async_snapshot_err", "snapshot", and so on. |
 Scheduler | tikv_scheduler_commands_pri_total | Total count of different priority commands. The metric has a `priority` label. |
 Server | tikv_server_grpc_resp_batch_size | grpc batch size of gRPC responses. |
-Server | tikv_server_report_failure_msg_total | Total number of reporting failure messages. The metric has two labels: `type` and `store_id`. `type` represents the failure type, and `store_id` represents the destination peer store id. |
+Server | tikv_server_report_failure_msg_total | Total number of reporting failure messages. The metric has two labels: `type` and `store_id`. `type` represents the failure type, and `store_id` represents the destination peer store ID. |
 Server | tikv_server_raft_message_flush_total | Total number of raft messages flushed immediately. |
 Server | tikv_server_raft_message_recv_total | Total number of raft messages received. |
 Server | tikv_region_written_keys | Histogram of written keys for regions. |
@@ -59,8 +59,8 @@ Raft | tikv_raftstore_local_read_executed_requests | Total number of requests di
 Coprocessor | tikv_coprocessor_request_duration_seconds | Bucketed histogram of coprocessor request duration. The metric has a label `req`. |
 Coprocessor | tikv_coprocessor_request_error | Total number of push down request error. The metric has a label `reason`. |
 Coprocessor | tikv_coprocessor_scan_keys | Bucketed histogram of scan keys observed per request. The metric has a label `req` which represents the tag of requests. |
-Coprocessor | tikv_coprocessor_rocksdb_perf | Total number of RocksDB internal operations from PerfContext. The metric has 2 labels `req` and `metric`. `req` represents the tag of requests and `metric` is performance metric like "block_cache_hit_count", "block_read_count", "encrypt_data_nanos", etc. |
-Coprocessor | tikv_coprocessor_executor_count | The number of various query operations. The metric has a single label `type` which represents the related query operation (e.g., "limit", "top_n", and "batch_table_scan"). |
+Coprocessor | tikv_coprocessor_rocksdb_perf | Total number of RocksDB internal operations from PerfContext. The metric has 2 labels `req` and `metric`. `req` represents the tag of requests and `metric` is performance metric like "block_cache_hit_count", "block_read_count", "encrypt_data_nanos", and so on. |
+Coprocessor | tikv_coprocessor_executor_count | The number of various query operations. The metric has a single label `type` which represents the related query operation (for example, "limit", "top_n", and "batch_table_scan"). |
 Coprocessor | tikv_coprocessor_response_bytes | Total bytes of response body. |
 Storage | tikv_storage_mvcc_versions | Histogram of versions for each key. |
 Storage | tikv_storage_mvcc_gc_delete_versions | Histogram of versions deleted by GC for each key. |
@@ -84,8 +84,8 @@ Snapshot | tikv_snapshot_ingest_sst_duration_seconds | Bucketed histogram of Roc
 Snapshot | tikv_futurepool_pending_task_total | Current future_pool pending + running tasks. The metric has a label `name`. |
 RocksDB | tikv_engine_get_served | queries served by engine. The metric has 2 labels `db` and `type`. |
 RocksDB | tikv_engine_write_stall | Histogram of write stall. The metric has 2 labels `db` and `type`. |
-RocksDB | tikv_engine_size_bytes | Sizes of each column families. The metric has two labels: `db` and `type`. `db` represents which database is being counted (e.g., "kv", "raft"), and `type` represents the type of column families (e.g., "default", "lock", "raft", "write"). |
-RocksDB | tikv_engine_flow_bytes | Bytes and keys of read/write. The metric has `type` label (eg: "capacity", "available"). |
+RocksDB | tikv_engine_size_bytes | Sizes of each column families. The metric has two labels: `db` and `type`. `db` represents which database is being counted (for example, "kv", "raft"), and `type` represents the type of column families (for example, "default", "lock", "raft", "write"). |
+RocksDB | tikv_engine_flow_bytes | Bytes and keys of read/write. The metric has `type` label (for example, "capacity", "available"). |
 RocksDB | tikv_engine_wal_file_synced | The number of times WAL sync is done. The metric has a label `db`. |
 RocksDB | tikv_engine_get_micro_seconds | Histogram of time used to get micros. The metric has two labels: `db` and `type`. |
 RocksDB | tikv_engine_locate | The number of calls to seek/next/prev. The metric has 2 labels `db` and `type`. |
