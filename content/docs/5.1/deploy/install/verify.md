@@ -44,7 +44,7 @@ This section describes how to connect to the TiKV cluster using a TiKV client to
 
 3. Try the `put` and `get` operations
     
-    To connect the TiKV cluster and use the `put` and `get` RawKV API, put the below script to the file `verify_tikv.java`.
+    To connect the TiKV cluster and use the `put` and `get` RawKV API, save the following script to the file `verify_tikv.java`.
 
 
     ```java
