@@ -11,7 +11,7 @@ TiKV uses topology labels (hereafter referred to as the labels) to declare its l
 
 ## Declare the label hierarchy in PD
 
-The labels are hierarchical, for example, `zone > rack > host`. You can declare their hierarchy in the PD configuration file or `pd-ctl`:
+The labels are hierarchical, for example, `zone > rack > host`. You can declare their hierarchies in the PD configuration file or `pd-ctl`:
 
 - PD configuration file:
     ```toml

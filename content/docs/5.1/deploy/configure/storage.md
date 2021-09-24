@@ -8,4 +8,4 @@ menu:
 ---
 
 
-You can find all the configuration parameters related to [storage](../tikv-configuration-file/#storage).
+You can find all the configuration parameters related to Storage [here](../tikv-configuration-file/#storage).

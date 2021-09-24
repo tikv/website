@@ -11,7 +11,7 @@ TiKV shards continuous ranges of keys into Regions, and replicates Regions throu
 
 ## Region Merge
 
-The Region Merge process is initiated by PD. The steps of the whole process are as follows:
+The Region Merge process is initiated by PD as follows:
 
 1. PD polls the status of the Regions by the interval.
 
@@ -23,7 +23,7 @@ The Region Merge process is initiated by PD. The steps of the whole process are 
 
 You can use `pd-ctl` or the PD configuration file to configure Region Merge.
 
-The Region Merge is enabled by default. To disable Region Merge, you need to set the following parameters to zero:
+The Region Merge feature is enabled by default. To disable Region Merge, you need to set the following parameters to zero:
 
 - `max-merge-region-size`
 - `max-merge-region-keys`

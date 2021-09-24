@@ -7,4 +7,4 @@ menu:
         weight: 14
 ---
 
-You can find all the configuration parameters related to [Coprocessor](../tikv-configuration-file/#coprocessor).
+You can find all the configuration parameters related to Coprocessor [here](../tikv-configuration-file/#coprocessor).

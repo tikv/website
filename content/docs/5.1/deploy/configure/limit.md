@@ -15,12 +15,12 @@ TiKV balance regions by the commands sent by PD. These commands are called sched
 
 ## Configure scheduling rate limits on stores
 
-PD provides two methods to configure scheduling rate limits on stores as following:
+PD provides two methods to configure scheduling rate limits on stores as follows:
 
 1. Permanently set the scheduling rate limits by [store-balance-rate](../pd-configuration-file/#store-balance-rate) in `pd-ctl`.
 
     {{< info >}}
-The configuration change only applies to the stores started afterward. That is, you need to restart all TiKV if you want to apply this change to all stores. If you want to apply this change immediately, see the [workaround](#workaround) below.
+The configuration change only applies to the stores that are started afterward. If you want to apply this change to all stores, you need to restart all TiKV stores. If you want to apply this change immediately, see the [workaround](#workaround) below.
     {{< /info >}}
 
     `store-balance-rate` specifies the maximum number of scheduling tasks allowed for each store per minute. The scheduling step includes adding peers or learners.

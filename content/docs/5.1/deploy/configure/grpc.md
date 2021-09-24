@@ -7,4 +7,4 @@ menu:
         weight: 13
 ---
 
-You can find all the configuration parameters related to [gRPC](../tikv-configuration-file/#grpc-compression-type) (started with `grpc-`).
+You can find all the configuration parameters related to gRPC [here](../tikv-configuration-file/#server) (started with `grpc-`).

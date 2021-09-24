@@ -37,7 +37,7 @@ To enable Titan in TiKV, set the following in the TiKV configuration file:
 enabled = true
 ```
 
-To see the information of all the Titan configuration parameters, see [Titan-related parameters](../tikv-configuration-file/#rocksdbtitan).
+For the information of all the Titan configuration parameters, see [Titan-related parameters](../tikv-configuration-file/#rocksdbtitan).
 
 ## How to fall back to RocksDB
 
