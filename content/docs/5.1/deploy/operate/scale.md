@@ -148,7 +148,7 @@ You can take similar steps to remove a PD node.
 
     If you see the message "Scaled cluster in successfully", it means that the scale-in operation is successfully completed.
     
-    Besides, since the scale-in process takes some time, the status of the node to be taken offline became `Tombstone` also indicates that the scale-in operation is successfully completed.
+    Besides, if the status of the node to be taken offline becomes `Tombstone`, it also indicates that the scale-in operation is successfully completed because the scale-in process takes some time.
    
 3. Check the cluster status:
 
