@@ -17,7 +17,7 @@ The Region Merge process is initiated by PD as follows:
 
 2. PD ensures all replicas of the two Regions to be merged must be stored on the same set of TiKV(s).
 
-2. If the two adjacent regions' sizes are both less than `max-merge-region-size` and the numbers of keys within the regions are both less than `max-merge-region-keys`, PD starts the Region Merge process that merges the bigger region into the smaller region.
+3. If the sizes of two adjacent regions are both less than `max-merge-region-size` and the numbers of keys within the regions are both less than `max-merge-region-keys`, PD starts the Region Merge process that merges the bigger region into the smaller region.
 
 ## Configure Region Merge
 
