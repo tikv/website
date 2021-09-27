@@ -17,7 +17,7 @@ You can refer to [TiKV in 5 Minutes](../../concepts/tikv-in-5-minutes/) to deplo
 
 ## When to use TiKV?
 
-TiKV is the service you need if your applications require the following features:
+TiKV is at your service if your applications require the following features:
 
 * Horizontal scalability (including writes)
 * Strong consistency
@@ -65,12 +65,13 @@ TiKV is as scalable as NoSQL databases claim to be. At the same time, it feature
 ## How many replicas are recommended in a TiKV cluster? Does the minimum number of replicas ensure high availability of TiKV?
 
 Three replicas for each Region is sufficient for a testing environment. However, you must not operate a TiKV cluster with less than three nodes in a production environment. Depending on the infrastructure, workload, and resiliency needs, you can increase the number as you need.
+Three replicas are enough for each region in a testing environment. However, in a production environment, a TiKV cluster must have more than three nodes. If needed, you can also have more than three replicas in a production environment depending on the infrastructure, workload, and resiliency.
 
 ## If a node is down, will services be affected? If so, how long is the interruption?
 
 TiKV uses Raft to synchronize data among multiple replicas (three replicas for each Region by default). If one replica is down, the other replicas takes over services and guarantee data safety. Based on the Raft protocol, once a node is down, and a single leader fails, a follower in another node is elected as the Region leader right after. This election process takes no longer than 2 * lease time (lease time is 10 seconds).
 
-## Is the Range of the key data table divided before data access?
+## Is the Range of the Key data table divided before data access?
 
 No. It differs from the table splitting rules of MySQL. In TiKV, the table Range is dynamically split based on the size of Region.
 
@@ -118,11 +119,11 @@ For a standalone TiKV node, it is still recommended to enable the sync-log mode.
 TiKV switches Region leaders in the following cases:
 
 - Leaders cannot reach out to followers. For example, network problem or node failure happens.
-- Leader balance from PD. For example, PD tries to transfer leaders from a hotspot node to others.
+- PD needs to balance leaders. For example, PD tries to transfer leaders from a hotspot node to others.
 
 ## Why does the `cluster ID mismatch` message appear upon TiKV starting?
 
-This is because the cluster ID stored in local TiKV is different from the cluster ID specified by PD. When a new PD cluster is deployed, PD generates random cluster IDs. TiKV gets the cluster ID from PD and stores the cluster ID locally when it is initialized. The next time when TiKV is started, it checks the local cluster ID with the cluster ID in PD. If the cluster IDs do not match each other, the `cluster ID mismatch` message is displayed, and TiKV exits.
+This is because the cluster ID stored in local TiKV is different from the cluster ID specified by PD. When a new PD cluster is deployed, PD generates a random cluster ID. Then, TiKV gets this cluster ID from PD and stores the cluster ID locally when it is initialized. The next time when TiKV is started, it checks the local cluster ID with the cluster ID in PD. If the cluster IDs do not match each other, the `cluster ID mismatch` message is displayed, and TiKV exits.
 
 If you have deployed a PD cluster but removed PD data and deployed a new PD cluster, this error occurs because TiKV uses the old data to connect to the new PD cluster.
 
