@@ -17,14 +17,14 @@ This section introduces the preparation works needed before upgrading your TiKV 
 
 Before upgrading your TiKV cluster, you first need to upgrade TiUP.
 
-1. Upgrade the TiUP version. It is recommended that the TiUP version be `1.4.0` or later.
+1. Upgrade the TiUP version to `1.4.0` or later.
 
     ```bash
     tiup update --self
     tiup --version
     ```
 
-2. Upgrade the TiUP Cluster version. It is recommended that the TiUP Cluster version be `1.4.0` or later.
+2. Upgrade the TiUP Cluster version to `1.4.0` or later.
 
     ```bash
     tiup update cluster
@@ -40,7 +40,7 @@ Skip this step if one of the following situations applies:
 + After the upgrade, you want to use default parameter values of v5.0 for the unmodified configuration items.
 {{< /info >}}
 
-1. Enter the `vi` editing mode to edit the topology file:
+1. Edit the topology file in `vi` editing mode:
 
     ```bash
     tiup cluster edit-config <cluster-name>
@@ -48,7 +48,7 @@ Skip this step if one of the following situations applies:
 
 2. Refer to the format of [topology](https://github.com/pingcap/tiup/blob/release-1.4/embed/templates/examples/topology.example.yaml) configuration template and fill the parameters you want to modify in the `server_configs` section of the topology file.
 
-3. After the modification, <kbd>:</kbd> + <kbd>w</kbd> + <kbd>q</kbd> to save the change and exit the editing mode. Enter <kbd>Y</kbd> to confirm the change.
+3. Save the changes and exit the editing mode.
 
 ## Perform a rolling upgrade to the TiKV cluster
 

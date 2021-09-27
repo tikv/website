@@ -148,7 +148,7 @@ For example, execute the following command to check the status of the `tikv-test
 tiup cluster display tikv-test
 ```
 
-The command output should include the instance ID, role, host, listening port, and status (the status of the cluster is `Down`/`inactive` because it is not started yet), and directory information.
+The command output includes the instance ID, role, host, listening port, and status (the status of the cluster is `Down`/`inactive` because it is not started yet), and directory information.
 
 ## Step 6: Start the TiKV cluster
 
