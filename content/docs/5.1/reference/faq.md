@@ -64,7 +64,7 @@ TiKV is as scalable as NoSQL databases claim to be. At the same time, it feature
 
 ## How many replicas are recommended in a TiKV cluster? Does the minimum number of replicas ensure high availability of TiKV?
 
-Three replicas are enough for each region in a testing environment. However, in a production environment, a TiKV cluster must have more than three nodes. If needed, you can also have more than three replicas in a production environment depending on the infrastructure, workload, and resiliency.
+Three replicas are enough for each region in a testing environment. However, in a production environment, a TiKV cluster must have more than three replicas. If needed, you can also have more than three replicas in a production environment depending on the infrastructure, workload, and resiliency.
 
 ## If a node is down, will services be affected? If so, how long is the interruption?
 
