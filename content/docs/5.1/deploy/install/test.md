@@ -10,9 +10,9 @@ This guide describes how to install and deploy TiKV for test using TiUP playgrou
 
 ## TiUP Playground
 
-This chapter describes how to deploy a TiKV cluster using TiUP playground.
+This chapter describes how to deploy a TiKV cluster using TiUP Playground.
 
-1. Install TiUP:
+1. Install TiUP by executing the following command:
 
     ```bash
     curl --proto '=https' --tlsv1.2 -sSf https://tiup-mirrors.pingcap.com/install.sh | sh
@@ -20,17 +20,17 @@ This chapter describes how to deploy a TiKV cluster using TiUP playground.
 
 2. Set the TiUP environment variables:
 
-    1. Redeclare the global environment variables:
+    Redeclare the global environment variables:
 
-       ```bash
-       source .bash_profile
-       ```
+    ```bash
+    source .bash_profile
+    ```
 
-    2. Confirm whether TiUP is installed:
+    Confirm whether TiUP is installed:
 
-       ```bash
-       tiup
-       ```
+    ```bash
+    tiup
+    ```
 
 3. If TiUP is already installed, update the TiUP playground component to the latest version:
 
@@ -128,7 +128,7 @@ This section describes how to deploy TiKV on a single machine installed with the
                     --log-file=tikv3.log
     ```
 
-Use the [pd-ctl](https://github.com/pingcap/pd/tree/master/tools/pd-ctl) tool to verify whether PD and TiKV are successfully deployed:
+You can use the [pd-ctl](https://github.com/pingcap/pd/tree/master/tools/pd-ctl) tool to verify whether PD and TiKV are successfully deployed:
 
 ```bash
 ./bin/pd-ctl store -d -u http://127.0.0.1:2379
@@ -140,7 +140,7 @@ If the state of all the TiKV instances is "Up", you have successfully deployed a
 
 This section describes how to deploy TiKV on multiple nodes. If you want to test TiKV with a limited number of nodes, you can use one PD instance to test the entire cluster.
 
-Assume that you have four nodes. Deploy 1 PD instance and 3 TiKV instances. For details, see the following table:
+Assume that you have four nodes, you can deploy 1 PD instance and 3 TiKV instances. For details, see the following table:
 
 | Name  | Host IP         | Services |
 |:----- |:--------------- |:-------- |

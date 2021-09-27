@@ -1,37 +1,35 @@
 ---
 title: Security Config
-description: Keeping your TiKV secure
+description: Keep your TiKV secure
 menu:
     "5.1":
         parent: Configure TiKV
         weight: 5
 ---
 
-This section discusses how to use `Transport Layer Security (TLS)` to encrypt connections between TiKV nodes.
+This document describes how to use Transport Layer Security (TLS) to encrypt the connections between TiKV nodes.
 
 ## Transport Layer Security
 
-Transport Layer Security is an standard protocol for protecting networking communications from tampering or inspection. TiKV uses OpenSSL, an industry standard, to implement it's TLS encryption.
+Transport Layer Security is a standard protocol designed to protect network communications from network tampering or inspection. TiKV uses OpenSSL, an industry-standard toolkit for TLS, to implement its TLS encryption.
 
-It's often necessary to use TLS in situations where TiKV is being deployed or accessed from outside of a secure virtual local area network (VLAN). This includes deployments which cross the WAN (the public internet), which are part of an untrusted data center network, or where other untrustworthy users or services are active.
+It is necessary to use TLS when TiKV is being deployed or accessed from outside of a secure Virtual Local Area Network (VLAN), such as the network across a Wide Area Network (WAN, also refers to a public internet), the network that is a part of an untrusted data center network, and the network where other untrustworthy users or services are active.
 
-## Before you get started
+## Preparation
 
-Before you get started, review your infrastructure. Your organization may already use something like the [Kubernetes certificates API](https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/) to issue certificates. You will need the following for your deployment:
+Before getting started, you need to check your infrastructure. Your organization might already use tools like the [Kubernetes certificates API](https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/) to issue certificates. To successfully encrypt the connections between TiKV nodes, prepare the following certificates and keys:
 
 -  A **Certificate Authority** (CA) certificate
--  Individual unique **certificates** and **keys** for each TiKV or PD service
+-  Individual unique **certificates** and **keys** for each TiKV service and PD service
 -  One or many **certificates** and **keys** for TiKV clients depending on your needs.
 
- If you have these, you can skip the optional section below.
+ If you already have them, you can skip the [optional section](#optional-generate-a-test-certificate-chain) below.
 
-If your organization doesn't yet have a public key infrastructure (PKI), you can create a simple Certificate Authority to issue certificates for the services in your deployment. The instructions below show you how to do this in a few quick steps:
+If your organization does not yet have a public key infrastructure (PKI), you can create a simple CA to issue certificates for the services in your deployment by following the below instructions:
 
 ### Optional: Generate a test certificate chain
 
-Prepare certificates for each TiKV and PD node to be involved with the cluster.
-
-It is recommended to prepare a separate server certificate for TiKV and the Placement Driver (PD), and make sure that they can authenticate each other. The clients of TiKV and PD can share one client certificate.
+You need to prepare certificates for each TiKV and Placement Driver (PD) node to be involved with the cluster. It is recommended to prepare a separate server certificate for TiKV and PD and ensure that they can authenticate each other. The clients of TiKV and PD can share one client certificate.
 
 You can use multiple tools to generate self-signed certificates, such as `openssl`, `easy-rsa`, and `cfssl`.
 
@@ -65,9 +63,9 @@ done
 ./easyrsa sign-req server client
 ```
 
-If you run this script, you'll need to interactively answer some questions and make some confirmations. You can answer with anything for the CA common name. For the PD and TiKV nodes, use the hostnames.
+When running this script, you need to answer some questions and make some confirmations interactively. For the CA common name, you can use any desired name. While for the PD and TiKV nodes, you need to use the hostnames.
 
-If the script runs successfully, you should have something like this:
+If you see the following output, it means that the script runs successfully:
 
 ```bash
 $ ls easyrsa/pki/{ca.crt,issued,private}
@@ -80,9 +78,9 @@ easyrsa/pki/private:
 ca.key  client.key  pd1.key  pd2.key  pd3.key  tikv1.key  tikv2.key  tikv3.key
 ```
 
-### Configure the TiKV Server Certificates
+## Step 1. Configure the TiKV server certificates
 
-Set the certificate in TiKV configuration file:
+You need to set the certificates in the TiKV configuration file:
 
 ```toml
 # Using empty strings here means disabling secure connections.
@@ -98,13 +96,13 @@ key-path = "/path/to/tikv-server-key.pem"
 cert-allowed-cn = ["tikv-server", "pd-server"]
 ```
 
-You'll also need to **change the connection URL to `https://`** instead of plain `ip:port`.
+Besides, the **connection URL should be changed to `https://`** instead of a plain `ip:port`.
 
-You can find all the TiKV TLS configuration options [here](../tikv-configuration-file/#security).
+For the information about all TLS configuration parameters of TiKV, see [TiKV security-related parameters](../tikv-configuration-file/#security).
 
-### Configure the PD Certificates
+## Step 2. Configure the PD certificates
 
-Set the certificate in PD configuration file:
+You need to set the certificates in the PD configuration file:
 
 ```toml
 [security]
@@ -119,13 +117,13 @@ key-path = "/path/to/pd-server-key.pem"
 cert-allowed-cn = ["tikv-server", "pd-server"]
 ```
 
-You'll also need to **change the connection URL to `https://`** instead of plain `ip:port`.
+Besides, the **connection URL should be changed to `https://`** instead of a plain `ip:port`.
 
-You can find all the PD TLS configuration options [here](../pd-configuration-file/#security).
+For the information about all TLS configuration parameters of PD, see [PD security-related parameters](../pd-configuration-file/#security).
 
-### Configure the Client
+## Step 3. Configure the TiKV client
 
-You need to set TLS options for TiKV Client in order to connect to the TiKV. Taking [Rust Client](https://github.com/tikv/client-rust) as example, TLS option is set like this:
+You need to set TLS options for the TiKV client to connect to TiKV. Taking [Rust Client](https://github.com/tikv/client-rust) as an example, the TLS options are set as follows:
 
 ```rust
 let config = Config::new(/* ... */).with_security(
@@ -138,15 +136,15 @@ let config = Config::new(/* ... */).with_security(
 );
 ```
 
-You'll also need to **change the connection URL to `https://`** instead of plain `ip:port`.
+Besides, the **connection URL should be changed to `https://`** instead of a plain `ip:port`.
 
 {{< warning >}}
-Currently TiKV Java Client does not support TLS.
+Currently, TiKV Java Client does not support TLS.
 {{< /warning >}}
 
-### Connecting with `tikv-ctl` and `pd-ctl`
+## Step 4. Connect TiKV using `tikv-ctl` and `pd-ctl`
 
-When using `pd-ctl` and `tikv-ctl` the relevant options will need to be set:
+To use `pd-ctl` and `tikv-ctl`, set the relevant options as follows:
 
 ```bash
 pd-ctl                                    \
