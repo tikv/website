@@ -63,7 +63,7 @@ done
 ./easyrsa sign-req server client
 ```
 
-When running this script, you need to answer some questions and make some confirmations interactively. For the CA common name, you can use any desired name, while for the PD and TiKV nodes, you need to use the hostnames.
+When running this script, you need to answer some questions and make some confirmations interactively. For the CA common name, you can use any desired name. While for the PD and TiKV nodes, you need to use the hostnames.
 
 If you see the following output, it means that the script runs successfully:
 
