@@ -7,7 +7,7 @@ menu:
         weight: 2
 ---
 
-There are several projects which harness TiKV to power their storage:
+TiKV works as storage engines for the following projects:
 
 * [TiDB](https://github.com/pingcap/tidb) (MySQL)
 * [Zetta](https://github.com/zhihu/zetta) (Table Store & HBase)
