@@ -22,6 +22,6 @@
   - name: Configure TiKV
     link: /docs/5.1/deploy/configure/introduction/
   - name: Benchmark and Performance
-    link: /docs/5.1/deploy/benchmark/benchmark/
+    link: /docs/5.1/deploy/performance/performance/
   - name: Operate TiKV Cluster
     link: /docs/5.1/deploy/operate/operate/
