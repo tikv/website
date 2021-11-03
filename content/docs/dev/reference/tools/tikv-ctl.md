@@ -30,7 +30,7 @@ When you compile TiKV, the `tikv-ctl` command is also compiled at the same time.
     store:"127.0.0.1:20160" compact db:KV cf:default range:([], []) success!
     ```
 
-- Local mode: Use the `--db` option to specify the local TiKV data directory path. In this mode, you need to stop the running TiKV instance.
+- Local mode: Use the `--data-dir` option to specify the local TiKV data directory path. In this mode, you need to stop the running TiKV instance.
 
 Unless otherwise noted, all commands support both the remote mode and the local mode.
 
@@ -73,7 +73,7 @@ apply state: Some(applied_index: 314617 truncated_state {index: 313474 term: 151
 Use the `size` command to view the Region size:
 
 ```bash
-$ tikv-ctl --db /path/to/tikv/db size -r 2
+$ tikv-ctl --data-dir /path/to/tikv/db size -r 2
 region id: 2
 cf default region size: 799.703 MB
 cf write region size: 41.250 MB
@@ -85,7 +85,7 @@ cf lock region size: 27616
 The `--from` and `--to` options of the `scan` command accept two escaped forms of raw key, and use the `--show-cf` flag to specify the column families that you need to view.
 
 ```bash
-$ tikv-ctl --db /path/to/tikv/db scan --from 'zm' --limit 2 --show-cf lock,default,write
+$ tikv-ctl --data-dir /path/to/tikv/db scan --from 'zm' --limit 2 --show-cf lock,default,write
 key: zmBootstr\377a\377pKey\000\000\377\000\000\373\000\000\000\000\000\377\000\000s\000\000\000\000\000\372
          write cf value: start_ts: 399650102814441473 commit_ts: 399650102814441475 short_value: "20"
 key: zmDB:29\000\000\377\000\374\000\000\000\000\000\000\377\000H\000\000\000\000\000\000\371
@@ -98,7 +98,7 @@ key: zmDB:29\000\000\377\000\374\000\000\000\000\000\000\377\000H\000\000\000\00
 Similar to the `scan` command, the `mvcc` command can be used to view MVCC of a given key.
 
 ```bash
-$ tikv-ctl --db /path/to/tikv/db mvcc -k "zmDB:29\000\000\377\000\374\000\000\000\000\000\000\377\000H\000\000\000\000\000\000\371" --show-cf=lock,write,default
+$ tikv-ctl --data-dir /path/to/tikv/db mvcc -k "zmDB:29\000\000\377\000\374\000\000\000\000\000\000\377\000H\000\000\000\000\000\000\371" --show-cf=lock,write,default
 key: zmDB:29\000\000\377\000\374\000\000\000\000\000\000\377\000H\000\000\000\000\000\000\371
          write cf value: start_ts: 399650105239273474 commit_ts: 399650105239273475 short_value: "\000\000\000\000\000\000\000\002"
          write cf value: start_ts: 399650105199951882 commit_ts: 399650105213059076 short_value: "\000\000\000\000\000\000\000\001"
@@ -114,7 +114,7 @@ Use `--from` and `--to` options to specify the range to scan (unbounded by defau
 many keys to print out (30 by default). Use `--cf` to specify which cf to scan (can be `default`, `write` or `lock`).
 
 ```bash
-$ ./tikv-ctl --db /var/lib/tikv/db/ raw-scan --from 'zt' --limit 2 --cf default
+$ ./tikv-ctl --data-dir /var/lib/tikv/db/ raw-scan --from 'zt' --limit 2 --cf default
 key: "zt\200\000\000\000\000\000\000\377\005_r\200\000\000\000\000\377\000\000\001\000\000\000\000\000\372\372b2,^\033\377\364", value: "\010\002\002\002%\010\004\002\010root\010\006\002\000\010\010\t\002\010\n\t\002\010\014\t\002\010\016\t\002\010\020\t\002\010\022\t\002\010\024\t\002\010\026\t\002\010\030\t\002\010\032\t\002\010\034\t\002\010\036\t\002\010 \t\002\010\\"\t\002\010$\t\002\010&\t\002\010(\t\002\010*\t\002\010,\t\002\010.\t\002\0100\t\002\0102\t\002\0104\t\002"
 key: "zt\200\000\000\000\000\000\000\377\025_r\200\000\000\000\000\377\000\000\023\000\000\000\000\000\372\372b2,^\033\377\364", value: "\010\002\002&slow_query_log_file\010\004\002P/usr/local/mysql/data/localhost-slow.log"
 
@@ -147,10 +147,10 @@ The properties can be used to check whether the Region is healthy or not. If not
 
 ### Compact data of each TiKV manually
 
-Use the `compact` command to manually compact data of each TiKV. If you specify the `--from` and `--to` options, then their flags are also in the form of escaped raw key. You can use the `--db` option to specify the RocksDB that you need to compact. The optional values are `kv` and `raft`. Also, the `--threads` option allows you to specify the concurrency that you compact and its default value is 8. Generally, a higher concurrency comes with a faster compact speed, which might yet affect the service. You need to choose an appropriate concurrency based on the scenario.
+Use the `compact` command to manually compact data of each TiKV. If you specify the `--from` and `--to` options, then their flags are also in the form of escaped raw key. You can use the `--data-dir` option to specify the RocksDB that you need to compact. The optional values are `kv` and `raft`. Also, the `--threads` option allows you to specify the concurrency that you compact and its default value is 8. Generally, a higher concurrency comes with a faster compact speed, which might yet affect the service. You need to choose an appropriate concurrency based on the scenario.
 
 ```bash
-$ tikv-ctl --db /path/to/tikv/db compact -d kv
+$ tikv-ctl --data-dir /path/to/tikv/db compact -d kv
 success!
 ```
 
@@ -166,7 +166,7 @@ In a TiKV instance, you can use this command to set the status of some Regions t
 
 ```bash
 pd-ctl>> operator add remove-peer <region_id> <peer_id>
-$ tikv-ctl --db /path/to/tikv/db tombstone -p 127.0.0.1:2379 -r 2
+$ tikv-ctl --data-dir /path/to/tikv/db tombstone -p 127.0.0.1:2379 -r 2
 success!
 ```
 
@@ -200,7 +200,7 @@ This sub-command is used to parse a snapshot meta file at given path and print t
 To avoid checking the Regions while TiKV is started, you can use the `tombstone` command to set the Regions where the Raft state machine reports an error to Tombstone. Before running this command, use the `bad-regions` command to find out the Regions with errors, so as to combine multiple tools for automated processing.
 
 ```bash
-$ tikv-ctl --db /path/to/tikv/db bad-regions
+$ tikv-ctl --data-dir /path/to/tikv/db bad-regions
 all regions are healthy
 ```
 
@@ -211,7 +211,7 @@ If the command is successfully executed, it prints the above information. If the
 - To view in local the properties of Region 2 on the TiKV instance that is deployed in `/path/to/tikv`:
 
     ```bash
-    $ tikv-ctl --db /path/to/tikv/data/db region-properties -r 2
+    $ tikv-ctl --data-dir /path/to/tikv/data/db region-properties -r 2
     ```
 
 - To view online the properties of Region 2 on the TiKV instance that is running on `127.0.0.1:20160`:
@@ -246,7 +246,7 @@ Use the `unsafe-recover remove-fail-stores` command to remove the failed machine
 The `-s` option accepts multiple `store_id` separated by comma and uses the `-r` flag to specify involved Regions. Otherwise, all Regions' peers located on these stores will be removed by default.
 
 ```bash
-$ tikv-ctl --db /path/to/tikv/db unsafe-recover remove-fail-stores -s 3 -r 1001,1002
+$ tikv-ctl --data-dir /path/to/tikv/db unsafe-recover remove-fail-stores -s 3 -r 1001,1002
 success!
 ```
 
@@ -262,7 +262,7 @@ Use the `recover-mvcc` command in circumstances where TiKV cannot run normally c
 Use the `-r` option to specify involved Regions by `region_id`. Use the `-p` option to specify PD endpoints.
 
 ```bash
-$ tikv-ctl --db /path/to/tikv/db recover-mvcc -r 1001,1002 -p 127.0.0.1:2379
+$ tikv-ctl --data-dir /path/to/tikv/db recover-mvcc -r 1001,1002 -p 127.0.0.1:2379
 success!
 ```
 
@@ -282,7 +282,7 @@ Examples of data access sequence:
 To dump an existing RocksDB in HEX:
 
 ```bash
-$ tikv-ctl ldb --hex --db=/tmp/db dump
+$ tikv-ctl ldb --hex --data-dir=/tmp/db dump
 ```
 
 To dump the manifest of an existing RocksDB:
