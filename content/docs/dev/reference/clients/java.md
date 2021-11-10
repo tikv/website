@@ -12,3 +12,30 @@ This document, like our Java API, is still a work in progress. In the meantime, 
 {{< warning >}}
 You should not use the Java client for production use until it is released.
 {{< /warning >}}
+
+## Parse SST file
+
+```java
+import java.io.File;
+import java.util.Iterator;
+import java.util.List;
+
+import org.tikv.br.BackupDecoder;
+import org.tikv.br.BackupMetaDecoder;
+import org.tikv.br.SSTDecoder;
+import org.tikv.common.util.Pair;
+
+BackupMetaDecoder metaDecoder = BackupMetaDecoder.parse("/path/to/sst/backupmeta");
+BackupDecoder sstBackup = new BackupDecoder(metaDecoder.getBackupMeta());
+File folder = new File("/path/to/sst");
+File[] listOfFiles = folder.listFiles();
+
+for (File file : listOfFiles) {
+    if (file.getName().endsWith("sst")) {
+        SSTDecoder decoder = sstBackup.decodeSST(file.getAbsolutePath());
+        Iterator<Pair<ByteString, ByteString>> iter = decoder.getIterator();
+        // Do something with iter
+    }
+}
+```
+
