@@ -28,7 +28,7 @@ Get the information about the existing PD nodes through `pd-ctl`:
 >> member
 ```
 
-For the usage of `pd-ctl`, see [PD Control User Guide](../../reference/tools/pd-ctl/).
+For the usage of `pd-ctl`, see [PD Control User Guide](../..reference/tools/pd-ctl).
 
 ### Add a PD node dynamically
 
