@@ -145,7 +145,7 @@ Scenario description: The follower and the client were in the same data center (
 
 Test results:
 
-| Number of scan keys | QPS |P99 latency for TiKV | P99 latency for the cline |
+| Number of scan keys | QPS |P99 latency for TiKV | P99 latency for the clinet |
 | :---- | :---- | :---- | :---- |
 | 10 | 3,110 | 43 ms | 115 ms |
 | 100 | 314 | 450 ms | 7,888 ms |
