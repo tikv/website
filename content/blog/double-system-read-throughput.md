@@ -145,7 +145,7 @@ Scenario description: The follower and the client were in the same data center (
 
 Test results:
 
-| Number of scan keys | QPS |P99 latency for TiKV | P99 latency for the cline |
+| Number of scan keys | QPS |P99 latency for TiKV | P99 latency for the client |
 | :---- | :---- | :---- | :---- |
 | 10 | 3,110 | 43 ms | 115 ms |
 | 100 | 314 | 450 ms | 7,888 ms |
@@ -166,7 +166,7 @@ Scenario description: The follower and the client were in the same data center. 
 
 Test results:
 
-| Number of scan keys | QPS |P99 latency for TiKV | P99 latency for the cline |
+| Number of scan keys | QPS |P99 latency for TiKV | P99 latency for the client |
 | :---- | :---- | :---- | :---- |
 | 10 | 3,863 | 88 ms | 126 ms |
 | 100 | 3,087 | 127 ms | 140 ms |
@@ -185,7 +185,7 @@ Scenario description: The leader and the client were on the same node. The leade
 
 Test results:
 
-| Number of scan keys | QPS |P99 latency for TiKV | P99 latency for the cline |
+| Number of scan keys | QPS |P99 latency for TiKV | P99 latency for the client |
 | :---- | :---- | :---- | :---- |
 | 10 | 18,865 | 31 ms | 33 ms |
 | 100 | 4,233 | 58 ms | 267 ms |
@@ -204,7 +204,7 @@ Scenario description: The leader, client, and follower were in the same data cen
 
 Test results:
 
-| Number of scan keys | QPS |P99 latency for TiKV | P99 latency for the cline |
+| Number of scan keys | QPS |P99 latency for TiKV | P99 latency for the client |
 | :---- | :---- | :---- | :---- |
 | 10 | 15,021 | 31 ms | 34 ms |
 | 100 | 3,859 | 62 ms | 272 ms |
