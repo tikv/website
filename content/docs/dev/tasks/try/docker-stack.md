@@ -260,7 +260,7 @@ Next, you'll need to add the TiKV client as a dependency in the `Cargo.toml` fil
 ```toml
 [dependencies]
 tikv-client = { git = "https://github.com/tikv/client-rust.git" }
-tokio = "0.2.0-alpha.4"
+tokio = "1"
 ```
 
 Then you can edit the `src/main.rs` file with the following:
@@ -270,10 +270,7 @@ use tikv_client::{Config, RawClient, Error};
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
-    let config = Config::new(vec!["http://pd.tikv:2379"]);
-    let client = RawClient::new(config)?;
-    let key = "TiKV".as_bytes().to_owned();
-    let value = "Works!".as_bytes().to_owned();
+    let client = RawClient::new(vec!["127.0.0.1:2379"], None).await?;
 
     client.put(key.clone(), value.clone()).await?;
     println!(
