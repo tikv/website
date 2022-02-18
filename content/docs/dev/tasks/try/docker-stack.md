@@ -272,6 +272,9 @@ use tikv_client::{Config, RawClient, Error};
 async fn main() -> Result<(), Error> {
     let client = RawClient::new(vec!["127.0.0.1:2379"], None).await?;
 
+    let key = "TiKV".as_bytes().to_owned();
+    let value = "Works!".as_bytes().to_owned();
+
     client.put(key.clone(), value.clone()).await?;
     println!(
         "Put: {} => {}",
