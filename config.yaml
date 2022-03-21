@@ -18,7 +18,7 @@ menu:
       parent: Community
       weight: 2
     - name: Branding
-      url: https://branding.cncf.io/projects/tikv
+      url: https://cncf-branding.netlify.app/projects/tikv/
       parent: Community
       weight: 4
     - name: Adopters
