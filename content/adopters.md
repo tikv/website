@@ -21,7 +21,7 @@ The following table lists adopters deploying TiKV separately without TiDB:
 The following is a list of third-party companies and individuals who provide products or services related to TiKV. The list is in alphabetical order:
 
 | Company | Offering | Industry |
-| :--- | :--- |:--- |
+| :--- | :--- | :--- |
 | PingCAP | [TiDB Cloud](https://tidbcloud.com) | DBaaS |
 
 The following table lists adopters deploying TiKV with TiDB:
