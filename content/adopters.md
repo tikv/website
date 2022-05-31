@@ -18,6 +18,12 @@ The following table lists adopters deploying TiKV separately without TiDB:
 |[KuGou](https://en.wikipedia.org/wiki/KuGou)|Entertainment and Music Streaming|
 |[Meitu](https://en.wikipedia.org/wiki/Meitu)|Photo-editing|
 
+Commercial Support/Offering upon TiKV
+
+This is a list of third-party companies and individuals who provide products or services related to TiKV. The list is in alphabetical order:
+
+* [TiDB Cloud](https://tidbcloud.com)
+
 The following table lists adopters deploying TiKV with TiDB:
 
 | Company | Industry | Success Story |
