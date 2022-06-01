@@ -93,15 +93,17 @@
 <section class="section homepage-tikv-users has-text-centered">
   <div class="container">
     <h2 class="title section-title">Who are using TiKV</h2>
-    <div class="columns is-multiline is-mobile is-variable is-2-mobile is-0-tablet is-3-desktop is-8-widescreen">
+    <div class="columns is-multiline is-mobile">
       {{ range $users }}
-      <div class="column">
-        <img src="{{ .logo }}" alt="tikv user logo" />
+      <div class="column is-half-mobile is-one-third-tablet is-one-fifth-desktop">
+        <div class="logo-wrapper">
+          <img class="logo-{{ .name }}" src="{{ .logo }}" alt="{{ .name }}" />
+        </div>
       </div>
       {{ end }}
     </div>
 
-    <a class="button" href="/adopters/">Case Studies</a>
+    <a class="button is-link" href="/adopters/">Case Studies</a>
 
     <p class="title is-size-4 is-size-5-mobile">
       TiKV is a <a href="https://www.cncf.io/" target="_blank">Cloud Native Computing Foundation</a> graduate project

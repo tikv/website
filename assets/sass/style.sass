@@ -1,37 +1,30 @@
+@charset "utf-8"
+
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;600;700&family=Titillium+Web:wght@300;400;600;700&display=swap')
 {{ $fontAwesomeVersion := site.Params.assets.fontAwesomeVersion }}
 {{ $fontAwesomeUrl     := printf "https://use.fontawesome.com/releases/v%s/css/all.css" $fontAwesomeVersion }}
-@charset "utf-8"
-@import url("https://fonts.googleapis.com/icon?family=Titillium+Web:300,400,600,700|Inconsolata:300,400,600,700")
 @import url("{{ $fontAwesomeUrl }}")
 
-// Misc
-$twitter-blue: #1da1f3
+@import 'bulma/sass/utilities/initial-variables.sass';
 
 // TiKV variables
 $tikv-red: #ed1a3b
 $tikv-blue: #353558
-$light-blue: #3D3FEA
+$bright-blue: #3D3FEA
 $footer-hover-blue: #00AEEF
 
-@import "bulma/sass/utilities/initial-variables"
-@import "bulma/sass/utilities/functions"
-@import "bulma/sass/utilities/derived-variables"
-
-$colors: mergeColorMaps(("twitter-blue": ($twitter-blue, $white)), $colors)
-
-@import "bulma/bulma"
-@import "bulma/sass/grid/columns"
+// Misc
+$twitter-blue: #1da1f3
+$twitter-blue-invert: findColorInvert($twitter-blue);
+$custom-colors: ("twitter-blue": ($twitter-blue, $twitter-blue-invert));
 
 // Bulma variable overrides
 $red: $tikv-red
 $blue: $tikv-blue
 $primary: $red
 $secondary: #0D0F2C
-$link: $red
-$danger: $orange
-$btn-blue-color: $light-blue
-$family-sans-serif: "Titillium Web", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif
-$family-monospace: "Inconsolata", monosapce
+$link: $bright-blue
+$link-hover: $bright-blue
 $notification-padding: 1rem 1rem
 $navbar-dropdown-radius: none
 $navbar-dropdown-boxed-shadow: none
@@ -49,7 +42,10 @@ $LH: 1.75
 $M2: #F7F8F9
 $B3: #172D72
 
+$family-primary: 'Titillium Web', $family-sans-serif
+$family-monospace: 'Inconsolata', monospace
 
+@import "bulma/bulma"
 
 =logo($times)
   margin: 0 auto
@@ -105,14 +101,8 @@ $B3: #172D72
   .card-content
     padding: 0 2rem 2rem
 
-    a:hover
-      color: $light-blue
-      text-decoration: underline
-
-
-
-a
-  color: $light-blue
+a:not(.button):hover
+  text-decoration: underline
 
 .docs-content
   padding-bottom: 8rem
@@ -161,14 +151,6 @@ a
   .scenario
     margin-top: 2.5rem
 
-  .scenario,
-  .desc
-    a
-      color: $light-blue
-
-      &:hover
-        text-decoration: underline
-
 .homepage-why-tikv
   background-color: $M2
 
@@ -176,28 +158,19 @@ a
     @include is-customized-card
 
 .homepage-tikv-users
-  .columns.is-variable
-    --columnGap: 4rem
+  .logo-wrapper
+    display: flex
+    justify-content: center
+    align-items: center
 
-    +mobile
-      --columnGap: 3rem
+    & > img
+      width: 75%
 
-  .column
-    flex: none
-    width: 20%
-    padding: 5rem
-
-    +touch
-      width: 50%
-
-  a, a:hover
-    color: $light-blue
+  .logo-tidbcloud
+    transform: scale(1.25)
 
   .button
     margin: 4rem
-    color: #ffffff
-    border: none
-    background-color: $btn-blue-color
 
 .homepage-get-started
   background-color: $M2
@@ -207,7 +180,7 @@ a
 
     .card-header
       padding: 1rem 2rem
-      background-color: $light-blue
+      background-color: $bright-blue
       border-radius: 10px 10px 0 0
 
       .card-header-title
@@ -218,11 +191,10 @@ a
       line-height: 2
 
     a
-      color: #2C2C2C
+      color: $text
 
       &:hover
-        color: $light-blue
-        text-decoration: underline
+        color: $bright-blue
 
 .hero.is-primary
     background-color: $B3
@@ -237,11 +209,11 @@ a
       color: #000
 
       &.is-active
-        color: $light-blue
+        color: $bright-blue
         font-weight: 700
 
       &:hover
-        color: $light-blue
+        color: $bright-blue
 
 
   ul
@@ -335,9 +307,9 @@ a
 
 .is-navbar-version
   margin-left: 1rem
-  background-color: $light-blue
+  background-color: $bright-blue
   color: white
-  border: 1px solid $light-blue
+  border: 1px solid $bright-blue
   padding: .25rem .5rem
   border-radius: 5px
 
@@ -365,9 +337,6 @@ a
   color: #2C2C2C
   font-weight: bold
 
-  &:hover
-    color: $light-blue
-
 .navbar-dropdown
   border-top: none
 .section
@@ -383,13 +352,6 @@ a
     p
       font-weight: bold
       font-size: 1.5rem !important
-
-    a.is-link
-      color: #2E2FFF !important
-      text-decoration: none !important
-
-      &:hover
-        text-decoration: underline !important
 
     .buttons
       margin-top: 2.5rem
