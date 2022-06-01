@@ -1,4 +1,4 @@
-# Contributing to TiVK documentation
+# Contributing to TiKV documentation
 
 We welcome contributions to help improve the TiKV documentation!
 
