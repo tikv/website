@@ -5,7 +5,7 @@
 {{ $fontAwesomeUrl     := printf "https://use.fontawesome.com/releases/v%s/css/all.css" $fontAwesomeVersion }}
 @import url("{{ $fontAwesomeUrl }}")
 
-@import 'bulma/sass/utilities/initial-variables.sass';
+@import 'bulma/sass/utilities/initial-variables.sass'
 
 // TiKV variables
 $tikv-red: #ed1a3b
@@ -15,8 +15,8 @@ $footer-hover-blue: #00AEEF
 
 // Misc
 $twitter-blue: #1da1f3
-$twitter-blue-invert: findColorInvert($twitter-blue);
-$custom-colors: ("twitter-blue": ($twitter-blue, $twitter-blue-invert));
+$twitter-blue-invert: findColorInvert($twitter-blue)
+$custom-colors: ("twitter-blue": ($twitter-blue, $twitter-blue-invert))
 
 // Bulma variable overrides
 $red: $tikv-red
