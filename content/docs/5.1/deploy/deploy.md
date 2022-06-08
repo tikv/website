@@ -24,26 +24,31 @@ Learn about how you can configure TiKV to meet your needs in the [configure](../
 
 PD
 
-- [PD Command Line Parameters](../pd-command-line): Learn configuration flags of PD.
-- [PD Config](../pd-configuration-file): Learn the PD configuration file.
+- [PD Command Line Parameters](../configure/pd-command-line): Learn configuration flags of PD.
+- [PD Config](../configure/pd-configuration-file): Learn the PD configuration file.
 
 TiKV
 
-- [TiKV Command Line Parameters](../tikv-command-line): Learn configuration flags of TiKV.
-- [TiKV Config](../tikv-configuration-file): Learn the TiKV configuration file.
-- [Security](../security): Use TLS security and review security procedures.
-- [Topology Lable](../topology): Use location awareness to improve resiliency and performance.
-- [Limit](../limit): Learn how to configure scheduling rate limit on stores.
-- [Region Merge](../region-merge): Tweak region merging.
-- [RocksDB](../rocksdb): Tweak RocksDB configuration parameters.
-- [Raftstore](../raftstore): Learn how to configure Raftstore in TiKV.
-- [Titan](../titan): Enable titan to improve performance with large values.
-- [Storage](../storage): Learn how to configure storage in TiKV.
-- [gRPC](../grpc): Learn how to configure gRPC in TiKV.
-- [Coprocessor](../coprocessor): Learn how to configure Coprocessor in TiKV.
+- [TiKV Command Line Parameters](../configure/tikv-command-line): Learn configuration flags of TiKV.
+- [TiKV Config](../configure/tikv-configuration-file): Learn the TiKV configuration file.
+- [Security](../configure/security): Use TLS security and review security procedures.
+- [Topology Lable](../configure/topology): Use location awareness to improve resiliency and performance.
+- [Limit](../configure/limit): Learn how to configure scheduling rate limit on stores.
+- [Region Merge](../configure/region-merge): Tweak region merging.
+- [RocksDB](../configure/rocksdb): Tweak RocksDB configuration parameters.
+- [Raftstore](../configure/raftstore): Learn how to configure Raftstore in TiKV.
+- [Titan](../configure/titan): Enable titan to improve performance with large values.
+- [Storage](../configure/storage): Learn how to configure storage in TiKV.
+- [gRPC](../configure/grpc): Learn how to configure gRPC in TiKV.
+- [Coprocessor](../configure/coprocessor): Learn how to configure Coprocessor in TiKV.
 
 
-## [Benchmark and Performance](../benchmark/benchmark/)
+## [Benchmark and Performance](../performance/performance/)
+
+Learn about TiKV performance and the instructions to do a benchmark.
+
+- [Performance Overview](../performance/overview): Learn the overview of TiKV performance.
+- [Benchmark Instructions](../performance/instructions): Learn the instructions to do a benchmark.
 
 ## [Monitor and Alert](../monitor/monitor/)
 
