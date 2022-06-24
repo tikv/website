@@ -1,5 +1,5 @@
 ---
-title: Export Grafana Shapshots
+title: Export Grafana Snapshots
 description: Learn how to export snapshots of Grafana Dashboard, and how to visualize these files.
 menu:
     "5.1":

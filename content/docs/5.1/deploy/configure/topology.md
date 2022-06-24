@@ -1,5 +1,5 @@
 ---
-title: Topology Lable Config
+title: Topology Label Config
 description: Learn how to configure topology labels.
 menu:
     "5.1":

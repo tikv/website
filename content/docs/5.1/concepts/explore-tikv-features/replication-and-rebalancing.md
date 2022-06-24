@@ -98,7 +98,7 @@ To understand the replication in TiKV, it is important to review several concept
 
 1. Open the Grafana at [http://localhost:3000](http://localhost:3000) (printed from the `tiup-playground` command), and then log in to Grafana using username `admin` and password `admin`.
 
-2. On the **playground-overview** dashboard, check the matrices on the **Region** panel in the **TiKV** tab. You can see that the numbers of Regions on all three nodes are the same, which indicates the following:
+2. On the **playground-overview** dashboard, check the metrics on the **Region** panel in the **TiKV** tab. You can see that the numbers of Regions on all three nodes are the same, which indicates the following:
 
    * There is only one Region. It contains the data imported by `go-ycsb`.
    * Each Region has 3 replicas (according to the default configuration).
