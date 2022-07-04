@@ -121,14 +121,14 @@ UPDATE - Takes(s): 20.0, Count: 15799, OPS: 791.1, Avg(us): 19834, Min(us): 1050
 ```
 
 {{< info >}}
-This workload above runs for several minutes, which is the enough time to simulate a node failure described as follows.
+This workload above runs for several minutes, which is enough to simulate a node failure described as follows.
 {{< /info >}}
 
 ### Step 2. Check the workload on Grafana dashboard
 
 1. Open the [Grafana](https://grafana.com) dashboard by accessing [`http://127.0.0.1:3000`](http://127.0.0.1:3000) in your browser.
 
-2. Login the dashboard by using the default username `admin` and password `admin`.
+2. Log in the dashboard by using the default username `admin` and password `admin`.
 
 3. Enter the dashboard **playground-tikv-summary**, and the OPS information is in the panel **gRPC message count** in the row **gRPC**.
 

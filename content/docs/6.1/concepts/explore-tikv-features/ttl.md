@@ -19,7 +19,7 @@ Before you start, ensure that you have installed TiUP and jshell, and have downl
 
 ## Step 1: Config TiKV to enable TTL
 
-TTL is disabled by default. You need to create a file `tikv.yaml` using the following configuration to enable it.
+TTL is disabled by default. To enable it, create a file `tikv.yaml` using the following configuration.
 
 ```yaml
 [storage]

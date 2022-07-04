@@ -53,7 +53,7 @@ Yes. ACID semantics are guaranteed in TiKV:
 
 ## How are transactions in TiKV lock-free?
 
-TiKV provides an optimistic transaction model, which allows the client to buffer all writes in a transaction. When the client calls the commit function, the writes are packed and sent to the server. If there are no conflicts, the key-value pairs with additional specific version information are written to the database, thereby they can be read by other transactions.
+TiKV provides an optimistic transaction model, which allows the client to buffer all writes in a transaction. When the client calls the commit function, the writes are packed and sent to the server. If there are no conflicts, the key-value pairs with additional specific version information are written to the database, so they can be read by other transactions.
 
 ## Can I use TiKV as a key-value store?
 

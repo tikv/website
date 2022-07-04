@@ -141,4 +141,4 @@ Scheduling utilizes CPU, memory, network and I/O traffic. Too much resource util
 
 PD collects cluster information from store heartbeats and Region heartbeats, and then makes scheduling plans from the information and strategies. Scheduling plans are a sequence of basic operators. Every time PD receives a Region heartbeat from a Region leader, it checks whether there is a pending operator on the Region or not. If PD needs to dispatch a new operator to a Region, it puts the operator into heartbeat responses, and monitors the operator by checking follow-up Region heartbeats.
 
-Note that the "operators" here are only suggestions to the Region leader, which can be skipped by Regions. In other words, the Regions Leader can decide whether to skip a scheduling operator or not based on its current status.
+Note that the "operators" here are only suggestions to the Region leader, which can be skipped by Regions. In other words, the Region Leader can decide whether to skip a scheduling operator or not based on its current status.
