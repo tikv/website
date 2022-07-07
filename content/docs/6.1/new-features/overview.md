@@ -23,11 +23,11 @@ In specific, when the stress of RocksDB compaction accumulates, flow control is 
 
 [Click here](https://docs.pingcap.com/tidb/stable/tikv-configuration-file#storageflow-control) to see user guide.
 
-## Improve Wtrite latency
+## Improve Write latency
 
 **Reduce write latency by separating I/O operations from Raftstore thread pool** (disabled by default). For more information about tuning, see [Tune TiKV Thread Pool Performance](https://docs.pingcap.com/tidb/stable/tune-tikv-thread-performance).
 
-## Support Raft Engine (experimental)
+## Support Raft Engine
 
 Since v6.1, TiKV has used Raft Engine as the default storage engine for logs. Compared with RocksDB, **Raft Engine can reduce TiKV I/O write traffic by up to 40% and CPU usage by 10%, while improving foreground throughput by about 5% and reducing tail latency by 20% under certain loads**.
 
