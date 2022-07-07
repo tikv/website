@@ -53,7 +53,7 @@ Before v6.1, when TiKV is used as Raw Key Value storage, TiKV only provides basi
 TiKV API V2 provides a new Raw Key Value storage format and access interface, including the following changes:
 
 - **The data is stored in MVCC and the change timestamp of the data is recorded. This feature lays the foundation for implementing Change Data Capture and incremental backup and restore**.
-- **Data is scoped according to different usage and supports co-existence of a single TiDB cluster, Transactional KV, RawKV applications**.
+- **Data is scoped according to different usage. Now you can run TiDB, Transactional KV, and RawKV applications within a single TiKV cluster**.
 
 {{< warning >}}
 Due to significant changes in the underlying storage format, after enabling API V2, you cannot roll back a TiKV cluster to a version earlier than v6.1. Downgrading TiKV might result in data corruption.{{</ warning >}}
