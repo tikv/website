@@ -2,9 +2,10 @@
 title: Replication and Rebalancing
 description: Learn how TiKV replicates, distributes, and rebalances data.
 menu:
-    "5.1":
-        parent: Features
+    "6.1":
+        parent: Features-v6.1
         weight: 1
+        identifier: Replication and Rebalancing-v6.1
 ---
 
 This document walks you through a simple demonstration of how TiKV replicates, distributes, and rebalances data. To start a 3-node local cluster, you need to perform the following operations:
@@ -120,7 +121,7 @@ In this section, you can launch a larger workload, scale the 3-node local cluste
    ./bin/go-ycsb load tikv -P workloads/workloada -p tikv.pd="127.0.0.1:2379" -p tikv.type="raw" -p tikv.conncount=16 -p threadcount=16 -p recordcount=1000000
    ```
 
-2. Go to the **playground-overview** dashboard of the Grafana, and check the Region distribution on the TiKV cluster. The Region continues to increase while writing data to the cluster as follows:
+2. Go to the **playground-overview** dashboard of the Grafana, and check the Region distribution on the TiKV cluster. The number of Regions keeps increasing while writing data to the cluster as follows:
 
 {{< figure
     src="/img/docs/region-count-after-load-data.png"
@@ -135,7 +136,7 @@ In this section, you can launch a larger workload, scale the 3-node local cluste
     tiup playground scale-out --kv 2
     ```
 
-2. Verify the scale-out cluster by executing the following commands:
+2. Verify the scale-out cluster by executing the following command:
 
     ```sh
     tiup playground display
