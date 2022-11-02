@@ -8,4 +8,14 @@ menu:
         identifier: RawKV CDC-dev
 ---
 
+## RawKV Change Data Capture
+
+*TODO*
+
+## Instruction Manual
+
+*TODO*
+
+## Usage Demonstration
+
 *TODO*
