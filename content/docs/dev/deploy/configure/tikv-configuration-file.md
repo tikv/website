@@ -2,10 +2,10 @@
 title: TiKV Config
 description: Learn the TiKV configuration file
 menu:
-    "6.1":
-        parent: Configure TiKV-v6.1
+    "dev":
+        parent: Configure TiKV-dev
         weight: 4
-        identifier: TiKV Config-v6.1
+        identifier: TiKV Config-dev
 ---
 
 The TiKV configuration file supports more options than command-line parameters. You can find the default configuration file in [etc/config-template.toml](https://github.com/tikv/tikv/blob/release-5.0/etc/config-template.toml) and rename it to `config.toml`.

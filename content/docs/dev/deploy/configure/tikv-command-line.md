@@ -2,10 +2,10 @@
 title: TiKV Command Line Parameters
 description: Learn some configuration flags of TiKV
 menu:
-    "6.1":
-        parent: Configure TiKV-v6.1
+    "dev":
+        parent: Configure TiKV-dev
         weight: 3
-        identifier: TiKV Command Line Parameters-v6.1
+        identifier: TiKV Command Line Parameters-dev
 ---
 
 TiKV supports readable units in command line parameters.

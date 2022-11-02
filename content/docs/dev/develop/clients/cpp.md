@@ -2,10 +2,10 @@
 title: C++ Client
 description: Interact with TiKV using C++.
 menu:
-    "6.1":
-        parent: TiKV Clients-v6.1
+    "dev":
+        parent: TiKV Clients-dev
         weight: 5
-        identifier: C++ Client-v6.1
+        identifier: C++ Client-dev
 ---
 
 {{< warning >}}

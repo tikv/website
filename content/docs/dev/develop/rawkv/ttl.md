@@ -2,10 +2,10 @@
 title: TTL
 description: How to use TTL via RawKV API.
 menu:
-    "6.1":
-        parent: RawKV-v6.1
+    "dev":
+        parent: RawKV-dev
         weight: 4
-        identifier: TTL-v6.1
+        identifier: TTL-dev
 ---
 
 TiKV provides the Time To Live (TTL) support via the RawKV API. This document provides two examples to show you how to set TTL via the RawKV API.

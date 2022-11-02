@@ -2,10 +2,10 @@
 title: TiKV Cluster Alert Rules
 description: Learn the alert rules in a TiKV cluster.
 menu:
-    "6.1":
-        parent: Monitor and Alert-v6.1
+    "dev":
+        parent: Monitor and Alert-dev
         weight: 6
-        identifier: TiKV Cluster Alert Rules-v6.1
+        identifier: TiKV Cluster Alert Rules-dev
 ---
 
 This document describes the alert rules for different components in a TiKV cluster, including the rule descriptions and solutions of the alert items in TiKV, PD, Node_exporter and Blackbox_exporter.

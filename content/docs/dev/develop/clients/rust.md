@@ -2,10 +2,10 @@
 title: Rust Client
 description: Interact with TiKV using Rust.
 menu:
-    "6.1":
-        parent: TiKV Clients-v6.1
+    "dev":
+        parent: TiKV Clients-dev
         weight: 3
-        identifier: Rust Client-v6.1
+        identifier: Rust Client-dev
 ---
 
 TiKV Rust Client is still in the proof-of-concept stage and under development. You can track the development at [tikv/client-rust](https://github.com/tikv/client-rust/) repository.

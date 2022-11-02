@@ -2,10 +2,10 @@
 title: Go Client
 description: Interact with TiKV using Go.
 menu:
-    "6.1":
-        parent: TiKV Clients-v6.1
+    "dev":
+        parent: TiKV Clients-dev
         weight: 2
-        identifier: Go Client-v6.1
+        identifier: Go Client-dev
 ---
 
 TiKV Go Client is still in the proof-of-concept stage and under development. You can track the development at [tikv/client-go](https://github.com/tikv/client-go/) repository.

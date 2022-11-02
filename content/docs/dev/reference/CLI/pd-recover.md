@@ -2,10 +2,10 @@
 title: pd-recover
 description: Use PD Recover to recover a PD cluster which cannot start or provide services normally.
 menu:
-    "6.1":
-        parent: CLI-v6.1
+    "dev":
+        parent: CLI-dev
         weight: 3
-        identifier: pd-recover-v6.1
+        identifier: pd-recover-dev
 ---
 
 PD Recover is a disaster recovery tool of PD, used to recover the PD cluster from disaster, e.g.

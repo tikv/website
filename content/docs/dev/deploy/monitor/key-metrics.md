@@ -2,10 +2,10 @@
 title: Key Metrics
 description: Learn some key metrics displayed on the Grafana Overview dashboard.
 menu:
-    "6.1":
-        parent: Monitor and Alert-v6.1
+    "dev":
+        parent: Monitor and Alert-dev
         weight: 5
-        identifier: Key Metrics-v6.1
+        identifier: Key Metrics-dev
 ---
 
 If your TiKV cluster is deployed using TiUP, the monitoring system is deployed at the same time. For more details, see [Overview of the TiKV Monitoring Framework](https://pingcap.com/docs/stable/reference/key-monitoring-metrics/overview-dashboard/).

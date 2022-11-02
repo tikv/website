@@ -2,10 +2,10 @@
 title: Features
 description: The features of TiKV
 menu:
-    "6.1":
-        parent: Get Started-v6.1
+    "dev":
+        parent: Get Started-dev
         weight: 2
-        identifier: Features-v6.1
+        identifier: Features-dev
 ---
 
 TiKV offers the following key features:

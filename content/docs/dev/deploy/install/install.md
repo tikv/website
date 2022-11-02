@@ -2,10 +2,10 @@
 title: Install TiKV
 description: TiKV deployment prerequisites and methods
 menu:
-    "6.1":
-        parent: Deploy-v6.1
+    "dev":
+        parent: Deploy-dev
         weight: 1
-        identifier: Install TiKV-v6.1
+        identifier: Install TiKV-dev
 ---
 
 This section introduces how to deploy and verify a TiKV cluster in the production environment.

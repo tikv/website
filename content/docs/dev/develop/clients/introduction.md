@@ -2,10 +2,10 @@
 title: TiKV Clients
 description: Interact with TiKV using the raw key-value API or the transactional key-value API.
 menu:
-    "6.1":
-        parent: Develop-v6.1
+    "dev":
+        parent: Develop-dev
         weight: 1
-        identifier: TiKV Clients-v6.1
+        identifier: TiKV Clients-dev
 ---
 
 TiKV offers two APIs that you can interact with:

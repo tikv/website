@@ -2,10 +2,10 @@
 title: Monitoring Framework
 description: Use Prometheus and Grafana to build the TiKV monitoring framework.
 menu:
-    "6.1":
-        parent: Monitor and Alert-v6.1
+    "dev":
+        parent: Monitor and Alert-dev
         weight: 1
-        identifier: Monitoring Framework-v6.1
+        identifier: Monitoring Framework-dev
 ---
 
 The TiKV monitoring framework adopts two open-source projects: [Prometheus](https://github.com/prometheus/prometheus) and [Grafana](https://github.com/grafana/grafana). TiKV uses Prometheus to store the monitoring and performance metrics, and uses Grafana to visualize these metrics.

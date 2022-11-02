@@ -2,10 +2,10 @@
 title: Scale
 description: Learn how to scale out/in TiKV using TiUP
 menu:
-    "6.1":
-        parent: Operate TiKV-v6.1
+    "dev":
+        parent: Operate TiKV-dev
         weight: 2
-        identifier: Scale-v6.1
+        identifier: Scale-dev
 ---
 
 The capacity of a TiKV cluster can be increased or decreased without interrupting online services.

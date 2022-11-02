@@ -2,10 +2,10 @@
 title: Overview
 description: Core concepts and architecture behind TiKV.
 menu:
-    "6.1":
-        parent: Architecture-v6.1
+    "dev":
+        parent: Architecture-dev
         weight: 1
-        identifier: Overview-v6.1
+        identifier: Overview-dev
 ---
 
 This page provides an overview of the TiKV architecture.

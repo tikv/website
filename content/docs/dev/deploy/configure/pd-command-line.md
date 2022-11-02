@@ -2,10 +2,10 @@
 title: PD Command Line Parameters
 description: Learn configuration flags of PD
 menu:
-    "6.1":
-        parent: Configure TiKV-v6.1
+    "dev":
+        parent: Configure TiKV-dev
         weight: 1
-        identifier: PD Command Line Parameters-v6.1
+        identifier: PD Command Line Parameters-dev
 ---
 
 PD is configurable using command-line flags and environment variables.

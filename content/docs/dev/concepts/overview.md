@@ -2,9 +2,9 @@
 title: Get Started
 description: TiKV Introduction
 menu:
-    "6.1":
+    "dev":
         weight: 2
-        identifier: Get Started-v6.1
+        identifier: Get Started-dev
 ---
 
 **TiKV** is a highly scalable, low latency, and easy to use key-value database that delivers performance less than 10 ms at any scale.

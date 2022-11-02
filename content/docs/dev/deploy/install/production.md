@@ -2,10 +2,10 @@
 title: Production Deployment
 description: Deploy a TiKV Cluster for Production Using TiUP
 menu:
-    "6.1":
-        parent: Install TiKV-v6.1
+    "dev":
+        parent: Install TiKV-dev
         weight: 2
-        identifier: Production Deployment-v6.1
+        identifier: Production Deployment-dev
 ---
 
 This guide describes how to install and deploy TiKV for production environment.

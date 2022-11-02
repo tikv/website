@@ -2,10 +2,10 @@
 title: Replication and Rebalancing
 description: Learn how TiKV replicates, distributes, and rebalances data.
 menu:
-    "6.1":
-        parent: Features-v6.1
+    "dev":
+        parent: Features-dev
         weight: 1
-        identifier: Replication and Rebalancing-v6.1
+        identifier: Replication and Rebalancing-dev
 ---
 
 This document walks you through a simple demonstration of how TiKV replicates, distributes, and rebalances data. To start a 3-node local cluster, you need to perform the following operations:

@@ -2,10 +2,10 @@
 title: Security Config
 description: Keep your TiKV secure
 menu:
-    "6.1":
-        parent: Configure TiKV-v6.1
+    "dev":
+        parent: Configure TiKV-dev
         weight: 5
-        identifier: Security Config-v6.1
+        identifier: Security Config-dev
 ---
 
 This document describes how to use Transport Layer Security (TLS) to encrypt the connections between TiKV nodes.

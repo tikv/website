@@ -2,10 +2,10 @@
 title: Monitoring API
 description: Learn the API of TiKV monitoring services.
 menu:
-    "6.1":
-        parent: Monitor and Alert-v6.1
+    "dev":
+        parent: Monitor and Alert-dev
         weight: 2
-        identifier: Monitoring API-v6.1
+        identifier: Monitoring API-dev
 ---
 
 You can use the following two types of interfaces to monitor the TiKV cluster state:

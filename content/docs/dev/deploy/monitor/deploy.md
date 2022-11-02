@@ -2,10 +2,10 @@
 title: Deploy Monitoring Services
 description: Learn how to deploy monitoring services for the TiKV cluster.
 menu:
-    "6.1":
-        parent: Monitor and Alert-v6.1
+    "dev":
+        parent: Monitor and Alert-dev
         weight: 3
-        identifier: Deploy Monitoring Services-v6.1
+        identifier: Deploy Monitoring Services-dev
 ---
 
 This document is intended for users who want to manually deploy TiKV monitoring and alert services.

@@ -2,10 +2,10 @@
 title: FAQs
 description: Frequently asked questions about TiKV
 menu:
-    "6.1":
-        parent: Reference-v6.1
+    "dev":
+        parent: Reference-dev
         weight: 10
-        identifier: FAQs-v6.1
+        identifier: FAQs-dev
 ---
 
 ## What is TiKV?

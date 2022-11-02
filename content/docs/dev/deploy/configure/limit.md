@@ -2,10 +2,10 @@
 title: Scheduling Limit Config
 description: Learn how to configure scheduling rate limit on stores.
 menu:
-    "6.1":
-        parent: Configure TiKV-v6.1
+    "dev":
+        parent: Configure TiKV-dev
         weight: 7
-        identifier: Scheduling Limit Config-v6.1
+        identifier: Scheduling Limit Config-dev
 ---
 
 This document describes how to configure the scheduling rate limit at the store level.

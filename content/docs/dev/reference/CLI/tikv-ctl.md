@@ -2,10 +2,10 @@
 title: tikv-ctl
 description: Use TiKV Control to manage a TiKV cluster.
 menu:
-    "6.1":
-        parent: CLI-v6.1
+    "dev":
+        parent: CLI-dev
         weight: 1
-        identifier: tikv-ctl-v6.1
+        identifier: tikv-ctl-dev
 ---
 
 TiKV Control (`tikv-ctl`) is a command-line tool of TiKV, used to manage the cluster.

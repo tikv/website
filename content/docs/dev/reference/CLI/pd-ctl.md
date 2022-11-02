@@ -2,10 +2,10 @@
 title: pd-ctl
 description: Use PD Control to obtain the state information of a cluster and tune a cluster.
 menu:
-    "6.1":
-        parent: CLI-v6.1
+    "dev":
+        parent: CLI-dev
         weight: 2
-        identifier: pd-ctl-v6.1
+        identifier: pd-ctl-dev
 ---
 
 As a command-line tool of PD, pd-ctl (PD Control) obtains the state information of the cluster and tunes the cluster.

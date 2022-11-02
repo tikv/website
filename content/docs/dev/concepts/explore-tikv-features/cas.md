@@ -2,10 +2,10 @@
 title: CAS on RawKV
 description: Compare And Swap
 menu:
-    "6.1":
-        parent: Features-v6.1
+    "dev":
+        parent: Features-dev
         weight: 4
-        identifier: CAS on RawKV-v6.1
+        identifier: CAS on RawKV-dev
 ---
 
 This page walks you through a simple demonstration of performing compare-and-swap (CAS) in TiKV.

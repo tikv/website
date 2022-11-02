@@ -2,10 +2,10 @@
 title: CLI
 description: Command-line interface tools used to administrate TiKV clusters
 menu:
-    "6.1":
-        parent: Reference-v6.1
+    "dev":
+        parent: Reference-dev
         weight: 4
-        identifier: CLI-v6.1
+        identifier: CLI-dev
 ---
 
 You can use the following command-line interface tools to administrate TiKV clusters:

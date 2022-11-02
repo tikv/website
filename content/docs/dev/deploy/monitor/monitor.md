@@ -2,10 +2,10 @@
 title: Monitor and Alert
 description: Learn how to monitor a TiKV cluster.
 menu:
-    "6.1":
-        parent: Deploy-v6.1
+    "dev":
+        parent: Deploy-dev
         weight: 4
-        identifier: Monitor and Alert-v6.1
+        identifier: Monitor and Alert-dev
 ---
 
 This section introduces how to monitor a TiKV cluster.

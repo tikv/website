@@ -2,10 +2,10 @@
 title: Benchmark Instructions
 description: How to do a benchmark over a TiKV cluster
 menu:
-    "6.1":
-        parent: Benchmark and Performance-v6.1
+    "dev":
+        parent: Benchmark and Performance-dev
         weight: 6
-        identifier: Benchmark Instructions-v6.1
+        identifier: Benchmark Instructions-dev
 ---
 
 TiKV delivers predictable throughput and latency at all scales on commodity hardware. This document provides a step-by-step tutorial on performing a benchmark test using the industry-standard benchmark tool [YCSB](https://github.com/brianfrankcooper/YCSB) on TiKV.

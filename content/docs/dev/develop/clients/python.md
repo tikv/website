@@ -2,10 +2,10 @@
 title: Python Client
 description: Interact with TiKV using Python.
 menu:
-    "6.1":
-        parent: TiKV Clients-v6.1
+    "dev":
+        parent: TiKV Clients-dev
         weight: 4
-        identifier: Python Client-v6.1
+        identifier: Python Client-dev
 ---
 
 TiKV client for python is built on top of [TiKV Client in Rust](https://github.com/tikv/client-rust) via CFFI and [PyO3 Python binding](https://github.com/PyO3/pyo3).

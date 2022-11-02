@@ -2,10 +2,10 @@
 title: RocksDB Config
 description: Learn how to configure RocksDB engine in TiKV.
 menu:
-    "6.1":
-        parent: Configure TiKV-v6.1
+    "dev":
+        parent: Configure TiKV-dev
         weight: 8
-        identifier: RocksDB Config-v6.1
+        identifier: RocksDB Config-dev
 ---
 
 TiKV uses [RocksDB](https://rocksdb.org/) internally to store Raft logs and key-value pairs.

@@ -2,9 +2,9 @@
 title: Reference
 description: Learn about technical details of TiKV
 menu:
-    "6.1":
+    "dev":
         weight: 3
-        identifier: Reference-v6.1
+        identifier: Reference-dev
 ---
 
 This chapter describes some technical details of TiKV:

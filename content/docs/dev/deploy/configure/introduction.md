@@ -2,10 +2,10 @@
 title: Configure TiKV
 description: Configure a wide range of TiKV facets, including RocksDB, gRPC, the Placement Driver, and more.
 menu:
-    "6.1":
-        parent: Deploy-v6.1
+    "dev":
+        parent: Deploy-dev
         weight: 2
-        identifier: Configure TiKV-v6.1
+        identifier: Configure TiKV-dev
 ---
 
 Although you are recommended to get started with TiKV using the default configuration, TiKV provides many configuration parameters to tweak its behavior, which allows you to configure the cluster to suit your special application requirements.

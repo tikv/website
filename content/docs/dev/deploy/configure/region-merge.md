@@ -2,10 +2,10 @@
 title: Region Merge Config
 description: Learn how to configure Region Merge in TiKV.
 menu:
-    "6.1":
-        parent: Configure TiKV-v6.1
+    "dev":
+        parent: Configure TiKV-dev
         weight: 7
-        identifier: Region Merge Config-v6.1
+        identifier: Region Merge Config-dev
 ---
 
 TiKV shards continuous ranges of keys into Regions, and replicates Regions through the Raft protocol. When data size increases until reaching a threshold, a Region splits into multiple. Conversely, if the size of the Region shrinks due to data deletion, two adjacent Regions can be merged into one.

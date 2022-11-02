@@ -2,10 +2,10 @@
 title: TTL on RawKV
 description: Time to Live
 menu:
-    "6.1":
-        parent: Features-v6.1
+    "dev":
+        parent: Features-dev
         weight: 3
-        identifier: TTL on RawKV-v6.1
+        identifier: TTL on RawKV-dev
 ---
 
 This page walks you through a simple demonstration of how to use TTL (Time To Live) on RawKV. TTL is a data clearing mechanism that automatically deletes data after a specified period of time. For example:

@@ -2,10 +2,10 @@
 title: Scan
 description: Learn how to use RawKV's Scan API.
 menu:
-    "6.1":
-        parent: RawKV-v6.1
+    "dev":
+        parent: RawKV-dev
         weight: 2
-        identifier: Scan-v6.1
+        identifier: Scan-dev
 ---
 
 This document walks you through how to use RawKV's `Scan` API.

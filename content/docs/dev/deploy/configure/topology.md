@@ -2,10 +2,10 @@
 title: Topology Label Config
 description: Learn how to configure topology labels.
 menu:
-    "6.1":
-        parent: Configure TiKV-v6.1
+    "dev":
+        parent: Configure TiKV-dev
         weight: 6
-        identifier: Topology Label Config-v6.1
+        identifier: Topology Label Config-dev
 ---
 
 TiKV uses topology labels (hereafter referred to as the labels) to declare its location information, and PD scheduler uses the labels to optimize TiKV's failure tolerance capability. This document describes how to configure the labels.

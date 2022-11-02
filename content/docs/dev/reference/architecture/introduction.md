@@ -2,10 +2,10 @@
 title: Architecture
 description: How TiKV works and how it is built.
 menu:
-    "6.1":
-        parent: Reference-v6.1
+    "dev":
+        parent: Reference-dev
         weight: 1
-        identifier: Architecture-v6.1
+        identifier: Architecture-dev
 ---
 
 This chapter introduces how TiKV works and how it is built:

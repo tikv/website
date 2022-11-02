@@ -2,10 +2,10 @@
 title: Fault Tolerance and Recovery
 description: Learn how TiKV recovers from failures.
 menu:
-    "6.1":
-        parent: Features-v6.1
+    "dev":
+        parent: Features-dev
         weight: 2
-        identifier: Fault Tolerance and Recovery-v6.1
+        identifier: Fault Tolerance and Recovery-dev
 ---
 
 This document walks you through a demonstration of how TiKV recovers from failures and continues providing services when some nodes fail. You can follow the steps of this demonstration and perform operations on your own. In this way, you will have a hands-on experience of the fault tolerance feature of TiKV.

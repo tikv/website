@@ -2,10 +2,10 @@
 title: Java Client
 description: Interact with TiKV using Java.
 menu:
-    "6.1":
-        parent: TiKV Clients-v6.1
+    "dev":
+        parent: TiKV Clients-dev
         weight: 1
-        identifier: Java Client-v6.1
+        identifier: Java Client-dev
 ---
 
 This document guides you on how to use [Java Client](https://github.com/tikv/client-java) in TiKV.

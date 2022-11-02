@@ -2,10 +2,10 @@
 title: Storage
 description: Understand the storage layer of a TiKV cluster.
 menu:
-    "6.1":
-        parent: Architecture-v6.1
+    "dev":
+        parent: Architecture-dev
         weight: 3
-        identifier: Storage-v6.1
+        identifier: Storage-dev
 ---
 
 This document introduces some design ideas and key concepts of TiKV storage.

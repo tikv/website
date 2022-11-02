@@ -2,10 +2,10 @@
 title: RocksDB Titan Config
 description: Learn how to enable Titan in TiKV.
 menu:
-    "6.1":
-        parent: Configure TiKV-v6.1
+    "dev":
+        parent: Configure TiKV-dev
         weight: 11
-        identifier: RocksDB Titan Config-v6.1
+        identifier: RocksDB Titan Config-dev
 ---
 
 Titan is a RocksDB plugin developed by PingCAP to separate keys and values in RocksDB storage. The goal of Titan is to reduce the write amplification when storing large values.

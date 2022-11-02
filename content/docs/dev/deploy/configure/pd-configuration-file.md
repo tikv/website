@@ -2,10 +2,10 @@
 title: PD Config
 description: Learn the PD configuration file
 menu:
-    "6.1":
-        parent: Configure TiKV-v6.1
+    "dev":
+        parent: Configure TiKV-dev
         weight: 2
-        identifier: PD Config-v6.1
+        identifier: PD Config-dev
 ---
 
 The PD configuration file supports more options than command-line parameters. You can find the default configuration file [here](https://github.com/pingcap/pd/blob/release-5.0/conf/config.toml).

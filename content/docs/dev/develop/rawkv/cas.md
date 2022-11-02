@@ -2,10 +2,10 @@
 title: CAS
 description: How to use RawKV's CAS API 
 menu:
-    "6.1":
-        parent: RawKV-v6.1
+    "dev":
+        parent: RawKV-dev
         weight: 3
-        identifier: CAS-v6.1
+        identifier: CAS-dev
 ---
 
 This document walks you through how to use RawKV’s `CAS (Compare And Swap)` API.

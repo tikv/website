@@ -2,10 +2,10 @@
 title: Distributed Transaction
 description: How transaction works on TxnKV
 menu:
-    "6.1":
-        parent: Features-v6.1
+    "dev":
+        parent: Features-dev
         weight: 5
-        identifier: Distributed Transaction-v6.1
+        identifier: Distributed Transaction-dev
 ---
 
 This chapter walks you through a simple demonstration of how TiKV's distributed transaction works.

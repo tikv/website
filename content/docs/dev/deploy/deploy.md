@@ -2,9 +2,9 @@
 title: Deploy
 description: Learn how to deploy and operate a TiKV cluster
 menu:
-    "6.1":
+    "dev":
         weight: 3
-        identifier: Deploy-v6.1
+        identifier: Deploy-dev
 ---
 
 Learn to deploy, configure, monitor, and scale TiKV as you adopt the service into your project and infrastructure.

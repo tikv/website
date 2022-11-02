@@ -2,10 +2,10 @@
 title: TiKV in 5 Minutes
 description: Get started using TiKV in 5 Minutes
 menu:
-    "6.1":
-        parent: Get Started-v6.1
+    "dev":
+        parent: Get Started-dev
         weight: 1
-        identifier: TiKV in 5 Minutes-v6.1
+        identifier: TiKV in 5 Minutes-dev
 ---
 
 This tutorial provides you a quick way to get started with TiKV, including the following operations:

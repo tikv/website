@@ -2,10 +2,10 @@
 title: Query Layers
 description: Extend TiKV using stateless query layers
 menu:
-    "6.1":
-        parent: Reference-v6.1
+    "dev":
+        parent: Reference-dev
         weight: 2
-        identifier: Query Layers-v6.1
+        identifier: Query Layers-dev
 ---
 
 TiKV works as storage engines for the following projects:

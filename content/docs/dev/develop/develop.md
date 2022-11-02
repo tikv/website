@@ -2,9 +2,9 @@
 title: Develop
 description: Learn how to use TiKV Clients for different languages
 menu:
-    "6.1":
+    "dev":
         weight: 3
-        identifier: Develop-v6.1
+        identifier: Develop-dev
 ---
 
 Learn how to use TiKV Clients for different languages.

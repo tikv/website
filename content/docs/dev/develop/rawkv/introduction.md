@@ -2,10 +2,10 @@
 title: RawKV
 description: How to interact with TiKV using RawKV API.
 menu:
-    "6.1":
-        parent: Develop-v6.1
+    "dev":
+        parent: Develop-dev
         weight: 2
-        identifier: RawKV-v6.1
+        identifier: RawKV-dev
 ---
 
 TiKV supports both transactional (TxnKV) API and non-transactional (RawKV) API. This chapter walks you through a few demonstrations about how to use RawKV API.

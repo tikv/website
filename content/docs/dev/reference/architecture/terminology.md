@@ -2,10 +2,10 @@
 title: Terminologies
 description: Explain TiKV and PD terminologies.
 menu:
-    "6.1":
-        parent: Architecture-v6.1
+    "dev":
+        parent: Architecture-dev
         weight: 4
-        identifier: Terminologies-v6.1
+        identifier: Terminologies-dev
 ---
 
 This document explains some important terminologies of TiKV and PD.

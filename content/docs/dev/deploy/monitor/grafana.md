@@ -2,10 +2,10 @@
 title: Export Grafana Snapshots
 description: Learn how to export snapshots of Grafana Dashboard, and how to visualize these files.
 menu:
-    "6.1":
-        parent: Monitor and Alert-v6.1
+    "dev":
+        parent: Monitor and Alert-dev
         weight: 4
-        identifier: Export Grafana Snapshots-v6.1
+        identifier: Export Grafana Snapshots-dev
 ---
 
 Metrics data is important in troubleshooting. When you request remote assistance, sometimes the support staff need to view the Grafana dashboards to diagnose problems. [MetricsTool](https://metricstool.pingcap.com/) can help export snapshots of Grafana dashboards as local files and visualize these snapshots. You can share these snapshots with outsiders and allow them to accurately read out the graphs, without giving out access to other sensitive information on the Grafana server.

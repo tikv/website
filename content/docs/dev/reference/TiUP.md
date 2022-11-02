@@ -2,10 +2,10 @@
 title: TiUP
 description: TiUP documentation
 menu:
-    "6.1":
-        parent: Reference-v6.1
+    "dev":
+        parent: Reference-dev
         weight: 3
-        identifier: TiUP-v6.1
+        identifier: TiUP-dev
 ---
 
 Starting with TiKV 4.0, TiUP, as the package manager, makes it easier to manage different cluster components in the TiKV ecosystem.

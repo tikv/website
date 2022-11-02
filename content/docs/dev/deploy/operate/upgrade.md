@@ -2,10 +2,10 @@
 title: Upgrade
 description: Learn how to upgrade TiKV using TiUP
 menu:
-    "6.1":
-        parent: Operate TiKV-v6.1
+    "dev":
+        parent: Operate TiKV-dev
         weight: 1
-        identifier: Upgrade-v6.1
+        identifier: Upgrade-dev
 ---
 
 This document is targeted for users who want to upgrade from TiKV 4.0 versions to TiKV 5.0 versions, or from TiKV 5.0 to a later version.

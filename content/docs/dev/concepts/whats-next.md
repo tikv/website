@@ -2,10 +2,10 @@
 title: What's Next
 description:
 menu:
-    "6.1":
-        parent: Get Started-v6.1
+    "dev":
+        parent: Get Started-dev
         weight: 3
-        identifier: What's Next-v6.1
+        identifier: What's Next-dev
 ---
 
 Depending on your role, the following resources are recommended to learn more about TiKV:

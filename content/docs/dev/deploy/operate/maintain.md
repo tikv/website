@@ -2,10 +2,10 @@
 title: TiUP Common Operations
 description: Learn the common operations to operate and maintain a TiKV cluster using TiUP
 menu:
-    "6.1":
-        parent: Operate TiKV-v6.1
+    "dev":
+        parent: Operate TiKV-dev
         weight: 3
-        identifier: TiUP Common Operations-v6.1
+        identifier: TiUP Common Operations-dev
 ---
 
 This document describes the following common operations when you operate and maintain a TiKV cluster using TiUP.

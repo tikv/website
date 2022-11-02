@@ -2,10 +2,10 @@
 title: Operate TiKV
 description: Learn how to maintain and operate a TiKV cluster.
 menu:
-    "6.1":
-        parent: Deploy-v6.1
+    "dev":
+        parent: Deploy-dev
         weight: 5
-        identifier: Operate TiKV-v6.1
+        identifier: Operate TiKV-dev
 ---
 
 This section introduces how to maintain and operate a TiKV cluster, including the following operations:

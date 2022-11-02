@@ -2,10 +2,10 @@
 title: Verify Cluster Status
 description: Check the cluster status and connect to the cluster
 menu:
-    "6.1":
-        parent: Install TiKV-v6.1
+    "dev":
+        parent: Install TiKV-dev
         weight: 3
-        identifier: Verify Cluster Status-v6.1
+        identifier: Verify Cluster Status-dev
 ---
 
 After a TiKV cluster is deployed, you need to check whether the cluster runs normally. This document introduces how to check the cluster status using TiUP commands and Grafana, and how to connect to the TiKV cluster using a TiKV client to perform the simple `put` and `get` operations.

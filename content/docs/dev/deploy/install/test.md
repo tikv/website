@@ -2,10 +2,10 @@
 title: Test Deployment
 description: Deploy a TiKV Cluster for Test
 menu:
-    "6.1":
-        parent: Install TiKV-v6.1
+    "dev":
+        parent: Install TiKV-dev
         weight: 4
-        identifier: Test Deployment-v6.1
+        identifier: Test Deployment-dev
 ---
 This guide describes how to install and deploy TiKV for test using TiUP playground and binary installation.
 

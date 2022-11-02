@@ -2,10 +2,10 @@
 title: Prerequisites
 description: Learn the software and hardware recommendations for deploying and running TiKV
 menu:
-    "6.1":
-        parent: Install TiKV-v6.1
+    "dev":
+        parent: Install TiKV-dev
         weight: 1
-        identifier: Prerequisites-v6.1
+        identifier: Prerequisites-dev
 ---
 
 TiKV can be deployed in the Intel architecture server, ARM architecture server, and major virtualization environments and runs well. TiKV supports most of the major hardware networks and Linux operating systems.

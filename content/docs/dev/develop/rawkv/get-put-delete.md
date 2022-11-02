@@ -2,10 +2,10 @@
 title: Get, Put, and Delete
 description: How to use RawKV's basic operations such as Get, Put, and Delete.
 menu:
-    "6.1":
-        parent: RawKV-v6.1
+    "dev":
+        parent: RawKV-dev
         weight: 1
-        identifier: Get, Put, and Delete-v6.1
+        identifier: Get, Put, and Delete-dev
 ---
 
 This document walks you through how to use RawKV's basic operations such as `Get`, `Put`, and `Delete`.
