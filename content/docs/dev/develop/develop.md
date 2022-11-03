@@ -13,8 +13,8 @@ Learn how to use TiKV Clients for different languages.
 
 TiKV provides the following clients developed in different programming languages:
 
-- [Java Client](../clients/java)'s RawKV API is ready for production.
-- [Go Client](../clients/go) is still in the proof-of-concept stage and under development.
+- [Java Client](../clients/java) is ready for production.
+- [Go Client](../clients/go) is ready for production.
 - [Rust Client](../clients/rust) is still in the proof-of-concept stage and under development.
 - [Python Client](../clients/python) is still in the proof-of-concept stage and under development.
 - [C++ Client](../clients/cpp) is still in the proof-of-concept stage and under development.

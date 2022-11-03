@@ -8,7 +8,7 @@ menu:
         identifier: Java Client-dev
 ---
 
-This document guides you on how to use [Java Client](https://github.com/tikv/client-java) in TiKV.
+This document guides you on how to use [Java Client](https://github.com/tikv/client-java) through some simple examples. For more details, please visit [TiKV Java Client User Documents].
 
 {{< info >}}
 TiKV Java Client is developed and released using Java8. The minimum supported version of TiKV is 2.0.0.
@@ -26,58 +26,120 @@ To start, open the `pom.xml` of your project, and add the `tikv-client-java` as 
 </dependency>
 ```
 
-## Try the Raw key-value API
+## Try the transactional key-value API
 
-Using a connected `org.tikv.raw.RawKVClient`, you can perform actions such as `put`, `get`, `delete`, and `scan`:
+Below is the basic usages of `TxnKV`. Data should be written into TxnKV using [`TwoPhaseCommitter`](), and be read using [`org.tikv.txn.KVClient`]().
 
 ```java
-import com.google.protobuf.ByteString;
+import java.util.Arrays;
 import java.util.List;
+
+import org.tikv.common.BytePairWrapper;
+import org.tikv.common.ByteWrapper;
+import org.tikv.common.TiConfiguration;
+import org.tikv.common.TiSession;
+import org.tikv.common.util.BackOffer;
+import org.tikv.common.util.ConcreteBackOffer;
+import org.tikv.kvproto.Kvrpcpb.KvPair;
+import org.tikv.shade.com.google.protobuf.ByteString;
+import org.tikv.txn.KVClient;
+import org.tikv.txn.TwoPhaseCommitter;
+
+public class App {
+    public static void main(String[] args) throws Exception {
+        TiConfiguration conf = TiConfiguration.createDefault("127.0.0.1:2379");
+        try (TiSession session = TiSession.create(conf)) {
+            // two-phrase write
+            long startTS = session.getTimestamp().getVersion();
+            try (TwoPhaseCommitter twoPhaseCommitter = new TwoPhaseCommitter(session, startTS)) {
+                BackOffer backOffer = ConcreteBackOffer.newCustomBackOff(1000);
+                byte[] primaryKey = "key1".getBytes("UTF-8");
+                byte[] key2 = "key2".getBytes("UTF-8");
+
+                // first phrase: prewrite
+                twoPhaseCommitter.prewritePrimaryKey(backOffer, primaryKey, "val1".getBytes("UTF-8"));
+                List<BytePairWrapper> pairs = Arrays
+                        .asList(new BytePairWrapper(key2, "val2".getBytes("UTF-8")));
+                twoPhaseCommitter.prewriteSecondaryKeys(primaryKey, pairs.iterator(), 1000);
+
+                // second phrase: commit
+                long commitTS = session.getTimestamp().getVersion();
+                twoPhaseCommitter.commitPrimaryKey(backOffer, primaryKey, commitTS);
+                List<ByteWrapper> keys = Arrays.asList(new ByteWrapper(key2));
+                twoPhaseCommitter.commitSecondaryKeys(keys.iterator(), commitTS, 1000);
+            }
+
+            try (KVClient kvClient = session.createKVClient()) {
+                long version = session.getTimestamp().getVersion();
+                ByteString key1 = ByteString.copyFromUtf8("key1");
+                ByteString key2 = ByteString.copyFromUtf8("key2");
+
+                // get value of a single key
+                ByteString val = kvClient.get(key1, version);
+                System.out.println(val);
+
+                // get value of multiple keys
+                BackOffer backOffer = ConcreteBackOffer.newCustomBackOff(1000);
+                List<KvPair> kvPairs = kvClient.batchGet(backOffer, Arrays.asList(key1, key2), version);
+                System.out.println(kvPairs);
+
+                // get value of a range of keys
+                kvPairs = kvClient.scan(key1, ByteString.copyFromUtf8("key3"), version);
+                System.out.println(kvPairs);
+            }
+        }
+    }
+}
+```
+
+## Try the Raw key-value API
+
+Below is the basic usages of `RawKV`.
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import org.tikv.common.TiConfiguration;
 import org.tikv.common.TiSession;
 import org.tikv.kvproto.Kvrpcpb;
 import org.tikv.raw.RawKVClient;
+import org.tikv.shade.com.google.protobuf.ByteString;
 
-TiConfiguration conf = TiConfiguration.createRawDefault("127.0.0.1:2379");
-TiSession session = TiSession.create(conf);
-RawKVClient client = session.createRawClient();
+public class Main {
+  public static void main() {
+    // You MUST create a raw configuration if you are using RawKVClient.
+    TiConfiguration conf = TiConfiguration.createRawDefault("127.0.0.1:2379");
+    TiSession session = TiSession.create(conf);
+    RawKVClient client = session.createRawClient();
 
-ByteString key = ByteString.copyFromUtf8("Hello");
-ByteString value = ByteString.copyFromUtf8("RawKV");
+    // put
+    client.put(ByteString.copyFromUtf8("k1"), ByteString.copyFromUtf8("Hello"));
+    client.put(ByteString.copyFromUtf8("k2"), ByteString.copyFromUtf8(","));
+    client.put(ByteString.copyFromUtf8("k3"), ByteString.copyFromUtf8("World"));
+    client.put(ByteString.copyFromUtf8("k4"), ByteString.copyFromUtf8("!"));
+    client.put(ByteString.copyFromUtf8("k5"), ByteString.copyFromUtf8("Raw KV"));
 
-// put
-client.put(key, value);
+    // get
+    Optional<ByteString> result = client.get(ByteString.copyFromUtf8("k1"));
+    System.out.println(result.get().toStringUtf8());
 
-// get
-ByteString result = client.get(key);
-assert("RawKV".equals(result.toStringUtf8()));
-System.out.println(result.toStringUtf8());
+    // batch get
+    List<Kvrpcpb.KvPair> list = client.batchGet(new ArrayList<ByteString>() {{
+        add(ByteString.copyFromUtf8("k1"));
+        add(ByteString.copyFromUtf8("k3"));
+    }});
+    System.out.println(list);
 
-// delete
-client.delete(key);
+    // scan
+    list = client.scan(ByteString.copyFromUtf8("k1"), ByteString.copyFromUtf8("k6"), 10);
+    System.out.println(list);
 
-// get
-result = client.get(key);
-assert(result.toStringUtf8().isEmpty());
-System.out.println(result.toStringUtf8());
-
-// scan
-int limit = 1000;
-client.put(ByteString.copyFromUtf8("k1"), ByteString.copyFromUtf8("v1"));
-client.put(ByteString.copyFromUtf8("k2"), ByteString.copyFromUtf8("v2"));
-client.put(ByteString.copyFromUtf8("k3"), ByteString.copyFromUtf8("v3"));
-client.put(ByteString.copyFromUtf8("k4"), ByteString.copyFromUtf8("v4"));
-
-List<Kvrpcpb.KvPair> list = client.scan(ByteString.copyFromUtf8("k1"), ByteString.copyFromUtf8("k5"), limit);
-for(Kvrpcpb.KvPair pair : list) {
-  System.out.println(pair);
+    // close
+    client.close();
+    session.close();
+  }
 }
 ```
 
-These functions also have batch variants (`batchPut`, `batchGet`, `batchDelete`, and `batchScan`) which considerably reduce network overhead and increase performance under certain workloads.
-
-You can find all functions supported by `RawKVClient` [in this JAVA file](https://github.com/tikv/client-java/blob/master/src/main/java/org/tikv/raw/RawKVClient.java).
-
-## Transactional key-value API
-
-Transactional key-value API is still in the stage of prove-of-concept and under heavy development.
+[TiKV Java Client User Documents]: https://tikv.github.io/client-java/introduction/introduction.html
