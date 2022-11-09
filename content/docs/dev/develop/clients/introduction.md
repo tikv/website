@@ -10,10 +10,10 @@ menu:
 
 TiKV offers two APIs that you can interact with:
 
-| API           | Description                                                                      | Atomicity     | Usage scenarios                                                                      |
-|:------------- |:-------------------------------------------------------------------------------- |:------------- |:------------------------------------------------------------------------------------ |
-| Raw           | A lower-level key-value API to interact directly with individual key-value pairs | Single key    | Your application requires low latency and does not involve distributed transactions. |
-| Transactional | A higher-level key-value API to provide ACID semantics.                          | Multiple keys | Your application requires distributed transactions.                                  |
+| API           | Description                                                                    | Atomicity     | Usage scenarios                                                                      |
+|:------------- |:------------------------------------------------------------------------------ |:------------- |:------------------------------------------------------------------------------------ |
+| Raw           | A low-level key-value API to interact directly with individual key-value pairs | Single key    | Your application requires low latency and does not involve distributed transactions. |
+| Transactional | A high-level key-value API to provide ACID semantics.                          | Multiple keys | Your application requires distributed transactions.                                  |
 
 {{< warning >}}
 To use both the raw and transactional APIs in the same cluster, please enable [API V2](../../../concepts/explore-tikv-features/api-v2).

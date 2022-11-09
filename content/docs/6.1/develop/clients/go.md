@@ -140,7 +140,7 @@ v, err := snapshot.Get(context.TODO(), []byte("foo"))
 // ... handle Get result ...
 ```
 
-Snapshot can also be extracted from a existing transaction.
+Snapshot can also be extracted from an existing transaction.
 
 ```go
 snapshot := txn.GetSnapshot()
