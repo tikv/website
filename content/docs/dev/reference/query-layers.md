@@ -3,14 +3,16 @@ title: Query Layers
 description: Extend TiKV using stateless query layers
 menu:
     "dev":
-        parent: Reference
-        weight: 3
+        parent: Reference-dev
+        weight: 2
+        identifier: Query Layers-dev
 ---
 
-There are several projects which harness TiKV to power their storage:
+TiKV works as storage engines for the following projects:
 
 * [TiDB](https://github.com/pingcap/tidb) (MySQL)
-* [TiPrometheus](https://github.com/bragfoo/TiPrometheus) (Prometheus)
-* [Titan](https://github.com/distributedio/titan) (Redis)
+* [Zetta](https://github.com/zhihu/zetta) (Table Store & HBase)
 * [Tidis](https://github.com/yongman/tidis) (Redis)
+* [Titan](https://github.com/distributedio/titan) (Redis)
 * [Titea](https://github.com/gengmei-tech/titea) (Redis)
+* [TiPrometheus](https://github.com/bragfoo/TiPrometheus) (Prometheus)

@@ -2,10 +2,10 @@
 title: TiKV Clients
 description: Interact with TiKV using the raw key-value API or the transactional key-value API.
 menu:
-    "6.1":
-        parent: Develop-v6.1
+    "dev":
+        parent: Develop-dev
         weight: 1
-        identifier: TiKV Clients-v6.1
+        identifier: TiKV Clients-dev
 ---
 
 TiKV offers two APIs that you can interact with:
@@ -16,7 +16,7 @@ TiKV offers two APIs that you can interact with:
 | Transactional | A high-level key-value API to provide ACID semantics.                          | Multiple keys | Your application requires distributed transactions.                                  |
 
 {{< warning >}}
-It is **not supported** to use both the raw and transactional APIs on the same keyspace.
+To use both the raw and transactional APIs in the same cluster, please enable [API V2](../../../concepts/explore-tikv-features/api-v2).
 {{< /warning >}}
 
 TiKV provides the following clients developed in different programming languages:

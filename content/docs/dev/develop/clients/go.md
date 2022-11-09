@@ -2,10 +2,10 @@
 title: Go Client
 description: Interact with TiKV using Go.
 menu:
-    "6.1":
-        parent: TiKV Clients-v6.1
+    "dev":
+        parent: TiKV Clients-dev
         weight: 2
-        identifier: Go Client-v6.1
+        identifier: Go Client-dev
 ---
 
 This document guides you on how to use [Go Client](https://github.com/tikv/client-go) through some simple examples. For more details, please visit [client-go wiki].
