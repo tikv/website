@@ -59,8 +59,7 @@ import tikverr "github.com/tikv/client-go/v2/error"
 v, err := txn.Get(context.TODO(), []byte("foo"))
 if tikverr.IsErrNotFound(err) {
     // ... handle not found ...
-}
-if err != nil {
+} else if err != nil {
     // ... handle other errors ...
 }
 // ... handle value v ...
@@ -136,10 +135,7 @@ ts, err := client.CurrentTimestamp("global")
 if err != nil {
     // ... handle error ...
 }
-snapshot, err := client.GetSnapshot(ts)
-if err != nil {
-    // ... handle error ...
-}
+snapshot := client.GetSnapshot(ts)
 v, err := snapshot.Get(context.TODO(), []byte("foo"))
 // ... handle Get result ...
 ```
@@ -160,11 +156,10 @@ After starting a TiKV cluster successfully, we can use PD's address list to crea
 
 ```go
 import (
-    "github.com/tikv/client-go/v2/config"
     "github.com/tikv/client-go/v2/rawkv"
 )
 
-client, err := rawkv.NewClient(context.TODO(), []string{"127.0.0.1:2379"}, config.Security{})
+client, err := rawkv.NewClientWithOpts(context.TODO(), []string{"127.0.0.1:2379"})
 if err != nil {
     // ... handle error ...
 }
@@ -189,7 +184,11 @@ v, err := client.Get(context.TODO(), []byte("key"))
 if err != nil {
     // ... handle error ...
 }
-// ... handle value v ...
+if v == nil {
+    // ... handle not found ...
+} else {
+    // ... handle value v ...
+}
 
 err = client.Put(context.TODO(), []byte("key"), []byte("value"))
 if err != nil {
@@ -212,7 +211,7 @@ if err != nil {
 }
 // ... handle keys, values ...
 
-keys, values, err := client.ReverseScan(context.TODO(), []byte("begin"), []byte("end"), 10)
+keys, values, err := client.ReverseScan(context.TODO(), []byte("end"), []byte("begin"), 10)
 if err != nil {
     // ... handle error ...
 }
@@ -230,7 +229,7 @@ if err != nil {
 }
 // ... handle values ...
 
-err = client.BatchPut(context.TODO(), [][]byte{[]byte("key1"), []byte("key2")}, [][]byte{[]byte("value1"), []byte("value2")}, nil)
+err = client.BatchPut(context.TODO(), [][]byte{[]byte("key1"), []byte("key2")}, [][]byte{[]byte("value1"), []byte("value2")})
 if err != nil {
     // ... handle error ...
 }

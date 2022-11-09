@@ -22,7 +22,7 @@ To start, open the `pom.xml` of your project, and add the `tikv-client-java` as 
 <dependency>
   <groupId>org.tikv</groupId>
   <artifactId>tikv-client-java</artifactId>
-  <version>3.2.0-SNAPSHOT</version>
+  <version>3.2.0</version>
 </dependency>
 ```
 
@@ -107,7 +107,7 @@ import org.tikv.raw.RawKVClient;
 import org.tikv.shade.com.google.protobuf.ByteString;
 
 public class Main {
-  public static void main() {
+  public static void main(String[] args) throws Exception {
     // You MUST create a raw configuration if you are using RawKVClient.
     TiConfiguration conf = TiConfiguration.createRawDefault("127.0.0.1:2379");
     TiSession session = TiSession.create(conf);
