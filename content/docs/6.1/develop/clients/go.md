@@ -16,7 +16,7 @@ The `txnkv` package provides a transactional API against TiKV cluster.
 
 ### Create Client
 
-Information about a TiKV cluster can be found by the address of PD server. After starting a TiKV cluster successfully, we can use PD's address list to create a client to interact with it.
+The topology of a TiKV cluster can be discovered by PD server. After starting a TiKV cluster successfully, we can use PD's address list to create a client to interact with it.
 
 ```go
 import "github.com/tikv/client-go/v2/txnkv"
@@ -140,7 +140,7 @@ v, err := snapshot.Get(context.TODO(), []byte("foo"))
 // ... handle Get result ...
 ```
 
-Snapshot can also be extracted from a existed transaction.
+Snapshot can also be extracted from a existing transaction.
 
 ```go
 snapshot := txn.GetSnapshot()
@@ -220,7 +220,7 @@ if err != nil {
 
 ### Batch Operations
 
-`RawKV` also supports batch operations using batch. Note that since `RawKV` is not transaction guaranteed, we do not guarantee that all writes will succeed or fail at the same time when these keys are distributed across multiple regions.
+`RawKV` also supports batch operations using batch. Note that since `RawKV` does not provide transaction semantic, we do not guarantee that all writes will succeed or fail at the same time when these keys are distributed across multiple regions.
 
 ```go
 values, err := client.BatchGet(context.TODO(), [][]byte{[]byte("key1"), []byte("key2")})
