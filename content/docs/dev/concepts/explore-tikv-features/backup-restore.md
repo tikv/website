@@ -77,7 +77,7 @@ Explanations for some options in the above command are as follows:
 - `"${PDIP}:2379"`:  Parameter of `--pd`.
 - `--dst-api-version`: The `api-version`, please see [API V2](../api-v2).
 - `v2`: Parameter of `--dst-api-version`, the optionals are `v1`, `v1ttl`, `v2`(Case insensitive). If no `dst-api-version` is specified, the `api-version` is the same with TiKV cluster of `--pd`.
-- `gcttl`: The pause duration of GC. This can be used to make sure that the incremental data from the beginning of backup to TiKV-CDC [create changefeed](https://github.com/tikv/migration/blob/main/cdc/README.md#create-a-replication-task) will NOT be deleted by GC. 5 minutes by default.
+- `gcttl`: The pause duration of GC. This can be used to make sure that the incremental data from the beginning of backup to TiKV-CDC [create changefeed](../cdc) will NOT be deleted by GC. 5 minutes by default.
 - `5m`: Paramater of `gcttl`. Its format is `number + unit`, e.g. `24h` means 24 hours, `60m` means 60 minutes.
 - `start`, `end`: The backup key range. It's closed left and open right `[start, end)`.
 - `format`: Format of `start` and `end`. Supported formats are `raw`、[`hex`](https://en.wikipedia.org/wiki/Hexadecimal) and [`escaped`](https://en.wikipedia.org/wiki/Escape_character).
@@ -101,7 +101,7 @@ Explanations for the above message are as follows:
 - `ranges-failed`: Number of failed ranges.
 - `backup-total-regions`: The tikv regions that backup takes.
 - `total-take`: The backup duration.
-- `backup-ts`: The backup start timestamp, only take effect for API V2 TiKV cluster, which can be used as `start-ts` of `TiKV-CDC` when creating replication tasks. Refer to [Create a replication task](https://github.com/tikv/migration/blob/main/cdc/README.md#create-a-replication-task).
+- `backup-ts`: The backup start timestamp, only take effect for API V2 TiKV cluster, which can be used as `start-ts` of `TiKV-CDC` when creating replication tasks. Refer to [Create a replication task](../cdc).
 - `total-kv`: Total number of key-value pairs in backup files.
 - `total-kv-size`: Total size of key-value pairs in backup files. Note that this is the original size before compression.
 - `average-speed`: The backup speed, which approximately equals to `total-kv-size` / `total-take`.
@@ -156,7 +156,7 @@ Explanations for the above message are as follows:
 
 TiKV-BR can do checksum between TiKV cluster and backup files after backup or restoration finish with the config `--checksum=true`. Checksum is using the [checksum](https://github.com/tikv/client-go/blob/ffaaf7131a8df6ab4e858bf27e39cd7445cf7929/rawkv/rawkv.go#L584) interface in TiKV [client-go](https://github.com/tikv/client-go), which send checksum request to all TiKV regions to calculate the checksum of all **VALID** data. Then compare to the checksum value of backup files which is calculated during backup process.
 
-Please note that if data is stored in TiKV with [TTL](./ttl), and expiration happens during backup or restore, the persisted checksum in backup files must be different from the checksum of TiKV cluster. So checksum should **NOT** be enabled in this scenario. To verify correctness of backup and restoration in this scenario, you can perform a full comparison for all existing non-expired data between backup cluster and restore cluster by using [scan](../../../develop/rawkv/scan) interface..
+Please note that if data is stored in TiKV with [TTL](../ttl), and expiration happens during backup or restore, the persisted checksum in backup files must be different from the checksum of TiKV cluster. So checksum should **NOT** be enabled in this scenario. To verify correctness of backup and restoration in this scenario, you can perform a full comparison for all existing non-expired data between backup cluster and restore cluster by using [scan](../../../develop/rawkv/scan) interface..
 
 ### Security During Backup & Restoration
 
