@@ -14,5 +14,6 @@ TiKV supports both transactional (TxnKV) API and non-transactional (RawKV) API. 
 - [Scan](../scan)
 - [Time to Live (TTL)](../ttl)
 - [Compare And Swap (CAS)](../cas)
+- [Checksum](../checksum)
 
 To get the example code in this chapter, click [here](https://github.com/marsishandsome/tikv-client-examples).
