@@ -52,7 +52,7 @@ When you deploy a new TiDB/TiKV cluster using TiUP, you can also deploy TiKV-CDC
 
 You can also use TiUP to add the TiKV-CDC component to an existing TiDB/TiKV cluster. Take the following procedures:
 
-1. Make sure that the current TiDB/TiKV version >= `6.2.0`.
+1. Make sure that the current TiDB/TiKV version >= `6.2.0` and [TiKV API V2] is enabled.
 2. Prepare a scale-out configuration file, refer to [template](https://github.com/tikv/migration/blob/main/cdc/deployments/tikv-cdc/config-templates/scale-out.example.yaml).
 3. Scale out by `tiup cluster scale-out`. Also refer to [Scale a TiDB Cluster Using TiUP](https://docs.pingcap.com/tidb/stable/scale-tidb-using-tiup).
 ```
@@ -147,10 +147,7 @@ In the command and result above:
 
 * `--start-ts`: Specifies the starting TSO of the changefeed. TiKV-CDC will replicate RawKV entries starting from this TSO. The default value is the current time.
 
-> If the replication is deployed on a existing cluster, it is recommended that using [TiKV-BR] to complete the initial replication:
-> 1) Use [TiKV-BR] to backup existing data, and record `backup-ts` from backup result,
-> 2) Restore to downstream,
-> 3) Create changefeed with `--start-ts=<backup-ts+1>`.
+> Refer to [How to replicate TiKV cluster with existing data](#how-to-replicate-tikv-cluster-with-existing-data) if the replication is deployed on a existing cluster.
 
 ##### Configure sink URI with `tikv`
 ```
@@ -352,8 +349,33 @@ tikv-cdc cli processor list --pd=http://192.168.100.122:2379`
 ]
 ```
 
+## FAQs
+
+### How to replicate TiKV cluster with existing data
+
+Use [TiKV-BR] to migrate the existing data to downstream cluster (network shared storage, e.g. [NFS] or [S3], is required). Then start the changefeed for incremental replication.
+
+We don't recommend replicating existing data by TiKV-CDC because:
+
+- First, as life time of garbage collection is short (defaults to `10` minutes), in most circumstance it's not applicable to perform the replication. You can not create a changefeed with `start-ts` earlier than **GC Safe Point**.
+- Second, if there are mass existing data, replication by TiKV-CDC is inefficiency, as all existing data must be gathered, hold, and sorted in TiKV-CDC, before finally write to downstream. By contrast, TiKV-BR can utilize the power of the whole cluster, as all regions are directly exported to and imported from the shared storage.
+
+To replicate TiKV cluster with existing data:
+
+1) Backup upstream cluster by TiKV-BR, with a long enough `--gcttl`. See [Backup Raw Data] for more details.
+> NOTE: value of `gcttl` should include duration of backup, restoration, and other preparation work. If you are not sure about the value of `gcttl`, you can [disable GC] temporarily, and enable it after changefeed has started.
+2) Record `backup-ts` from backup result in *Step 1*.
+3) Restore to downstream cluster. Refer to [Restore Raw Data].
+4) Create changefeed with `--start-ts=<backup-ts>`.
+
+
 [Change Data Capture]: https://en.wikipedia.org/wiki/Change_data_capture
 [TiKV API V2]: ../api-v2
 [v6.2.0]: https://docs.pingcap.com/tidb/v6.2/release-6.2.0
 [TiUP]: https://tiup.io
 [TiKV-BR]: ../backup-restore
+[NFS]: https://en.wikipedia.org/wiki/Network_File_System
+[S3]: https://aws.amazon.com/s3/
+[Backup Raw Data]: ../backup-restore/#backup-raw-data
+[Restore Raw Data]: ../backup-restore/#restore-raw-data
+[Disable GC]: https://docs.pingcap.com/tidb/stable/system-variables#tidb_gc_enable-new-in-v50
