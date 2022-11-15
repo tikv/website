@@ -12,9 +12,9 @@ This page introduces what's RawKV Change Data Capture and how to use it.
 
 ## RawKV Change Data Capture
 
-**RawKV Change Data Capture** (*abbr.* **RawKV CDC**) is a feature that providing [Change Data Capture] ability for RawKV, to meet high availability requirements.
+**RawKV Change Data Capture** (*abbr.* **RawKV CDC**) is a feature that providing [Change Data Capture] capability for RawKV, to meet high availability requirements.
 
-Using RawKV CDC, you can build a storage system with **Cross Cluster Replication**, to provide financial-level disaster recovery capabilities.
+Using RawKV CDC, you can build a storage system with **Cross Cluster Replication**, to implement financial-level disaster recovery.
 
 RawKV CDC can also be used for integrating RawKV with other data systems.
 
@@ -22,17 +22,19 @@ To use RawKV CDC, you need to enable [TiKV API V2] and deploy a **TiKV-CDC** clu
 
 {{< figure
     src="/img/docs/rawkv-cdc.png"
-    caption="RawKV CDC" >}}
+    caption="RawKV CDC"
+    number="1" >}}
 
 ## TiKV-CDC
 
 **TiKV-CDC** is [TiKV](https://docs.pingcap.com/tidb/dev/tikv-overview)'s change data capture framework. It supports replicating change data to another TiKV cluster.
 
-It is a fork of [TiCDC](https://github.com/pingcap/tiflow/blob/master/README_TiCDC.md), but focus on NoSQL scenario that uses TiKV as a Key-Value storage.
+It forks from [TiCDC](https://github.com/pingcap/tiflow/blob/master/README_TiCDC.md), but focus on NoSQL scenario that uses TiKV as a Key-Value storage.
 
 {{< figure
     src="/img/docs/rawkv-cdc-arch-simple.png"
-    caption="TiKV-CDC Architecture" >}}
+    caption="TiKV-CDC Architecture"
+    number="2" >}}
 
 ## Instruction Manual
 
@@ -59,7 +61,7 @@ tiup cluster scale-out <cluster-name> scale-out.yaml
 
 #### Deploy manually
 
-1. Set up two TiKV cluster, one for upstream and another for downstream.
+1. Set up two TiKV clusters, one for upstream and another for downstream.
 2. Start a TiKV-CDC cluster, which contains one or more TiKV-CDC servers. The command to start on TiKV-CDC server is `tikv-cdc server --pd <upstream PD endpoints>`.
 3. Start a replication changefeed by `tikv-cdc cli changefeed create --pd <upstream PD endpoints> --sink-uri tikv://<downstream PD endpoints>`
 
@@ -72,10 +74,10 @@ tiup cluster scale-out <cluster-name> scale-out.yaml
 * `gc-ttl`: The TTL (Time To Live, in seconds) of the service level `GC safepoint` in PD set by TiKV-CDC (optional). It's the duration that replication tasks can suspend, defaults to 86400, i.e. 24 hours. Note that suspending of replication task will affect the progress of TiKV garbage collection. The longer of `gc-ttl`, the longer a changefeed can be paused, but at the same time more obsolete data will be kept and larger space will be occupied. Vice versa.
 * `log-file`: The path to which logs are output when the TiKV-CDC process is running (optional). If this parameter is not specified, logs are written to the standard output (stdout).
 * `log-level`: The log level when the TiKV-CDC process is running (optional). The default value is "info".
-* `ca`: Specifies the path of the CA certificate file in PEM format for TLS connection (optional).
-* `cert`: Specifies the path of the certificate file in PEM format for TLS connection (optional).
-* `key`: Specifies the path of the private key file in PEM format for TLS connection (optional).
-* `cert-allowed-cn`: Specifies the path of the common name in PEM format for TLS connection (optional). Use ',' to separate multiple CN.
+* `ca`: The path of the CA certificate file in PEM format for TLS connection (optional).
+* `cert`: The path of the certificate file in PEM format for TLS connection (optional).
+* `key`: The path of the private key file in PEM format for TLS connection (optional).
+* `cert-allowed-cn`: Specifies to verify caller's identity (certificate Common Name, optional). Use comma to separate multiple CN.
 
 ### Maintenance
 
@@ -109,7 +111,7 @@ In the result above:
 
 * `id`: The ID of the service process.
 * `is-owner`: Indicates whether the service process is the owner node.
-* `address`: The address via which the service process provides interface to the outside.
+* `address`: The address to access to.
 
 If TLS is required:
 ```
@@ -143,7 +145,12 @@ In the command and result above:
 [scheme]://[userinfo@][host]:[port][/path]?[query_parameters]
 ```
 
-* `--start-ts`: Specifies the starting TSO of the changefeed. From this TSO, the TiKV-CDC cluster starts pulling data. The default value is the current time. If the replication is deployed on a existing cluster, it is recommended that using [TiKV-BR] to backup & restore existing data to downstream, get `backup-ts` from backup result, and then deploy changefeed with `--start-ts=<backup-ts+1>`.
+* `--start-ts`: Specifies the starting TSO of the changefeed. TiKV-CDC will replicate RawKV entries starting from this TSO. The default value is the current time.
+
+> If the replication is deployed on a existing cluster, it is recommended that using [TiKV-BR] to complete the initial replication:
+> 1) Use [TiKV-BR] to backup existing data, and record `backup-ts` from backup result,
+> 2) Restore to downstream,
+> 3) Create changefeed with `--start-ts=<backup-ts+1>`.
 
 ##### Configure sink URI with `tikv`
 ```
@@ -189,7 +196,7 @@ In the result above:
   * `normal`: The replication task runs normally.
   * `stopped`: The replication task is stopped (manually paused).
   * `error`: The replication task is stopped (by an error).
-  * `removed`: The replication task is removed. Tasks of this state are displayed only when you have specified the `--all` option. To see these tasks when this option is not specified, execute the changefeed query command.
+  * `removed`: The replication task is removed. Tasks of this state are displayed only when you have specified the `--all` option. To see these tasks when this option is not specified, execute the `changefeed query` command.
 
 
 ##### Query a specific replication task
@@ -270,8 +277,8 @@ In the result above:
 
 * `info` is the replication configuration of the queried changefeed.
 * `status` is the replication state of the queried changefeed.
-* `resolved-ts`: The largest TS in the current changefeed. Note that this TS has been successfully sent from TiKV to TiKV-CDC.
-* `checkpoint-ts`: The largest TS in the current changefeed. Note that this TS has been successfully written to the downstream.
+* `resolved-ts`: The largest watermark received from upstream in the current changefeed. The **watermark** is a timestamp indicating that all RawKV entries earlier than it have been received.
+* `checkpoint-ts`: The largest watermark written to downstream successfully in the current changefeed.
 * `admin-job-type`: The status of a changefeed:
   * `0`: The state is normal.
   * `1`: The task is paused. When the task is paused, all replicated processors exit. The configuration and the replication status of the task are retained, so you can resume the task from `checkpoint-ts`.
