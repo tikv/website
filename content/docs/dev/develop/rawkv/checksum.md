@@ -10,7 +10,7 @@ menu:
 
 This document walks you through how to use RawKV's `Checksum` API.
 
-`Checksum` result includes `Crc64Xor`, `TotalKvs` and `TotalBytes`.
+`Checksum` API returns `Crc64Xor`, `TotalKvs` and `TotalBytes` from TiKV cluster.
 - `Crc64Xor`: The [XOR](https://en.wikipedia.org/wiki/Exclusive_or) of every key-value pair's [crc64](https://en.wikipedia.org/wiki/Cyclic_redundancy_check) value.
 - `TotalKVs`: The count of key-value pairs.
 - `TotalBytes`: The size of key-value pairs in bytes.
