@@ -15,7 +15,7 @@ This document walks you through how to use RawKV's `Checksum` API.
 - `TotalKVs`: The count of key-value pairs.
 - `TotalBytes`: The size of key-value pairs in bytes.
 
-_Note: If [API V2](../../../concepts/explore-tikv-features/api-v2) is enable in tikv cluster, tikv client will encode prefix for raw key [here](https://github.com/tikv/client-go/blob/9c0835c80eba6cbda6fc4ae460d645de9d36cd05/internal/client/api_version.go#L57), and `Checksum` API also count prefix into `Crc64Xor` and `TotalBytes`._
+_Note: If [API V2](../../../concepts/explore-tikv-features/api-v2) is enabled in tikv cluster, tikv client will encode prefix for raw key [here](https://github.com/tikv/client-go/blob/9c0835c80eba6cbda6fc4ae460d645de9d36cd05/internal/client/api_version.go#L57), and `Checksum` API also counts prefix into `Crc64Xor` and `TotalBytes`._
 
 ## Go
 
@@ -66,4 +66,4 @@ func main() {
 		checksum.Crc64Xor, checksum.TotalKvs, checksum.TotalBytes)
 }
 ```
-If you want to check all the data, the `startKey` and `endKey` can be specified as `[]byte("")`
+If you want to check all the data, the `startKey` and `endKey` can be specified as `[]byte("")`.
