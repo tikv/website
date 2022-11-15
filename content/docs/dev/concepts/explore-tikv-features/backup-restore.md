@@ -23,15 +23,15 @@ menu:
 ### Recommended Deployment Configuration
 - In production environments, deploy `TiKV-BR` on a node with at least 8 cores CPU and 16 GB memory. Select an appropriate OS version by following [Linux OS version requirements](https://docs.pingcap.com/tidb/dev/hardware-and-software-requirements#linux-os-version-requirements).
 
-- Save backup data to Amazon S3 or one mounted network disk on all `TiKV-BR` and `TiKV` nodes.
+- Save backup data to Amazon S3 or other shared storage, for example mounting a NFS on all `TiKV-BR` and `TiKV` nodes.
 
 - Allocate sufficient resources for backup and restoration.
 
-- TiKV-BR only support raw data backup/restoration in TiKV cluster with version >= `5.0.0`.
+- TiKV-BR only supports raw data backup/restoration in TiKV cluster with version >= `5.0.0`.
 
-TiKV-BR, TiKV nodes, and the backup storage system should provide network bandwidth that is greater than the backup speed. If the target cluster is particularly large, the threshold of backup and restoration speed is limited by the bandwidth of the backup network.  
+TiKV-BR, TiKV nodes, and the backup storage system should provide network bandwidth that is greater than the backup speed. If the target cluster is particularly large, the threshold of backup and restoration speed highly depends on the bandwidth of storage system.  
 The backup storage system should also provide sufficient write/read performance (IOPS). Otherwise, the IOPS might become a performance bottleneck during backup or restoration.  
-TiKV nodes need to have at least two additional spared CPU cores and disk bandwidth (related to `ratelimit` parameter) for backups. Otherwise, the backup might have an impact on the services running on the cluster.
+TiKV nodes need to have at least two additional spare CPU cores and disk bandwidth (related to `ratelimit` parameter) for backups. Otherwise, the backup might have an impact on the services running on the cluster.
 
 ### Best practice
 The following are some recommended operations for using `TiKV-BR` for backup and restoration:
@@ -78,7 +78,7 @@ Explanations for some options in the above command are as follows:
 - `--dst-api-version`: The `api-version`, please see [API V2](../api-v2).
 - `v2`: Parameter of `--dst-api-version`, the optionals are `v1`, `v1ttl`, `v2`(Case insensitive). If no `dst-api-version` is specified, the `api-version` is the same with TiKV cluster of `--pd`.
 - `gcttl`: The pause duration of GC. This can be used to make sure that the incremental data from the beginning of backup to TiKV-CDC [create changefeed](../cdc) will NOT be deleted by GC. 5 minutes by default.
-- `5m`: Paramater of `gcttl`. Its format is `number + unit`, e.g. `24h` means 24 hours, `60m` means 60 minutes.
+- `5m`: Parameter of `gcttl`. Its format is `number + unit`, e.g. `24h` means 24 hours, `60m` means 60 minutes.
 - `start`, `end`: The backup key range. It's closed left and open right `[start, end)`.
 - `format`: Format of `start` and `end`. Supported formats are `raw`、[`hex`](https://en.wikipedia.org/wiki/Hexadecimal) and [`escaped`](https://en.wikipedia.org/wiki/Escape_character).
 
@@ -101,7 +101,7 @@ Explanations for the above message are as follows:
 - `ranges-failed`: Number of failed ranges.
 - `backup-total-regions`: The tikv regions that backup takes.
 - `total-take`: The backup duration.
-- `backup-ts`: The backup start timestamp, only take effect for API V2 TiKV cluster, which can be used as `start-ts` of `TiKV-CDC` when creating replication tasks. Refer to [Create a replication task](../cdc).
+- `backup-ts`: The backup start timestamp, only takes effect for API V2 TiKV cluster, which can be used as `start-ts` of `TiKV-CDC` when creating replication tasks. Refer to [Create a replication task](../cdc).
 - `total-kv`: Total number of key-value pairs in backup files.
 - `total-kv-size`: Total size of key-value pairs in backup files. Note that this is the original size before compression.
 - `average-speed`: The backup speed, which approximately equals to `total-kv-size` / `total-take`.
@@ -154,12 +154,13 @@ Explanations for the above message are as follows:
 
 ### Data Verification of Backup & Restore
 
-TiKV-BR can do checksum between TiKV cluster and backup files after backup or restoration finish with the config `--checksum=true`. Checksum is using the [checksum](../../../develop/rawkv/checksum) interface in TiKV [client-go](https://github.com/tikv/client-go), which send checksum request to all TiKV regions to calculate the checksum of all **VALID** data. Then compare to the checksum value of backup files which is calculated during backup process.
 
-Please note that if data is stored in TiKV with [TTL](../ttl), and expiration happens during backup or restore, the persisted checksum in backup files must be different from the checksum of TiKV cluster. So checksum should **NOT** be enabled in this scenario. To verify correctness of backup and restoration in this scenario, you can perform a full comparison for all existing non-expired data between backup cluster and restore cluster by using [scan](../../../develop/rawkv/scan) interface..
+TiKV-BR can do checksum between TiKV cluster and backup files after backup or restoration finishes with the config `--checksum=true`. Checksum is using the [checksum](../../../develop/rawkv/checksum) interface in TiKV [client-go](https://github.com/tikv/client-go), which send checksum request to all TiKV regions to calculate the checksum of all **VALID** data. Then compare the checksum value of backup files which is calculated during the backup process.
+
+Please note that if data is stored in TiKV with [TTL](../ttl), and expiration happens during backup or restore, the persisted checksum in backup files must be different from the checksum of TiKV cluster. So checksum should **NOT** be enabled in this scenario. To verify the correctness of backup and restoration in this scenario, you can perform a full comparison for all existing non-expired data between backup cluster and restore cluster by using [scan](../../../develop/rawkv/scan) interface.
 
 ### Security During Backup & Restoration
 
-TiKV-BR support TLS if [TLS config](https://docs.pingcap.com/tidb/dev/enable-tls-between-components) in TiKV cluster is enabled.
+TiKV-BR supports TLS if [TLS config](https://docs.pingcap.com/tidb/dev/enable-tls-between-components) in TiKV cluster is enabled.
 
 Please specify the client certification with config `--ca`, `--cert` and `--key`.
