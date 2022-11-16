@@ -4,7 +4,7 @@ description: Learn how to use RawKV's Checksum API.
 menu:
     "dev":
         parent: RawKV-dev
-        weight: 2
+        weight: 5
         identifier: Checksum-dev
 ---
 
@@ -12,19 +12,19 @@ This document walks you through how to use RawKV's `Checksum` API.
 
 `Checksum` API returns `Crc64Xor`, `TotalKvs` and `TotalBytes` from TiKV cluster.
 - `Crc64Xor`: The [XOR](https://en.wikipedia.org/wiki/Exclusive_or) of every key-value pair's [crc64](https://en.wikipedia.org/wiki/Cyclic_redundancy_check) value.
-- `TotalKVs`: The count of key-value pairs.
+- `TotalKVs`: The number of key-value pairs.
 - `TotalBytes`: The size of key-value pairs in bytes.
 
-_Note: If [API V2](../../../concepts/explore-tikv-features/api-v2) is enabled in tikv cluster, tikv client will encode prefix for raw key [here](https://github.com/tikv/client-go/blob/9c0835c80eba6cbda6fc4ae460d645de9d36cd05/internal/client/api_version.go#L57), and `Checksum` API also counts prefix into `Crc64Xor` and `TotalBytes`._
+*Note: If [API V2](../../../concepts/explore-tikv-features/api-v2) is enabled, a `4` bytes prefix is encoded with keys, and also calculated by `Checksum` API*
 
 ## Go
 
 ### Checksum with range
 
-Using the `Checksum` API, you can get `{Crc64Xor, TotalKvs, TotalBytes}` from TiKV in a range (from a `startKey` to an `endKey`).
+Using the `Checksum` API, you can get `{Crc64Xor, TotalKvs, TotalBytes}` of a range from `startKey` (inclusive) to `endKey` (exclusive).
 
 {{< info >}}
-`startKey` is inclusive while `endKey` is exclusive.
+To calculate checksum of all keys, specify `startKey` and `endKey` as `[]byte("")`.
 
 {{< /info >}}
 
@@ -48,7 +48,7 @@ func main() {
 	}
 	defer cli.Close()
 
-	fmt.Printf("cluster ID: %d\n", cli.ClusterID())
+	fmt.Printf("Cluster ID: %d\n", cli.ClusterID())
 
 	// put key into tikv
 	cli.Put(ctx, []byte("k1"), []byte("v1"))
@@ -62,8 +62,13 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Printf("Get checksum=, Crc64Xor:%d, TotalKvs:%d, TotalBytes:%d.\n",
+	fmt.Printf("Get checksum, Crc64Xor:%d, TotalKvs:%d, TotalBytes:%d.\n",
 		checksum.Crc64Xor, checksum.TotalKvs, checksum.TotalBytes)
 }
 ```
-If you want to check all the data, the `startKey` and `endKey` can be specified as `[]byte("")`.
+You will get the result as following:
+
+```bash
+Cluster ID: 7166545317297238572
+Get checksum, Crc64Xor:7402990595130313958, TotalKvs:5, TotalBytes:40.
+```
