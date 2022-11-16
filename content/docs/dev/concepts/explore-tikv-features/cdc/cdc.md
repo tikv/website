@@ -10,6 +10,8 @@ menu:
 
 This page introduces what's RawKV Change Data Capture and how to use it.
 
+[中文版]
+
 ## RawKV Change Data Capture
 
 **RawKV Change Data Capture** (*abbr.* **RawKV CDC**) is a feature that providing [Change Data Capture] capability for RawKV, to meet high availability requirements.
@@ -379,3 +381,4 @@ To replicate TiKV cluster with existing data:
 [Backup Raw Data]: ../backup-restore/#backup-raw-data
 [Restore Raw Data]: ../backup-restore/#restore-raw-data
 [Disable GC]: https://docs.pingcap.com/tidb/stable/system-variables#tidb_gc_enable-new-in-v50
+[中文版]: ../cdc-cn
