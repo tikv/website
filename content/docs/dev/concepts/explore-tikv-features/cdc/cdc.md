@@ -83,6 +83,15 @@ tiup cluster scale-out <cluster-name> scale-out.yaml
 
 ### Maintenance
 
+#### Prerequisites
+
+A **tikv-cdc** binary is required for maintenance work. Pre-built binary for Linux x86-64 can be obtained by TiUP as following, or downloaded from [releases](https://github.com/tikv/migration/releases). For other platforms, you have to build from [source](https://github.com/tikv/migration/tree/main/cdc).
+
+```bash
+tiup install tikv-cdc
+tiup tikv-cdc cli --help
+```
+
 #### Manage TiKV-CDC service (`capture`)
 
 ##### Query the `capture` list
