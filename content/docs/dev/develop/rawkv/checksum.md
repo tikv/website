@@ -15,7 +15,7 @@ This document walks you through how to use RawKV's `Checksum` API.
 - `TotalKVs`: The number of key-value pairs.
 - `TotalBytes`: The size of key-value pairs in bytes.
 
-*Note: If [API V2](../../../concepts/explore-tikv-features/api-v2) is enabled, a `4` bytes prefix is encoded with keys, and also calculated by `Checksum` API*
+*Note: If [API V2](../../../concepts/explore-tikv-features/api-v2) is enabled, a `4` bytes prefix is encoded with keys, and also calculated by `Checksum` API*.
 
 ## Go
 
