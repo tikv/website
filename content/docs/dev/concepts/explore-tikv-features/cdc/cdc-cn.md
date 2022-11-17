@@ -363,7 +363,6 @@ tikv-cdc cli processor list --pd=http://192.168.100.122:2379`
 4) 创建 changefeed，并指定 `--start-ts=<backup-ts>`。
 
 
-
 [TiKV API V2]: ../../api-v2
 [v6.2.0]: https://docs.pingcap.com/zh/tidb/v6.2/release-6.2.0
 [TiUP]: https://docs.pingcap.com/zh/tidb/stable/production-deployment-using-tiup
