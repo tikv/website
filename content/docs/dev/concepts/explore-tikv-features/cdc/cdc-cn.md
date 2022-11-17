@@ -15,7 +15,7 @@ menu:
 ### 部署
 
 {{< info >}}
-支持 RawKV CDC 的最小 TiKV 版本为 [v6.2.0](https://docs.pingcap.com/zh/tidb/v6.2/release-6.2.0)，并且需要打开 [TiKV API V2](../../api-v2)
+支持 RawKV CDC 的最小 TiKV 版本为 [v6.2.0](https://docs.pingcap.com/zh/tidb/v6.2/release-6.2.0)，并打开 [TiKV API V2](../../api-v2)
 {{< /info >}}
 
 #### 使用 TiUP 部署
