@@ -50,7 +50,7 @@ tiup cluster scale-out <cluster-name> scale-out.yaml
 * `advertise-addr`：TiKV-CDC 供客户端访问的外部开放地址。如果未设置，默认与 `addr` 相同。
 * `pd`：TiKV-CDC 监听的 PD 节点地址，多个地址用英文逗号（`,`）分隔。
 * `config`：可选项，指定 TiKV-CDC 使用的配置文件路径。
-* `data-dir`：可选项，指定 TiKV-CDC 存储运行时数据的目录，主要用于外部排序。建议确保该目录所在设备的可用空间大于等于 500 GiB。默认为 /tmp/cdc_data。
+* `data-dir`：可选项，指定 TiKV-CDC 存储运行时数据的目录，主要用于外部排序。建议确保该目录所在设备的可用空间大于等于 500 GiB。
 * `gc-ttl`：可选项，TiKV-CDC 在 PD 设置服务级别 GC safepoint 的 TTL (Time To Live) 时长。同时也是 TiKV-CDC 同步任务暂停的最大时长。单位为秒，默认值为 86400，即 24 小时。注意：TiKV-CDC 同步任务的暂停会影响集群 GC safepoint 的推进。`gc-ttl` 越大，同步任务可以暂停的时间越长，但同时需要保留更多的过期数据、并占用更多的存储空间。反之亦然。
 * `log-file`：可选项，TiKV-CDC 进程运行时日志的输出路径，未设置时默认为标准输出 (stdout)。
 * `log-level`：可选项，TiKV-CDC 进程运行时的日志路径，默认为 info。
@@ -126,7 +126,7 @@ Info: {"sink-uri":"tikv://192.168.100.61:2379","opts":{},"create-time":"2022-07-
 
 在以上命令和结果中：
 
-* `--changefeed-id`：同步任务的 ID，格式需要符合正则表达式 ^[a-zA-Z0-9]+(\-[a-zA-Z0-9]+)*$。如果不指定该 ID，TiKV-CDC 会自动生成一个 UUID（version 4 格式）作为 ID。
+* `--changefeed-id`：同步任务的 ID，格式需要符合正则表达式 `^[a-zA-Z0-9]+(\-[a-zA-Z0-9]+)*$`。如果不指定该 ID，TiKV-CDC 会自动生成一个 UUID（version 4 格式）作为 ID。
 
 * `--sink-uri`：同步任务下游的地址，需要按照以下格式进行配置。目前 scheme 仅支持 `tikv`。此外，如果 URI 中包含特殊字符，需要以 URL 编码对特殊字符进行处理。
 
@@ -348,15 +348,18 @@ tikv-cdc cli processor list --pd=http://192.168.100.122:2379`
 
 不建议使用 TiKV-CDC 直接同步存量数据，原因包括：
 
-- TiKV 集群垃圾回收的生命期（life time）较短（默认为 `10` 分钟），因此在大部分情况下，直接进行同步是不可行的。Changefeed 的 `start-ts` 不可小于 **GC Safe Point**。
+- TiKV 集群垃圾回收的生命期（life time）较短（默认为 10 分钟），因此在大部分情况下，直接进行同步是不可行的。Changefeed 的 `start-ts` 不可小于 **GC Safe Point**。
 - 如果存量数据较大，通过 TiKV-CDC 同步较为低效，因为所有的存量数据都需要首先拉取并暂存在 TiKV-CDC 中，然后按时间戳大小排序，才能最后写入下游集群。相比之下，TiKV-BR 可以充分利用整个 TiKV 集群的资源，因为在备份和恢复的过程中，每个 region 直接向共享存储导出或者导入数据，并且不需要排序。
 
 同步存量数据的步骤：
 
 1) 通过 TiKV-BR 备份上游集群数据，并指定足够长的 `--gcttl` 参数。参考 [Backup Raw Data]。
-> 注意：`gcttl` 需要包括数据备份时长、数据恢复时长、以及其他准备工作的时长。如果无法预计这些时长，可以临时停止 GC（见 [tidb_gc_enable]），并在 changefeed 启动后恢复。
+> 注意：`--gcttl` 需要包括数据备份时长、数据恢复时长、以及其他准备工作的时长。如果无法预计这些时长，可以临时停止 GC（`SET GLOBAL tidb_gc_enable = "OFF";`，见 [tidb_gc_enable]），并在 changefeed 启动后恢复（`SET GLOBAL tidb_gc_enable = "ON";`）。
+
 2) 记录步骤 1 备份结果中的 `backup-ts`。
+
 3) 将备份数据恢复到下游集群。参考 [Restore Raw Data]。
+
 4) 创建 changefeed，并指定 `--start-ts=<backup-ts>`。
 
 
