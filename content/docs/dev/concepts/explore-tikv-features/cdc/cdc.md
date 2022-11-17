@@ -18,7 +18,9 @@ This page introduces what's RawKV Change Data Capture and how to use it.
 
 By RawKV CDC, you can build a storage system with **Cross Cluster Replication**, to implement financial-level disaster recovery.
 
-To use RawKV CDC, you need to enable [TiKV API V2] and deploy a **TiKV-CDC** cluster. The minimal required version of TiKV is [v6.2.0].
+{{< info >}}
+To use RawKV CDC, you need to enable [TiKV API V2](../../api-v2) and deploy a **TiKV-CDC** cluster. The minimal required version of TiKV is [v6.2.0](https://docs.pingcap.com/tidb/v6.2/release-6.2.0).
+{{< /info >}}
 
 {{< figure
     src="/img/docs/rawkv-cdc.png"
@@ -42,7 +44,9 @@ It forks from [TiCDC](https://github.com/pingcap/tiflow/blob/master/README_TiCDC
 
 #### Deploy by TiUP
 
-_Note: [TiUP] >= `v1.11.0` is required._
+{{< info >}}
+[TiUP](https://tiup.io) >= v1.11.0 is required.
+{{< /info >}}
 
 ##### Deploy a new TiDB/TiKV cluster including TiKV-CDC
 
@@ -52,10 +56,10 @@ When you deploy a new TiDB/TiKV cluster using TiUP, you can also deploy TiKV-CDC
 
 You can also use TiUP to add the TiKV-CDC component to an existing TiDB/TiKV cluster. Take the following procedures:
 
-1. Make sure that the current TiDB/TiKV version >= `6.2.0` and [TiKV API V2] is enabled.
+1. Make sure that the current TiDB/TiKV version >= 6.2.0 and [TiKV API V2] is enabled.
 2. Prepare a scale-out configuration file, refer to [template](https://github.com/tikv/migration/blob/main/cdc/deployments/tikv-cdc/config-templates/scale-out.example.yaml).
 3. Scale out by `tiup cluster scale-out`. Also refer to [Scale a TiDB Cluster Using TiUP](https://docs.pingcap.com/tidb/stable/scale-tidb-using-tiup).
-```
+```bash
 tiup cluster scale-out <cluster-name> scale-out.yaml
 ```
 
@@ -93,10 +97,10 @@ tiup tikv-cdc cli --help
 #### Manage TiKV-CDC service (`capture`)
 
 ##### Query the `capture` list
-```
+```bash
 tikv-cdc cli capture list --pd=http://192.168.100.122:2379
 ```
-```
+```bash
 [
   {
     "id": "07684765-52df-42a0-8dd1-a4e9084bb7c1",
@@ -123,7 +127,7 @@ In the result above:
 * `address`: The address to access to.
 
 If TLS is required:
-```
+```bash
 tikv-cdc cli capture list --pd=http://192.168.100.122:2379 --ca=$TLS_DIR/ca.pem --cert=$TLS_DIR/client.pem --key=$TLS_DIR/client-key.pem
 ```
 
@@ -135,10 +139,10 @@ In the command above:
 #### Manage Replication Tasks (`changefeed`)
 
 ##### Create a replication task
-```
+```bash
 tikv-cdc cli changefeed create --pd=http://192.168.100.122:2379 --sink-uri="tikv://192.168.100.61:2379/" --changefeed-id="rawkv-replication-task" --start-ts=434716089136185435
 ```
-```
+```bash
 Create changefeed successfully!
 ID: rawkv-replication-task
 Info: {"sink-uri":"tikv://192.168.100.61:2379","opts":{},"create-time":"2022-07-20T15:35:47.860947953+08:00","start-ts":434714063103852547,"target-ts":0,"admin-job-type":0,"sort-engine":"unified","sort-dir":"","scheduler":{"type":"keyspan-number","polling-time":-1},"state":"normal","history":null,"error":null}
@@ -156,10 +160,12 @@ In the command and result above:
 
 * `--start-ts`: Specifies the starting TSO of the changefeed. TiKV-CDC will replicate RawKV entries starting from this TSO. The default value is the current time.
 
-> Refer to [How to replicate TiKV cluster with existing data](#how-to-replicate-tikv-cluster-with-existing-data) if the replication is deployed on a existing cluster.
+{{< info >}}
+Refer to [How to replicate TiKV cluster with existing data](#how-to-replicate-tikv-cluster-with-existing-data) if the replication is deployed on a existing cluster.
+{{< /info >}}
 
 ##### Configure sink URI with `tikv`
-```
+```bash
 --sink-uri="tikv://192.168.100.61:2379/"
 ```
 | Parameter/Parameter Value | Description                                                                    |
@@ -167,7 +173,7 @@ In the command and result above:
 | 192.168.100.61:2379       | The endpoints of the downstream PD. Multiple addresses are separated by comma. |
 
 If TLS is required:
-```
+```bash
 --sink-uri="tikv://192.168.100.61:2379/?ca-path=$TLS_DIR/ca.pem&cert-path=$TLS_DIR/client.pem&key-path=$TLS_DIR/client-key.pem"
 ```
 | Parameter/Parameter Value | Description                                                                    |
@@ -178,10 +184,10 @@ If TLS is required:
 | key-path                  | The path of the private key file in PEM format.                                |
 
 ##### Query the replication task list
-```
+```bash
 tikv-cdc cli changefeed list --pd=http://192.168.100.122:2379
 ```
-```
+```bash
 [
   {
     "id": "rawkv-replication-task",
@@ -206,10 +212,10 @@ In the result above:
 
 
 ##### Query a specific replication task
-```
+```bash
 tikv-cdc cli changefeed query -s --changefeed-id=rawkv-replication-task --pd=http://192.168.100.122:2379
 ```
-```
+```bash
 {
  "state": "normal",
  "tso": 434716089136185435,
@@ -227,10 +233,10 @@ In the command and result above:
 * `error` records whether an error has occurred in the current changefeed.
 
 
-```
+```bash
 tikv-cdc cli changefeed query --changefeed-id=rawkv-replication-task --pd=http://192.168.100.122:2379
 ```
-```
+```bash
 {
   "info": {
     "sink-uri": "tikv://192.168.100.61:2379/",
@@ -294,11 +300,11 @@ In the result above:
 
 
 ##### Pause a replication task
-```
+```bash
 tikv-cdc cli changefeed pause --changefeed-id=rawkv-replication-task --pd=http://192.168.100.122:2379
 tikv-cdc cli changefeed list --pd=http://192.168.100.122:2379
 ```
-```
+```bash
 [
   {
     "id": "rawkv-replication-task",
@@ -318,11 +324,11 @@ In the command above:
 
 
 ##### Resume a replication task
-```
+```bash
 tikv-cdc cli changefeed resume --changefeed-id=rawkv-replication-task --pd=http://192.168.100.122:2379
 tikv-cdc cli changefeed list --pd=http://192.168.100.122:2379
 ```
-```
+```bash
 [
   {
     "id": "rawkv-replication-task",
@@ -337,19 +343,19 @@ tikv-cdc cli changefeed list --pd=http://192.168.100.122:2379
 ```
 
 ##### Remove a replication task
-```
+```bash
 tikv-cdc cli changefeed remove --changefeed-id=rawkv-replication-task --pd=http://192.168.100.122:2379
 tikv-cdc cli changefeed list --pd=http://192.168.100.122:2379
 ```
-```
+```bash
 []
 ```
 
 #### Query processing units of replication sub-tasks (processor)
-```
+```bash
 tikv-cdc cli processor list --pd=http://192.168.100.122:2379`
 ```
-```
+```bash
 [
   {
     "changefeed_id": "rawkv-replication-task",
@@ -366,15 +372,18 @@ Use [TiKV-BR] to migrate the existing data to downstream cluster (network shared
 
 We don't recommend replicating existing data by TiKV-CDC because:
 
-- First, as life time of garbage collection is short (defaults to `10` minutes), in most circumstance it's not applicable to perform the replication. You can not create a changefeed with `start-ts` earlier than **GC Safe Point**.
+- First, as life time of garbage collection is short (defaults to 10 minutes), in most circumstance it's not applicable to perform the replication. You can not create a changefeed with `start-ts` earlier than **GC Safe Point**.
 - Second, if there are mass existing data, replication by TiKV-CDC is inefficiency, as all existing data must be gathered, hold, and sorted in TiKV-CDC, before finally write to downstream. By contrast, TiKV-BR can utilize the power of the whole cluster, as all regions are directly exported to and imported from the shared storage.
 
 To replicate TiKV cluster with existing data:
 
 1) Backup upstream cluster by TiKV-BR, with a long enough `--gcttl`. See [Backup Raw Data] for more details.
-> NOTE: value of `gcttl` should include duration of backup, restoration, and other preparation work. If you are not sure about the value of `gcttl`, you can [disable GC] temporarily, and enable it after changefeed has started.
+> NOTE: value of `--gcttl` should include duration of backup, restoration, and other preparation work. If you are not sure about the value of `--gcttl`, you can disable GC temporarily (`SET GLOBAL tidb_gc_enable = "OFF";`, see [tidb_gc_enable]), and enable it after changefeed has started (`SET GLOBAL tidb_gc_enable = "ON";`).
+
 2) Record `backup-ts` from backup result in *Step 1*.
+
 3) Restore to downstream cluster. Refer to [Restore Raw Data].
+
 4) Create changefeed with `--start-ts=<backup-ts>`.
 
 
@@ -387,5 +396,5 @@ To replicate TiKV cluster with existing data:
 [S3]: https://aws.amazon.com/s3/
 [Backup Raw Data]: ../../backup-restore/#backup-raw-data
 [Restore Raw Data]: ../../backup-restore/#restore-raw-data
-[Disable GC]: https://docs.pingcap.com/tidb/stable/system-variables#tidb_gc_enable-new-in-v50
+[tidb_gc_enable]: https://docs.pingcap.com/tidb/stable/system-variables#tidb_gc_enable-new-in-v50
 [中文使用手册]: ../cdc-cn
