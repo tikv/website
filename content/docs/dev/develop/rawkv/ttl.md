@@ -4,7 +4,7 @@ description: How to use TTL via RawKV API.
 menu:
     "dev":
         parent: RawKV-dev
-        weight: 4
+        weight: 3
         identifier: TTL-dev
 ---
 

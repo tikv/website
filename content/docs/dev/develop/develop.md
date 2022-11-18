@@ -29,3 +29,4 @@ Learn how to use [RawKV API](../rawkv/introduction/):
 - [Scan](../rawkv/scan)
 - [Time to Live (TTL)](../rawkv/ttl)
 - [Compare And Swap (CAS)](../rawkv/cas)
+- [Checksum](../rawkv/checksum)

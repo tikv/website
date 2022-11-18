@@ -4,7 +4,7 @@ description: How to use RawKV's CAS API
 menu:
     "dev":
         parent: RawKV-dev
-        weight: 3
+        weight: 4
         identifier: CAS-dev
 ---
 
