@@ -154,9 +154,10 @@ Explanations for the above message are as follows:
 
 ### Data Verification of Backup & Restore
 
-TiKV-BR can do checksum between TiKV cluster and backup files after backup or restoration finishes with the config `--checksum=true`. Checksum is using the [checksum](https://github.com/tikv/client-go/blob/ffaaf7131a8df6ab4e858bf27e39cd7445cf7929/rawkv/rawkv.go#L584) interface in TiKV [client-go](https://github.com/tikv/client-go), which send checksum request to all TiKV regions to calculate the checksum of all **VALID** data. Then compare the checksum value of backup files which is calculated during the backup process.
 
-Please note that if data is stored in TiKV with [TTL](../ttl), and expiration happens during backup or restore, the persisted checksum in backup files must be different from the checksum of TiKV cluster. So checksum should **NOT** be enabled in this scenario. To verify the correctness of backup and restoration in this scenario, you can perform a full comparison for all existing non-expired data between backup cluster and restore cluster by using [scan](../../../develop/rawkv/scan) interface..
+TiKV-BR can do checksum between TiKV cluster and backup files after backup or restoration finishes with the config `--checksum=true`. Checksum is using the [checksum](../../../develop/rawkv/checksum) interface in TiKV [client-go](https://github.com/tikv/client-go), which send checksum request to all TiKV regions to calculate the checksum of all **VALID** data. Then compare the checksum value of backup files which is calculated during the backup process.
+
+Please note that if data is stored in TiKV with [TTL](../ttl), and expiration happens during backup or restore, the persisted checksum in backup files must be different from the checksum of TiKV cluster. So checksum should **NOT** be enabled in this scenario. To verify the correctness of backup and restoration in this scenario, you can perform a full comparison for all existing non-expired data between backup cluster and restore cluster by using [scan](../../../develop/rawkv/scan) interface.
 
 ### Security During Backup & Restoration
 
