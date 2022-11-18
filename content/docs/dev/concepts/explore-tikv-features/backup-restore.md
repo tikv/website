@@ -21,7 +21,7 @@ menu:
 
 
 ### Recommended Deployment Configuration
-- In production environments, deploy `TiKV-BR` on a node with at least 8 cores CPU and 16 GB memory. Select an appropriate OS version by following [Linux OS version requirements](https://docs.pingcap.com/tidb/dev/hardware-and-software-requirements#linux-os-version-requirements).
+- In production environments, deploy `TiKV-BR` on a node with at least 4 cores CPU and 8 GB memory. Select an appropriate OS version by following [Linux OS version requirements](https://docs.pingcap.com/tidb/dev/hardware-and-software-requirements#linux-os-version-requirements).
 
 - Save backup data to Amazon S3 or other shared storage, for example mounting a NFS on all `TiKV-BR` and `TiKV` nodes.
 
@@ -176,12 +176,12 @@ The backup and restoration are both distributed. So the backup and restoration p
 |:-:|:-:|:-:|
 |Max storage size|50T|50T|
 |Backup speed|40MB/s per TiKV node|40MB/s per TiKV node|
-|Restore speed|70MB/s per TiKV node|70MB/s per TiKV node|
+|Restoration speed|70MB/s per TiKV node|70MB/s per TiKV node|
 |Performance impact|20% on QPS/Latency|20% on QPS/Latency|
 
 #### Performance tuning
 
-If you want to reduce the impact of backup tasks on the cluster, you can enable the [`auto-tune`](https://docs.pingcap.com/zh/tidb/stable/tikv-configuration-file#enable-auto-tune-%E4%BB%8E-v54-%E7%89%88%E6%9C%AC%E5%BC%80%E5%A7%8B%E5%BC%95%E5%85%A5) feature. With this feature enabled, BR performs backup tasks as fast as possible without excessively affecting the cluster.
+If you want to reduce the impact of backup tasks on the cluster, you can enable the [`auto-tune`](https://docs.pingcap.com/zh/tidb/stable/tikv-configuration-file#enable-auto-tune-%E4%BB%8E-v54-%E7%89%88%E6%9C%AC%E5%BC%80%E5%A7%8B%E5%BC%95%E5%85%A5) feature. With this feature enabled, TiKV-BR performs backup tasks as fast as possible without excessively affecting the cluster.
 
 Alternatively, you can limit the backup speed by using the TiKV configuration item [`backup.num-threads`](https://docs.pingcap.com/zh/tidb/stable/tikv-configuration-file#num-threads-1) or using the parameter `--ratelimit`.
 
