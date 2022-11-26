@@ -21,7 +21,7 @@ menu:
 
 
 ### Recommended Deployment Configuration
-- In production environments, deploy `TiKV-BR` on a node with at least 8 cores CPU and 16 GB memory. Select an appropriate OS version by following [Linux OS version requirements](https://docs.pingcap.com/tidb/dev/hardware-and-software-requirements#linux-os-version-requirements).
+- In production environments, deploy `TiKV-BR` on a node with at least 4 cores CPU and 8 GB memory. Select an appropriate OS version by following [Linux OS version requirements](https://docs.pingcap.com/tidb/dev/hardware-and-software-requirements#linux-os-version-requirements).
 
 - Save backup data to Amazon S3 or other shared storage, for example mounting a NFS on all `TiKV-BR` and `TiKV` nodes.
 
@@ -164,3 +164,23 @@ Please note that if data is stored in TiKV with [TTL](../ttl), and expiration ha
 TiKV-BR supports TLS if [TLS config](https://docs.pingcap.com/tidb/dev/enable-tls-between-components) in TiKV cluster is enabled.
 
 Please specify the client certification with config `--ca`, `--cert` and `--key`.
+
+### Performance
+
+The backup and restoration are both distributed, so performance can increase linearly with the number of TiKV nodes, until the storage or network reach the limits. The following are some key metrics of TiKV-BR backup and restoration benchmark for reference.
+- TiKV node: 4 cores CPU, 8 GB memory, v6.4.0
+- PD node: 4 cores CPU, 8 GB memory, v6.4.0
+- TiKV-BR node: 4 cores CPU, 8 GB memory, v1.1.0
+- Data volume: 50 TB
+
+|Metric|TiKV API V1|TiKV API V2|
+|:-:|:-:|:-:|
+|Backup speed|40MB/s per TiKV node|40MB/s per TiKV node|
+|Restoration speed|70MB/s per TiKV node|70MB/s per TiKV node|
+|Performance impact|20% on QPS/Latency|20% on QPS/Latency|
+
+#### Performance tuning
+
+If you want to reduce the business impact of backup tasks, you can enable the [`auto-tune`](https://docs.pingcap.com/tidb/stable/tikv-configuration-file#enable-auto-tune-new-in-v540) feature. With this feature enabled, TiKV-BR performs backup tasks as fast as possible without excessively affecting the cluster. See [BR Auto-Tune](https://docs.pingcap.com/tidb/dev/br-auto-tune) for details.
+
+Alternatively, you can limit the backup speed by using the parameter `--ratelimit` of tikv-br.
