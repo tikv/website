@@ -164,4 +164,4 @@ TiKV-BR 的备份和恢复都是分布式的，因此在存储和网络没有达
 [TTL]: ../../ttl
 [scan]: ../../../../develop/rawkv/scan
 [TLS 配置]: https://docs.pingcap.com/zh/tidb/dev/enable-tls-between-components
-[自动调节]: https://docs.pingcap.com/zh/tidb/stable/tikv-configuration-file#enable-auto-tune-%E4%BB%8E-v54-%E7%89%88%E6%9C%AC%E5%BC%80%E5%A7%8B%E5%BC%95%E5%85%A5
+[自动调节]: https://docs.pingcap.com/zh/tidb/dev/br-auto-tune
