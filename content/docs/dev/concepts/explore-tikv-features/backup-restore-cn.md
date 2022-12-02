@@ -20,6 +20,19 @@ TiKV-BR 将备份或恢复操作命令下发到各个 TiKV 节点。TiKV 收到�
     caption="TiKV-BR 工作原理"
     number="1" >}}
 
+### 部署
+
+#### 使用 TiUP 部署
+
+`tikv-br` 是 [TiUP] 的一个组件，你可以使用 [TiUP] 来部署 `tikv-br`:
+```bash
+tiup tikv-br:v1.1.0 <命令> <子命令> 
+```
+如果是第一次使用，TiUP 会自动下载和安装 `tikv-br` 组件。
+
+
+#### 手工部署
+你可以从 [GitHub] 上下载 `tikv-br` 的最新发行版。 
 
 ### 推荐部署配置
 - 生产环境中，推荐 TiKV-BR 运行在（4 核+/8 GB+）的节点上。操作系统版本要求可参考 [操作系统及平台的要求]。
@@ -37,7 +50,7 @@ TiKV-BR 将备份或恢复操作命令下发到各个 TiKV 节点。TiKV 收到�
 - TiKV-BR 备份最好串行执行。不同备份任务并行会导致备份性能降低，同时也会影响在线业务。
 - TiKV-BR 恢复最好串行执行。不同恢复任务并行会导致 Region 冲突增多，恢复的性能降低。
 - 可以通过指定 `--checksum=true`，在备份、恢复完成后进行一轮数据校验。数据校验将分别计算备份数据与 TiKV 集群中数据的 checksum，并对比二者是否相同。请注意，如果需要进行数据校验，请确保在备份或恢复的全过程，TiKV 集群没有数据变更和 TTL 过期。
-- TiKV-BR 可用于实现 [`api-version`] 从 V1 到 V2 的集群数据迁移。通过指定 `--dst-api-version V2` 将 `api-version=1` 的 TiKV 集群备份为 V2 格式，然后将备份文件恢复到新的 `api-version=2` TiKV 集群中。
+- TiKV-BR 可用于实现 [api-version] 从 V1 到 V2 的集群数据迁移。通过指定 `--dst-api-version V2` 将 `api-version=1` 的 TiKV 集群备份为 V2 格式，然后将备份文件恢复到新的 `api-version=2` TiKV 集群中。
 
 ### TiKV-BR 命令行描述
 一条 `tikv-br` 命令是由子命令、选项和参数组成的。子命令即不带 `-` 或者 `--` 的字符。选项即以 `-` 或者 `--` 开头的字符。参数即子命令或选项字符后紧跟的、并传递给命令和选项的字符。
@@ -61,15 +74,15 @@ tikv-br backup raw \
 - `backup`：`tikv-br` 的子命令。
 - `raw`：`backup` 的子命令。
 - `-s` 或 `--storage`：备份保存的路径。
-- `"s3://backup-data/2022-09-16/"`：`--storage` 的参数，保存的路径为各个 TiKV 节点本地磁盘的 s3 的 `/backup-data/2022-09-16/` 目录。
+- `"s3://backup-data/2022-09-16/"`：`--storage` 的参数，保存的路径为 S3 的 `/backup-data/2022-09-16/` 目录。
 - `--pd`：`PD` 服务地址。
 - `"${PDIP}:2379"`：`--pd` 的参数。
-- `--dst-api-version`: 指定备份文件的 `api-version`，请见 [tikv-server 配置文件]。
+- `--dst-api-version`: 指定备份文件的 `api-version`，请见 [TiKV API v2]。
 - `v2`: `--dst-api-version` 的参数，可选参数为 `v1`，`v1ttl`，`v2`(不区分大小写)，如果不指定 `dst-api-version` 参数，则备份文件的 `api-version` 与指定 `--pd` 所属的 TiKV 集群 `api-version` 相同。  
 - `gcttl`: GC 暂停时长。可用于确保从存量数据备份到 [创建 TiKV-CDC 同步任务] 的这段时间内，增量数据不会被 GC 清除。默认为 5 分钟。
 - `5m`: `gcttl` 的参数，数据格式为`数字 + 时间单位`, 例如 `24h` 表示 24 小时，`60m` 表示 60 分钟。
 - `start`, `end`: 用于指定需要备份的数据区间，为左闭右开区间 `[start, end)`。默认为`["", "")`， 即全部数据。
-- `format`：`start` 和 `end` 的格式，支持 `raw`、[`hex`] 和 [`escaped`] 三种格式。
+- `format`：`start` 和 `end` 的格式，支持 `raw`、[hex] 和 [escaped] 三种格式。
 
 备份期间会有进度条在终端中显示，当进度条前进到 100% 时，说明备份已完成。
 
@@ -124,23 +137,23 @@ tikv-br restore raw \
 
 TiKV-BR 可以在 TiKV 集群备份和恢复操作完成后执行 `checksum` 来确保备份文件的完整性和正确性。 checksum 可以通过 `--checksum` 来开启。
 
-checksum 开启时，备份或恢复操作完成后，会使用 [client-go] 的 [checksum] 接口来计算 TiKV 集群中有效数据的 checksum 结果，并与备份文件保存的 checksum 结果进行对比。
+Checksum 开启时，备份或恢复操作完成后，会使用 [client-go] 的 [checksum] 接口来计算 TiKV 集群中有效数据的 checksum 结果，并与备份文件保存的 checksum 结果进行对比。
 
-在某些场景中，TiKV 集群中的数据具有 [TTL] 属性，如果在备份和恢复过程中，数据的 TTL 过期，此时 TiKV 集群的 checksum 结果跟备份文件的 checksum 会不相同，因此不建议在此场景中开启 `checksum`。客户可以选择使用 [client-go] 的 [scan] 接口，在恢复操作完成后扫描出需要校验的数据，来确保备份文件的正确性。
+注意，当 TiKV 集群启用了 [TTL]，如果在备份或恢复过程中出现数据 TTL 过期，此时 TiKV 集群的 checksum 结果跟备份文件的 checksum 会不相同，因此无法在此场景中使用 `checksum`。
 
 ### 备份恢复操作的安全性
 
-TiKV-BR 支持在开启了 [TLS 配置] 的 TiKV 集群中执行备份和恢复操作，用户可以通过设置 `--ca`， `--cert` 和 `--key` 参数来指定客户端证书。
+TiKV-BR 支持在开启了 [TLS 配置] 的 TiKV 集群中执行备份和恢复操作，你可以通过设置 `--ca`， `--cert` 和 `--key` 参数来指定客户端证书。
 
 ### 性能
 
-TiKV-BR 的备份和恢复都是分布式的，因此在存储和网络没有达到瓶颈的时候，性能可以随着 TiKV 节点的增长而增长。下面提供了 TiKV-BR 的关键性能指标供参考。
+TiKV-BR 的备份和恢复都是分布式的，在存储和网络没有达到瓶颈的时候，性能可以随着 TiKV 节点数量线性提升。以下是 TiKV-BR 的性能测试指标，以供参考。
 - TiKV 节点：4 核 CPU， 8G 内存，v6.4.0
 - PD 节点：4 核 CPU， 8G 内存，v6.4.0
 - TiKV-BR 节点：4 核 CPU， 8G 内存，v1.1.0
 - 存储容量： 50TB
 
-|指标|TiKV API V1|TiKV API V2|
+|指标|TiKV API V1|TiKV API v2|
 |:-:|:-:|:-:|
 |备份速度|每 TiKV 节点 40MB/s|每 TiKV 节点 40MB/s|
 |恢复速度|每 TiKV 节点 70MB/s|每 TiKV 节点 70MB/s|
@@ -148,20 +161,22 @@ TiKV-BR 的备份和恢复都是分布式的，因此在存储和网络没有达
 
 #### 性能调优
 
-如果你希望减少备份对集群的影响，你可以开启[自动调节]功能。开启该功能后，备份功能会在不过度影响集群的前提下，以最快的速度进行数据备份。  
-或者，你也可以使用参数 `--ratelimit` 进行备份限速。
+如果你希望减少备份对集群的影响，你可以开启 [auto-tune] 功能。开启该功能后，备份功能会在不过度影响集群正常业务的前提下，以最快的速度进行数据备份。详见[自动调节]。  
+或者你也可以使用参数 `--ratelimit` 进行备份限速。
 
 
 [TiKV Backup & Restore (TiKV-BR)]: https://github.com/tikv/migration/tree/main/br
+[TiUP]: https://tiup.io
+[GitHub]: https://github.com/tikv/migration/releases
 [操作系统及平台的要求]: https://docs.pingcap.com/zh/tidb/dev/hardware-and-software-requirements
-[`api-version`]: https://docs.pingcap.com/zh/tidb/stable/tikv-configuration-file#api-version-%E4%BB%8E-v610-%E7%89%88%E6%9C%AC%E5%BC%80%E5%A7%8B%E5%BC%95%E5%85%A5
-[tikv-server 配置文件]: https://docs.pingcap.com/zh/tidb/stable/tikv-configuration-file#api-version-%E4%BB%8E-v610-%E7%89%88%E6%9C%AC%E5%BC%80%E5%A7%8B%E5%BC%95%E5%85%A5
-[创建 TiKV-CDC 同步任务]: ../../cdc/cdc-cn/#%E7%AE%A1%E7%90%86%E5%90%8C%E6%AD%A5%E4%BB%BB%E5%8A%A1-changefeed
-[`hex`]: https://zh.wikipedia.org/wiki/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6
-[`escaped`]: https://zh.wikipedia.org/wiki/%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6
-[checksum]: ../../../../develop/rawkv/checksum
+[api-version]: ../api-v2
+[TiKV API v2]: ../api-v2
+[创建 TiKV-CDC 同步任务]: ../cdc/cdc-cn/#%E7%AE%A1%E7%90%86%E5%90%8C%E6%AD%A5%E4%BB%BB%E5%8A%A1-changefeed
+[hex]: https://zh.wikipedia.org/wiki/%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6
+[escaped]: https://zh.wikipedia.org/wiki/%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6
+[checksum]: ../../../develop/rawkv/checksum
 [client-go]: https://github.com/tikv/client-go
-[TTL]: ../../ttl
-[scan]: ../../../../develop/rawkv/scan
+[TTL]: ../ttl
 [TLS 配置]: https://docs.pingcap.com/zh/tidb/dev/enable-tls-between-components
+[auto-tune]: https://docs.pingcap.com/zh/tidb/stable/tikv-configuration-file#enable-auto-tune-%E4%BB%8E-v54-%E7%89%88%E6%9C%AC%E5%BC%80%E5%A7%8B%E5%BC%95%E5%85%A5
 [自动调节]: https://docs.pingcap.com/zh/tidb/dev/br-auto-tune
