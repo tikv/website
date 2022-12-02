@@ -34,7 +34,7 @@ If `tikv-br` is not installed before, TiUP will download it automatically.
 
 #### Deploy manually
 
-Please found the latest release and download the binary from [GitHub].  
+Please find the latest release and download the binary from [GitHub].  
 
 ### Recommended Deployment Configuration
 - In production environments, deploy `TiKV-BR` on a node with at least 4 cores CPU and 8 GB memory. Select an appropriate OS version by following [Linux OS version requirements].
