@@ -367,9 +367,9 @@ tikv-cdc cli processor list --pd=http://192.168.100.122:2379`
 [v6.2.0]: https://docs.pingcap.com/zh/tidb/v6.2/release-6.2.0
 [TiUP]: https://docs.pingcap.com/zh/tidb/stable/production-deployment-using-tiup
 [使用 TiUP 扩容缩容 TiDB 集群]: https://docs.pingcap.com/zh/tidb/stable/scale-tidb-using-tiup
-[TiKV-BR]: ../../br/backup-restore
+[TiKV-BR]: ../../backup-restore-cn
 [NFS]: https://en.wikipedia.org/wiki/Network_File_System
 [S3]: https://aws.amazon.com/s3/
-[备份 Raw 模式数据]: ../../br/backup-restore-cn/#备份集群-raw-模式数据
-[恢复 Raw 模式数据]: ../../br/backup-restore-cn/#恢复-raw-模式备份数据
+[备份 Raw 模式数据]: ../../backup-restore-cn/#备份集群-raw-模式数据
+[恢复 Raw 模式数据]: ../../backup-restore-cn/#恢复-raw-模式备份数据
 [tidb_gc_enable]: https://docs.pingcap.com/zh/tidb/stable/system-variables#tidb_gc_enable-%E4%BB%8E-v50-%E7%89%88%E6%9C%AC%E5%BC%80%E5%A7%8B%E5%BC%95%E5%85%A5

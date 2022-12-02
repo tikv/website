@@ -391,10 +391,10 @@ To replicate TiKV cluster with existing data:
 [TiKV API V2]: ../../api-v2
 [v6.2.0]: https://docs.pingcap.com/tidb/v6.2/release-6.2.0
 [TiUP]: https://tiup.io
-[TiKV-BR]: ../../br/backup-restore
+[TiKV-BR]: ../../backup-restore
 [NFS]: https://en.wikipedia.org/wiki/Network_File_System
 [S3]: https://aws.amazon.com/s3/
-[Backup Raw Data]: ../../br/backup-restore/#backup-raw-data
-[Restore Raw Data]: ../../br/backup-restore/#restore-raw-data
+[Backup Raw Data]: ../../backup-restore/#backup-raw-data
+[Restore Raw Data]: ../../backup-restore/#restore-raw-data
 [tidb_gc_enable]: https://docs.pingcap.com/tidb/stable/system-variables#tidb_gc_enable-new-in-v50
 [中文使用手册]: ../cdc-cn
