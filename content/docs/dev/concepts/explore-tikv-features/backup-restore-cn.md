@@ -20,9 +20,9 @@ TiKV-BR 将备份或恢复操作命令下发到各个 TiKV 节点。TiKV 收到�
     caption="TiKV-BR 工作原理"
     number="1" >}}
 
-### 部署
+### 安装
 
-#### 使用 TiUP 部署
+#### 使用 TiUP 安装
 
 `tikv-br` 是 [TiUP] 的一个组件，你可以使用 [TiUP] 来部署 `tikv-br`:
 ```bash
@@ -31,8 +31,8 @@ tiup tikv-br:v1.1.0 <命令> <子命令>
 如果是第一次使用，TiUP 会自动下载和安装 `tikv-br` 组件。
 
 
-#### 手工部署
-你可以从 [GitHub] 上下载 `tikv-br` 的最新发行版。 
+#### 手工安装
+你可以从 [GitHub] 下载 `tikv-br` 的最新发行版。 
 
 ### 推荐部署配置
 - 生产环境中，推荐 TiKV-BR 运行在（4 核+/8 GB+）的节点上。操作系统版本要求可参考 [操作系统及平台的要求]。
@@ -153,7 +153,7 @@ TiKV-BR 的备份和恢复都是分布式的，在存储和网络没有达到瓶
 - TiKV-BR 节点：4 核 CPU， 8G 内存，v1.1.0
 - 存储容量： 50TB
 
-|指标|TiKV API V1|TiKV API v2|
+|指标|TiKV API v1|TiKV API v2|
 |:-:|:-:|:-:|
 |备份速度|每 TiKV 节点 40MB/s|每 TiKV 节点 40MB/s|
 |恢复速度|每 TiKV 节点 70MB/s|每 TiKV 节点 70MB/s|

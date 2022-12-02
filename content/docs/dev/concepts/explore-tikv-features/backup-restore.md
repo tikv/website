@@ -23,16 +23,16 @@ This page introduces what's RawKV BR and how to use it.
     caption="TiKV-BR architecture"
     number="1" >}}
 
-### Deployment
+### Installation
 
-#### Deploy by TiUP
+#### Install with TiUP
 `tikv-br` is a component of [TiUP], so you can easily use `tikv-br` with [TiUP] as following:
 ```bash
 tiup tikv-br:v1.1.0 <command> <subcommand> 
 ```
 If `tikv-br` is not installed before, TiUP will download it automatically.
 
-#### Deploy manually
+#### Install manually
 
 Please find the latest release and download the binary from [GitHub].  
 
@@ -189,7 +189,7 @@ The backup and restoration are both distributed, so performance can increase lin
 - TiKV-BR node: 4 cores CPU, 8 GB memory, v1.1.0
 - Data volume: 50 TB
 
-|Metric|TiKV API V1|TiKV API v2|
+|Metric|TiKV API v1|TiKV API v2|
 |:-:|:-:|:-:|
 |Backup speed|40MB/s per TiKV node|40MB/s per TiKV node|
 |Restoration speed|70MB/s per TiKV node|70MB/s per TiKV node|
