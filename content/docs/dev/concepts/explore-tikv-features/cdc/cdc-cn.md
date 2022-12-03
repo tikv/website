@@ -353,12 +353,12 @@ tikv-cdc cli processor list --pd=http://192.168.100.122:2379`
 
 同步存量数据的步骤：
 
-1) 通过 TiKV-BR 备份上游集群数据，并指定足够长的 `--gcttl` 参数。参考 [Backup Raw Data]。
+1) 通过 TiKV-BR 备份上游集群数据，并指定足够长的 `--gcttl` 参数。参考 [备份 Raw 模式数据]。
 > 注意：`--gcttl` 需要包括数据备份时长、数据恢复时长、以及其他准备工作的时长。如果无法预计这些时长，可以临时停止 GC（`SET GLOBAL tidb_gc_enable = "OFF";`，见 [tidb_gc_enable]），并在 changefeed 启动后恢复（`SET GLOBAL tidb_gc_enable = "ON";`）。
 
 2) 记录步骤 1 备份结果中的 `backup-ts`。
 
-3) 将备份数据恢复到下游集群。参考 [Restore Raw Data]。
+3) 将备份数据恢复到下游集群。参考 [恢复 Raw 模式数据]。
 
 4) 创建 changefeed，并指定 `--start-ts=<backup-ts>`。
 
@@ -367,9 +367,9 @@ tikv-cdc cli processor list --pd=http://192.168.100.122:2379`
 [v6.2.0]: https://docs.pingcap.com/zh/tidb/v6.2/release-6.2.0
 [TiUP]: https://docs.pingcap.com/zh/tidb/stable/production-deployment-using-tiup
 [使用 TiUP 扩容缩容 TiDB 集群]: https://docs.pingcap.com/zh/tidb/stable/scale-tidb-using-tiup
-[TiKV-BR]: ../../backup-restore
+[TiKV-BR]: ../../backup-restore-cn
 [NFS]: https://en.wikipedia.org/wiki/Network_File_System
 [S3]: https://aws.amazon.com/s3/
-[Backup Raw Data]: ../../backup-restore/#backup-raw-data
-[Restore Raw Data]: ../../backup-restore/#restore-raw-data
+[备份 Raw 模式数据]: ../../backup-restore-cn/#%E5%A4%87%E4%BB%BD%E9%9B%86%E7%BE%A4-raw-%E6%A8%A1%E5%BC%8F%E6%95%B0%E6%8D%AE
+[恢复 Raw 模式数据]: ../../backup-restore-cn/#%E6%81%A2%E5%A4%8D-raw-%E6%A8%A1%E5%BC%8F%E5%A4%87%E4%BB%BD%E6%95%B0%E6%8D%AE
 [tidb_gc_enable]: https://docs.pingcap.com/zh/tidb/stable/system-variables#tidb_gc_enable-%E4%BB%8E-v50-%E7%89%88%E6%9C%AC%E5%BC%80%E5%A7%8B%E5%BC%95%E5%85%A5
