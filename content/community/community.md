@@ -27,17 +27,13 @@ In the TiKV community we value open communication and collaboration. Here are ou
 
 - **Report security vulnerabilities**
 
-    To report a security vulnerability, please send an email to [TiKV-security](tikv-security@lists.cncf.io) group.
-
-- **Community monthly meeting**
-
-  The TiKV team meets on the 4th Wednesday of every month (unless otherwise specified) at 07.00 p.m. PST. See [Meeting notes](https://docs.google.com/document/d/1CWUAkBrcm9KPclAu8fWHZzByZ0yhsQdRggnEdqtRMQ8/edit) for details.
+    To report a security vulnerability, please send an email to [TiKV-security](mailto:tikv-security@lists.cncf.io) group.
 
 ## Projects built on TiKV
 
 TiKV is an open-source and vendor-neutral project. It thrives by collaborating with the wider community. Here are are some projects that are built using TiKV:
 
-- [Tidis](https://github.com/yongman/tidis) -  a distributed NoSQL database, providing a Redis protocol API (string, list, hash, set, sorted set)
+- [Tidis](https://github.com/tidb-incubator/tidis) -  a distributed NoSQL database, providing a Redis protocol API (string, list, hash, set, sorted set)
 - [Titan](https://github.com/meitu/titan) - a distributed implementation of Redis compatible layer based on TiKV
 - [Titea](https://github.com/gengmei-tech/titea) - a distributed redis protocol compatible NoSQL Database, providing a Redis protocol, based on TiKV and PD
 - [TiPrometheus](https://github.com/bragfoo/TiPrometheus) - An adapter/gateway for TiKV used to collect monitoring info via Prometheus
@@ -46,4 +42,4 @@ TiKV is an open-source and vendor-neutral project. It thrives by collaborating w
 
 ## Code of Conduct
 
-TiKV follows the [CNCF Code of Conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md).
+TiKV follows the [CNCF Code of Conduct](https://github.com/cncf/foundation/blob/main/code-of-conduct.md).
