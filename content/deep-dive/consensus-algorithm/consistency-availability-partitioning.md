@@ -17,6 +17,6 @@ Traditional RDBMS, like [PostgreSQL](https://www.postgresql.org/), that provide 
 
 In 2012, Daniel Abadi proposed that CAP was not sufficient to describe the trade-offs which occur when choosing the attributes of a distributed system. They described an expanded [PACELC](http://cs-www.cs.yale.edu/homes/dna/papers/abadi-pacelc.pdf) Theorem:
 
-> Availability (**A**) and consistency (**C**) (as per the CAP theorem), but else (**E**), even when the system is running normally in the absence of partitions, one has to choose between latency (**L**) and consistency (**C**).
+> If there is a Partition (**P**), how does the system trade off Availability (**A**) and consistency (**C**) (as per the CAP theorem), else (**E**) when the system is running normally in the absence of partitions, how does the system trade off latency (**L**) and consistency (**C**).
 
 In order to support greater availability of data, most systems will replicate data between multiple peers. The system may also replicate a write ahead log offsite. In order to fulfill these availability guarantees the system must ensure a certain number of replications have occured before confirming an action. **More replication means more consistency but also more latency.**
