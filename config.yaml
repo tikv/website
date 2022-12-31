@@ -34,9 +34,10 @@ params:
     favicon: "favicon.png"
     googleAnalyticsId: "UA-130734531-1"
     versions:
-        latest: "dev"
+        latest: "6.5"
         all:
         - "dev"
+        - "6.5"
         - "6.1"
         - "5.1"
         - "4.0"
