@@ -7,11 +7,11 @@ menu:
         weight: 4
 ---
 
-In 2014, Diego Ongaro and John Ousterhout presented the Raft algorithm. It is explained succinctly in a [paper](https://raft.github.io/raft.pdf) and detailed at length in a [thesis](https://ramcloud.stanford.edu/~ongaro/thesis.pdf).
+In 2014, Diego Ongaro and John Ousterhout presented the Raft algorithm. It is explained succinctly in a [paper](https://raft.github.io/raft.pdf) and detailed at length in a [dissertation](https://github.com/ongardie/dissertation#readme).
 
 Raft defines a strong, single leader and number of followers in a group of peers. The group represents a **replicated state machine**. Only the leader may service client requests. The leader replicates actions to the followers.
 
-Each peer has a **durable write ahead log**. All peers append each action as an entry in the log immediately as they recieve it. When the quorum (the majority) of peers have confirmed that that the entry exists in their log, the leader commits the log, each peer then can apply the action to their state machine.
+Each peer has a **durable write ahead log**. All peers append each action as an entry in the log immediately as they receive it. When the quorum (the majority) of peers have confirmed that that the entry exists in their log, the leader commits the log, each peer then can apply the action to their state machine.
 
 Raft guarantees **strong consistency** by having only one ‘leader’ of the group which services all requests.  All requests are then replicated to a quorum before being acted on, then confirmed with the requester. From the perspective of the cluster, the leader always has an up to date state machine.
 
