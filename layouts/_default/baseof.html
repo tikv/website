@@ -11,7 +11,7 @@
   {{ partial "meta.html" . }}
   {{ partial "twitter-card.html" . }}
   {{ partial "open-graph-tags.html" . }}
-  <title>{{ block "title" . }}{{ site.Title }} | {{ site.Params.description.brief }}{{ end }}</title>
+  <title>{{ block "title" . }}{{ site.Title }} | {{ site.Params.description.brief | plainify }}{{ end }}</title>
   {{ partial "css.html" . }}
 </head>
 
