@@ -9,6 +9,16 @@ menu:
 
 This document lists some significant features and improvements since **TiKV 6.2**.
 
+## [TiKV 6.5.1](https://docs.pingcap.com/tidb/v6.5/release-6.5.1)
+
+### Key new features and improvements
+
+- Support starting TiKV on a CPU with less than 1 core [#13586](https://github.com/tikv/tikv/issues/13586) [#13752](https://github.com/tikv/tikv/issues/13752) [#14017](https://github.com/tikv/tikv/issues/14017) @[andreid-db](https://github.com/andreid-db)
+- Increase the thread limit of the Unified Read Pool (`readpool.unified.max-thread-count`) to 10 times the CPU quota, to better handle high-concurrency queries [#13690](https://github.com/tikv/tikv/issues/13690) @[v01dstar](https://github.com/v01dstar)
+- Change the the default value of `resolved-ts.advance-ts-interval` from `"1s"` to `"20s"`, to reduce cross-region traffic [#14100](https://github.com/tikv/tikv/issues/14100) @[overvenus](https://github.com/overvenus)
+
+
+
 ## [TiKV 6.5.0](https://docs.pingcap.com/tidb/v6.5/release-6.5.0)
 
 ### Key new features and improvements
