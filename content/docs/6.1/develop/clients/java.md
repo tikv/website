@@ -49,20 +49,20 @@ public class App {
     public static void main(String[] args) throws Exception {
         TiConfiguration conf = TiConfiguration.createDefault("127.0.0.1:2379");
         try (TiSession session = TiSession.create(conf)) {
-            // two-phrase write
+            // two-phase write
             long startTS = session.getTimestamp().getVersion();
             try (TwoPhaseCommitter twoPhaseCommitter = new TwoPhaseCommitter(session, startTS)) {
                 BackOffer backOffer = ConcreteBackOffer.newCustomBackOff(1000);
                 byte[] primaryKey = "key1".getBytes("UTF-8");
                 byte[] key2 = "key2".getBytes("UTF-8");
 
-                // first phrase: prewrite
+                // first phase: prewrite
                 twoPhaseCommitter.prewritePrimaryKey(backOffer, primaryKey, "val1".getBytes("UTF-8"));
                 List<BytePairWrapper> pairs = Arrays
                         .asList(new BytePairWrapper(key2, "val2".getBytes("UTF-8")));
                 twoPhaseCommitter.prewriteSecondaryKeys(primaryKey, pairs.iterator(), 1000);
 
-                // second phrase: commit
+                // second phase: commit
                 long commitTS = session.getTimestamp().getVersion();
                 twoPhaseCommitter.commitPrimaryKey(backOffer, primaryKey, commitTS);
                 List<ByteWrapper> keys = Arrays.asList(new ByteWrapper(key2));
