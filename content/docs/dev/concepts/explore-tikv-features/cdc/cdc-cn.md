@@ -116,7 +116,7 @@ tikv-cdc cli capture list --pd=http://192.168.100.122:2379 --ca=$TLS_DIR/ca.pem 
 
 ##### 创建同步任务
 ```bash
-tikv-cdc cli changefeed create --pd=http://192.168.100.122:2379 --sink-uri="tikv://192.168.100.61:2379/" --changefeed-id="rawkv-replication-task"
+tikv-cdc cli changefeed create --pd=http://192.168.100.122:2379 --sink-uri="tikv://192.168.100.61:2379/" --changefeed-id="rawkv-replication-task" --config="changefeed.toml"
 ```
 ```bash
 Create changefeed successfully!
@@ -140,6 +140,8 @@ Info: {"sink-uri":"tikv://192.168.100.61:2379","opts":{},"create-time":"2022-07-
 如果需要将现有集群中的存量数据同步到下游，请参考 [如何同步 TiKV 集群中的存量数据](#如何同步现有-tikv-集群中的存量数据)。
 {{< /info >}}
 
+* `--config`: 指定 changefeed 配置文件。请参考 [changefeed 配置文件](#changefeed-配置文件)。
+
 ##### Sink URI 配置 `tikv`
 ```bash
 --sink-uri="tikv://192.168.100.61:2379/"
@@ -158,6 +160,30 @@ Info: {"sink-uri":"tikv://192.168.100.61:2379","opts":{},"create-time":"2022-07-
 | ca-path                   | CA 证书文件路径，仅支持 PEM 格式。          |
 | cert-path                 | 证书文件路径，仅支持 PEM 格式。             |
 | key-path                  | 私钥文件路径，仅支持 PEM 格式               |
+
+##### Changefeed 配置文件
+
+本部分详细介绍了 changefeed 的配置。
+
+```toml
+# 是否使用过滤器，从 v1.2.0 开始支持。使用规则如下：
+#
+# 1. 当数据匹配过滤器中配置的全部规则时，才会复制到下游。其余数据将被丢弃。
+# 2. 当不需要使用某个规则时，不填写该字段或者配置为空值（""）。
+# 3. 过滤器中的多个规则为“与”关系。
+# 4. 可以通过 "\x" 输入二进制数据，例如："\x00\x01\xff"，表示 0x00, 0x01, 0xff。
+# 5. 正则表达式语法参考：https://github.com/google/re2/wiki/Syntax。
+# 6. 删除操作忽略 value-pattern 规则，只能通过 key-prefix 或 key-pattern 进行过滤。
+[filter]
+# 指定 key 的前缀
+key-prefix = "prefix"
+
+# 指定 key 需要匹配的正则表达式
+key-pattern = "k_[\x00-\xff]"
+
+# 指定 value 需要匹配的正则表达式
+value-pattern = "v_.{8}"
+```
 
 ##### 查询同步任务列表
 ```bash
