@@ -13,6 +13,7 @@ The following table lists adopters deploying TiKV separately without TiDB:
 |[LY.com](https://www.crunchbase.com/organization/ly-com)|Travel|[Chinese](https://www.pingcap.com/cases-cn/user-case-tongcheng/)|
 |[Zhuan Zhuan](https://www.crunchbase.com/organization/zhuan-zhuan)|Online Marketplace| English [#1](https://pingcap.com/case-studies/tidb-in-zhuanzhuan/), [#2](https://pingcap.com/case-studies/scale-out-database-powers-china-letgo-with-reduced-maintenance-costs); Chinese [#1](https://pingcap.com/cases-cn/user-case-zhuanzhuan/), [#2](https://pingcap.com/cases-cn/user-case-zhuanzhuan-2/), [#3](https://pingcap.com/cases-cn/user-case-zhuanzhuan-3/)|
 |[Meituan-Dianping](https://en.wikipedia.org/wiki/Meituan-Dianping)|Food Delivery|[English](https://www.pingcap.com/success-stories/tidb-in-meituan-dianping/); [Chinese](https://pingcap.com/cases-cn/user-case-meituan/)|
+|[PITS Global Data Recovery Services](https://www.pitsdatarecovery.net/)|Data Recovery|
 |[Ele.me](https://en.wikipedia.org/wiki/Ele.me)|Food Delivery|
 |[Yidian Zixun](https://www.crunchbase.com/organization/yidian-zixun#section-overview)|Media and Entertainment|
 |[KuGou](https://en.wikipedia.org/wiki/KuGou)|Entertainment and Music Streaming|
