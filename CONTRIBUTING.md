@@ -176,11 +176,11 @@ author: The author
 ---
 ```
 
-### Adding an adopter
+### Add an adopter
 
 Add the adopter to `data/adopters.yaml` using the format of existing datums.
 
-### Adding a version
+### Add a version
 
 #### For a new [Long-Term Support](https://docs.pingcap.com/tidb/stable/versioning#long-term-support-releases) (LTS) version
 
