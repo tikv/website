@@ -12,3 +12,6 @@ resources/
 # Ruby assets
 .bundle/
 vendor/bundle/
+
+# Temporary files generated during preview
+*.md-e

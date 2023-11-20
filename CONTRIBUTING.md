@@ -176,6 +176,29 @@ author: The author
 ---
 ```
 
-### Adding an adopter
+### Add an adopter
 
 Add the adopter to `data/adopters.yaml` using the format of existing datums.
+
+### Add a version
+
+#### For a new [Long-Term Support](https://docs.pingcap.com/tidb/stable/versioning#long-term-support-releases) (LTS) version
+
+To add a new version of Long-Term Support (LTS) release, follow these steps using version 7.1 as an example:
+
+1. Copy pages from `dev` to `7.1` and update the page identifiers and menu hierarchy links by running the following command in your terminal:
+
+    ```sh
+    cp -rp content/docs/dev content/docs/7.1
+    sed -i -e '5,8s/dev/7.1/g' content/docs/7.1/**/*.md
+    ```
+
+1. Update `params.versions.all` in [config.yaml](config.yaml) to include the new version and ensure that `params.versions.latest` is updated if necessary.
+
+1. Add the major changes of this version to `content/docs/7.1/new-features/overview.md`
+
+#### For [Development Milestone Release](https://docs.pingcap.com/tidb/stable/versioning#development-milestone-releases) (DMR) and patch versions
+
+To add a Development Milestone Release (DMR) or patch versions, follow these steps:
+
+1. Add major changes to [`content/docs/$VERSION/new-features/overview.md`](content/docs/dev/new-features/overview.md), while `$VERSION` is the closest earlier LTS version.
