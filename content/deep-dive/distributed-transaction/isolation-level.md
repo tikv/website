@@ -49,7 +49,7 @@ This is the lowest isolation level. In this level, dirty reads are allowed, so o
 
 ### Snapshot Isolation
 
-We mentioned 4 different isolation levels above, but TiDB doesn’t adopt any of them. Instead, TiDB uses snapshot isolation as its default ioslation level. The main reason for it is that it allows better serializability, yet still avoids most of the concurrency anomalies that serializability avoids (but not always all).
+We mentioned 4 different isolation levels above, but TiDB doesn’t adopt any of them. Instead, TiDB uses snapshot isolation as its default isolation level. The main reason for it is that it allows better performance than serializability, yet still avoids most of the concurrency anomalies that serializability avoids (but not always all).
 
 TiDB is not alone: snapshot isolation also has been adopted by major database management systems such as InterBase, Firebird, Oracle, MySQL, PostgreSQL, SQL Anywhere, MongoDB and Microsoft SQL Server (2005 and later).
 
