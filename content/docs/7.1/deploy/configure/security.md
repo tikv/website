@@ -124,7 +124,9 @@ For the information about all TLS configuration parameters of PD, see [PD securi
 
 ## Step 3. Configure the TiKV client
 
-You need to set TLS options for the TiKV client to connect to TiKV. Taking [Rust Client](https://github.com/tikv/client-rust) as an example, the TLS options are set as follows:
+You need to set TLS options for the TiKV client to connect to TiKV. 
+
+### [Rust Client](https://github.com/tikv/client-rust)
 
 ```rust
 let config = Config::new(/* ... */).with_security(
@@ -137,11 +139,32 @@ let config = Config::new(/* ... */).with_security(
 );
 ```
 
-Besides, the **connection URL should be changed to `https://`** instead of a plain `ip:port`.
+### [Java Client](https://github.com/tikv/client-java)
 
-{{< warning >}}
-Currently, TiKV Java Client does not support TLS.
-{{< /warning >}}
+```java
+TiConfiguration conf = TiConfiguration.createRawDefault("127.0.0.1:2379");
+conf.setTlsEnable(true);
+conf.setTrustCertCollectionFile("/path/to/ca.pem");
+conf.setKeyCertChainFile("/path/to/cert.pem");
+conf.setKeyFile("/path/to/key.pem");
+```
+
+For more information about the TLS config of Java client, check the [Java client documentation](https://tikv.github.io/client-java/administration/configuration.html#tikvtls_enable)
+
+### [Go Client](https://github.com/tikv/client-go)
+
+```go
+cli, err := rawkv.NewClient(context.TODO(), []string{"127.0.0.1:2379"}, config.Security{
+    ClusterSSLCA:    "/path/to/ca.pem",
+    ClusterSSLCert:  "/path/to/cert.pem",
+    ClusterSSLKey:   "/path/to/key.pem",
+})
+if err != nil {
+    panic(err)
+}
+```
+
+For more information about the TLS config of Go client, check the [Go client documentation](https://pkg.go.dev/github.com/tikv/client-go/v2@v2.0.7/config#Security)
 
 ## Step 4. Connect TiKV using `tikv-ctl` and `pd-ctl`
 
