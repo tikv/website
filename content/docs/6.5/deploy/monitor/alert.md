@@ -27,7 +27,7 @@ This section gives the alert rules for the PD component.
 
 ### Emergency-level alerts
 
-#### `PD_cluster_offline_tikv_nums`
+#### `PD_cluster_down_tikv_nums`
 
 * Alert rule:
 
