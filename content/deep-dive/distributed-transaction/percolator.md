@@ -7,7 +7,7 @@ menu:
         weight: 5
 ---
 
-TiKV supports distributed transactions, which is inspired by Google's [Percolator](https://research.google/pubs/pub36726.pdf). In this section, we will briefly introduce Percolator and how we make use of it in TiKV.
+TiKV supports distributed transactions, which is inspired by Google's [Percolator](https://research.google/pubs/large-scale-incremental-processing-using-distributed-transactions-and-notifications/). In this section, we will briefly introduce Percolator and how we make use of it in TiKV.
 
 ## What is Percolator?
 
