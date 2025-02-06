@@ -45,7 +45,7 @@ Assume that the topology has three layers: `zone > rack > host`. You can set a l
 
     ```toml
     [server]
-    labels = "zone=<zone>,rack=<rack>,host=<host>"
+    labels = {zone="<zone>",rack="<rack>",host="<host>"}
     ```
 
 ## Example
