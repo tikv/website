@@ -52,7 +52,7 @@ Now we can do `count` and sum the result from the above three Regions.
     caption="Coprocessor diagram"
     number="2" >}}
 
-### Exectors
+### Executors
 
 Now we know [TiDB] splits a read task by Regions, but how does TiKV know what are its tasks to handle?
 Here [TiDB] will send a Directed Acyclic Graph (DAG) to TiKV with each node as an executor.
