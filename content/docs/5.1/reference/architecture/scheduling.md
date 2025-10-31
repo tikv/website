@@ -108,7 +108,7 @@ PD can know that the replica count of a Region is incorrect from the Region lead
 
 **Strategy 2: Replicas of a Region need to be at different positions**
 
-Note that here "position" is different from "machine". Generally PD can only ensure that replicas of a Region are not at a same peer to avoid that the peer's failure causes more than one replicas to become lost. However in production, you might have the following requirements:
+Note that here "position" is different from "machine". Generally PD can only ensure that replicas of a Region are not at a same machine to avoid that the peer's failure causes more than one replicas to become lost. However in production, you might have the following requirements:
 
 * Multiple TiKV peers are on one machine;
 * TiKV peers are on multiple racks, and the system is expected to be available even if a rack fails;
