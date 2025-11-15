@@ -33,5 +33,5 @@ In the priority step, the scheduler uses the `PrioritizeNodes` function to rank 
 
 1. [`kube-scheduler` documentation](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/)
 2. [Kubernetes introduction (in Chinese)](https://yeasy.gitbooks.io/docker_practice/kubernetes/)
-3. [How does Kubernetes' scheduler work](http://carmark.github.io/2015/12/21/How-does-Kubernetes-scheduler-work/)
+3. [How does Kubernetes' scheduler work](http://web.archive.org/web/20170510071859/http://carmark.github.io/2015/12/21/How-does-Kubernetes-scheduler-work/)
 4. [Kubernetes Scheduling (in Chinese)](https://zhuanlan.zhihu.com/p/27754017)
