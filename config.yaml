@@ -32,7 +32,7 @@ menu:
 
 params:
     favicon: "favicon.png"
-    googleAnalyticsId: "UA-130734531-1"
+    googleAnalyticsId: G-K9DYZWQ75Q
     versions:
         latest: "7.1"
         all:
