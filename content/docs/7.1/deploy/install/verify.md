@@ -37,7 +37,7 @@ This section describes how to connect to the TiKV cluster using a TiKV client to
 1. Download jars
 
     ```bash
-    curl -o tikv-client-java.jar https://download.pingcap.org/tikv-client-java-3.1.0-SNAPSHOT.jar
+    curl -o tikv-client-java.jar https://download.pingcap.com/tikv-client-java-3.1.0-SNAPSHOT.jar
     curl -o slf4j-api.jar https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.16/slf4j-api-1.7.16.jar
     ```
 

@@ -25,10 +25,10 @@ Download the following installation package where PD Control binary locates.
 
 | Package download link                                            | OS    | Architecture | SHA256 checksum                                                  |
 |:---------------------------------------------------------------- |:----- |:------------ |:---------------------------------------------------------------- |
-| `https://download.pingcap.org/tidb-{version}-linux-amd64.tar.gz` | Linux | amd64        | `https://download.pingcap.org/tidb-{version}-linux-amd64.sha256` |
+| `https://download.pingcap.com/tidb-{version}-linux-amd64.tar.gz` | Linux | amd64        | `https://download.pingcap.com/tidb-{version}-linux-amd64.sha256` |
 
 {{< info >}}
-`{version}` indicates the version number of TiKV. For example, if `{version}` is `v5.0.0`, the package download link is `https://download.pingcap.org/tidb-v5.0.0-linux-amd64.tar.gz`.
+`{version}` indicates the version number of TiKV. For example, if `{version}` is `v5.0.0`, the package download link is `https://download.pingcap.com/tidb-v5.0.0-linux-amd64.tar.gz`.
 {{< /info >}}
 
 ### Compile from source code

@@ -86,8 +86,8 @@ This section describes how to deploy TiKV on a single machine (Linux for example
 
     ```bash
     # Download the package.
-    wget https://download.pingcap.org/tidb-latest-linux-amd64.tar.gz
-    wget http://download.pingcap.org/tidb-latest-linux-amd64.sha256
+    wget https://download.pingcap.com/tidb-latest-linux-amd64.tar.gz
+    wget http://download.pingcap.com/tidb-latest-linux-amd64.sha256
 
     # Check the file integrity. If the result is OK, the file is correct.
     sha256sum -c tidb-latest-linux-amd64.sha256
@@ -156,8 +156,8 @@ To deploy a TiKV cluster with multiple nodes for test, take the following steps:
 
     ```bash
     # Download the package.
-    wget https://download.pingcap.org/tidb-latest-linux-amd64.tar.gz
-    wget http://download.pingcap.org/tidb-latest-linux-amd64.sha256
+    wget https://download.pingcap.com/tidb-latest-linux-amd64.tar.gz
+    wget http://download.pingcap.com/tidb-latest-linux-amd64.sha256
 
     # Check the file integrity. If the result is OK, the file is correct.
     sha256sum -c tidb-latest-linux-amd64.sha256

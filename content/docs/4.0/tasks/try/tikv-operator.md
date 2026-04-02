@@ -74,7 +74,7 @@ Before deployment, make sure the following requirements are satisfied:
     a. Add the PingCAP Repository:
 
     ```shell
-    helm repo add pingcap https://charts.pingcap.org/
+    helm repo add pingcap https://charts.pingcap.com/
     ```
 
     b. Create a namespace for TiKV Operator:
